@@ -9,18 +9,22 @@
       
       
       
+        <link rel="prev" href="../installation/">
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+        <link rel="next" href="../../dds/introduction/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
-        <title>ROS 2 筆記</title>
+        <title>ROS 2 指令 - ROS 2 筆記</title>
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.7e37652d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
       
       
 
@@ -39,7 +43,7 @@
       
     
     
-    <script>__md_scope=new URL("/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -57,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#ros-2" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -69,7 +78,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="ROS 2 筆記" class="md-header__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
+    <a href="../.." title="ROS 2 筆記" class="md-header__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -89,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              ROS 2 指令
             
           </span>
         </div>
@@ -167,7 +176,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="ROS 2 筆記" class="md-nav__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
+    <a href="../.." title="ROS 2 筆記" class="md-nav__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -185,7 +194,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -245,7 +254,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ros2/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -268,7 +277,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ros2/installation/" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   
@@ -295,18 +304,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -322,7 +333,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             ROS 2 實戰
@@ -333,10 +344,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/ros2/command/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 指令
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -347,6 +380,86 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      常見指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常見指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-ros-2-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run ROS 2 package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launch-ros-2-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launch ROS 2 package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros-2-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS 2 node
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros-2-topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS 2 topic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      參考
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -404,7 +517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/dds/introduction/" class="md-nav__link">
+      <a href="../../dds/introduction/" class="md-nav__link">
         
   
   
@@ -444,6 +557,76 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      常見指令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常見指令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-ros-2-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run ROS 2 package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#launch-ros-2-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Launch ROS 2 package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros-2-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS 2 node
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros-2-topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS 2 topic
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      參考
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -455,8 +638,107 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+
+<h1 id="ros-2">ROS 2 指令</h1>
+<p>ROS 2 的很多好用指令都是繼承 ROS 1，基本上用法差不多。這邊我們會介紹常用的幾個 command，讓大家對 ROS 2 操作有基本的概念。</p>
+<p>這邊要特別注意的是要使用 ROS 2 的指令前一定要先設定環境，也就是要執行如下指令：</p>
+<pre><code class="language-bash"># 可以把 rolling 改成你目前使用的 ROS 版本
+source /opt/ros/rolling/local_setup.bash
+</code></pre>
+<p>執行這個指令後，就可以使用/編譯 ROS 2 相關的套件，如果你有下載 ROS 2 套件(<code>sudo apt install ros-rolling-xxxx</code>)，基本上也都會存放在該 folder 內。</p>
+<h2 id="_1">常見指令</h2>
+<p>下面介紹指令時，都要記得先去 source ROS 2 才可以使用。當然更快的方法就是使用我們之前提到的 ros_menu，每次開啟 terminal 可以直接用選項來執行要用哪個 ROS environment。</p>
+<p>另外有一點很方便的小技巧：當你 source ROS 2 後，你不只是可以用 <code>&lt;tab&gt;</code> 來補全 ROS 2 指令，也可以用 <code>&lt;tab&gt;</code> 來補全 package 名稱、executable 名稱，這可以大大增加效率。</p>
+<h3 id="run-ros-2-package">Run ROS 2 package</h3>
+<pre><code class="language-bash">ros2 run &lt;package&gt; &lt;executable&gt;
+</code></pre>
+<p><code>ros2 run</code> 的第一個參數是 ROS package，第二個參數則是這個 package 裡的執行檔。</p>
+<p>舉例來說，當我們想要跑 talker 和 listener 的時候，</p>
+<pre><code class="language-bash"># 第一個 terminal 視窗
+ros2 run demo_nodes_cpp talker
+# 第二個 terminal 視窗
+ros2 run demo_nodes_cpp listener
+</code></pre>
+<p>執行完就可以看到 talker 把資訊丟給 listener 了。</p>
+<h3 id="launch-ros-2-package">Launch ROS 2 package</h3>
+<pre><code class="language-bash">ros2 launch &lt;package&gt; &lt;launch file&gt;
+</code></pre>
+<p>當然要分開執行 ROS 2 的不同節點，還需要開兩個 terminal 並設定兩次環境，其實很不方便，你可以直接用 launch 來取代。</p>
+<p>要使用 launch 需要先有 launch file，幸好在 demo_nodes_cpp 的 package 內已經有寫好一次啟動 talker 和 listener 的 launch file。</p>
+<p>因此你可以執行如下指令：</p>
+<pre><code class="language-bash">ros2 launch demo_nodes_cpp talker_listener.launch.py
+</code></pre>
+<h3 id="ros-2-node">ROS 2 node</h3>
+<pre><code class="language-bash">ros2 node list
+ros2 node info &lt;node name&gt;
+</code></pre>
+<p>我們知道 ROS 的世界中 node 是最基本單位，所以要怎麼得知 node 的資訊就非常重要了，這時候我們可以使用 <code>ros2 node</code> 這個 commande。</p>
+<pre><code class="language-bash">$ ros2 node list
+/talker
+/listener
+</code></pre>
+<p>node list 可以幫助我們列出目前有哪些存在的 node，舉個例子來說，如果在剛剛 talker / listener 的例子，你就可以看到有兩個 node 分別是 talker 和 listener。</p>
+<pre><code class="language-bash">$ ros2 node info /talker
+  Subscribers:
+    ...
+  Publishers:
+    /chatter: std_msgs/msg/String
+    ...
+  Services:
+    ...
+</code></pre>
+<p>node info 則是可以幫助我們看到每個 node 的細節資訊，如果我們觀察 /talker，就會看到這個 node 去 subscribe / publish 哪個 topic (例如 publish 到 /chatter 這個 topic)，以及提供哪些 service 的服務，甚至可以看到該 topic / service 的 type (例如 /chatter 是 std_msgs/msg/String)。</p>
+<h3 id="ros-2-topic">ROS 2 topic</h3>
+<pre><code class="language-bash">ros2 topic list
+ros2 topic info &lt;topic name&gt;
+ros2 topic echo &lt;topic name&gt;
+ros2 topic pub &lt;topic name&gt; &lt;message type&gt; &lt;message&gt;
+</code></pre>
+<p>我們這邊知道 ROS 的溝通方式基本上都是靠著 topic，publisher 把資料丟給某個 topic，subscriber 則是從該 topic 取得資料，因此 <code>ros2 topic</code> 系列的 command 也是非常容易被使用到的。</p>
+<pre><code class="language-bash">$ ros2 topic list
+/chatter
+...
+</code></pre>
+<p>一樣以 talker / listener 當作範例，我們可以看到使用 ros2 topic list 會有一個 topic 是 /chatter。</p>
+<pre><code class="language-bash">$ ros2 topic info /chatter
+Topic: /chatter
+Publisher count: 1
+Subscriber count: 1
+</code></pre>
+<p>如果用 info 來看這個 topic，我們也能看到目前都多少人在 publish / subscribe 這個 topic。</p>
+<pre><code class="language-bash">$ ros2 topic echo /chatter
+data: 'Hello World: 1169'
+---
+data: 'Hello World: 1170'
+---
+</code></pre>
+<p>可以用 echo 的方式來看這個 topic 收到的資料內容。</p>
+<pre><code class="language-bash">$ ros2 topic pub -1 /chatter std_msgs/msg/String &quot;data: 123&quot;
+publisher: beginning loop
+publishing #1: std_msgs.msg.String(data='123') 
+</code></pre>
+<p>當然我們也可以模仿 publisher 把資料直接打給 /chatter 這個 topic。</p>
+<h2 id="_2">參考</h2>
+<ul>
+<li><a href="https://index.ros.org/doc/ros2/Tutorials/Understanding-ROS2-Nodes/">Understanding ROS 2 nodes</a></li>
+<li><a href="https://index.ros.org/doc/ros2/Tutorials/Topics/Understanding-ROS2-Topics/">Understanding ROS 2 topics</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -492,10 +774,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "/", "features": [], "search": "/assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.92b07e13.min.js"></script>
+      <script src="../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
     
   </body>
