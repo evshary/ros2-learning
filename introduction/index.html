@@ -1,0 +1,488 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
+    
+    
+      
+        <title>ROS 2 介紹 - ROS 2 筆記</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ros-2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ROS 2 筆記" class="md-header__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ROS 2 筆記
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ROS 2 介紹
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ROS 2 筆記" class="md-nav__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ROS 2 筆記
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 筆記
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 介紹
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 介紹
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-ros-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why ROS 2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ros-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS 2 架構
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ros-2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS 2 版本
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ros" class="md-nav__link">
+    <span class="md-ellipsis">
+      好用的 ROS 資源
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-ros-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why ROS 2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ros-2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS 2 架構
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ros-2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS 2 版本
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ros" class="md-nav__link">
+    <span class="md-ellipsis">
+      好用的 ROS 資源
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ros-2">ROS 2 介紹</h1>
+<p>大部分 ROS 使用者在網路上能找到的資料幾乎都是以 ROS 1 為主，不論是教學或是範例程式。然而 ROS 2 將會是 ROS 未來的趨勢，所以這邊整理一些跟 ROS 2 相關的資訊。</p>
+<h2 id="why-ros-2">Why ROS 2</h2>
+<p>Open Robotics 為什麼要提出 ROS 2 呢？ 一開始 ROS 1 是學術單位所提出來的，然後慢慢擴及到社群和各種機器上面，所以在將機器人產品化的過程上也遇到了很多先天性的限制。為了解決這些問題，於是提出了 ROS 2 的架構，希望解決如下的問題：</p>
+<ul>
+<li>多台機器人的協作：未來機器人會從單一轉變成多機，因此能夠新的架構要能考慮到多機的問題</li>
+<li>適用 embedded 的 ROS 架構：有些機器人可能是跑在資源有限的嵌入式平台上面，因此要能夠讓 footprint 盡可能的減少。</li>
+<li>擁有 realtime 的能力：在一些用在工業領域上的機器人會需要擁有即時性，確保重要任務可以在一定時限內完成，否則可能會有安全上的疑慮。</li>
+<li>在網路環境糟糕的情況下仍然可以確保通訊品質：機器人運行的環境不一定是良好的有線網路，需要擁有確保通訊品質的能力。</li>
+</ul>
+<p>那為什麼不要修改 ROS 1 架構就好呢？ <a href="https://design.ros2.org/articles/why_ros2.html#why-not-just-enhance-ros-1">官方的說法</a>是不希望因為架構上的改動而影響到現有的使用者，所以另起爐灶，建立新的架構。當然 ROS 1 和 ROS 2 還是擁有彼此相互通訊的方法：ROS bridge，未來會再另外說明。</p>
+<h2 id="ros-2_1">ROS 2 架構</h2>
+<p>ROS 1 和 ROS 2 最大的差異在於<strong>通訊方式的改變</strong>，ROS 1 是用 master-client 的架構，所有的 ROS node 都必須要連線到一個 master 上，由這個 master 來協調誰和誰連線，然而在 ROS 2 上面就不須要有 master 的角色了。</p>
+<p>在 <a href="https://www.researchgate.net/publication/309128426_Exploring_the_performance_of_ROS2">Exploring the performance of ROS2</a> 這篇論文裡有一張比較 ROS 1 和 ROS 2 的架構圖：</p>
+<p><img alt="ROS 1 &amp; ROS 2 architecture" src="../images/ROS_architecture.png" /></p>
+<p>我們可以看到兩者比較架構中有兩個不同：</p>
+<ol>
+<li>ROS 1 的 ROS Master 被移除了</li>
+<li>ROS 2 的底層通訊方式從 TCPROS/UDPROS 轉換成 DDS</li>
+</ol>
+<p>ROS 2 架構的特色是把上層應用以及下層網路通訊分開，Open Robotics 希望專注於上層應用的開發，下層則可以借助其他既有已成熟的網路通訊技術，減少重造輪子的工(少掉 ROS 1 的 TCPROS/UDPROS)。預設的 ROS 2 底層通訊使用了 DDS(Data Distributed Service) 的技術，可以用分散式的方式進行網路通訊。DDS 的最大特色是不需要擁有中央控管(ROS Master)的角色，每個通訊節點都可以相互溝通，因此在 ROS 上就可以少掉 master 的角色，任何有需要通訊的 ROS node 只要啟動就可以藉由 DDS 來連線到其他的 ROS node 上。</p>
+<p>DDS 是一個很複雜的通訊技術，ROS 會選用 DDS 是因為該協定在工業、軍事上面已經擁有悠久可靠的歷史，之後後面會再另外介紹 DDS。</p>
+<h2 id="ros-2_2">ROS 2 版本</h2>
+<p>ROS 2 的版本規則仍然跟 ROS 1 一樣，採取英文字母開頭的方式，用英文的形容詞搭配一隻烏龜的品種。舉個例子來說，F 版的 ROS 2 正式名稱叫做 Foxy Fitzroy (狡猾的菲茨羅伊河龜)，一般來說我們都稱呼為 foxy 來簡化。</p>
+<p>這個命名基本上每次都會在 ROS Discourse 上公開徵選，像是 <a href="https://discourse.ros.org/t/ros-2-f-name-brainstorming/11081">ROS 2 F Name Brainstorming</a></p>
+<p>到目前為止的 ROS 2 的release版本可以參考<a href="https://index.ros.org/doc/ros2/Releases/">官方網站</a>。</p>
+<p>第一版的 LTS 是 dashing，雖說是 LTS ，不過也只有維護兩年而已，而且很多好用功能和套件支援都有些缺乏，建議使用之後的 LTS 會比較好。</p>
+<p>LTS 大多數情況都是兩版出一次，並且搭配 Ubuntu 的 LTS 版本。例如 foxy 搭配 Ubuntu 20.04，humble 搭配 Ubuntu 22.04 等等。最新一版是 jazzy，支援 Ubuntu 24.04。</p>
+<p>另外值得一提的是 ROS 2 提出了 rolling version 的概念，除了 LTS 以外，會有一個版本是會不斷進版的，相關資訊可以參考下面連結</p>
+<ul>
+<li><a href="https://discourse.ros.org/t/ros-2-rolling-distribution-plans/13227">ROS 2 Rolling distribution plans</a></li>
+<li><a href="https://ros.org/reps/rep-2002.html">REP 2002</a></li>
+</ul>
+<h2 id="ros">好用的 ROS 資源</h2>
+<ul>
+<li><a href="https://discourse.ros.org/">ROS Discourse</a>：ROS 的官方討論區，全世界的 ROS 使用者會在這邊討論 ROS 相關的訊息，或是展現自己的成果</li>
+<li><a href="https://robotics.stackexchange.com/">Robotics StackExchange</a>：專門解答 ROS 相關的問題的論壇，過去是 <a href="https://answers.ros.org/questions/">ROS answer</a>，但後來社群決定和 StackExchange 合併</li>
+<li><a href="https://design.ros2.org/">ROS 2 design</a>：ROS 2 當初設計的概念</li>
+<li><a href="https://ros.org/reps/rep-0000.html">REPs</a>：Index of ROS Enhancement Proposals，ROS 相關的提案</li>
+<li><a href="https://index.ros.org/packages/">ROS packages</a>: ROS 現有的 package 列表</li>
+<li><a href="https://index.ros.org/doc/ros2/">ROS 2 wiki</a>: ROS 2 的 Wiki</li>
+<li><a href="http://docs.ros2.org/foxy/">ROS 2 API List</a>: ROS 2 的 API 列表</li>
+<li><a href="https://github.com/ros2/demos">ROS 2 Demo Code</a>: ROS 2 的 Demo Code，通常要寫程式都會從這邊參考</li>
+<li><a href="https://github.com/ros2/examples">ROS 2 Example Code</a>: ROS 2 的 Example Code，通常要寫程式都會從這邊參考</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
