@@ -4,20 +4,20 @@ This the tutorial for ROS 2 learning.
 
 ## Usage
 
-* Install `poetry` & `just` first
+* Install `poetry` & `just` first (Assume you're using Ubuntu)
 
 ```bash
 sudo apt install just
-curl -sSL https://install.python-poetry.org | python3 -
+pipx install poetry
 ```
 
-* Initialize the environment
+* Initialize the environment for the first time
 
 ```bash
 just init
 ```
 
-* Run the mkdocs
+* Run the mkdocs and you can access at http://127.0.0.1:8000/
 
 ```bash
 just serve
