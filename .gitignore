@@ -1,6 +1,3 @@
-# Rust
-target
-
 # Python
 ## poetry environment
 .venv
@@ -9,7 +6,5 @@ __pycache__
 ## pyenv version
 .python-version
 
-# ROS 2
-install
-build
-log
+# mkdocs
+site
