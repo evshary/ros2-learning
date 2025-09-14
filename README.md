@@ -1,21 +1,24 @@
-# Repository
+# ROS 2 learning tutorial
 
-TODO: Remember to update the following files for your onwn needs
-
-* `.pre-commit-config.yaml`
-* `.gitignore`
-* `.github`: CI related
+This the tutorial for ROS 2 learning.
 
 ## Usage
 
-* Install prerequisite.sh
+* Install `poetry` & `just` first
 
-```shell
-./prerequisite.sh
+```bash
+sudo apt install just
+curl -sSL https://install.python-poetry.org | python3 -
 ```
 
-* Install pre-commit
+* Initialize the environment
 
-```shell
-pre-commit install --install-hooks
+```bash
+just init
+```
+
+* Run the mkdocs
+
+```bash
+just serve
 ```
