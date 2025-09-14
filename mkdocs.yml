@@ -6,15 +6,16 @@ theme:
 nav:
   - '首頁': 'index.md'
   - 'ROS 2 入門':
-    - 'ROS 2 介紹': 'introduction.md'
-    - 'ROS 2 安裝': 'installation.md'
+    - 'ROS 2 介紹': 'ros2/introduction.md'
+    - 'ROS 2 安裝': 'ros2/installation.md'
   - 'ROS 2 實戰':
-    - 'ROS 2 指令': 'command.md'
+    - 'ROS 2 指令': 'ros2/command.md'
     #- 'ROS 2 通訊方式':
     #- 'ROS 2 編譯':
     #- 'ROS 2 QoS':
     #- 'ROS 2 好用工具':
     #- 'SROS':
-  #- 'DDS 入門':
+  - 'DDS 入門':
+    - 'DDS 介紹': 'dds/introduction.md'
   #- 'Zenoh 入門':
   #- 'Autoware 入門':
