@@ -1,6 +1,7 @@
 {
-  "MD013": false, # Line length limitation
-  "MD033": false, # Enable Inline HTML
-  "MD034": false, # Allow Bare URL used
-  "MD041": false, # Allow first line heading
+  "MD007": { "indent": 4 },  # Unordered list indentation (Change default to 4 spaces)
+  "MD013": false,            # Line length limitation
+  "MD033": false,            # Enable Inline HTML
+  "MD034": false,            # Allow Bare URL used
+  "MD041": false,            # Allow first line heading
 }

@@ -48,5 +48,5 @@ cd ros2_build_env
 ```
 
 * 完成後會進入容器的環境內，你的 shell 前面會有 `(ros2-jazzy-gui)`，代表是在容器內的 terminal
-  * 我是把 ros2_build_env 掛載進容器內，所以在這資料夾做的修改都可以在本機端看到
-  * 容器內部我是使用 zsh，所以在 source ROS 2 環境變數時要注意一下
+    * 我是把 ros2_build_env 掛載進容器內，所以在這資料夾做的修改都可以在本機端看到
+    * 容器內部我是使用 zsh，所以在 source ROS 2 環境變數時要注意一下
