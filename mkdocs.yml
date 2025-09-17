@@ -38,10 +38,10 @@ nav:
   - 'ROS 2 實戰':
     - 'ROS 2 指令': 'ros2/command.md'
     - 'ROS 2 通訊方式': 'ros2/communication.md'
-    #- 'ROS 2 編譯': 'ros2/building.md'
-    #- 'ROS 2 QoS': 'ros2/qos.md'
-    #- 'ROS 2 好用工具': 'ros2/tools.md'
-    #- 'SROS': 'ros2/sros.md'
+    - 'ROS 2 編譯': 'ros2/building.md'
+    - 'ROS 2 QoS': 'ros2/qos.md'
+    - 'ROS 2 好用工具': 'ros2/tools.md'
+    - 'SROS': 'ros2/sros.md'
   - 'DDS 入門':
     - 'DDS 介紹': 'dds/introduction.md'
   - 'Zenoh 入門':
