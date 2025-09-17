@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../modules/">
+        <link rel="prev" href="../communication/">
       
       
-        <link rel="next" href="../simulation/">
+        <link rel="next" href="../qos/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Autoware 地圖 - ROS 2 筆記</title>
+        <title>ROS 2 編譯 - ROS 2 筆記</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#autoware-map" class="md-skip">
+        <a href="#ros-2" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Autoware 地圖
+              ROS 2 編譯
             
           </span>
         </div>
@@ -290,7 +290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -313,7 +313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/installation/" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   
@@ -340,18 +340,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -367,7 +369,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             ROS 2 實戰
@@ -381,7 +383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/command/" class="md-nav__link">
+      <a href="../command/" class="md-nav__link">
         
   
   
@@ -404,7 +406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/communication/" class="md-nav__link">
+      <a href="../communication/" class="md-nav__link">
         
   
   
@@ -424,10 +426,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../ros2/building/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 編譯
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -438,6 +462,95 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      專案結構
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      取得程式碼
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="取得程式碼">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      取得已有專案
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      自己建立專案
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      編譯
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      執行
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      參考資料
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -450,7 +563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/qos/" class="md-nav__link">
+      <a href="../qos/" class="md-nav__link">
         
   
   
@@ -473,7 +586,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/tools/" class="md-nav__link">
+      <a href="../tools/" class="md-nav__link">
         
   
   
@@ -496,7 +609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/sros/" class="md-nav__link">
+      <a href="../sros/" class="md-nav__link">
         
   
   
@@ -659,20 +772,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -688,7 +799,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Autoware 入門
@@ -702,7 +813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../autoware/introduction/" class="md-nav__link">
         
   
   
@@ -725,7 +836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/" class="md-nav__link">
+      <a href="../../autoware/modules/" class="md-nav__link">
         
   
   
@@ -745,32 +856,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Autoware 地圖
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../autoware/map/" class="md-nav__link">
         
   
   
@@ -781,119 +870,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      常見的自駕車地圖
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#lanelet2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Lanelet2
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Lanelet2">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      地圖投影格式
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#autoware" class="md-nav__link">
-    <span class="md-ellipsis">
-      Autoware
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      建立地圖
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="建立地圖">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pcd" class="md-nav__link">
-    <span class="md-ellipsis">
-      PCD
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vector-map" class="md-nav__link">
-    <span class="md-ellipsis">
-      Vector Map
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      地圖轉換
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code-study" class="md-nav__link">
-    <span class="md-ellipsis">
-      Code Study
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -906,7 +882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../simulation/" class="md-nav__link">
+      <a href="../../autoware/simulation/" class="md-nav__link">
         
   
   
@@ -958,68 +934,35 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      常見的自駕車地圖
+      專案結構
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#lanelet2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Lanelet2
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Lanelet2">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      地圖投影格式
+      取得程式碼
     </span>
   </a>
   
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#autoware" class="md-nav__link">
-    <span class="md-ellipsis">
-      Autoware
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      建立地圖
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="建立地圖">
+    <nav class="md-nav" aria-label="取得程式碼">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pcd" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      PCD
+      取得已有專案
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#vector-map" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Vector Map
+      自己建立專案
     </span>
   </a>
   
@@ -1031,18 +974,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      地圖轉換
+      編譯
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#code-study" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      Code Study
+      執行
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      參考資料
     </span>
   </a>
   
@@ -1064,107 +1016,82 @@
 
 
 
-<h1 id="autoware-map">Autoware Map</h1>
-<h2 id="_1">常見的自駕車地圖</h2>
+<h1 id="ros-2">ROS 2 編譯</h1>
+<p>在了解 ROS 2 基本操作後，對開發者而言下一步就是要學習怎麼建構自己的專案。這邊會介紹一般 ROS 2 的資料夾結構應該是怎樣，以及如何進行開發編譯。</p>
+<p>如果開發過 ROS 1，應該會比較習慣 ROS 2 的專案形式。差異大概是有些資料夾名稱不一樣，而且編譯的工具也不一樣，其他基本上是大同小異。</p>
+<h2 id="_1">專案結構</h2>
+<p>通常我們在一個 ROS 的專案資料夾中，會有如下幾個資料夾</p>
 <ul>
-<li>OpenDRIVE：副檔名為 <code>.xodr</code>，內容為 XML 的格式 (Carla / Apollo 使用)</li>
-<li>Lanelet2: 副檔名為 <code>.osm</code>，Lanelet2 是基於 OpenStreetMap 的擴充，也是 XML 的格式 (Autoware 使用)</li>
+<li>your_workspace: 你的專案資料夾<ul>
+<li>src: 用來放程式碼的地方</li>
+<li>build: 編譯過程中的中間檔</li>
+<li>install: 放置編譯後結果的地方</li>
+<li>log: 編譯或測試的紀錄檔</li>
 </ul>
-<h2 id="lanelet2">Lanelet2</h2>
-<p><a href="https://github.com/fzi-forschungszentrum-informatik/Lanelet2">Lanelet2</a> 是專門為自動駕駛設計的地圖框架，使用 OSM 格式，Autoware 是使用這個</p>
-<p>分為三層：</p>
+</li>
+</ul>
+<p>build, install, log 這三個資料夾都是編譯後自動產生出來的，在編譯前你只需要把程式碼放到 src 資料夾即可。</p>
+<h2 id="_2">取得程式碼</h2>
+<p>那麼在 src 資料夾的程式碼應該要怎麼擺放呢？一般而言在 src 資料夾底下可以放有多個小專案，編譯工具會自動遞迴去找 src 資料夾下的所有小專案並且編譯。這樣設計的原因是我們可以把一個大功能拆分成多個小專案，而這些小專案就可以輕易地被重複利用。</p>
+<p>下面我們分兩個區塊來介紹，一個是取得已有專案，另一個是自己建立新專案。</p>
+<h3 id="_3">取得已有專案</h3>
+<p>我們直接舉個實際的例子幫助大家了解，下面是我們下載既有專案的過程：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 建立 workspace，並在底下建立 src</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>your_workspace/src
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>your_workspace
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 取得專案程式碼</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>wget<span class="w"> </span>https://xxxxx/project.repos
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>vcs<span class="w"> </span>import<span class="w"> </span>src<span class="w"> </span>&lt;<span class="w"> </span>project.repos
+</span></code></pre></div>
+<p>第一步大家應該比較好理解，就是先建立前面所提到的資料夾結構。重要的是第二步，我們需要把組成專案的所有程式碼抓下來，但如前面所提，一個大專案是由多個小專案組合而成，而這個結構通常會紀錄在 <code>.repos</code> 檔中。我們可以看一下到底裡面紀錄什麼。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>repositories:
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  component1:
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    type: git
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    url: https://github.com/xxx/component1.git
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    version: foxy
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  component2:
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    type: git
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    url: https://github.com/yyy/component2.git
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    version: commit_ID
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>...
+</span></code></pre></div>
+<p>可以看到有這個列表中有 component1 和 component2，而他們也是組成這個專案的 repo。底下會註明是用什麼版控工具(type: git)，專案位置(url: xxxx)，以及要取這個專案哪個版本或 commit(version: xxx)。用這個列表就可以輕易管理專案的各個元件版本，也比較不會出現當某個小元件更新後會影響到整個專案的狀況。</p>
+<p>那要怎麼利用這個列表把程式碼下載下來呢？這就要用 vcs 這套工具。vcs 是 <a href="https://github.com/dirk-thomas/vcstool">vcstool</a> 專案的 CLI 工具，他可以輕易把紀錄在 <code>.repos</code> 的程式碼下載下來。以上面範例為例，<code>vcs import src &lt; project.repos</code>代表把 project.repos 中的元件下載下來並且放入 src 資料夾。當然 vcs 還有其他好用功能，但是最常用的還是 import 為主。</p>
+<h3 id="_4">自己建立專案</h3>
+<p>自己建立專案的話就比較麻煩一點，需要使用到 ROS 2 的 <code>ros2 pkg create</code>，以下面為例。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 建立 workspace，並在底下建立 src</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>your_workspace/src
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">cd</span><span class="w"> </span>your_workspace/src
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># C++ 專案</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>ros2<span class="w"> </span>pkg<span class="w"> </span>create<span class="w"> </span>--build-type<span class="w"> </span>ament_cmake<span class="w"> </span>&lt;project_name&gt;
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># Python 專案</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>ros2<span class="w"> </span>pkg<span class="w"> </span>create<span class="w"> </span>--build-type<span class="w"> </span>ament_python<span class="w"> </span>&lt;project_name&gt;
+</span></code></pre></div>
+<p>執行 <code>ros2 pkg create</code> 時，依照你的 <code>--build-type</code> 不同，可以決定是 C++ 專案還是 Python 專案。你可以直接進入專案的資料夾中，會看見底下有 <code>package.xml</code> 的資料夾，這個就是 ROS 2 用來辨認專案內容的描述檔，裡面的細節之後再來介紹。</p>
+<h2 id="_5">編譯</h2>
+<p>了解如何取得程式碼後，我們就需要了解怎麼編譯。在 ROS 2 的世界中，進行編譯的重要工具就是 <a href="https://colcon.readthedocs.io/en/released/index.html">colcon</a>，比較細節的部份可以參考官網。我們先來看看下面的範例：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>your_workspace
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>colcon<span class="w"> </span>build
+</span></code></pre></div>
+<p>執行完成後，你就會發現 <code>your_workspace</code> 底下產生了 build, install, log 三個資料夾。</p>
+<p>這邊稍微提一下 C++ 的 ROS 2 專案是使用 cmake 來進行編譯管理的。因此我們舉 C++ 為例說明這三個資料夾的功用，你可以想像 build 資料夾就是放置執行 <code>make</code> 所產生的中間檔，而 install 則是用來放置 <code>make install</code> 要安裝的編譯結果。所以如果要撰寫 ROS 2 C++ project 時，要能夠被使用者執行的檔案一定要有 install 才行。</p>
+<p>當然 <code>colcon build</code> 也是可以帶參數的，下面列出一些常用的執行指令：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 指定要編譯某個專案</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>&lt;certain<span class="w"> </span>project&gt;
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># install 資料夾不要放 copy 的檔案，而是用 symbolic link 連結到 src 資料夾</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># 同時用 n 個 thread 進行編譯</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>colcon<span class="w"> </span>build<span class="w"> </span>--parallel-workers<span class="w"> </span>n
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># 預設 install 資料夾下的 component 都會有獨立資料夾，用 merge-install 則是不再用資料夾來歸類</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>colcon<span class="w"> </span>build<span class="w"> </span>--merge-install
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># 使用 release build，當要減少 code size 時，這個是很重要的指令</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>colcon<span class="w"> </span>build<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
+</span></code></pre></div>
+<h2 id="_6">執行</h2>
+<p>執行的部份就非常容易了，只要 <code>source your_workspace/install/local_setup.bash</code> 後，你就可以輕易使用 <code>ros2 run</code> 或 <code>ros2 launch</code> 執行你編譯好的專案。這邊細節就不再多提了。</p>
+<h2 id="_7">參考資料</h2>
 <ul>
-<li>物理層：包含能具體觀測的元素，如道路、停車格等等</li>
-<li>關聯層：物理元素關聯到虛擬規則，如車道、區域、交通規則</li>
-<li>拓樸層：物理元素如何彼此連接</li>
-</ul>
-<p>其他細節可參考<a href="https://ppfocus.com/0/di1e5d759.html">面向自動駕駛的高精度地圖框架解析和實戰</a></p>
-<p>常用資源：</p>
-<ul>
-<li>OSM 地圖 tag：OSM 地圖上面的各個 tag 涵義，可參考<a href="https://github.com/fzi-forschungszentrum-informatik/Lanelet2/blob/master/lanelet2_core/doc/LinestringTagging.md">這邊</a></li>
-</ul>
-<h3 id="_2">地圖投影格式</h3>
-<p>我們需要有一個專門的檔案來描述如何把全球投影座標轉換成 local 的座標</p>
-<p>Autoware 支援三種投影格式
-https://github.com/autowarefoundation/autoware.universe/blob/main/map/autoware_map_projection_loader/README.md</p>
-<ul>
-<li>MGRS（Military Grid Reference System）<ul>
-<li>NATO 專用</li>
-<li>把全球地圖切成多個方格，在每個方格用數字定位</li>
-</ul>
-</li>
-<li>Local Cartesian UTM<ul>
-<li>切成較小的平面並設立原點，方便定位</li>
-</ul>
-</li>
-<li>Transverse Mercator (UTM)<ul>
-<li>把地球座標投影到圓柱上面來定位</li>
-</ul>
-</li>
-</ul>
-<h2 id="autoware">Autoware</h2>
-<p>Autoware 有用到兩種地圖：</p>
-<ul>
-<li>點雲地圖 (<a href="https://docs.web.auto/en/user-manuals/vector-map-builder/introduction#pcd">PCD 格式</a>， <code>.pcd</code> 結尾): 來自 Lidar</li>
-<li>向量地圖 (<a href="https://docs.web.auto/en/user-manuals/vector-map-builder/introduction#what-is-lanelet2">OSM 格式</a>，<code>.osm</code> 結尾): 提供道路相關的訊息，又稱為 Vector Map<ul>
-<li>路線: 如車道如何連接，能否變道...</li>
-<li>物體形狀: 車道、紅綠燈、斑馬線、停車格...</li>
-<li>交通規則: 紅綠燈、停止線、限速、車道方向...</li>
-</ul>
-</li>
-</ul>
-<h2 id="_3">建立地圖</h2>
-<p>可以參考 <a href="https://autowarefoundation.github.io/autoware-documentation/main/how-to-guides/integrating-autoware/creating-maps/">Autoware 的教學</a></p>
-<h3 id="pcd">PCD</h3>
-<p>如果是現實環境，需要用 <a href="https://autowarefoundation.github.io/autoware-documentation/main/how-to-guides/integrating-autoware/creating-maps/open-source-slam/">SLAM 的技術</a>來建地圖</p>
-<p>如果是 Carla，這邊有些<a href="https://carla.readthedocs.io/projects/ros-bridge/en/latest/pcl_recorder/">相對應的套件</a>可以使用</p>
-<h3 id="vector-map">Vector Map</h3>
-<ul>
-<li><a href="https://tools.tier4.jp/vector_map_builder_ll2/">Vector Map Builder</a>： TierIV 出的地圖編輯器，可以吃 pcd 並且在上面創造出 Lanelet2，不過需要註冊帳號才能用，可參考<a href="https://docs.web.auto/en/user-manuals/vector-map-builder/introduction">教學</a></li>
-<li><a href="https://github.com/fzi-forschungszentrum-informatik/Lanelet2/blob/master/lanelet2_maps/README.md">JOSM</a>：可以用來編輯 Lanelet2 地圖</li>
-</ul>
-<h2 id="_4">地圖轉換</h2>
-<p>常見的 map 是 OpenDrive 格式 (xodr)，像是 Carla 的預設地圖就是 xodr，如果要能讓 Autoware 使用，就需要轉換成 OpenStreetMap 格式 (osm)</p>
-<p>我在整合 Carla 和 Autoware 的時候就有遇到地圖轉換的問題，下面找了許多解法，雖然很多都無法正常使用</p>
-<ul>
-<li>xodr 轉 osm (但是是 trial 版本，且無法順利運作): https://github.com/carla-simulator/carla-autoware/issues/117</li>
-<li><a href="https://github.com/tiev-tongji/xodr-OSM-Converter">xodr-OSM-Converter</a>: xodr 轉 osm 的工具，但我嘗試後轉換的地圖並無法使用</li>
-<li><a href="https://github.com/wenlong-dev/opendrive2lanelets-converter">opendrive2lanelets-converter</a>: opendrive 轉 lanelets，但我轉換後發現格式還是有問題</li>
-<li>Carla 提供已經轉好的 Autoware Map，但有點過時: https://bitbucket.org/carla-simulator/autoware-contents/src/master/</li>
-<li>後來找到別人提供的轉好地圖： https://github.com/hatem-darweesh/op_agent/tree/ros2/autoware-contents/maps/vector_maps/lanelet2</li>
-</ul>
-<h2 id="code-study">Code Study</h2>
-<p>注意這邊以 galactic 版本為主，新版可能有改動</p>
-<p>理論上只要有 pcd 和 osm 就可以跑 map_loader</p>
-<p>Autoware 會去讀 <code>map_path</code> 這個 argument 的值，然後從底下找出 pcd 和 osm 兩個檔案</p>
-<p><code>map.launch.py</code> 會跑如下幾個 Node</p>
-<ul>
-<li>map_loader 中的 <strong>map_hash_generator</strong><ul>
-<li>publisher <code>/api/autoware/get/map/info/hash</code>: 會把 lanelet 的內容和 pcd 的路徑 hash 起來並發佈出去</li>
-<li>service <code>/api/autoware/get/map/lanelet/xml</code>: 當 client 來詢問時，提供 lanelet 的內容</li>
-</ul>
-</li>
-<li>Composable:<ul>
-<li>map_loader 中的 plugin <strong>Lanelet2MapLoaderNode</strong>: 讀取 Lanelet2 格式<ul>
-<li>publish <code>vector_map</code>: 讀 lanlet2 的檔案，並將其轉成 binary，用 transient_local</li>
-</ul>
-</li>
-<li>map_loader 中的 plugin <strong>Lanelet2MapVisualizationNode</strong>: 在 RViz 畫圖<ul>
-<li>subscribe <code>vector_map</code>，然後 publish <code>vector_map_marker</code> 給 RViz</li>
-</ul>
-</li>
-<li>map_loader 中的 plugin <strong>PointCloudMapLoaderNode</strong>: 讀取 PCD 格式<ul>
-<li>publish <code>PointCloud2</code> 的 msg 到 <code>pointcloud_map</code></li>
-<li>service <code>/map/get_partial_pointcloud_map</code> 可以提供 client 部份的 PCD  map</li>
-<li><strong>問題</strong>：<code>map.launch.py</code> 中的 LINE 88 remap，似乎沒用到 <code>service/get_differential_pcd_map</code>，懷疑是忘記刪掉</li>
-</ul>
-</li>
-<li>map_loader 中的 plugin <strong>VectorMapTFGeneratorNode</strong>: 接收 pointcloud 資訊後進行座標轉換<ul>
-<li>subscriber <code>vector_map</code>，然後發布 TF 轉換 (map_frame &lt;=&gt; viewer_frame)</li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="https://index.ros.org/doc/ros2/Tutorials/Colcon-Tutorial/">Using colcon to build packages</a></li>
 </ul>
 
 
