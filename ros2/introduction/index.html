@@ -235,7 +235,7 @@
   
   
   <span class="md-ellipsis">
-    首頁
+    簡介
     
   </span>
   
@@ -951,16 +951,21 @@
 
 
 <h1 id="ros-2">ROS 2 介紹</h1>
-<p>大部分 ROS 使用者在網路上能找到的資料幾乎都是以 ROS 1 為主，不論是教學或是範例程式。然而 ROS 2 將會是 ROS 未來的趨勢，所以這邊整理一些跟 ROS 2 相關的資訊。</p>
+<p>隨著 ROS 1 所有版本已經 <a href="https://www.ros.org/blog/noetic-eol/">EOL (End of Life)</a>，使用 ROS 2 已經是無法避免的趨勢了。
+在這邊整理一些跟 ROS 2 相關資訊提供給大家參考。</p>
 <h2 id="why-ros-2">Why ROS 2</h2>
-<p>Open Robotics 為什麼要提出 ROS 2 呢？ 一開始 ROS 1 是學術單位所提出來的，然後慢慢擴及到社群和各種機器上面，所以在將機器人產品化的過程上也遇到了很多先天性的限制。為了解決這些問題，於是提出了 ROS 2 的架構，希望解決如下的問題：</p>
+<p>當初 Open Robotics 為什麼要提出 ROS 2 呢？
+一開始 ROS 1 是學術單位所提出來的，然後慢慢擴及到社群和各種機器上面，所以在將機器人產品化的過程上也遇到了很多先天性的限制。
+為了解決這些問題，於是提出了 ROS 2 的架構，希望解決如下的問題：</p>
 <ul>
 <li>多台機器人的協作：未來機器人會從單一轉變成多機，因此能夠新的架構要能考慮到多機的問題</li>
 <li>適用 embedded 的 ROS 架構：有些機器人可能是跑在資源有限的嵌入式平台上面，因此要能夠讓 footprint 盡可能的減少。</li>
 <li>擁有 realtime 的能力：在一些用在工業領域上的機器人會需要擁有即時性，確保重要任務可以在一定時限內完成，否則可能會有安全上的疑慮。</li>
 <li>在網路環境糟糕的情況下仍然可以確保通訊品質：機器人運行的環境不一定是良好的有線網路，需要擁有確保通訊品質的能力。</li>
 </ul>
-<p>那為什麼不要修改 ROS 1 架構就好呢？ <a href="https://design.ros2.org/articles/why_ros2.html#why-not-just-enhance-ros-1">官方的說法</a>是不希望因為架構上的改動而影響到現有的使用者，所以另起爐灶，建立新的架構。當然 ROS 1 和 ROS 2 還是擁有彼此相互通訊的方法：ROS bridge，未來會再另外說明。</p>
+<p>那為什麼不要修改 ROS 1 架構就好呢？
+<a href="https://design.ros2.org/articles/why_ros2.html#why-not-just-enhance-ros-1">官方的說法</a>是不希望因為架構上的改動而影響到現有的使用者，所以另起爐灶，建立新的架構。
+當然 ROS 1 和 ROS 2 還是擁有彼此相互通訊的方法：ROS bridge，未來會再另外說明。</p>
 <h2 id="ros-2_1">ROS 2 架構</h2>
 <p>ROS 1 和 ROS 2 最大的差異在於<strong>通訊方式的改變</strong>，ROS 1 是用 master-client 的架構，所有的 ROS node 都必須要連線到一個 master 上，由這個 master 來協調誰和誰連線，然而在 ROS 2 上面就不須要有 master 的角色了。</p>
 <p>在 <a href="https://www.researchgate.net/publication/309128426_Exploring_the_performance_of_ROS2">Exploring the performance of ROS2</a> 這篇論文裡有一張比較 ROS 1 和 ROS 2 的架構圖：</p>
@@ -970,10 +975,13 @@
 <li>ROS 1 的 ROS Master 被移除了</li>
 <li>ROS 2 的底層通訊方式從 TCPROS/UDPROS 轉換成 DDS</li>
 </ol>
-<p>ROS 2 架構的特色是把上層應用以及下層網路通訊分開，Open Robotics 希望專注於上層應用的開發，下層則可以借助其他既有已成熟的網路通訊技術，減少重造輪子的工(少掉 ROS 1 的 TCPROS/UDPROS)。預設的 ROS 2 底層通訊使用了 DDS(Data Distributed Service) 的技術，可以用分散式的方式進行網路通訊。DDS 的最大特色是不需要擁有中央控管(ROS Master)的角色，每個通訊節點都可以相互溝通，因此在 ROS 上就可以少掉 master 的角色，任何有需要通訊的 ROS node 只要啟動就可以藉由 DDS 來連線到其他的 ROS node 上。</p>
+<p>ROS 2 架構的特色是把上層應用以及下層網路通訊分開，Open Robotics 希望專注於上層應用的開發，下層則可以借助其他既有已成熟的網路通訊技術，減少重造輪子的工(少掉 ROS 1 的 TCPROS/UDPROS)。
+預設的 ROS 2 底層通訊使用了 DDS(Data Distributed Service) 的技術，可以用分散式的方式進行網路通訊。
+DDS 的最大特色是不需要擁有中央控管(ROS Master)的角色，每個通訊節點都可以相互溝通，因此在 ROS 上就可以少掉 master 的角色，任何有需要通訊的 ROS node 只要啟動就可以藉由 DDS 來連線到其他的 ROS node 上。</p>
 <p>DDS 是一個很複雜的通訊技術，ROS 會選用 DDS 是因為該協定在工業、軍事上面已經擁有悠久可靠的歷史，之後後面會再另外介紹 DDS。</p>
 <h2 id="ros-2_2">ROS 2 版本</h2>
-<p>ROS 2 的版本規則仍然跟 ROS 1 一樣，採取英文字母開頭的方式，用英文的形容詞搭配一隻烏龜的品種。舉個例子來說，F 版的 ROS 2 正式名稱叫做 Foxy Fitzroy (狡猾的菲茨羅伊河龜)，一般來說我們都稱呼為 foxy 來簡化。</p>
+<p>ROS 2 的版本規則仍然跟 ROS 1 一樣，採取英文字母開頭的方式，用英文的形容詞搭配一隻烏龜的品種。
+舉個例子來說，F 版的 ROS 2 正式名稱叫做 Foxy Fitzroy (狡猾的菲茨羅伊河龜)，一般來說我們都稱呼為 foxy 來簡化。</p>
 <p>這個命名基本上每次都會在 ROS Discourse 上公開徵選，像是 <a href="https://discourse.ros.org/t/ros-2-f-name-brainstorming/11081">ROS 2 F Name Brainstorming</a></p>
 <p>到目前為止的 ROS 2 的release版本可以參考<a href="https://index.ros.org/doc/ros2/Releases/">官方網站</a>。</p>
 <p>第一版的 LTS 是 dashing，雖說是 LTS ，不過也只有維護兩年而已，而且很多好用功能和套件支援都有些缺乏，建議使用之後的 LTS 會比較好。</p>

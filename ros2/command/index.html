@@ -235,7 +235,7 @@
   
   
   <span class="md-ellipsis">
-    首頁
+    簡介
     
   </span>
   
@@ -999,15 +999,17 @@
 
 
 <h1 id="ros-2">ROS 2 指令</h1>
-<p>ROS 2 的很多好用指令都是繼承 ROS 1，基本上用法差不多。這邊我們會介紹常用的幾個 command，讓大家對 ROS 2 操作有基本的概念。</p>
+<p>ROS 2 的很多好用指令都是繼承 ROS 1，基本上用法差不多。
+這邊我們會介紹常用的幾個 command，讓大家對 ROS 2 操作有基本的概念。</p>
 <p>這邊要特別注意的是要使用 ROS 2 的指令前一定要先設定環境，也就是要執行如下指令：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 可以把 rolling 改成你目前使用的 ROS 版本</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">source</span><span class="w"> </span>/opt/ros/rolling/local_setup.bash
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 可以把 jazzy 改成你目前使用的 ROS 版本</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">source</span><span class="w"> </span>/opt/ros/jazzy/local_setup.bash
 </span></code></pre></div>
-<p>執行這個指令後，就可以使用/編譯 ROS 2 相關的套件，如果你有下載 ROS 2 套件(<code>sudo apt install ros-rolling-xxxx</code>)，基本上也都會存放在該 folder 內。</p>
+<p>執行這個指令後，就可以使用或編譯 ROS 2 相關的套件。
+當你有下載 ROS 2 套件(<code>sudo apt install ros-jazzy-xxxx</code>)，基本上也都會存放在該資料夾內 (<code>/opt/ros/&lt;ros_version&gt;/</code>)。</p>
 <h2 id="_1">常見指令</h2>
-<p>下面介紹指令時，都要記得先去 source ROS 2 才可以使用。當然更快的方法就是使用我們之前提到的 ros_menu，每次開啟 terminal 可以直接用選項來執行要用哪個 ROS environment。</p>
-<p>另外有一點很方便的小技巧：當你 source ROS 2 後，你不只是可以用 <code>&lt;tab&gt;</code> 來補全 ROS 2 指令，也可以用 <code>&lt;tab&gt;</code> 來補全 package 名稱、executable 名稱，這可以大大增加效率。</p>
+<p>下面介紹指令時，都要記得先去 source ROS 2 才可以使用。
+另外有一點很方便的小技巧：當你 source ROS 2 後，你不只是可以用 <code>&lt;tab&gt;</code> 來補全 ROS 2 指令，也可以用 <code>&lt;tab&gt;</code> 來補全 package 名稱、executable 名稱，這可以大大增加效率。</p>
 <h3 id="run-ros-2-package">Run ROS 2 package</h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>&lt;package&gt;<span class="w"> </span>&lt;executable&gt;
 </span></code></pre></div>

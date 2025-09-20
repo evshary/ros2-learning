@@ -235,7 +235,7 @@
   
   
   <span class="md-ellipsis">
-    首頁
+    簡介
     
   </span>
   
@@ -999,7 +999,9 @@
 
 
 <h1 id="ros-2-qos">ROS 2 QoS</h1>
-<p>ROS 2 通訊層使用 DDS 的一大原因就是 DDS 有支援 QoS (Quality of Service)。QoS 能夠指定通訊相關的設定，像是資料傳輸的可靠性、是否要保留歷史資料等等。然而 DDS 所支援的 QoS 實在太多了，從官方規範就有 20 幾種，因此 ROS 2 只選擇跟機器人比較相關的其中六種出來：</p>
+<p>ROS 2 通訊層使用 DDS 的一大原因就是 DDS 有支援 QoS (Quality of Service)。
+QoS 能夠指定通訊相關的設定，像是資料傳輸的可靠性、是否要保留歷史資料等等。
+然而 DDS 所支援的 QoS 實在太多了，從官方規範就有 20 幾種，因此 ROS 2 只選擇跟機器人比較相關的其中六種出來：</p>
 <table>
 <thead>
 <tr>
@@ -1034,10 +1036,13 @@
 </tr>
 </tbody>
 </table>
-<p>一個很重要的點是，各個 QoS 本身上是獨立運行不會受到其他人影響，舉例來說，reliability 的設定不會影響到 durability，甚至其他 QoS 的行為。因此我們在看待這六個 QoS 的時候，可以當成六種可以調整的 config 來看帶。</p>
+<p>一個很重要的點是，各個 QoS 本身上是獨立運行不會受到其他人影響，舉例來說，reliability 的設定不會影響到 durability，甚至其他 QoS 的行為。
+因此我們在看待這六個 QoS 的時候，可以當成六種可以調整的 config 來看帶。</p>
 <p>官方有針對 Liveliness, Lifespan 和 Deadline 提供 <a href="https://github.com/ros2/demos/tree/master/quality_of_service_demo">ROS 2 demo</a>，如果想要實際了解其中內容，可以直接操作看看。</p>
 <h2 id="rxo-request-vs-offered">RxO (Request vs Offered)</h2>
-<p>Publisher 和 Subscriber 要能夠通訊，兩者的 QoS 必須要先 compatible，也就是符合 RxO 才行。一言以蔽之，RxO 就是 Publisher 的 QoS 設定必須要高於 Subscriber 才行。舉個例子來說，Reliability 的 QoS 要能夠通訊，Publisher 和 Subscriber 必須要符合如下邏輯。</p>
+<p>Publisher 和 Subscriber 要能夠通訊，兩者的 QoS 必須要先 compatible，也就是符合 RxO 才行。
+一言以蔽之，RxO 就是 Publisher 的 QoS 設定必須要高於 Subscriber 才行。
+舉個例子來說，Reliability 的 QoS 要能夠通訊，Publisher 和 Subscriber 必須要符合如下邏輯。</p>
 <table>
 <thead>
 <tr>
@@ -1070,7 +1075,8 @@
 </tbody>
 </table>
 <p>由於定義上 Reliable &gt; Best Effort，所以如果 Publisher 是 Best Effort，Subscriber 是 Reliable，兩者就會跳出 incompatible QoS 的警告，並且無法通訊。</p>
-<p>看到這邊一定會有個問題：要怎麼知道哪些設定是高，哪些設定是低？ 除了靠直覺外 (Reliable 比起 Best Effort 來說要求更高)，可以查詢 <a href="https://index.ros.org/doc/ros2/Concepts/About-Quality-of-Service-Settings/#qos-compatibilities">ROS 2 的 QoS Design Compatibility</a>，或是直接去查詢 DDS 的說明，<a href="http://download.prismtech.com/docs/Vortex/apis/ospl/isocpp2/html/a02530.html">OpenSplice DDS 的文件</a>就有詳細敘述。</p>
+<p>看到這邊一定會有個問題：要怎麼知道哪些設定是高，哪些設定是低？
+除了靠直覺外 (Reliable 比起 Best Effort 來說要求更高)，可以查詢 <a href="https://index.ros.org/doc/ros2/Concepts/About-Quality-of-Service-Settings/#qos-compatibilities">ROS 2 的 QoS Design Compatibility</a>，或是直接去查詢 DDS 的說明，<a href="http://download.prismtech.com/docs/Vortex/apis/ospl/isocpp2/html/a02530.html">OpenSplice DDS 的文件</a>就有詳細敘述。</p>
 <h2 id="_1">實際範例</h2>
 <p>我放了一些範例在<a href="https://github.com/evshary/ROS2_cheatsheet/tree/master/10.QoS">GitHub</a>上，可以當作參考。</p>
 <h3 id="c">C++</h3>
@@ -1138,7 +1144,8 @@
 <p>Python 的 QoS API 可以參考 <a href="http://docs.ros2.org/latest/api/rclpy/api/qos.html">rclpy Quality of Service</a></p>
 <h2 id="_2">官方建議設定</h2>
 <p>官方有些建議的 QoS 設定，可參考 <a href="https://github.com/ros2/rmw/blob/master/rmw/include/rmw/qos_profiles.h">qos_profiles.h</a>
-舉個例子來說，sensor data 並不在乎資料的 reliable，所以會設定為 best effort，盡可能快速傳資料。過去 sensor data 的歷史資料也不重要，所以 durability 的部分用 volatile 即可。</p>
+舉個例子來說，sensor data 並不在乎資料的 reliable，所以會設定為 best effort，盡可能快速傳資料。
+過去 sensor data 的歷史資料也不重要，所以 durability 的部分用 volatile 即可。</p>
 <h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://index.ros.org/doc/ros2/Concepts/About-Quality-of-Service-Settings/">ROS 2 wiki about QoS</a></li>

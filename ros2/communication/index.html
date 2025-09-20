@@ -235,7 +235,7 @@
   
   
   <span class="md-ellipsis">
-    首頁
+    簡介
     
   </span>
   
@@ -977,8 +977,13 @@
 </ul>
 <p>接著會依序介紹三者的特色與差異</p>
 <h2 id="topic">topic</h2>
-<p>ROS 中最基本的通訊模式就是 topic。發佈者(publisher)會指定要把資料丟給某個 topic，需要這個資料的訂閱者(subscriber)則是透過訂閱 topic 來接收資料。topic 的概念其實跟我們訂閱雜誌很像，出版社(publisher)會發行雜誌(也就是 topic)，而對這個雜誌有興趣的讀者(subscriber)會去訂閱，這樣當出版社發售新的更新時，就會把雜誌送給各個有訂閱的讀者來閱讀。</p>
-<p>為什麼要設計 topic 這樣的通訊方式呢？因為透過 topic 的方式可以簡化通訊的概念，publisher 和 subscriber 不需要知道彼此的狀況，他們只需要關心 topic 即可。如果沒有 topic 的機制，傳送端就需要知道現在有多少接收端，而且當新增或減少接收端時，傳送端也都還需要做對應的處理，整體的通訊會變得十分複雜。對我們最重要的其實不是傳送端或接收端，而是資料本身，topic 的機制就可以讓開發者專注於資料本身的交換，而不是在通訊上。</p>
+<p>ROS 中最基本的通訊模式就是 topic。
+發佈者(publisher)會指定要把資料丟給某個 topic，需要這個資料的訂閱者(subscriber)則是透過訂閱 topic 來接收資料。
+topic 的概念其實跟我們訂閱雜誌很像，出版社(publisher)會發行雜誌(也就是 topic)，而對這個雜誌有興趣的讀者(subscriber)會去訂閱，這樣當出版社發售新的更新時，就會把雜誌送給各個有訂閱的讀者來閱讀。</p>
+<p>為什麼要設計 topic 這樣的通訊方式呢？
+因為透過 topic 的方式可以簡化通訊的概念，publisher 和 subscriber 不需要知道彼此的狀況，他們只需要關心 topic 即可。
+如果沒有 topic 的機制，傳送端就需要知道現在有多少接收端，而且當新增或減少接收端時，傳送端也都還需要做對應的處理，整體的通訊會變得十分複雜。
+對我們最重要的其實不是傳送端或接收端，而是資料本身，topic 的機制就可以讓開發者專注於資料本身的交換，而不是在通訊上。</p>
 <p><img alt="Topic-MultiplePublisherandMultipleSubscriber" src="../images/Topic-MultiplePublisherandMultipleSubscriber.gif" /></p>
 <p>由上面 ROS 2 官方教學的動畫我們可以知道 topic 有如下的特色：</p>
 <ul>
@@ -988,8 +993,10 @@
 </ul>
 <p>基本上在 ROS 2 中的 topic 觀察方法已經在 ROS 2 指令一章有所提及，這邊就不在重複了。</p>
 <h2 id="service">service</h2>
-<p>ROS 2 中 service 的概念類似我們熟知的 client / server 架構。Service server 會提供某種功能的服務，當 service client 需要使用的時候就會發送 request 並等待 server，server 接收到並進行處理後，就會把結果回傳給 client (response)。</p>
-<p>Service 能夠補足 topic 的一些不足。舉例來說，當涉及到資料處理而不僅僅是資料傳輸時，我們需要知道資料的處理結果如何，但 topic 的設計只有單向並沒有雙向傳輸，所以我們無法得知接收端處理的狀態，這時就可以用 service 解決這個問題。</p>
+<p>ROS 2 中 service 的概念類似我們熟知的 client / server 架構。
+Service server 會提供某種功能的服務，當 service client 需要使用的時候就會發送 request 並等待 server，server 接收到並進行處理後，就會把結果回傳給 client (response)。</p>
+<p>Service 能夠補足 topic 的一些不足。
+舉例來說，當涉及到資料處理而不僅僅是資料傳輸時，我們需要知道資料的處理結果如何，但 topic 的設計只有單向並沒有雙向傳輸，所以我們無法得知接收端處理的狀態，這時就可以用 service 解決這個問題。</p>
 <p><img alt="Service-MultipleServiceClient" src="../images/Service-MultipleServiceClient.gif" /></p>
 <p>上面 ROS 2 官方教學的動畫傳達幾個 service 的特色：</p>
 <ul>
@@ -1028,8 +1035,12 @@
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>example_interfaces.srv.AddTwoInts_Response<span class="o">(</span><span class="nv">sum</span><span class="o">=</span><span class="m">10</span><span class="o">)</span>
 </span></code></pre></div>
 <h2 id="action">action</h2>
-<p>最後一個通訊方式是 action，一定會有人好奇為什麼已經有 topic / service，還要 action 做什麼。其實 action 是要強化 service 的不足之處。service 雖然可以處理 request / response 的通訊型態，但如果 server 需要很長時間的處理和運算，client 將需要花很長的時間等待，而且也無法知道目前的處理狀態。而且假設 client 又收到了新的 request 要把舊的覆蓋掉，他也必須等 server 回應後才能發下一次的 request，非常沒效率。</p>
-<p>action 為了解決這個問題，除了 request / response 外，還多提供了 feedback 的功能，action client 可以在 action server 處理的過程中去詢問目前處理狀態，甚至可以取消當前的 request，變得更加彈性。這樣的通訊方法對一些需要花長時間處理的機器人應用非常實用，舉例來說 AMR 不可能一瞬間從 A 點到 B 點，所以當 action server 在導航 A 到 B 時，client 可以知道現在 AMR 的狀態，如果有接收到新的目標 C 點，client 也可以立即取消 A 到 B 的 request ，改成往 C 點。</p>
+<p>最後一個通訊方式是 action，一定會有人好奇為什麼已經有 topic / service，還要 action 做什麼。
+其實 action 是要強化 service 的不足之處。
+service 雖然可以處理 request / response 的通訊型態，但如果 server 需要很長時間的處理和運算，client 將需要花很長的時間等待，而且也無法知道目前的處理狀態。
+而且假設 client 又收到了新的 request 要把舊的覆蓋掉，他也必須等 server 回應後才能發下一次的 request，非常沒效率。</p>
+<p>action 為了解決這個問題，除了 request / response 外，還多提供了 feedback 的功能，action client 可以在 action server 處理的過程中去詢問目前處理狀態，甚至可以取消當前的 request，變得更加彈性。
+這樣的通訊方法對一些需要花長時間處理的機器人應用非常實用，舉例來說 AMR 不可能一瞬間從 A 點到 B 點，所以當 action server 在導航 A 到 B 時，client 可以知道現在 AMR 的狀態，如果有接收到新的目標 C 點，client 也可以立即取消 A 到 B 的 request ，改成往 C 點。</p>
 <p><img alt="Action-SingleActionClient" src="../images/Action-SingleActionClient.gif" /></p>
 <p>從官方的教學動畫，一樣可以整理出幾個重點：</p>
 <ul>
