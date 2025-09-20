@@ -29,9 +29,14 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  # Emoji support
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.magiclink
 
 nav:
-  - '首頁': 'index.md'
+  - '簡介': 'index.md'
   - 'ROS 2 入門':
     - 'ROS 2 介紹': 'ros2/introduction.md'
     - 'ROS 2 安裝': 'ros2/installation.md'
