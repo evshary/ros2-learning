@@ -1,20 +1,21 @@
 # ROS 2 指令
 
-ROS 2 的很多好用指令都是繼承 ROS 1，基本上用法差不多。這邊我們會介紹常用的幾個 command，讓大家對 ROS 2 操作有基本的概念。
+ROS 2 的很多好用指令都是繼承 ROS 1，基本上用法差不多。
+這邊我們會介紹常用的幾個 command，讓大家對 ROS 2 操作有基本的概念。
 
 這邊要特別注意的是要使用 ROS 2 的指令前一定要先設定環境，也就是要執行如下指令：
 
 ```bash
-# 可以把 rolling 改成你目前使用的 ROS 版本
-source /opt/ros/rolling/local_setup.bash
+# 可以把 jazzy 改成你目前使用的 ROS 版本
+source /opt/ros/jazzy/local_setup.bash
 ```
 
-執行這個指令後，就可以使用/編譯 ROS 2 相關的套件，如果你有下載 ROS 2 套件(`sudo apt install ros-rolling-xxxx`)，基本上也都會存放在該 folder 內。
+執行這個指令後，就可以使用或編譯 ROS 2 相關的套件。
+當你有下載 ROS 2 套件(`sudo apt install ros-jazzy-xxxx`)，基本上也都會存放在該資料夾內 (`/opt/ros/<ros_version>/`)。
 
 ## 常見指令
 
-下面介紹指令時，都要記得先去 source ROS 2 才可以使用。當然更快的方法就是使用我們之前提到的 ros_menu，每次開啟 terminal 可以直接用選項來執行要用哪個 ROS environment。
-
+下面介紹指令時，都要記得先去 source ROS 2 才可以使用。
 另外有一點很方便的小技巧：當你 source ROS 2 後，你不只是可以用 `<tab>` 來補全 ROS 2 指令，也可以用 `<tab>` 來補全 package 名稱、executable 名稱，這可以大大增加效率。
 
 ### Run ROS 2 package

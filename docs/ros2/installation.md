@@ -1,8 +1,10 @@
 # ROS 安裝
 
-ROS 2 的官方 support platform 有三個主流平台：Linux, Windows, MAC。不過由於 Linux 還是比較多人在使用，所以初學還是推薦用 Linux 來學習。
+ROS 2 的官方主要支援三個主流平台：Linux, Windows, MAC。
+不過由於 Linux 還是比較多人在使用，所以初學還是推薦用 Linux 來學習。
 
-Linux 的部份目前官方只有原生支援 Ubuntu，建議使用最新版 ROS 2 LTS 搭配對應的 Ubuntu 版本。例如目前是 jazzy 搭配 Ubuntu 24.04。
+Linux 的部份目前官方只有原生支援 Ubuntu，建議使用最新版 ROS 2 LTS 搭配對應的 Ubuntu 版本。
+例如目前是 jazzy 搭配 Ubuntu 24.04。
 
 ## 官方安裝方法
 
@@ -17,7 +19,7 @@ sudo apt install software-properties-common
 sudo add-apt-repository universe
 sudo apt update && sudo apt install curl -y
 export ROS_APT_SOURCE_VERSION=$(curl -s https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest | grep -F "tag_name" | awk -F\" '{print $4}')
-curl -L -o /tmp/ros2-apt-source.deb "https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.$(. /etc/os-release && echo $VERSION_CODENAME)_all.deb" # If using Ubuntu derivates use $UBUNTU_CODENAME
+curl -L -o /tmp/ros2-apt-source.deb "https://github.com/ros-infrastructure/ros-apt-source/releases/download/${ROS_APT_SOURCE_VERSION}/ros2-apt-source_${ROS_APT_SOURCE_VERSION}.$(. /etc/os-release && echo ${UBUNTU_CODENAME:-${VERSION_CODENAME}})_all.deb"
 sudo dpkg -i /tmp/ros2-apt-source.deb
 ```
 

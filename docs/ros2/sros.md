@@ -156,7 +156,7 @@ ros2 topic list --no-daemon --spin-time 3
 ### policy
 
 目前只有 Authenication 和 Encryption 兩種功能，如果要有 Access Control 的話，首先要修改 permission。
-SROS 工具提供我們從好讀易懂的 policy 設定檔轉換成 permission 的能力
+SROS 工具提供我們從好讀易懂的 policy 設定檔轉換成 permission 的能力。
 詳細可以參考[官方教學](https://docs.ros.org/en/rolling/Tutorials/Advanced/Security/Access-Controls.html)
 
 * 取得 policy 檔案
