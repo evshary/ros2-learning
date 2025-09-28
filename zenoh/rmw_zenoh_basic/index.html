@@ -12,7 +12,7 @@
         <link rel="prev" href="../introduction/">
       
       
-        <link rel="next" href="../../autoware/introduction/">
+        <link rel="next" href="../rmw_zenoh_advanced/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -742,6 +742,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rmw_zenoh_advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    rmw_zenoh 進階介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -960,7 +983,7 @@
 主要原因是 ROS 2 社群發現 DDS 使用上遇到很多問題，特別是關於機器人無線網路應用的部份，畢竟當初 DDS 就不是為了無線環境來設計的。
 經過社群的<a href="https://discourse.openrobotics.org/t/ros-2-alternative-middleware-report/33771">評估和投票</a>，最終決定採用 Zenoh 來作為第一個非 DDS 的官方 RMW (ROS MiddleWare) 支援。</p>
 <p>ROS 2 當初的設計就已經考慮到替換中間層 (Middleware) 的可能，因此剩下的問題就是開發 rmw_zenoh 這個中間層，即可連接 ROS 和 Zenoh。</p>
-<p>目前 rmw_zenoh 已經是 ROS 官方的 Tier 1 支援，並且向前兼容 (backport) 到 ROS 2 Humble。
+<p>目前 rmw_zenoh 從 Kilted 開始已經是 ROS 官方的 <a href="https://www.ros.org/reps/rep-2000.html#kilted-kaiju-may-2025-november-2026">Tier 1 支援</a>，並且向前兼容 (backport) 到 ROS 2 Humble。
 基本上代表 ROS 2 目前還有維護的版本都可以使用 rmw_zenoh。</p>
 <h2 id="_1">安裝</h2>
 <p>安裝 rmw_zenoh 最簡單的方法是直接針對 ROS 的版本來 <code>apt install</code>。</p>
@@ -974,6 +997,7 @@
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nb">cd</span><span class="w"> </span>~/ws_rmw_zenoh
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>rosdep<span class="w"> </span>install<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>--rosdistro<span class="w"> </span><span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span><span class="w"> </span>-y
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>colcon<span class="w"> </span>build<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">source</span><span class="w"> </span>install/local_setup.bash
 </span></code></pre></div>
 <h2 id="_2">使用</h2>
 <p>我們這邊以最經典的 ROS talker 和 listener 為例，來講解 rmw_zenoh 的使用。</p>
