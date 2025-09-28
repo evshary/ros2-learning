@@ -7,7 +7,7 @@
 
 ROS 2 當初的設計就已經考慮到替換中間層 (Middleware) 的可能，因此剩下的問題就是開發 rmw_zenoh 這個中間層，即可連接 ROS 和 Zenoh。
 
-目前 rmw_zenoh 已經是 ROS 官方的 Tier 1 支援，並且向前兼容 (backport) 到 ROS 2 Humble。
+目前 rmw_zenoh 從 Kilted 開始已經是 ROS 官方的 [Tier 1 支援](https://www.ros.org/reps/rep-2000.html#kilted-kaiju-may-2025-november-2026)，並且向前兼容 (backport) 到 ROS 2 Humble。
 基本上代表 ROS 2 目前還有維護的版本都可以使用 rmw_zenoh。
 
 ## 安裝
@@ -28,6 +28,7 @@ git clone https://github.com/ros2/rmw_zenoh.git -b ${ROS_DISTRO}
 cd ~/ws_rmw_zenoh
 rosdep install --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} -y
 colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
+source install/local_setup.bash
 ```
 
 ## 使用

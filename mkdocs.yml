@@ -54,6 +54,7 @@ nav:
   - 'Zenoh 入門':
     - 'Zenoh 介紹': 'zenoh/introduction.md'
     - 'rmw_zenoh 基本介紹': 'zenoh/rmw_zenoh_basic.md'
+    - 'rmw_zenoh 進階介紹': 'zenoh/rmw_zenoh_advanced.md'
   - 'Autoware 入門':
     - 'Autoware 介紹': 'autoware/introduction.md'
     - 'Autoware 模組': 'autoware/modules.md'
