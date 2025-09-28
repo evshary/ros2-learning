@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../communication/">
+        <link rel="prev" href="../introduction/">
       
       
-        <link rel="next" href="../qos/">
+        <link rel="next" href="../../autoware/introduction/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>ROS 2 編譯 - ROS 2 筆記</title>
+        <title>rmw_zenoh 基本介紹 - ROS 2 筆記</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ros-2" class="md-skip">
+        <a href="#rmw_zenoh" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ROS 2 編譯
+              rmw_zenoh 基本介紹
             
           </span>
         </div>
@@ -290,7 +290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../ros2/introduction/" class="md-nav__link">
         
   
   
@@ -313,7 +313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../ros2/installation/" class="md-nav__link">
         
   
   
@@ -340,20 +340,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -369,7 +367,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             ROS 2 實戰
@@ -383,7 +381,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../command/" class="md-nav__link">
+      <a href="../../ros2/command/" class="md-nav__link">
         
   
   
@@ -406,7 +404,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../communication/" class="md-nav__link">
+      <a href="../../ros2/communication/" class="md-nav__link">
         
   
   
@@ -426,32 +424,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    ROS 2 編譯
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ros2/building/" class="md-nav__link">
         
   
   
@@ -462,95 +438,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      專案結構
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      取得程式碼
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="取得程式碼">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      取得已有專案
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      自己建立專案
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      編譯
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      執行
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      參考資料
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -563,7 +450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qos/" class="md-nav__link">
+      <a href="../../ros2/qos/" class="md-nav__link">
         
   
   
@@ -586,7 +473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/" class="md-nav__link">
+      <a href="../../ros2/tools/" class="md-nav__link">
         
   
   
@@ -609,7 +496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sros/" class="md-nav__link">
+      <a href="../../ros2/sros/" class="md-nav__link">
         
   
   
@@ -704,18 +591,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -731,7 +620,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Zenoh 入門
@@ -745,7 +634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zenoh/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -765,10 +654,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../zenoh/rmw_zenoh_basic/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    rmw_zenoh 基本介紹
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -779,6 +690,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      安裝
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      架構
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -957,7 +915,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      專案結構
+      安裝
     </span>
   </a>
   
@@ -966,58 +924,16 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      取得程式碼
+      使用
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="取得程式碼">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      取得已有專案
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      自己建立專案
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      編譯
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      執行
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      參考資料
+      架構
     </span>
   </a>
   
@@ -1039,97 +955,109 @@
 
 
 
-<h1 id="ros-2">ROS 2 編譯</h1>
-<p>在了解 ROS 2 基本操作後，對開發者而言下一步就是要學習怎麼建構自己的專案。
-這邊會介紹一般 ROS 2 的資料夾結構應該是怎樣，以及如何進行開發編譯。</p>
-<p>如果開發過 ROS 1，應該會比較習慣 ROS 2 的專案形式。
-差異大概是有些資料夾名稱不一樣，而且編譯的工具也不一樣，其他基本上是大同小異。</p>
-<h2 id="_1">專案結構</h2>
-<p>通常我們在一個 ROS 的專案資料夾中，會有如下幾個資料夾</p>
+<h1 id="rmw_zenoh">rmw_zenoh 基本介紹</h1>
+<p>為何有 <a href="https://github.com/ros2/rmw_zenoh">rmw_zenoh</a> 的出現呢？
+主要原因是 ROS 2 社群發現 DDS 使用上遇到很多問題，特別是關於機器人無線網路應用的部份，畢竟當初 DDS 就不是為了無線環境來設計的。
+經過社群的<a href="https://discourse.openrobotics.org/t/ros-2-alternative-middleware-report/33771">評估和投票</a>，最終決定採用 Zenoh 來作為第一個非 DDS 的官方 RMW (ROS MiddleWare) 支援。</p>
+<p>ROS 2 當初的設計就已經考慮到替換中間層 (Middleware) 的可能，因此剩下的問題就是開發 rmw_zenoh 這個中間層，即可連接 ROS 和 Zenoh。</p>
+<p>目前 rmw_zenoh 已經是 ROS 官方的 Tier 1 支援，並且向前兼容 (backport) 到 ROS 2 Humble。
+基本上代表 ROS 2 目前還有維護的版本都可以使用 rmw_zenoh。</p>
+<h2 id="_1">安裝</h2>
+<p>安裝 rmw_zenoh 最簡單的方法是直接針對 ROS 的版本來 <code>apt install</code>。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 用 ROS_DISTRO 看你使用的 ROS 版本為何</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-<span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>-rmw-zenoh-cpp
+</span></code></pre></div>
+<p>當然，如果你想要使用 rmw_zenoh 最新版本也可以從 source code 來編譯安裝。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mkdir<span class="w"> </span>~/ws_rmw_zenoh/src<span class="w"> </span>-p<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/ws_rmw_zenoh/src
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># 切換到對應 ROS 版本的 branch</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ros2/rmw_zenoh.git<span class="w"> </span>-b<span class="w"> </span><span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nb">cd</span><span class="w"> </span>~/ws_rmw_zenoh
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>rosdep<span class="w"> </span>install<span class="w"> </span>--from-paths<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>--rosdistro<span class="w"> </span><span class="si">${</span><span class="nv">ROS_DISTRO</span><span class="si">}</span><span class="w"> </span>-y
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>colcon<span class="w"> </span>build<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
+</span></code></pre></div>
+<h2 id="_2">使用</h2>
+<p>我們這邊以最經典的 ROS talker 和 listener 為例，來講解 rmw_zenoh 的使用。</p>
 <ul>
-<li>your_workspace: 你的專案資料夾<ul>
-<li>src: 用來放程式碼的地方</li>
-<li>build: 編譯過程中的中間檔</li>
-<li>install: 放置編譯後結果的地方</li>
-<li>log: 編譯或測試的紀錄檔</li>
+<li>首先我們在第一個 terminal 啟動 zenohd，或者說 Zenoh Router，我們會在後面講解其功能。</li>
 </ul>
-</li>
-</ul>
-<p>build, install, log 這三個資料夾都是編譯後自動產生出來的，在編譯前你只需要把程式碼放到 src 資料夾即可。</p>
-<h2 id="_2">取得程式碼</h2>
-<p>那麼在 src 資料夾的程式碼應該要怎麼擺放呢？
-一般而言在 src 資料夾底下可以放有多個小專案，編譯工具會自動遞迴去找 src 資料夾下的所有小專案並且編譯。
-這樣設計的原因是我們可以把一個大功能拆分成多個小專案，而這些小專案就可以輕易地被重複利用。</p>
-<p>下面我們分兩個區塊來介紹，一個是取得已有專案，另一個是自己建立新專案。</p>
-<h3 id="_3">取得已有專案</h3>
-<p>我們直接舉個實際的例子幫助大家了解，下面是我們下載既有專案的過程：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 建立 workspace，並在底下建立 src</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>your_workspace/src
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>your_workspace
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 取得專案程式碼</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>wget<span class="w"> </span>https://xxxxx/project.repos
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>vcs<span class="w"> </span>import<span class="w"> </span>src<span class="w"> </span>&lt;<span class="w"> </span>project.repos
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>rmw_zenoh_cpp<span class="w"> </span>rmw_zenohd
 </span></code></pre></div>
-<p>第一步大家應該比較好理解，就是先建立前面所提到的資料夾結構。
-重要的是第二步，我們需要把組成專案的所有程式碼抓下來，但如前面所提，一個大專案是由多個小專案組合而成，而這個結構通常會紀錄在 <code>.repos</code> 檔中。
-我們可以看一下到底裡面紀錄什麼。</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>repositories:
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  component1:
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    type: git
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    url: https://github.com/xxx/component1.git
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    version: foxy
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  component2:
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    type: git
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    url: https://github.com/yyy/component2.git
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    version: commit_ID
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>...
-</span></code></pre></div>
-<p>可以看到有這個列表中有 component1 和 component2，而他們也是組成這個專案的 repo。
-底下會註明是用什麼版控工具(type: git)，專案位置(url: xxxx)，以及要取這個專案哪個版本或 commit(version: xxx)。用這個列表就可以輕易管理專案的各個元件版本，也比較不會出現當某個小元件更新後會影響到整個專案的狀況。</p>
-<p>那要怎麼利用這個列表把程式碼下載下來呢？
-這就要用 vcs 這套工具。vcs 是 <a href="https://github.com/dirk-thomas/vcstool">vcstool</a> 專案的 CLI 工具，他可以輕易把紀錄在 <code>.repos</code> 的程式碼下載下來。
-以上面範例為例，<code>vcs import src &lt; project.repos</code>代表把 project.repos 中的元件下載下來並且放入 src 資料夾。
-當然 vcs 還有其他好用功能，但是最常用的還是 import 為主。</p>
-<h3 id="_4">自己建立專案</h3>
-<p>自己建立專案的話就比較麻煩一點，需要使用到 ROS 2 的 <code>ros2 pkg create</code>，以下面為例。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 建立 workspace，並在底下建立 src</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>your_workspace/src
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">cd</span><span class="w"> </span>your_workspace/src
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># C++ 專案</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>ros2<span class="w"> </span>pkg<span class="w"> </span>create<span class="w"> </span>--build-type<span class="w"> </span>ament_cmake<span class="w"> </span>&lt;project_name&gt;
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># Python 專案</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>ros2<span class="w"> </span>pkg<span class="w"> </span>create<span class="w"> </span>--build-type<span class="w"> </span>ament_python<span class="w"> </span>&lt;project_name&gt;
-</span></code></pre></div>
-<p>執行 <code>ros2 pkg create</code> 時，依照你的 <code>--build-type</code> 不同，可以決定是 C++ 專案還是 Python 專案。
-你可以直接進入專案的資料夾中，會看見底下有 <code>package.xml</code> 的資料夾，這個就是 ROS 2 用來辨認專案內容的描述檔，裡面的細節之後再來介紹。</p>
-<h2 id="_5">編譯</h2>
-<p>了解如何取得程式碼後，我們就需要了解怎麼編譯。
-在 ROS 2 的世界中，進行編譯的重要工具就是 <a href="https://colcon.readthedocs.io/en/released/index.html">colcon</a>，比較細節的部份可以參考官網。我們先來看看下面的範例：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>your_workspace
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>colcon<span class="w"> </span>build
-</span></code></pre></div>
-<p>執行完成後，你就會發現 <code>your_workspace</code> 底下產生了 build, install, log 三個資料夾。</p>
-<p>這邊稍微提一下 C++ 的 ROS 2 專案是使用 cmake 來進行編譯管理的。
-因此我們舉 C++ 為例說明這三個資料夾的功用，你可以想像 build 資料夾就是放置執行 <code>make</code> 所產生的中間檔，而 install 則是用來放置 <code>make install</code> 要安裝的編譯結果。
-所以如果要撰寫 ROS 2 C++ project 時，要能夠被使用者執行的檔案一定要有 install 才行。</p>
-<p>當然 <code>colcon build</code> 也是可以帶參數的，下面列出一些常用的執行指令：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 指定要編譯某個專案</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>colcon<span class="w"> </span>build<span class="w"> </span>--packages-select<span class="w"> </span>&lt;certain<span class="w"> </span>project&gt;
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># install 資料夾不要放 copy 的檔案，而是用 symbolic link 連結到 src 資料夾</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># 同時用 n 個 thread 進行編譯</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>colcon<span class="w"> </span>build<span class="w"> </span>--parallel-workers<span class="w"> </span>n
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># 預設 install 資料夾下的 component 都會有獨立資料夾，用 merge-install 則是不再用資料夾來歸類</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>colcon<span class="w"> </span>build<span class="w"> </span>--merge-install
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># 使用 release build，當要減少 code size 時，這個是很重要的指令</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>colcon<span class="w"> </span>build<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
-</span></code></pre></div>
-<h2 id="_6">執行</h2>
-<p>執行的部份就非常容易了，只要 <code>source your_workspace/install/local_setup.bash</code> 後，你就可以輕易使用 <code>ros2 run</code> 或 <code>ros2 launch</code> 執行你編譯好的專案。這邊細節就不再多提了。</p>
-<h2 id="_7">參考資料</h2>
 <ul>
-<li><a href="https://index.ros.org/doc/ros2/Tutorials/Colcon-Tutorial/">Using colcon to build packages</a></li>
+<li>接下來在第二個 terminal 啟動 talker，注意這邊我們需要修改 <code>RMW_IMPLEMENTATION</code>，讓 ROS 2 系統知道我們要使用 rmw_zenoh。</li>
 </ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RMW_IMPLEMENTATION</span><span class="o">=</span>rmw_zenoh_cpp
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker
+</span></code></pre></div>
+<ul>
+<li>最後就是在第三個 terminal 跑 listener 了，跟前面一樣要修改 <code>RMW_IMPLEMENTATION</code>。</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RMW_IMPLEMENTATION</span><span class="o">=</span>rmw_zenoh_cpp
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>listener
+</span></code></pre></div>
+<p>從上面的範例，你可以看到使用 rmw_zenoh 需要多兩個動作：</p>
+<ol>
+<li>啟動 Zenoh Router： <code>ros2 run rmw_zenoh_cpp rmw_zenohd</code></li>
+<li>指定 <code>RMW_IMPLEMENTATION</code>： <code>export RMW_IMPLEMENTATION=rmw_zenoh_cpp</code></li>
+</ol>
+<p>剩餘行為都跟原來 ROS 2 系統相同，非常容易使用。</p>
+<h2 id="_3">架構</h2>
+<p>接下來讓我們了解一下 rmw_zenoh 的設計架構，這邊會建議先了解之前的 Zenoh 架構再來看會更清楚一點。</p>
+<p>根據 rmw_zenoh 的<a href="https://github.com/ros2/rmw_zenoh/blob/rolling/docs/design.md">設計文件</a>，預設每個 ROS 本機系統都會運行一個 Zenoh Router。
+這個 Zenoh Router 的用途有兩個</p>
+<ol>
+<li>幫助本地端的節點間互相發現，彼此建立連線</li>
+<li>本地端要連到外部的時候，充當 Gateway 的角色，轉發訊息</li>
+</ol>
+<pre class="mermaid"><code>flowchart TB
+    %% COLORS %%
+    classDef blue fill:#2374f7,stroke:#000,stroke-width:2px,color:#fff
+    classDef red fill:#ed2633,stroke:#000,stroke-width:2px,color:#fff
+    classDef green fill:#16b522,stroke:#000,stroke-width:2px,color:#fff
+    classDef orange fill:#fc822b,stroke:#000,stroke-width:2px,color:#fff
+    classDef purple fill:#a724f7,stroke:#000,stroke-width:2px,color:#fff
+    classDef yellow fill:#a724f7,stroke:#000,stroke-width:2px,color:#fff
+
+    %% DIAGRAM %%
+    Router("`Zenoh Router:
+    tcp/localhost:7447`"):::yellow
+
+    %% Discovery connections %%
+
+    Router &lt;-..-&gt; |discovery| S1(["`Zenoh Session
+    (Pub)`"]):::blue
+    Router &lt;-..-&gt; |discovery| S2(["`Zenoh Session
+    (Sub)`"]):::blue
+    Router &lt;-..-&gt; |discovery| S3(["`Zenoh Session
+    (Sub)`"]):::blue
+
+    subgraph Sessions
+
+      %% P2P connections %%
+      S1 &lt;--&gt; |p2p| S2
+      S1 &lt;--&gt; |p2p| S3
+      S2 &lt;--&gt; |p2p| S3
+
+      linkStyle 3 stroke:red
+      linkStyle 4 stroke:red
+      linkStyle 5 stroke:red
+
+      %% Data connections %%
+      S1 --&gt; |Data| S2
+      S1 --&gt; |Data| S3
+
+      linkStyle 6 stroke:green
+      linkStyle 7 stroke:green
+    end</code></pre>
+<p>從上面架構圖你可以發現，對於本機端的各個節點，例如 publisher 和 subscriber，他們首先會透過 Zenoh Router 找到對方，然後再彼此建立直接溝通的連線。
+這與 DDS 可以直接點對點發現彼此的設計很不一樣，因為這種機制會造成網路上充滿著一堆發現封包 (Discovery Packets)，進而癱瘓網路。
+因此儘管 Zenoh 也支援直接的點對點發現，但最終還是決定在 rmw_zenoh 中還是採用集中式的發現機制，只有實際資料的傳輸才是點對點的直接連線。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>也許有人會問到這不是又回到 ROS 1 的集中式老路了嗎？
+這有點不一樣，ROS 1 的 roscore 一旦掛掉，基本上就需要所有 ROS 的節點都要重新啟動。
+但是在 rmw_zenoh 中，我們可以隨時關掉重啟 zenoh，而不會對當下系統有任何影響。
+更別說我們還可以在 zenohd 上面做一些網路流量的管理了，後面我們會有更深入的探討。</p>
+</div>
 
 
 

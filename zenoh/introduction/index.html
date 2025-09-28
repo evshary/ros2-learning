@@ -12,7 +12,7 @@
         <link rel="prev" href="../../dds/introduction/">
       
       
-        <link rel="next" href="../../autoware/introduction/">
+        <link rel="next" href="../rmw_zenoh_basic/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -701,6 +701,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rmw_zenoh_basic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    rmw_zenoh 基本介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -897,8 +920,9 @@
 
 
 <h1 id="zenoh">Zenoh 介紹</h1>
-<p>Zenoh 是 ZettaScale 所開發出的開源通訊軟體，目前和 CycloneDDS 一樣託管於 <a href="https://projects.eclipse.org/projects/iot.zenoh">Eclipse Foundation 底下</a>。</p>
-<p>Zenoh 和 DDS 類似，是一個通訊層的 middleware，可以幫助開發者更容易的交換資訊。由於 ZettaScale 內部有許多當初設計 DDS 的研究人員，很清楚 DDS 本身的限制，為了避開這些問題，才特別設計新的協定。</p>
+<p>Zenoh 是 <a href="https://www.zettascale.tech/">ZettaScale</a> 所開發出的開源通訊軟體，目前和 CycloneDDS 一樣託管於 <a href="https://projects.eclipse.org/projects/iot.zenoh">Eclipse Foundation 底下</a>。</p>
+<p>Zenoh 和 DDS 類似，是一個通訊層的 middleware，可以幫助開發者更容易的交換資訊。
+由於 ZettaScale 內部有許多當初設計 DDS 的研究人員，很清楚 DDS 本身的限制，為了避開這些問題，才特別設計新的協定。</p>
 <p>具體 DDS 有哪些問題呢？</p>
 <ul>
 <li>DDS 並不能支援跨網域的傳輸，只能在 LAN</li>
@@ -906,7 +930,8 @@
 <li>DDS 一開始並非為了無線網路設計，所以不限制流量的話，他的 discovery 的機制會讓無線網路癱瘓</li>
 <li>DDS 實作很複雜，通常無法跑在嵌入式系統上</li>
 </ul>
-<p>Zenoh 則是另起爐灶，在保留 DDS 去中心化和高效能的同時，也結合了中心化通訊的機制。可以看看下面這張圖：</p>
+<p>Zenoh 則是另起爐灶，在保留 DDS 去中心化和高效能的同時，也結合了中心化通訊的機制。
+可以看看下面這張圖：</p>
 <p><img alt="Zenoh topology" src="../images/full_topology.png" /></p>
 <p>這邊有三種角色</p>
 <ul>
@@ -922,6 +947,10 @@
 <li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-dds">zenoh-plugin-dds</a>：結合 zenoh 和 DDS，將兩者的資料互相轉換</li>
 <li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds">zenoh-plugin-ros2dds</a>：雖然也是跟 DDS 相連，但是這特別限定是用在 ROS 2 的情境下</li>
 <li><a href="https://github.com/eclipse-zenoh/zenoh-pico">zenoh-pico</a>：用在嵌入式環境的專案</li>
+</ul>
+<p>如果你想了解還有哪些其他 project 使用 Zenoh，可以參考這邊</p>
+<ul>
+<li><a href="https://github.com/kydos/awesome-zenoh">awesome-zenoh</a></li>
 </ul>
 
 
