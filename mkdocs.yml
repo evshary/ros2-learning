@@ -34,6 +34,8 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.magiclink
+  # Admonition support
+  - admonition
 
 nav:
   - '簡介': 'index.md'
@@ -51,6 +53,7 @@ nav:
     - 'DDS 介紹': 'dds/introduction.md'
   - 'Zenoh 入門':
     - 'Zenoh 介紹': 'zenoh/introduction.md'
+    - 'rmw_zenoh 基本介紹': 'zenoh/rmw_zenoh_basic.md'
   - 'Autoware 入門':
     - 'Autoware 介紹': 'autoware/introduction.md'
     - 'Autoware 模組': 'autoware/modules.md'
