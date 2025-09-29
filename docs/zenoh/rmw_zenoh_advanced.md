@@ -99,3 +99,59 @@ Zenoh 本身是用 Rust 寫成，而 Rust 可以使用 `RUST_LOG` 來控制 log 
 ```raw
 2/robot1/chatter/std_msgs::msg::dds_::String_/RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18
 ```
+
+### Graph Cache 設計
+
+當我們使用 `ros2 topic` 或是 `ros2 node` 等指令時，我們需要有個方法知道當前 ROS 環境下的 topic 和 node 狀態。
+而這個就是 Graph Cache 的功能，它可以幫助 ROS 系統知道所有當下拓樸的狀態。
+在 Zenoh 中，我們可以利用 liveliness 這個機制來偵測各種 topic 和 node 的變化。
+liveliness 和一般的 key expression 很類似，主要差別就是用來確保當某個節點消失時，其他節點也都還是可以發現。
+當 `rmw_zenoh_cpp` 初始化 ROS context 的時候會會透過 liveliness 來取得整個系統狀態，而都有任何節離開或進入 ROS 系統，都會用 liveliness的的機制更新 Graph Cache。
+
+* node 名稱如何對應到 Zenoh liveliness 的名稱
+
+```raw
+@ros2_lv/<domain_id>/<session_id>/<node_id>/<node_id>/<entity_kind>/<mangled_enclave>/<mangled_namespace>/<node_name>
+```
+
+* topic 名稱如何對應到 Zenoh liveliness 的名稱
+
+```raw
+@ros2_lv/<domain_id>/<session_id>/<node_id>/<entity_id>/<entity_kind>/<mangled_enclave>/<mangled_namespace>/<node_name>/<mangled_qualified_name>/<type_name>/<type_hash>/<qos>
+```
+
+說明一下每個欄位的細節：
+
+* `<domain_id>`：對應到實際的 `ROS_DOMAIN_ID`
+* `<session_id>`：Zenoh 的 session ID，每個 ROS context 都會對應到一個專門的 session ID
+* `<node_id>`：這個 session 下的每個 node 都有獨一無二的 ID
+* `<entity_id>`：在這個 node 下，每個 entity，包含 publisher、subscriber、service 等等都有獨一無二的 ID，如果是 node 自己，就填跟 `<node_id>` 一樣
+* `<entity_kind>`：這個 entity 的類型，可以是如下欄位
+    * `NN`： node
+    * `MP`： message publisher
+    * `MS`： message subscriber
+    * `SS`： service server
+    * `SC`： service client
+* `<mangled_enclave>`：SROS enclave 名稱，如果沒有就填 `%`
+* `<mangled_namespace>`： namespace 名稱，如果沒有就填 `%`
+* `<node_name>`： node 名稱
+* `<mangled_qualified_name>`：(node 不用填) topic 或是 service 的名稱
+* `<type_name>`：(node 不用填) ROS 2 topic 的 message type
+* `<type_hash>`：(node 不用填) message type 的雜湊值，這是後來 ROS 2 為了避免 topic message type 進版時彼此還是可以相互通訊索引入的，相關定義參考 [REP-2016](https://github.com/ros-infrastructure/rep/pull/381/files)
+* `<qos>`：(node 不用填) 會從 ROS 2 的 QoS 屬性轉換過來，實際轉換方式可以參考 [qos_to_keyexpr](https://github.com/ros2/rmw_zenoh/blob/cf09e854c9df17e0eb7e80ce4ab00e1b122a64e0/rmw_zenoh_cpp/src/detail/liveliness_utils.cpp#L239)
+
+舉實際例子
+
+* 假設某個 Node 的 Domain ID 是 2，且 node 名稱是 listener，會宣告如下 liveliness
+
+```raw
+@ros2_lv/2/aac3178e146ba6f1fc6e6a4085e77f21/0/0/NN/%/%/listener
+```
+
+* 假設某個 topic 的 Domain ID 是 2，隸屬於 talker 這個 node，名稱為 chatter，且類型是 String
+
+```raw
+@ros2_lv/2/8b20917502ee955ac4476e0266340d5c/0/10/MP/%/%/talker/%chatter/std_msgs::msg::dds_::String_/RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18/::,7:,:,:,,
+```
+
+更詳細資訊可以參考[官方設計文件](https://github.com/ros2/rmw_zenoh/blob/rolling/docs/design.md#graph-cache)。
