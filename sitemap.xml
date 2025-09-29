@@ -68,4 +68,8 @@
          <loc>https://ros2.tw/zenoh/rmw_zenoh_basic/</loc>
          <lastmod>2025-09-29</lastmod>
     </url>
+    <url>
+         <loc>https://ros2.tw/zenoh/rmw_zenoh_hands_on/</loc>
+         <lastmod>2025-09-29</lastmod>
+    </url>
 </urlset>
