@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="DDS 簡單介紹，以及 CycloneDDS 的使用方法">
       
+      
+        <meta name="author" content="ChenYing Kuo">
+      
+      
+        <link rel="canonical" href="https://ros2.tw/dds/introduction/">
       
       
         <link rel="prev" href="../../ros2/sros/">
@@ -72,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#cyclonedds" class="md-skip">
           Skip to content
         </a>
       
@@ -572,8 +578,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -606,8 +610,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -626,7 +628,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       文件
     </span>
@@ -635,7 +637,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       編譯
     </span>
@@ -644,7 +646,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       設定環境變數
     </span>
@@ -941,8 +943,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -961,7 +961,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       文件
     </span>
@@ -970,7 +970,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       編譯
     </span>
@@ -979,7 +979,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       設定環境變數
     </span>
@@ -1008,7 +1008,8 @@
 
 
 
-<h1 id="_1">簡介</h1>
+  <h1>DDS 介紹</h1>
+
 <p>DDS (Data Distribution Service) 是一種 pub-sub 的通訊規格，希望可以達到可靠、高效能、安全、即時、可擴展、並且以資料為導向的傳輸。為了達成這個目的，DDS 有如下特色功能：</p>
 <ul>
 <li>以資料為導向：過去的傳輸重視的是「誰連到誰」，所以我們會需要明確知道通訊者的 IP 位址並且開 socket 進行連接。DDS 重視的是「傳什麼資料」，任何人發佈的資料都會指定 topic，有興趣的人可以自行訂閱，而不需要管這資料是誰傳來的。</li>
@@ -1036,14 +1037,14 @@
 <p>目前個人推薦的是使用 CycloneDDS，輕量且效能高，主要程式是用 C 撰寫而成。下面會稍微介紹一下 CycloneDDS。</p>
 <h2 id="cyclonedds">CycloneDDS</h2>
 <p>如前面所提，<a href="https://github.com/eclipse-cyclonedds/cyclonedds">CycloneDDS</a> 是 ZettaScale 提出開源解決方案，並且目前託管於 <a href="https://projects.eclipse.org/projects/iot.cyclonedds">Eclipse Foundation 底下</a>。</p>
-<h3 id="_2">文件</h3>
+<h3 id="_1">文件</h3>
 <ul>
 <li><a href="https://cyclonedds.io/docs/cyclonedds/latest/">官方文件</a></li>
 <li><a href="https://cyclonedds.io/docs/cyclonedds/latest/ddsc.html">C API</a></li>
 <li><a href="https://cyclonedds.io/docs/cyclonedds-cxx/latest/">C++ API</a></li>
 <li><a href="https://cyclonedds.io/docs/cyclonedds-python/latest/">Python API</a></li>
 </ul>
-<h3 id="_3">編譯</h3>
+<h3 id="_2">編譯</h3>
 <p>這邊簡單描述編譯 CycloneDDS 方法，這邊使用的環境是 Ubuntu。</p>
 <ul>
 <li>安裝相依性</li>
@@ -1077,7 +1078,7 @@
 <ul>
 <li>可以看到 publisher 和 subscriber 可以互相通訊了</li>
 </ul>
-<h3 id="_4">設定環境變數</h3>
+<h3 id="_3">設定環境變數</h3>
 <p>當然 CycloneDDS 也是可以做一些簡易環境設定，只要設定好 <code>CYCLONEDDS_URI</code> 這個環境變數就可以了。這邊我們以 GitHub 上的設定檔為範例。</p>
 <ul>
 <li>新創 cyclonedds.xml 的檔案</li>
@@ -1124,6 +1125,9 @@
 
 
 
+
+  
+  
 
 
 

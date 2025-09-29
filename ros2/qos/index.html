@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ROS 2 基本的 QoS 支援">
       
+      
+        <meta name="author" content="ChenYing Kuo">
+      
+      
+        <link rel="canonical" href="https://ros2.tw/ros2/qos/">
       
       
         <link rel="prev" href="../building/">
@@ -72,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ros-2-qos" class="md-skip">
+        <a href="#rxo-request-vs-offered" class="md-skip">
           Skip to content
         </a>
       
@@ -458,8 +464,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -491,8 +495,6 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-  
-    
   
   
     <label class="md-nav__title" for="__toc">
@@ -959,8 +961,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1044,7 +1044,8 @@
 
 
 
-<h1 id="ros-2-qos">ROS 2 QoS</h1>
+  <h1>ROS 2 QoS</h1>
+
 <p>ROS 2 通訊層使用 DDS 的一大原因就是 DDS 有支援 QoS (Quality of Service)。
 QoS 能夠指定通訊相關的設定，像是資料傳輸的可靠性、是否要保留歷史資料等等。
 然而 DDS 所支援的 QoS 實在太多了，從官方規範就有 20 幾種，因此 ROS 2 只選擇跟機器人比較相關的其中六種出來：</p>
@@ -1204,6 +1205,9 @@ QoS 能夠指定通訊相關的設定，像是資料傳輸的可靠性、是否�
 
 
 
+
+  
+  
 
 
 

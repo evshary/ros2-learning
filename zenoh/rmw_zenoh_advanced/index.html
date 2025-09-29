@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="rmw_zenoh 的進階功能如何使用，包含設定檔、debug、嵌入式等等">
       
+      
+        <meta name="author" content="ChenYing Kuo">
+      
+      
+        <link rel="canonical" href="https://ros2.tw/zenoh/rmw_zenoh_advanced/">
       
       
         <link rel="prev" href="../rmw_zenoh_basic/">
@@ -72,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rmw_zenoh" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -686,8 +692,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -719,8 +723,6 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-  
-    
   
   
     <label class="md-nav__title" for="__toc">
@@ -757,7 +759,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rmw_zenoh_1" class="md-nav__link">
+  <a href="#rmw_zenoh" class="md-nav__link">
     <span class="md-ellipsis">
       rmw_zenoh 設計
     </span>
@@ -950,8 +952,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -987,7 +987,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rmw_zenoh_1" class="md-nav__link">
+  <a href="#rmw_zenoh" class="md-nav__link">
     <span class="md-ellipsis">
       rmw_zenoh 設計
     </span>
@@ -1026,7 +1026,8 @@
 
 
 
-<h1 id="rmw_zenoh">rmw_zenoh 進階介紹</h1>
+  <h1>rmw_zenoh 進階介紹</h1>
+
 <p>前面介紹完 rmw_zenoh 基本概念之後，接下來就是一些比較進階的概念了。</p>
 <h2 id="_1">設定檔內容</h2>
 <p>首先最重要的是設定的部份 (Configuration)。
@@ -1072,7 +1073,7 @@ rmw_zenoh 也提供了 override 的覆蓋單純部份 config 方式，也就是�
 <h2 id="pico-rosrmw_zenoh">Pico-ROS：rmw_zenoh 的嵌入式版本</h2>
 <p>在之前的 ROS 2 中，要跑 ROS 在嵌入式系統需要用到 <a href="https://micro.ros.org/">micro-ROS</a>，然而這個只能用在 FastDDS 上。
 在 rmw_zenoh 中，則有相對應的替代品 <a href="https://github.com/Pico-ROS/Pico-ROS-software">Pico-ROS</a>，主要是基於 Zenoh 的嵌入式版本 <a href="https://github.com/eclipse-zenoh/zenoh-pico">zenoh-pico</a>，直接與 rmw_zenoh 相連。</p>
-<h2 id="rmw_zenoh_1">rmw_zenoh 設計</h2>
+<h2 id="rmw_zenoh">rmw_zenoh 設計</h2>
 <p>這邊主要的介紹是提供給對 rmw_zenoh 如何實作有興趣的人參考。</p>
 <h3 id="topic-key-expression">topic 和 key expression 對應</h3>
 <p>我們知道 Zenoh 是用 key expression 來串連不同資料流，而 ROS 2 則是 topic 的概念。
@@ -1103,6 +1104,9 @@ rmw_zenoh 也提供了 override 的覆蓋單純部份 config 方式，也就是�
 
 
 
+
+  
+  
 
 
 

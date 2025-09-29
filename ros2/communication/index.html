@@ -6,7 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="ROS 2 的基本通訊方法，包含 Topic、Service、Action">
       
+      
+        <meta name="author" content="ChenYing Kuo">
+      
+      
+        <link rel="canonical" href="https://ros2.tw/ros2/communication/">
       
       
         <link rel="prev" href="../command/">
@@ -72,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ros-2" class="md-skip">
+        <a href="#topic" class="md-skip">
           Skip to content
         </a>
       
@@ -412,8 +418,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -445,8 +449,6 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-  
-    
   
   
     <label class="md-nav__title" for="__toc">
@@ -944,8 +946,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1014,7 +1014,8 @@
 
 
 
-<h1 id="ros-2">ROS 2 通訊方式</h1>
+  <h1>ROS 2 通訊方式</h1>
+
 <p>ROS 2 承接 ROS 1，同樣有三種常用的傳輸方式：</p>
 <ul>
 <li>topic</li>
@@ -1195,6 +1196,9 @@ service 雖然可以處理 request / response 的通訊型態，但如果 server
 
 
 
+
+  
+  
 
 
 
