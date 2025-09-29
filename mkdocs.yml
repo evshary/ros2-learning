@@ -44,7 +44,7 @@ extra:
   # Google Analytics
   analytics:
     provider: google
-    property: G-MWSYRXPNXN
+    property: G-J7VWGLN65L
 
 nav:
   - '簡介': 'index.md'
