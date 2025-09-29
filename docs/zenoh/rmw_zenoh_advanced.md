@@ -51,6 +51,53 @@ ros2 run demo_nodes_cpp talker
 
 如此一來，當使用者單純只是想修改設定檔中某個欄位而已，就不需要把整個設定檔都複製下來調整，只需要調整環境變數就好。
 
+## 跨機連接
+
+對機器人使用情境來說，最常使用的是從我們的筆電遠端控制機器人，代表著 rmw_zenoh 要跑在兩個不同機器上面。
+然而預設 rmw_zenoh 限制流量只會在同台機器內，那這時候我們該怎麼設定呢？
+
+這邊有兩個方法：
+
+1. 兩台電腦都運行 Zenoh Router，然後讓兩者相連
+    * 適用情境：兩台機器內部都有跑大量的 ROS application，只有部份流量需要兩者彼此互通
+    * 設定方式：假設其中一台電腦 IP 是 192.168.1.1，我們可以在另一台電腦修改 Zenoh Router 的設定檔
+        * 設定檔：
+
+        ```json
+        {
+          connect: {
+            endpoints: ["tcp/192.168.1.1:7447"],
+          },
+        }
+        ```
+
+        * `ZENOH_CONFIG_OVERRIDE`:
+
+        ```bash
+        export ZENOH_CONFIG_OVERRIDE='connect/endpoints=["tcp/192.168.1.1:7447"]'
+        ```
+
+2. 一台電腦運行 client 模式，然後連接到另一台電腦的 Zenoh Router
+    * 適用情境：基本上所有 ROS 流量都要彼此互通，例如，另一台電腦只有跑單一 ROS application，像是 RViz
+    * 設定方式：假設跑 Zenoh Router 的電腦 IP 是 192.168.1.1，我們在另一台電腦修改 Session 的設定檔
+        * 設定檔：
+
+        ```json
+        {
+          mode: "client",
+          ...
+          connect: {
+            endpoints: ["tcp/192.168.1.1:7447"],
+          },
+        }
+        ```
+
+        * `ZENOH_CONFIG_OVERRIDE`:
+
+        ```bash
+        export ZENOH_CONFIG_OVERRIDE='mode="client";connect/endpoints=["tcp/192.168.1.1:7447"]'
+        ```
+
 ## Debug
 
 Zenoh 本身是用 Rust 寫成，而 Rust 可以使用 `RUST_LOG` 來控制 log level 的顯示，也就是可以決定 log 的細節程度，例如 info、debug 等等。
