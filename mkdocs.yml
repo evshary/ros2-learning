@@ -40,9 +40,11 @@ markdown_extensions:
   # Admonition support
   - admonition
 
-google_analytics:
-  - G-MWSYRXPNXN
-  - auto
+extra:
+  # Google Analytics
+  analytics:
+    provider: google
+    property: G-MWSYRXPNXN
 
 nav:
   - '簡介': 'index.md'
