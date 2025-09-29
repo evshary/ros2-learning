@@ -751,6 +751,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      跨機連接
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#debug" class="md-nav__link">
     <span class="md-ellipsis">
       Debug
@@ -782,6 +791,15 @@
   <a href="#topic-key-expression" class="md-nav__link">
     <span class="md-ellipsis">
       topic 和 key expression 對應
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph Cache 設計
     </span>
   </a>
   
@@ -979,6 +997,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      跨機連接
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#debug" class="md-nav__link">
     <span class="md-ellipsis">
       Debug
@@ -1010,6 +1037,15 @@
   <a href="#topic-key-expression" class="md-nav__link">
     <span class="md-ellipsis">
       topic 和 key expression 對應
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graph Cache 設計
     </span>
   </a>
   
@@ -1071,6 +1107,60 @@ rmw_zenoh 也提供了 override 的覆蓋單純部份 config 方式，也就是�
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker
 </span></code></pre></div>
 <p>如此一來，當使用者單純只是想修改設定檔中某個欄位而已，就不需要把整個設定檔都複製下來調整，只需要調整環境變數就好。</p>
+<h2 id="_2">跨機連接</h2>
+<p>對機器人使用情境來說，最常使用的是從我們的筆電遠端控制機器人，代表著 rmw_zenoh 要跑在兩個不同機器上面。
+然而預設 rmw_zenoh 限制流量只會在同台機器內，那這時候我們該怎麼設定呢？</p>
+<p>這邊有兩個方法：</p>
+<ol>
+<li>
+<p>兩台電腦都運行 Zenoh Router，然後讓兩者相連</p>
+<ul>
+<li>適用情境：兩台機器內部都有跑大量的 ROS application，只有部份流量需要兩者彼此互通</li>
+<li>
+<p>設定方式：假設其中一台電腦 IP 是 192.168.1.1，我們可以在另一台電腦修改 Zenoh Router 的設定檔</p>
+<ul>
+<li>設定檔：</li>
+</ul>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="err">co</span><span class="kc">nne</span><span class="err">c</span><span class="kc">t</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="err">e</span><span class="kc">n</span><span class="err">dpoi</span><span class="kc">nts</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tcp/192.168.1.1:7447&quot;</span><span class="p">],</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li><code>ZENOH_CONFIG_OVERRIDE</code>:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ZENOH_CONFIG_OVERRIDE</span><span class="o">=</span><span class="s1">&#39;connect/endpoints=[&quot;tcp/192.168.1.1:7447&quot;]&#39;</span>
+</span></code></pre></div>
+</li>
+</ul>
+</li>
+<li>
+<p>一台電腦運行 client 模式，然後連接到另一台電腦的 Zenoh Router</p>
+<ul>
+<li>適用情境：基本上所有 ROS 流量都要彼此互通，例如，另一台電腦只有跑單一 ROS application，像是 RViz</li>
+<li>
+<p>設定方式：假設跑 Zenoh Router 的電腦 IP 是 192.168.1.1，我們在另一台電腦修改 Session 的設定檔</p>
+<ul>
+<li>設定檔：</li>
+</ul>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="err">mode</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;client&quot;</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="err">...</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="err">co</span><span class="kc">nne</span><span class="err">c</span><span class="kc">t</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="err">e</span><span class="kc">n</span><span class="err">dpoi</span><span class="kc">nts</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tcp/192.168.1.1:7447&quot;</span><span class="p">],</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li><code>ZENOH_CONFIG_OVERRIDE</code>:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ZENOH_CONFIG_OVERRIDE</span><span class="o">=</span><span class="s1">&#39;mode=&quot;client&quot;;connect/endpoints=[&quot;tcp/192.168.1.1:7447&quot;]&#39;</span>
+</span></code></pre></div>
+</li>
+</ul>
+</li>
+</ol>
 <h2 id="debug">Debug</h2>
 <p>Zenoh 本身是用 Rust 寫成，而 Rust 可以使用 <code>RUST_LOG</code> 來控制 log level 的顯示，也就是可以決定 log 的細節程度，例如 info、debug 等等。
 因此如果使用上遇到問題懷疑是 Zenoh 本身的問題，可以打開 log 來觀察哪邊出錯。</p>
@@ -1101,13 +1191,63 @@ rmw_zenoh 也提供了 override 的覆蓋單純部份 config 方式，也就是�
 <ul>
 <li>假設有個 ROS 2 topic <code>chatter</code>，是 String 格式，且 <code>ROS_DOMAIN_ID</code> 為 0：</li>
 </ul>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>0/chatter/std_msgs::msg::dds_::String_/RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>0/chatter/std_msgs::msg::dds_::String_/RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18
 </span></code></pre></div>
 <ul>
 <li>如果加上 namespace <code>/robot1</code>，<code>ROS_DOMAIN_ID</code> 變成 2：</li>
 </ul>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>2/robot1/chatter/std_msgs::msg::dds_::String_/RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>2/robot1/chatter/std_msgs::msg::dds_::String_/RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18
 </span></code></pre></div>
+<h3 id="graph-cache">Graph Cache 設計</h3>
+<p>當我們使用 <code>ros2 topic</code> 或是 <code>ros2 node</code> 等指令時，我們需要有個方法知道當前 ROS 環境下的 topic 和 node 狀態。
+而這個就是 Graph Cache 的功能，它可以幫助 ROS 系統知道所有當下拓樸的狀態。
+在 Zenoh 中，我們可以利用 liveliness 這個機制來偵測各種 topic 和 node 的變化。
+liveliness 和一般的 key expression 很類似，主要差別就是用來確保當某個節點消失時，其他節點也都還是可以發現。
+當 <code>rmw_zenoh_cpp</code> 初始化 ROS context 的時候會會透過 liveliness 來取得整個系統狀態，而都有任何節離開或進入 ROS 系統，都會用 liveliness的的機制更新 Graph Cache。</p>
+<ul>
+<li>node 名稱如何對應到 Zenoh liveliness 的名稱</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>@ros2_lv/&lt;domain_id&gt;/&lt;session_id&gt;/&lt;node_id&gt;/&lt;node_id&gt;/&lt;entity_kind&gt;/&lt;mangled_enclave&gt;/&lt;mangled_namespace&gt;/&lt;node_name&gt;
+</span></code></pre></div>
+<ul>
+<li>topic 名稱如何對應到 Zenoh liveliness 的名稱</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>@ros2_lv/&lt;domain_id&gt;/&lt;session_id&gt;/&lt;node_id&gt;/&lt;entity_id&gt;/&lt;entity_kind&gt;/&lt;mangled_enclave&gt;/&lt;mangled_namespace&gt;/&lt;node_name&gt;/&lt;mangled_qualified_name&gt;/&lt;type_name&gt;/&lt;type_hash&gt;/&lt;qos&gt;
+</span></code></pre></div>
+<p>說明一下每個欄位的細節：</p>
+<ul>
+<li><code>&lt;domain_id&gt;</code>：對應到實際的 <code>ROS_DOMAIN_ID</code></li>
+<li><code>&lt;session_id&gt;</code>：Zenoh 的 session ID，每個 ROS context 都會對應到一個專門的 session ID</li>
+<li><code>&lt;node_id&gt;</code>：這個 session 下的每個 node 都有獨一無二的 ID</li>
+<li><code>&lt;entity_id&gt;</code>：在這個 node 下，每個 entity，包含 publisher、subscriber、service 等等都有獨一無二的 ID，如果是 node 自己，就填跟 <code>&lt;node_id&gt;</code> 一樣</li>
+<li><code>&lt;entity_kind&gt;</code>：這個 entity 的類型，可以是如下欄位<ul>
+<li><code>NN</code>： node</li>
+<li><code>MP</code>： message publisher</li>
+<li><code>MS</code>： message subscriber</li>
+<li><code>SS</code>： service server</li>
+<li><code>SC</code>： service client</li>
+</ul>
+</li>
+<li><code>&lt;mangled_enclave&gt;</code>：SROS enclave 名稱，如果沒有就填 <code>%</code></li>
+<li><code>&lt;mangled_namespace&gt;</code>： namespace 名稱，如果沒有就填 <code>%</code></li>
+<li><code>&lt;node_name&gt;</code>： node 名稱</li>
+<li><code>&lt;mangled_qualified_name&gt;</code>：(node 不用填) topic 或是 service 的名稱</li>
+<li><code>&lt;type_name&gt;</code>：(node 不用填) ROS 2 topic 的 message type</li>
+<li><code>&lt;type_hash&gt;</code>：(node 不用填) message type 的雜湊值，這是後來 ROS 2 為了避免 topic message type 進版時彼此還是可以相互通訊索引入的，相關定義參考 <a href="https://github.com/ros-infrastructure/rep/pull/381/files">REP-2016</a></li>
+<li><code>&lt;qos&gt;</code>：(node 不用填) 會從 ROS 2 的 QoS 屬性轉換過來，實際轉換方式可以參考 <a href="https://github.com/ros2/rmw_zenoh/blob/cf09e854c9df17e0eb7e80ce4ab00e1b122a64e0/rmw_zenoh_cpp/src/detail/liveliness_utils.cpp#L239">qos_to_keyexpr</a></li>
+</ul>
+<p>舉實際例子</p>
+<ul>
+<li>假設某個 Node 的 Domain ID 是 2，且 node 名稱是 listener，會宣告如下 liveliness</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>@ros2_lv/2/aac3178e146ba6f1fc6e6a4085e77f21/0/0/NN/%/%/listener
+</span></code></pre></div>
+<ul>
+<li>假設某個 topic 的 Domain ID 是 2，隸屬於 talker 這個 node，名稱為 chatter，且類型是 String</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>@ros2_lv/2/8b20917502ee955ac4476e0266340d5c/0/10/MP/%/%/talker/%chatter/std_msgs::msg::dds_::String_/RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18/::,7:,:,:,,
+</span></code></pre></div>
+<p>更詳細資訊可以參考<a href="https://github.com/ros2/rmw_zenoh/blob/rolling/docs/design.md#graph-cache">官方設計文件</a>。</p>
 
 
 
