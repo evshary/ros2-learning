@@ -40,6 +40,10 @@ markdown_extensions:
   # Admonition support
   - admonition
 
+google_analytics:
+  - G-MWSYRXPNXN
+  - auto
+
 nav:
   - '簡介': 'index.md'
   - 'ROS 2 入門':
