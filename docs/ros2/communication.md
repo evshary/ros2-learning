@@ -1,4 +1,10 @@
-# ROS 2 通訊方式
+---
+title: ROS 2 通訊方式
+description: ROS 2 的基本通訊方法，包含 Topic、Service、Action
+keywords:
+  - ROS 2
+  - 機器人
+---
 
 ROS 2 承接 ROS 1，同樣有三種常用的傳輸方式：
 

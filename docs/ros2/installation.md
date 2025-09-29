@@ -1,4 +1,10 @@
-# ROS 安裝
+---
+title: ROS 2 安裝
+description: ROS 2 的安裝方法
+keywords:
+  - ROS 2
+  - 機器人
+---
 
 ROS 2 的官方主要支援三個主流平台：Linux, Windows, MAC。
 不過由於 Linux 還是比較多人在使用，所以初學還是推薦用 Linux 來學習。

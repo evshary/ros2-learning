@@ -1,4 +1,10 @@
-# ROS 2 介紹
+---
+title: ROS 2 介紹
+description: ROS 2 的基本概念，以及相關連結資源
+keywords:
+  - ROS 2
+  - 機器人
+---
 
 隨著 ROS 1 所有版本已經 [EOL (End of Life)](https://www.ros.org/blog/noetic-eol/)，使用 ROS 2 已經是無法避免的趨勢了。
 在這邊整理一些跟 ROS 2 相關資訊提供給大家參考。

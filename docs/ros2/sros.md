@@ -1,4 +1,12 @@
-# SROS
+---
+title: SROS
+description: SROS：ROS 2 的安全功能
+keywords:
+  - ROS 2
+  - 機器人
+  - SROS
+  - 資安
+---
 
 ROS 2 跟 ROS 1 相比一個最大差異是有完整實作 security 的功能，我們稱之為 SROS。
 ROS 2 的 security 其實是基於 DDS 的 security 來實作的，主要包含下面三種 DDS 功能：

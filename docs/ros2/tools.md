@@ -1,4 +1,11 @@
-# ROS 2 好用工具
+---
+title: ROS 2 好用工具
+description: 介紹推薦的 ROS 2 工具，包含 PlotJuggler
+keywords:
+  - ROS 2
+  - 機器人
+  - 工具
+---
 
 ## PlotJuggler
 

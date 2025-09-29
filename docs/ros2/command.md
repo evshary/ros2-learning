@@ -1,4 +1,10 @@
-# ROS 2 指令
+---
+title: ROS 2 指令
+description: ROS 2 的基本指令，包含 run、launch、topic、node 等等
+keywords:
+  - ROS 2
+  - 機器人
+---
 
 ROS 2 的很多好用指令都是繼承 ROS 1，基本上用法差不多。
 這邊我們會介紹常用的幾個 command，讓大家對 ROS 2 操作有基本的概念。

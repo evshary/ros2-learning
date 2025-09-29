@@ -1,4 +1,11 @@
-# ROS 2 QoS
+---
+title: ROS 2 QoS
+description: ROS 2 基本的 QoS 支援
+keywords:
+  - ROS 2
+  - 機器人
+  - QoS
+---
 
 ROS 2 通訊層使用 DDS 的一大原因就是 DDS 有支援 QoS (Quality of Service)。
 QoS 能夠指定通訊相關的設定，像是資料傳輸的可靠性、是否要保留歷史資料等等。
