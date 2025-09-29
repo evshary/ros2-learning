@@ -1,4 +1,10 @@
-# Autoware
+---
+title: Autoware 簡介
+description: Autoware 的簡單介紹，以及相關常用連結
+keywords:
+  - Autoware
+  - 自駕車
+---
 
 Autoware 本質上是基於 ROS framework 上的自駕車軟體，所以也可以視為一系列的 ROS package 所組成。
 

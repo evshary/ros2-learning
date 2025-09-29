@@ -1,4 +1,11 @@
-# Autoware 模組
+---
+title: Autoware 模組
+description: Autoware 的各個系統模組架構
+keywords:
+  - Autoware
+  - 自駕車
+  - ROS 2
+---
 
 在 Autoware 中可以拆成如下這些 module
 

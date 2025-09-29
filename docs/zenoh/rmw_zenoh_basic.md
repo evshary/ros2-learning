@@ -4,6 +4,7 @@ description: rmw_zenoh 的安裝、使用、以及最基本的架構
 keywords:
   - Zenoh
   - ROS 2
+  - 機器人
   - middleware
 ---
 

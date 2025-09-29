@@ -1,4 +1,10 @@
-# 簡介
+---
+title: DDS 介紹
+description: DDS 簡單介紹，以及 CycloneDDS 的使用方法
+keywords:
+  - DDS
+  - CycloneDDS
+---
 
 DDS (Data Distribution Service) 是一種 pub-sub 的通訊規格，希望可以達到可靠、高效能、安全、即時、可擴展、並且以資料為導向的傳輸。為了達成這個目的，DDS 有如下特色功能：
 

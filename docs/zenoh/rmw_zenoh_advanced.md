@@ -4,6 +4,7 @@ description: rmw_zenoh 的進階功能如何使用，包含設定檔、debug、�
 keywords:
   - Zenoh
   - ROS 2
+  - 機器人
   - middleware
 ---
 
