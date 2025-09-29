@@ -1,4 +1,9 @@
-# Zenoh 介紹
+---
+title: Zenoh 介紹
+description: Zenoh 基礎概念介紹、各種相關資源
+keywords:
+  - Zenoh
+---
 
 Zenoh 是 [ZettaScale](https://www.zettascale.tech/) 所開發出的開源通訊軟體，目前和 CycloneDDS 一樣託管於 [Eclipse Foundation 底下](https://projects.eclipse.org/projects/iot.zenoh)。
 

@@ -1,4 +1,11 @@
-# rmw_zenoh 進階介紹
+---
+title: rmw_zenoh 進階介紹
+description: rmw_zenoh 的進階功能如何使用，包含設定檔、debug、嵌入式等等
+keywords:
+  - Zenoh
+  - ROS 2
+  - middleware
+---
 
 前面介紹完 rmw_zenoh 基本概念之後，接下來就是一些比較進階的概念了。
 

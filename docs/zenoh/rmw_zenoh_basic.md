@@ -1,4 +1,11 @@
-# rmw_zenoh 基本介紹
+---
+title: rmw_zenoh 基本介紹
+description: rmw_zenoh 的安裝、使用、以及最基本的架構
+keywords:
+  - Zenoh
+  - ROS 2
+  - middleware
+---
 
 為何有 [rmw_zenoh](https://github.com/ros2/rmw_zenoh) 的出現呢？
 主要原因是 ROS 2 社群發現 DDS 使用上遇到很多問題，特別是關於機器人無線網路應用的部份，畢竟當初 DDS 就不是為了無線環境來設計的。

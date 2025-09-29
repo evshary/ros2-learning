@@ -1,4 +1,7 @@
 site_name: ROS 2 筆記
+site_description: 正體中文 ROS 2 相關教學文件，包含 DDS、Zenoh 及 Autoware 等內容
+site_author: ChenYing Kuo
+site_url: https://ros2.tw
 
 theme:
   name: material
