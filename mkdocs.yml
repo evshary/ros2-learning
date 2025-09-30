@@ -58,13 +58,14 @@ nav:
     - 'ROS 2 QoS': 'ros2/qos.md'
     - 'ROS 2 好用工具': 'ros2/tools.md'
     - 'SROS': 'ros2/sros.md'
+  - 'ROS 2 通訊層':
+    - 'rmw_zenoh 基本介紹': 'ros2/rmw_zenoh/basic.md'
+    - 'rmw_zenoh 進階介紹': 'ros2/rmw_zenoh/advanced.md'
+    - 'rmw_zenoh 實戰': 'ros2/rmw_zenoh/hands_on.md'
   - 'DDS 入門':
     - 'DDS 介紹': 'dds/introduction.md'
   - 'Zenoh 入門':
     - 'Zenoh 介紹': 'zenoh/introduction.md'
-    - 'rmw_zenoh 基本介紹': 'zenoh/rmw_zenoh_basic.md'
-    - 'rmw_zenoh 進階介紹': 'zenoh/rmw_zenoh_advanced.md'
-    - 'rmw_zenoh 實戰': 'zenoh/rmw_zenoh_hands_on.md'
   - 'Autoware 入門':
     - 'Autoware 介紹': 'autoware/introduction.md'
     - 'Autoware 模組': 'autoware/modules.md'
