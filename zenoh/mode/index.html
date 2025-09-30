@@ -6,17 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Autoware 的各種模擬器支援">
+        <meta name="description" content="Zenoh 三種常見的模式 (peer, client, router)">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/autoware/simulation/">
+        <link rel="canonical" href="https://ros2.tw/zenoh/mode/">
       
       
-        <link rel="prev" href="../map/">
+        <link rel="prev" href="../introduction/">
       
+      
+        <link rel="next" href="../../autoware/introduction/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +26,7 @@
     
     
       
-        <title>Autoware 模擬 - ROS 2 筆記</title>
+        <title>Zenoh 模式 - ROS 2 筆記</title>
       
     
     
@@ -85,11 +87,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#carla" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -122,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Autoware 模擬
+              Zenoh 模式
             
           </span>
         </div>
@@ -719,18 +716,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -746,103 +745,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Zenoh 入門
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenoh/introduction/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Zenoh 介紹
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../zenoh/mode/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Zenoh 模式
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Autoware 入門
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            Autoware 入門
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -858,53 +764,7 @@
   
   
   <span class="md-ellipsis">
-    Autoware 介紹
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../modules/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Autoware 模組
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../map/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Autoware 地圖
+    Zenoh 介紹
     
   </span>
   
@@ -929,20 +789,145 @@
       
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
   
   
   <span class="md-ellipsis">
-    Autoware 模擬
+    Zenoh 模式
     
   </span>
   
 
-          <span class="md-nav__icon md-icon"></span>
-        </label>
+      </a>
       
-      <a href="./" class="md-nav__link md-nav__link--active">
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Autoware 入門
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Autoware 入門
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoware/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoware 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoware/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoware 模組
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoware/map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoware 地圖
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoware/simulation/" class="md-nav__link">
         
   
   
@@ -953,99 +938,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#carla" class="md-nav__link">
-    <span class="md-ellipsis">
-      Carla
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Carla">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      Architecture
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#installation-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation &amp; usage
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Installation &amp; usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usage
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#carla-concept" class="md-nav__link">
-    <span class="md-ellipsis">
-      Carla Concept
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#carla-with-autoware" class="md-nav__link">
-    <span class="md-ellipsis">
-      Carla with Autoware
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1076,89 +968,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#carla" class="md-nav__link">
-    <span class="md-ellipsis">
-      Carla
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Carla">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      Architecture
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#installation-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation &amp; usage
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Installation &amp; usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Installation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Usage
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#carla-concept" class="md-nav__link">
-    <span class="md-ellipsis">
-      Carla Concept
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#carla-with-autoware" class="md-nav__link">
-    <span class="md-ellipsis">
-      Carla with Autoware
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1173,94 +982,18 @@
 
 
 
-  <h1>Autoware 模擬</h1>
+  <h1>Zenoh 模式</h1>
 
-<p>目前 Autoware 適用的模擬器有這幾種</p>
+<p>Zenoh 的拓樸架構可以說十分彈性，只要能夠連上任意 Zenoh 網路上的節點，就可以與其他節點進行通訊。
+可以參考下面的架構圖：</p>
+<p><img alt="Zenoh topology" src="../images/full_topology.png" /></p>
+<p>這邊有三種角色</p>
 <ul>
-<li><a href="https://tier4.github.io/AWSIM/GettingStarted/QuickStartDemo/">AWSIM</a><ul>
-<li>Tier4 提出的模擬器，基於 Unity 的架構</li>
-<li>目前 Autoware 官方最主要使用的模擬器</li>
+<li>Peer：通常在本地端執行，一般設定都是可以直接去中心化通訊</li>
+<li>Router：當要連接到遠端時(跨網域)，會使用 router 來避免 discovery 封包擴散整個網路</li>
+<li>Client：最簡化、少功能的 Zenoh 執行單位，使用的資源最少</li>
 </ul>
-</li>
-<li><a href="https://www.morai.ai/">MORAI</a><ul>
-<li>MORAI Inc. 這家韓國公司所提出，有提供 trial license，但非 open source</li>
-</ul>
-</li>
-<li><a href="https://carla.org/">Carla</a><ul>
-<li>常用的汽車開源模擬器，使用 Unreal Engine</li>
-<li>雖然 Autoware 官方沒有正式支援，但是社群有不少人有開發 bridge 來連接 Autoware</li>
-</ul>
-</li>
-<li><a href="https://www.svlsimulator.com/">LGSVL</a><ul>
-<li>LG 提出，Autoware 是用這個，但已經 phase out，現在 Autoware 也不支援了</li>
-</ul>
-</li>
-</ul>
-<h2 id="carla">Carla</h2>
-<p>Carla 是專門用在 Autonomous Driving Systems 的開源模擬器，底層是用 Unreal Engine，然後用 OpenDrive 來定義道路和城市，並且可用 C++ / Python 來控制模擬</p>
-<p>Carla 支援 ROS 和 Autoware</p>
-<ul>
-<li><a href="https://carla.org/">官方網站</a></li>
-<li><a href="https://carla.readthedocs.io/en/latest/">官方文件</a></li>
-</ul>
-<h3 id="architecture">Architecture</h3>
-<p><img alt="Carla Aruchitecture" src="../images/Carla-Simulator-System-Architecture-Pipeline.png" />
-<a href="https://www.researchgate.net/figure/Carla-Simulator-System-Architecture-Pipeline_fig4_350000830">圖片來源</a></p>
-<h3 id="installation-usage">Installation &amp; usage</h3>
-<p>來自<a href="https://carla.readthedocs.io/en/latest/start_quickstart/">官網的教學</a></p>
-<h4 id="installation">Installation</h4>
-<ol>
-<li>從<a href="https://github.com/carla-simulator/carla/blob/master/Docs/download.md">GitHub</a>下載三個 Carla 相關檔案</li>
-<li>解壓縮 <code>Carla_&lt;version&gt;.tar.gz</code>，然後把其他兩個檔案放入底下的 Import folder</li>
-<li>執行 <code>./ImportAssets.sh</code></li>
-<li>下載 client library: <code>pip3 install carla</code></li>
-</ol>
-<h4 id="usage">Usage</h4>
-<ol>
-<li>跑模擬世界：<code>./CarlaUE4.sh</code></li>
-<li>安裝 example 中的相依套件</li>
-</ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>PythonAPI/examples
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</span></code></pre></div>
-<ol>
-<li>產生 traffic： <code>python3 generate_traffic.py</code></li>
-<li>人工控制：<code>python3 manual_control.py</code></li>
-<li>外部改設定</li>
-</ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>PythonAPI/util
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python3<span class="w"> </span>config.py<span class="w"> </span>--map<span class="w"> </span>Town05
-</span></code></pre></div>
-<h3 id="carla-concept">Carla Concept</h3>
-<p>可參考<a href="https://carla.readthedocs.io/en/0.9.13/core_concepts/">官網</a></p>
-<ul>
-<li>world &amp; client:<ul>
-<li>world 只會有一個，可以放入 actor，並且有改變天氣的能力</li>
-<li>client 是讓使用者可以取得資訊或修改模擬的模組，使用 IP 連接 server，可以有多個 client</li>
-</ul>
-</li>
-<li>actors &amp; blueprints<ul>
-<li>actors 是模擬內的角色，如車子、行人、感測器、紅綠燈...</li>
-<li>blueprint 是 actor 的模板，定義 actor 有哪些性質或功能</li>
-</ul>
-</li>
-<li>maps &amp; navigation<ul>
-<li>用來描述城市和道路，目前有 8 張地圖，使用 OpenDRIVE 1.4</li>
-</ul>
-</li>
-<li>sensors &amp; data<ul>
-<li>sensor 可以從模擬中取得資料</li>
-</ul>
-</li>
-</ul>
-<h2 id="carla-with-autoware">Carla with Autoware</h2>
-<ul>
-<li>Carla 官方的 Autoware Bridge 只有支援 <code>Autoware.AI</code> / <code>Autoware.Auto</code><ul>
-<li>可參考<a href="https://github.com/carla-simulator/ros-bridge/tree/master/carla_ad_agent">程式碼</a>和<a href="https://carla.readthedocs.io/projects/ros-bridge/en/latest/carla_ad_demo/">使用教學</a></li>
-</ul>
-</li>
-<li>Autoware 社群<a href="https://autowarefoundation.github.io/autoware-documentation/main/tutorials/ad-hoc-simulation/digital-twin-simulation/carla-tutorial/">支援列表</a></li>
-</ul>
+<p>可以看得出 Zenoh 的三種角色就是專門為了不同情境來設計。</p>
 
 
 
