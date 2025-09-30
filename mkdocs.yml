@@ -66,6 +66,7 @@ nav:
     - 'DDS 介紹': 'dds/introduction.md'
   - 'Zenoh 入門':
     - 'Zenoh 介紹': 'zenoh/introduction.md'
+    - 'Zenoh 模式': 'zenoh/mode.md'
   - 'Autoware 入門':
     - 'Autoware 介紹': 'autoware/introduction.md'
     - 'Autoware 模組': 'autoware/modules.md'
