@@ -3,8 +3,6 @@
 .venv
 ## python cache
 __pycache__
-## pyenv version
-.python-version
 
 # mkdocs
 site
