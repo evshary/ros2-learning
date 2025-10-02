@@ -67,6 +67,7 @@ nav:
   - 'Zenoh 入門':
     - 'Zenoh 介紹': 'zenoh/introduction.md'
     - 'Zenoh 模式': 'zenoh/mode.md'
+    - 'Zenoh key': 'zenoh/keyexpr.md'
   - 'Autoware 入門':
     - 'Autoware 介紹': 'autoware/introduction.md'
     - 'Autoware 模組': 'autoware/modules.md'
