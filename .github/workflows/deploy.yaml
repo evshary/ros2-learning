@@ -25,17 +25,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install Poetry
-        run: pipx install poetry
-
-      - name: Configure Poetry
-        run: poetry config virtualenvs.in-project true
+      - name: Install uv
+        run: pipx install uv
 
       - name: Setup just
         uses: extractions/setup-just@v1
-
-      - name: Install dependencies
-        run: just init
 
       - name: Build
         run: |

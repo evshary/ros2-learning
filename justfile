@@ -1,11 +1,8 @@
-init:
-    poetry install
-
 build:
-    poetry run mkdocs build
+    uv run mkdocs build
 
 serve:
-    poetry run mkdocs serve
+    uv run mkdocs serve
 
 clean:
     rm -rf site
