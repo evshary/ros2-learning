@@ -171,6 +171,6 @@ Feedback:
 
 ## 參考資料
 
-* [Understanding ROS 2 topics](https://index.ros.org/doc/ros2/Tutorials/Topics/Understanding-ROS2-Topics/)
-* [Understanding ROS 2 services](https://index.ros.org/doc/ros2/Tutorials/Services/Understanding-ROS2-Services/)
-* [Understanding ROS 2 actions](https://index.ros.org/doc/ros2/Tutorials/Understanding-ROS2-Actions/)
+* [Understanding ROS 2 topics](https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)
+* [Understanding ROS 2 services](https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html)
+* [Understanding ROS 2 actions](https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html)

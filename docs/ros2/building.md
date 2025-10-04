@@ -125,4 +125,4 @@ colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 ## 參考資料
 
-* [Using colcon to build packages](https://index.ros.org/doc/ros2/Tutorials/Colcon-Tutorial/)
+* [Using colcon to build packages](https://docs.ros.org/en/rolling/Tutorials/Beginner-Client-Libraries/Colcon-Tutorial.html)

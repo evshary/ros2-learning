@@ -137,5 +137,5 @@ publishing #1: std_msgs.msg.String(data='123')
 
 ## 參考
 
-* [Understanding ROS 2 nodes](https://index.ros.org/doc/ros2/Tutorials/Understanding-ROS2-Nodes/)
-* [Understanding ROS 2 topics](https://index.ros.org/doc/ros2/Tutorials/Topics/Understanding-ROS2-Topics/)
+* [Understanding ROS 2 nodes](https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html)
+* [Understanding ROS 2 topics](https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)

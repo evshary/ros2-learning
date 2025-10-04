@@ -131,6 +131,6 @@ Python 的 QoS API 可以參考 [rclpy Quality of Service](http://docs.ros2.org/
 
 ## Reference
 
-* [ROS 2 wiki about QoS](https://index.ros.org/doc/ros2/Concepts/About-Quality-of-Service-Settings/)
+* [ROS 2 wiki about QoS](https://docs.ros.org/en/rolling/Concepts/Intermediate/About-Quality-of-Service-Settings.html)
 * [ROS 2 對 QoS 的設計理念](https://design.ros2.org/articles/qos.html)
 * [ROS 2 對 deadline, liveliness, lifespan 的使用](https://design.ros2.org/articles/qos_deadline_liveliness_lifespan.html)
