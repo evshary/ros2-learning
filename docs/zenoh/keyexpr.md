@@ -46,12 +46,12 @@ Key expression 最大的用途在於，我們可以用他來對多個 key 進行
 
 [Selector](https://github.com/eclipse-zenoh/roadmap/blob/main/rfcs/ALL/Selectors/README.md)基本上就是 key expression 加上 parameters。
 這個只能使用在 Query 上，主要目的是提供 Query 更多可以判斷的參數。
-使用方式跟 HTTP URL 如何帶入 GET 參數很類似，在 key expression 後方加上 `?`，就可以放入多個 key/value 的配對了，中間一樣用 & 來做區隔。
+使用方式跟 HTTP URL 如何帶入 GET 參數很類似，在 key expression 後方加上 `?`，就可以放入多個 key/value 的配對了，中間一樣用 `;` 來做區隔。
 
 舉例來說，下面的 Selector 可以區分為 Key Expression 和 parameters 兩個部份
 
 ```raw
-path/**/something?arg1=val1&arg2=value%202
+path/**/something?arg1=val1;arg2=value%202
 ^               ^ ^                      ^
 |Key Expression-| |----- parameters -----|
 ```
