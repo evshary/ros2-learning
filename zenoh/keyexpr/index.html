@@ -1115,7 +1115,7 @@
 </ol>
 <p>因此 key 中有些規則必須要遵守：</p>
 <ul>
-<li>開頭結尾不能是 <code>/</code>，且不能用到 <code>//</code></li>
+<li>開頭結尾不能是 <code>/</code>，且在 key 內部也不能連續出現，例如 <code>//</code></li>
 <li>key 必須是非空的 UTF-8 字元</li>
 <li>key 內部不能用到一些保留字元，如 <code>*</code>, <code>$</code>, <code>?</code>, <code>#</code>，這些會在 key expression 中使用到</li>
 </ul>
@@ -1136,7 +1136,7 @@
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>少用 <code>$*</code>，因為效能較差，盡量多用 <code>*</code> 替換。例如 <code>robot/12</code> 和 <code>pc/18</code> 的設計就比 <code>robot12</code> 和 <code>pc12</code> 好</p>
+<p>少用 <code>$*</code>，因為效能較差，盡量多用 <code>*</code> 替換。例如 <code>robot/12</code> 和 <code>robot/18</code> 的設計就比 <code>robot12</code> 和 <code>robot12</code> 好，因為我們可以用 <code>robot/*</code> 來取得所有的 robot，而不是用效能較差的 <code>robot$*</code></p>
 </div>
 <h2 id="selector">Selector</h2>
 <p><a href="https://github.com/eclipse-zenoh/roadmap/blob/main/rfcs/ALL/Selectors/README.md">Selector</a>基本上就是 key expression 加上 parameters。
