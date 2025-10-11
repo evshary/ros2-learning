@@ -552,6 +552,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="ROS bag 格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcap" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCAP 格式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcap-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCAP CLI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcap-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCAP API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1098,6 +1131,39 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="ROS bag 格式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcap" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCAP 格式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcap-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCAP CLI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcap-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      MCAP API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1130,7 +1196,8 @@
 <p>在機器人開發中，錄製封包的功能可以在很多方面幫助我們。
 舉例來說，如果某個問題的重現很困難，我們可以透過錄製當下發生的封包來更容易復現。
 又或者是說，我們可以錄製實際機器人或是自駕車的感測器資訊，像是相機或是光達，然後讓開發者們可以在沒有實際硬體的情況下開發相對應的模組。</p>
-<p>在網路世界中，我們是使用 Wireshark 來錄製封包，但是在機器人領域中，最小的封包單位是一個個 ROS Message，因此需要有其他更適合的工具，也就是這邊要談到的 ROS bag。</p>
+<p>在網路世界中，我們是使用 Wireshark 來錄製封包。
+然而在機器人領域中，最小的封包單位是一個個 ROS Message，因此需要有其他更適合的工具，也就是這邊要談到的 ROS bag。</p>
 <h2 id="_1">使用方式</h2>
 <p>ROS bag 是 ROS CLI 指令下的其中一個部份，我們可以用 <code>ros2 bag --help</code> 來看到更多指令的用法。</p>
 <ul>
@@ -1166,8 +1233,162 @@
 </span></code></pre></div>
 <h2 id="ros-bag">ROS bag 格式</h2>
 <p>那麼實際上 ROS bag 是用什麼格式錄製呢？
-最早是使用 SQLite3 的方式，但在 <a href="https://discourse.openrobotics.org/t/psa-default-ros-2-bag-storage-format-is-changing-to-mcap-in-iron/28489">ROS 2 Iron 以後</a>，預設的格式改為功能更為完整的 MCAP 格式。
-MCAP 最大的好處在於有較佳的 throughput、能自行包含 metadata 來描述自我資訊、提供更多的功能(如更好的 compression 等等)。</p>
+最早是使用 SQLite3 的方式，但在後來 <a href="https://foxglove.dev/">Foxglove</a> 這家公司提出的<a href="https://foxglove.dev/blog/introducing-the-mcap-file-format">相對更好的 MCAP 格式</a>。
+MCAP 最大的好處在於有較佳的 throughput、能自行包含 metadata 來描述自我資訊、提供更多的功能(如更好的 compression 等等)。
+最終在 <a href="https://discourse.openrobotics.org/t/psa-default-ros-2-bag-storage-format-is-changing-to-mcap-in-iron/28489">ROS 2 Iron 以後</a>，預設的 ROS bag 格式也改為 MCAP。</p>
+<h3 id="mcap">MCAP 格式</h3>
+<p>MCAP 格式最前面會有 <code>MCAP</code> 這個 magic code，剩下都由 Records 組成。
+Records 有如下資訊：</p>
+<ul>
+<li>操作碼（Opcode）：一個單一位元組，用於識別記錄的類型（例如：Schema、Channel、Message、Chunk 等）。</li>
+<li>內容長度（Content Length）：一個 uint64 值，指示記錄內容的長度。</li>
+<li>記錄內容（Record Content）：實際的資料。</li>
+</ul>
+<p>下面列出常用到的 Opcode：</p>
+<table>
+<thead>
+<tr>
+<th>Opcode (十六進位)</th>
+<th>記錄名稱 (Record Name)</th>
+<th>功能說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x01</td>
+<td>Header</td>
+<td>檔案的第一個記錄，包含 MCAP 版本資訊和格式細節</td>
+</tr>
+<tr>
+<td>0x03</td>
+<td>Schema</td>
+<td>儲存訊息類型的結構定義（各個 ROS 訊息的實際定義）</td>
+</tr>
+<tr>
+<td>0x04</td>
+<td>Channel</td>
+<td>定義主題名稱、對應到的 schema ID 和 metadata (ROS 實際 topic 名稱、type 格式 (schema ID) 和紀錄 QoS 的 metadata)</td>
+</tr>
+<tr>
+<td>0x05</td>
+<td>Message</td>
+<td>儲存帶有 timestamp 和 channel ID 的實際訊息</td>
+</tr>
+<tr>
+<td>0x0A</td>
+<td>Metadata</td>
+<td>儲存應用程式定義的 key-value metadata (在 ROS 中會用來紀錄 bag file 基本資訊)</td>
+</tr>
+</tbody>
+</table>
+<p>注意 <code>0x01</code> 到 <code>0x7F</code> 是保留給標準 MCAP 格式的記錄類型。</p>
+<h3 id="mcap-cli">MCAP CLI</h3>
+<p>除了使用 <code>ros2 bag</code> 指令外，我們也可以使用 <a href="https://mcap.dev/guides/cli">MCAP CLI</a> 來觀察 MCAP 的內容。</p>
+<ul>
+<li>查看 MCAP 的基本資訊</li>
+</ul>
+<details>
+  <summary>mcap info *.mcap</summary>
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>mcap<span class="w"> </span>info<span class="w"> </span>*.mcap
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>library:<span class="w">   </span>libmcap<span class="w"> </span><span class="m">1</span>.4.0<span class="w">                                               </span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>profile:<span class="w">   </span>ros2<span class="w">                                                        </span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>messages:<span class="w">  </span><span class="m">14</span><span class="w">                                                          </span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>duration:<span class="w">  </span><span class="m">4</span>.911906569s<span class="w">                                                </span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>start:<span class="w">     </span><span class="m">2025</span>-10-08T11:53:47.926364121+08:00<span class="w"> </span><span class="o">(</span><span class="m">1759895627</span>.926364121<span class="o">)</span><span class="w">  </span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>end:<span class="w">       </span><span class="m">2025</span>-10-08T11:53:52.83827069+08:00<span class="w"> </span><span class="o">(</span><span class="m">1759895632</span>.838270690<span class="o">)</span><span class="w">   </span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>compression:
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span>:<span class="w"> </span><span class="o">[</span><span class="m">1</span>/1<span class="w"> </span>chunks<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">5</span>.24<span class="w"> </span>KiB/5.24<span class="w"> </span>KiB<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00%<span class="o">)]</span><span class="w"> </span><span class="o">[</span><span class="m">1</span>.07<span class="w"> </span>KiB/sec<span class="o">]</span><span class="w"> </span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>chunks:
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span>max<span class="w"> </span>uncompressed<span class="w"> </span>size:<span class="w"> </span><span class="m">5</span>.24<span class="w"> </span>KiB
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span>max<span class="w"> </span>compressed<span class="w"> </span>size:<span class="w"> </span><span class="m">5</span>.24<span class="w"> </span>KiB
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span>overlaps:<span class="w"> </span>no
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>channels:
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span>/rosout<span class="w">              </span><span class="m">11</span><span class="w"> </span>msgs<span class="w"> </span><span class="o">(</span><span class="m">2</span>.24<span class="w"> </span>Hz<span class="o">)</span><span class="w">   </span>:<span class="w"> </span>rcl_interfaces/msg/Log<span class="w"> </span><span class="o">[</span>ros2msg<span class="o">]</span><span class="w">                  </span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span>/events/write_split<span class="w">   </span><span class="m">0</span><span class="w"> </span>msgs<span class="w">             </span>:<span class="w"> </span>rosbag2_interfaces/msg/WriteSplitEvent<span class="w"> </span><span class="o">[</span>ros2msg<span class="o">]</span><span class="w">  </span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="o">(</span><span class="m">3</span><span class="o">)</span><span class="w"> </span>/chatter<span class="w">              </span><span class="m">3</span><span class="w"> </span>msgs<span class="w"> </span><span class="o">(</span><span class="m">0</span>.61<span class="w"> </span>Hz<span class="o">)</span><span class="w">   </span>:<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="o">[</span>ros2msg<span class="o">]</span><span class="w">                     </span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="o">(</span><span class="m">4</span><span class="o">)</span><span class="w"> </span>/parameter_events<span class="w">     </span><span class="m">0</span><span class="w"> </span>msgs<span class="w">             </span>:<span class="w"> </span>rcl_interfaces/msg/ParameterEvent<span class="w"> </span><span class="o">[</span>ros2msg<span class="o">]</span><span class="w">       </span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>channels:<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>attachments:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>metadata:<span class="w"> </span><span class="m">2</span>
+</span></code></pre></div>
+
+</details>
+
+<ul>
+<li>查看 MCAP 的訊息內容</li>
+</ul>
+<details>
+  <summary>mcap cat *.mcap</summary>
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>mcap<span class="w"> </span>cat<span class="w"> </span>*.mcap
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="m">1759895627926364121</span><span class="w"> </span>/rosout<span class="w"> </span><span class="o">[</span>rcl_interfaces/msg/Log<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">75</span><span class="w"> </span><span class="m">224</span><span class="w"> </span><span class="m">229</span><span class="w"> </span><span class="m">104</span><span class="w"> </span><span class="m">155</span><span class="w"> </span><span class="m">107</span><span class="o">]</span>...
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="m">1759895627926390649</span><span class="w"> </span>/rosout<span class="w"> </span><span class="o">[</span>rcl_interfaces/msg/Log<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">75</span><span class="w"> </span><span class="m">224</span><span class="w"> </span><span class="m">229</span><span class="w"> </span><span class="m">104</span><span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="m">236</span><span class="o">]</span>...
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>...
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="m">1759895630838427352</span><span class="w"> </span>/chatter<span class="w"> </span><span class="o">[</span>std_msgs/msg/String<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">72</span><span class="w"> </span><span class="m">101</span><span class="o">]</span>...
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="m">1759895631837926612</span><span class="w"> </span>/rosout<span class="w"> </span><span class="o">[</span>rcl_interfaces/msg/Log<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">79</span><span class="w"> </span><span class="m">224</span><span class="w"> </span><span class="m">229</span><span class="w"> </span><span class="m">104</span><span class="w"> </span><span class="m">229</span><span class="w"> </span><span class="m">149</span><span class="o">]</span>...
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>...
+</span></code></pre></div>
+
+</details>
+
+<ul>
+<li>查看 MCAP 的 metadata</li>
+</ul>
+<details>
+  <summary>mcap list metadata *.mcap</summary>
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>mcap<span class="w"> </span>list<span class="w"> </span>metadata<span class="w"> </span>*.mcap
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>name<span class="w">   </span>offset<span class="w">    </span>length<span class="w">    </span>metadata
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>rosbag2<span class="w">    </span><span class="m">42</span><span class="w">    </span><span class="m">541</span><span class="w">   </span><span class="o">{</span><span class="s2">&quot;serialized_metadata&quot;</span>:<span class="s2">&quot;version: 9\nstorage_identifier: mcap\nduration:\n  nanoseconds: 0\nstarting_time:\n  nanoseconds_since_epoch: 9223372036854775807\nmessage_count: 0\ntopics_with_message_count:\n  []\ncompression_format: \&quot;\&quot;\ncompression_mode: \&quot;\&quot;\nrelative_file_paths:\n  - rosbag2_2025_10_08-11_53_47_0.mcap\nfiles:\n  - path: rosbag2_2025_10_08-11_53_47_0.mcap\n    starting_time:\n      nanoseconds_since_epoch: 9223372036854775807\n    duration:\n      nanoseconds: 0\n    message_count: 0\ncustom_data: ~\nros_distro: rolling&quot;</span><span class="o">}</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>...
+</span></code></pre></div>
+
+</details>
+
+<ul>
+<li>查看 MCAP 的 schemas</li>
+</ul>
+<details>
+  <summary>mcap list schemas *.mcap</summary>
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>mcap<span class="w"> </span>list<span class="w"> </span>schemas<span class="w"> </span>*.mcap
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>id<span class="w">    </span>name<span class="w">    </span>encoding<span class="w">    </span>data
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>...
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="m">3</span><span class="w">    </span>std_msgs/msg/String<span class="w">    </span>ros2msg<span class="w">    </span><span class="c1"># This was originally provided as an example message.</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">                                       </span>...
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">                                       </span>string<span class="w"> </span>data
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>...
+</span></code></pre></div>
+
+</details>
+
+<ul>
+<li>查看 MCAP 的 channels</li>
+</ul>
+<details>
+  <summary>mcap list channels *.mcap</summary>
+
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span>mcap<span class="w"> </span>list<span class="w"> </span>channels<span class="w"> </span>*.mcap
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>id<span class="w">    </span>schemaId<span class="w">    </span>topic<span class="w">    </span>messageEncoding<span class="w">    </span>metadata
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>...
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="m">3</span><span class="w">    </span><span class="m">3</span><span class="w">    </span>/chatter<span class="w">    </span>cdr<span class="w">    </span><span class="o">{</span><span class="s2">&quot;offered_qos_profiles&quot;</span>:<span class="s2">&quot;- history: keep_last\n  depth: 7\n  reliability: reliable\n  durability: volatile\n  deadline:\n    sec: 9223372036\n    nsec: 854775807\n  lifespan:\n    sec: 9223372036\n    nsec: 854775807\n  liveliness: automatic\n  liveliness_lease_duration:\n    sec: 9223372036\n    nsec: 854775807\n  avoid_ros_namespace_conventions: false&quot;</span>,<span class="s2">&quot;topic_type_hash&quot;</span>:<span class="s2">&quot;RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18&quot;</span><span class="o">}</span><span class="w"> </span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>...
+</span></code></pre></div>
+
+</details>
+
+<h3 id="mcap-api">MCAP API</h3>
+<p>我們也可以直接寫程式來解析 MCAP 的內容，官方提供<a href="https://mcap.dev/reference">各種程式語言的 API</a>。</p>
+<p>如果是要解析 ROS bag 的格式，那就需要參考 <code>ros2 bag</code> 本身如何寫的：</p>
+<ul>
+<li>官方 ROS bag 如何解析 MCAP<ul>
+<li><a href="https://docs.ros.org/en/rolling/p/rosbag2_storage_mcap/">文件</a></li>
+<li><a href="https://github.com/ros2/rosbag2/blob/rolling/rosbag2_storage_mcap/src/mcap_storage.cpp">程式</a></li>
+</ul>
+</li>
+<li><a href="https://mcap.dev/guides/python/ros2">Python 的範例</a></li>
+</ul>
 <h2 id="_2">參考資料</h2>
 <ul>
 <li>ROSCon talk: MCAP: A Next-Generation File Format for ROS Recording<ul>
