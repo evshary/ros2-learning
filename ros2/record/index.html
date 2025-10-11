@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="DDS 簡單介紹，以及 CycloneDDS 的使用方法">
+        <meta name="description" content="ROS 2 如何紀錄以及重放封包">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/dds/introduction/">
+        <link rel="canonical" href="https://ros2.tw/ros2/record/">
       
       
-        <link rel="prev" href="../../ros2/rmw_zenoh/hands_on/">
+        <link rel="prev" href="../qos/">
       
       
-        <link rel="next" href="../../zenoh/introduction/">
+        <link rel="next" href="../tools/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>DDS 介紹 - ROS 2 筆記</title>
+        <title>ROS 2 錄製與重放 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cyclonedds" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              DDS 介紹
+              ROS 2 錄製與重放
             
           </span>
         </div>
@@ -306,7 +306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -329,7 +329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/installation/" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   
@@ -356,18 +356,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -383,7 +385,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             ROS 2 實戰
@@ -397,7 +399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/command/" class="md-nav__link">
+      <a href="../command/" class="md-nav__link">
         
   
   
@@ -420,7 +422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/communication/" class="md-nav__link">
+      <a href="../communication/" class="md-nav__link">
         
   
   
@@ -443,7 +445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/building/" class="md-nav__link">
+      <a href="../building/" class="md-nav__link">
         
   
   
@@ -466,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/qos/" class="md-nav__link">
+      <a href="../qos/" class="md-nav__link">
         
   
   
@@ -486,10 +488,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../ros2/record/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 錄製與重放
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -500,6 +522,51 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用方式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ros-bag" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS bag 格式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      參考資料
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -512,7 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/tools/" class="md-nav__link">
+      <a href="../tools/" class="md-nav__link">
         
   
   
@@ -535,7 +602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/sros/" class="md-nav__link">
+      <a href="../sros/" class="md-nav__link">
         
   
   
@@ -603,7 +670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/rmw_zenoh/basic/" class="md-nav__link">
+      <a href="../rmw_zenoh/basic/" class="md-nav__link">
         
   
   
@@ -626,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/rmw_zenoh/advanced/" class="md-nav__link">
+      <a href="../rmw_zenoh/advanced/" class="md-nav__link">
         
   
   
@@ -649,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/rmw_zenoh/hands_on/" class="md-nav__link">
+      <a href="../rmw_zenoh/hands_on/" class="md-nav__link">
         
   
   
@@ -676,20 +743,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -705,7 +770,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             DDS 入門
@@ -716,30 +781,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    DDS 介紹
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../dds/introduction/" class="md-nav__link">
         
   
   
@@ -750,66 +795,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#cyclonedds" class="md-nav__link">
-    <span class="md-ellipsis">
-      CycloneDDS
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="CycloneDDS">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      文件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      編譯
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      設定環境變數
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1098,44 +1083,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cyclonedds" class="md-nav__link">
-    <span class="md-ellipsis">
-      CycloneDDS
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="CycloneDDS">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      文件
+      使用方式
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
+  <a href="#ros-bag" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS bag 格式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      編譯
+      參考資料
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      設定環境變數
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1155,117 +1125,57 @@
 
 
 
-  <h1>DDS 介紹</h1>
+  <h1>ROS 2 錄製與重放</h1>
 
-<p>DDS (Data Distribution Service) 是一種 pub-sub 的通訊規格，希望可以達到可靠、高效能、安全、即時、可擴展、並且以資料為導向的傳輸。為了達成這個目的，DDS 有如下特色功能：</p>
+<p>在機器人開發中，錄製封包的功能可以在很多方面幫助我們。
+舉例來說，如果某個問題的重現很困難，我們可以透過錄製當下發生的封包來更容易復現。
+又或者是說，我們可以錄製實際機器人或是自駕車的感測器資訊，像是相機或是光達，然後讓開發者們可以在沒有實際硬體的情況下開發相對應的模組。</p>
+<p>在網路世界中，我們是使用 Wireshark 來錄製封包，但是在機器人領域中，最小的封包單位是一個個 ROS Message，因此需要有其他更適合的工具，也就是這邊要談到的 ROS bag。</p>
+<h2 id="_1">使用方式</h2>
+<p>ROS bag 是 ROS CLI 指令下的其中一個部份，我們可以用 <code>ros2 bag --help</code> 來看到更多指令的用法。</p>
 <ul>
-<li>以資料為導向：過去的傳輸重視的是「誰連到誰」，所以我們會需要明確知道通訊者的 IP 位址並且開 socket 進行連接。DDS 重視的是「傳什麼資料」，任何人發佈的資料都會指定 topic，有興趣的人可以自行訂閱，而不需要管這資料是誰傳來的。</li>
-<li>去中心化架構：DDS 並非以往 server-client 的架構，每個通訊節點都是對等的。因此任何人都可以隨意加入或離開通訊網路，而不會有任何通訊上的問題。</li>
-<li>豐富的 QoS：為了達到可靠、高效能，DDS 有非常多的 QoS(Quality of Service)，使用者可以依照自己想要的通訊品質來進行調整，例如reliability, durability, transport priority等等。</li>
+<li>錄製封包</li>
 </ul>
-<p><a href="https://www.omg.org/omg-dds-portal/">DDS 的規格</a>制定是由 OMG (Object Management Group) 這個組織所負責，OMG 其實也有制定不少跟程式設計師有關的規格，舉例來說 Object Oriented (物件導向)常用到的 UML，就是由 OMG 所制定。</p>
-<p>在 <a href="https://www.dds-foundation.org/omg-dds-standard/">DDS foundation</a> 裡面有許多關於 DDS 的文件，其中比較值得注意的是下面這五份：</p>
-<ul>
-<li>DDS v1.4: 定義 DCPS，主要是 API 的制定</li>
-<li>DDSI-RTPS v2.3: 定義 DDSI，定義 DDS 的行為</li>
-<li>DDS-XTypes v1.2: 用在 topic 的 data type 規範</li>
-<li>DDS-Security v1.1: 定義 security 的規範</li>
-<li>Interface Definition Language (IDL) v4.2: IDL 的定義規範</li>
-</ul>
-<p>DDS 最初是用在軍事、航太上，已經有悠久的歷史了，後來 ROS 2 在尋找可利用的通訊層時也看上 DDS 的可靠穩定，所以 DDS 也開始被應用在機器人領域。</p>
-<p>DDS 目前有很多種選擇：</p>
-<ul>
-<li>CycloneDDS：ADLINK (後來 spin-off 出去叫做 ZettaScale) 提出的開源版輕量化 DDS。ROS 2 的 Galactic 版本是以 CycloneDDS 為預設通訊層。</li>
-<li>OpenSplice DDS：原本是 Prismtech 的主力產品(後來被 ADLINK 買下後又 spin-off 出去成為 ZettaScale)，有分開源版和商業版。</li>
-<li>FastDDS：Eprosima 的 DDS 開源解決方案，跟 CycloneDDS 一樣被應用在 ROS 2 上。</li>
-<li>Connext DDS：RTI 這家公司所提出的 DDS，並沒有開源。</li>
-<li>OpenDDS：Open source 版本的 DDS。</li>
-</ul>
-<p>目前個人推薦的是使用 CycloneDDS，輕量且效能高，主要程式是用 C 撰寫而成。下面會稍微介紹一下 CycloneDDS。</p>
-<h2 id="cyclonedds">CycloneDDS</h2>
-<p>如前面所提，<a href="https://github.com/eclipse-cyclonedds/cyclonedds">CycloneDDS</a> 是 ZettaScale 提出開源解決方案，並且目前託管於 <a href="https://projects.eclipse.org/projects/iot.cyclonedds">Eclipse Foundation 底下</a>。</p>
-<h3 id="_1">文件</h3>
-<ul>
-<li><a href="https://cyclonedds.io/docs/cyclonedds/latest/">官方文件</a></li>
-<li><a href="https://cyclonedds.io/docs/cyclonedds/latest/ddsc.html">C API</a></li>
-<li><a href="https://cyclonedds.io/docs/cyclonedds-cxx/latest/">C++ API</a></li>
-<li><a href="https://cyclonedds.io/docs/cyclonedds-python/latest/">Python API</a></li>
-</ul>
-<h3 id="_2">編譯</h3>
-<p>這邊簡單描述編譯 CycloneDDS 方法，這邊使用的環境是 Ubuntu。</p>
-<ul>
-<li>安裝相依性</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>bison<span class="w"> </span>cmake
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 錄製所有 topic 的封包</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>--all-topics
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 錄製特定 topic 的封包，例如 mytopic1 和 mytopic2</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>--topics<span class="w"> </span>mytopic1<span class="w"> </span>mytopic2
 </span></code></pre></div>
 <ul>
-<li>從 GitHub 抓程式碼</li>
+<li>查看封包資訊：錄完後可以看到類似 <code>rosbag2_2025_10_11-10_38_16</code> 的資料夾，可以查看其內容</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/eclipse-cyclonedds/cyclonedds.git
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>cyclonedds
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>ros2<span class="w"> </span>bag<span class="w"> </span>info<span class="w"> </span>rosbag2_2025_10_11-10_38_16
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Files:<span class="w">             </span>rosbag2_2025_10_11-10_38_16_0.mcap
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Bag<span class="w"> </span>size:<span class="w">          </span><span class="m">5</span>.3<span class="w"> </span>KiB
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Storage<span class="w"> </span>id:<span class="w">        </span>mcap
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>ROS<span class="w"> </span>Distro:<span class="w">        </span>rolling
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Duration:<span class="w">          </span><span class="m">2</span>.999745724s
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Start:<span class="w">             </span>Oct<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="m">10</span>:38:17.945157770<span class="w"> </span><span class="o">(</span><span class="m">1760150297</span>.945157770<span class="o">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>End:<span class="w">               </span>Oct<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="m">10</span>:38:20.944903494<span class="w"> </span><span class="o">(</span><span class="m">1760150300</span>.944903494<span class="o">)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Messages:<span class="w">          </span><span class="m">4</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>Topic<span class="w"> </span>information:<span class="w"> </span>Topic:<span class="w"> </span>/chatter<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>Services:<span class="w">          </span><span class="m">0</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>Service<span class="w"> </span>information:<span class="w"> </span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>Actions:<span class="w">           </span><span class="m">0</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>Action<span class="w"> </span>information:<span class="w"> </span>
 </span></code></pre></div>
 <ul>
-<li>開始編譯</li>
+<li>重放封包：會重放當初錄製的內容</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mkdir<span class="w"> </span>build
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>build
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># 要把 example 編譯出來</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>cmake<span class="w"> </span>-DBUILD_IDLC<span class="o">=</span>ON<span class="w"> </span>-DBUILD_EXAMPLES<span class="o">=</span>ON<span class="w"> </span>..
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>cmake<span class="w"> </span>--build<span class="w"> </span>.
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nb">cd</span><span class="w"> </span>..
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ros2<span class="w"> </span>bag<span class="w"> </span>play<span class="w"> </span>rosbag2_2025_10_11-10_38_16
 </span></code></pre></div>
+<h2 id="ros-bag">ROS bag 格式</h2>
+<p>那麼實際上 ROS bag 是用什麼格式錄製呢？
+最早是使用 SQLite3 的方式，但在 <a href="https://discourse.openrobotics.org/t/psa-default-ros-2-bag-storage-format-is-changing-to-mcap-in-iron/28489">ROS 2 Iron 以後</a>，預設的格式改為功能更為完整的 MCAP 格式。
+MCAP 最大的好處在於有較佳的 throughput、能自行包含 metadata 來描述自我資訊、提供更多的功能(如更好的 compression 等等)。</p>
+<h2 id="_2">參考資料</h2>
 <ul>
-<li>完成編譯後可以跑個 Hello World 來看看</li>
+<li>ROSCon talk: MCAP: A Next-Generation File Format for ROS Recording<ul>
+<li><a href="http://download.ros.org/downloads/roscon/2022/MCAP%20A%20Next-Generation%20File%20Format%20for%20ROS%20Recording.pdf">slides</a></li>
+<li><a href="https://vimeo.com/showcase/9954564?video=767149733">video</a></li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Publisher</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>build/bin/HelloworldPublisher
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Subscriber (另一個 terminal)</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>build/bin/HelloworldSubscriber
-</span></code></pre></div>
-<ul>
-<li>可以看到 publisher 和 subscriber 可以互相通訊了</li>
-</ul>
-<h3 id="_3">設定環境變數</h3>
-<p>當然 CycloneDDS 也是可以做一些簡易環境設定，只要設定好 <code>CYCLONEDDS_URI</code> 這個環境變數就可以了。這邊我們以 GitHub 上的設定檔為範例。</p>
-<ul>
-<li>新創 cyclonedds.xml 的檔案</li>
-</ul>
-<div class="language-xml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">&lt;CycloneDDS</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;https://cdds.io/config&quot;</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;https://cdds.io/config https://raw.githubusercontent.com/eclipse-cyclonedds/cyclonedds/master/etc/cyclonedds.xsd&quot;</span><span class="nt">&gt;</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">&lt;Domain</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;any&quot;</span><span class="nt">&gt;</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="nt">&lt;General&gt;</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">            </span><span class="nt">&lt;NetworkInterfaceAddress&gt;</span>auto<span class="nt">&lt;/NetworkInterfaceAddress&gt;</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">            </span><span class="nt">&lt;AllowMulticast&gt;</span>default<span class="nt">&lt;/AllowMulticast&gt;</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">            </span><span class="nt">&lt;MaxMessageSize&gt;</span>65500B<span class="nt">&lt;/MaxMessageSize&gt;</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">            </span><span class="nt">&lt;FragmentSize&gt;</span>4000B<span class="nt">&lt;/FragmentSize&gt;</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="nt">&lt;/General&gt;</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="nt">&lt;Internal&gt;</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">            </span><span class="nt">&lt;Watermarks&gt;</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">                </span><span class="nt">&lt;WhcHigh&gt;</span>500kB<span class="nt">&lt;/WhcHigh&gt;</span>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">            </span><span class="nt">&lt;/Watermarks&gt;</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">        </span><span class="nt">&lt;/Internal&gt;</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">        </span><span class="nt">&lt;Tracing&gt;</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">            </span><span class="nt">&lt;Verbosity&gt;</span>config<span class="nt">&lt;/Verbosity&gt;</span>
-</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">            </span><span class="nt">&lt;OutputFile&gt;</span>stdout<span class="nt">&lt;/OutputFile&gt;</span>
-</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">        </span><span class="nt">&lt;/Tracing&gt;</span>
-</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">    </span><span class="nt">&lt;/Domain&gt;</span>
-</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="nt">&lt;/CycloneDDS&gt;</span>
-</span></code></pre></div>
-<ul>
-<li>設定環境變數</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CYCLONEDDS_URI</span><span class="o">=</span>file://<span class="nv">$PWD</span>/cyclonedds.xml
-</span></code></pre></div>
-<ul>
-<li>
-<p>接著重跑 CycloneDDS 的程式就會自動使用新的 config 了。關於更多 config 可以怎麼設定，可以參考 <a href="https://cyclonedds.io/docs/cyclonedds/latest/config/config_file_reference.html">CycloneDDS 的文件</a></p>
-</li>
-<li>
-<p>另外也有偷吃步的直接改 config 的方法，假設我們要改 DDS 的 domain ID</p>
 </li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nv">CYCLONEDDS_URI</span><span class="o">=</span><span class="s2">&quot;&lt;CycloneDDS&gt;&lt;Domain&gt;&lt;Id&gt;1&lt;/Id&gt;&lt;/Domain&gt;&lt;/CycloneDDS&gt;&quot;</span><span class="w"> </span>build/bin/HelloworldPublisher
-</span></code></pre></div>
 
 
 
