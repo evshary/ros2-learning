@@ -56,6 +56,7 @@ nav:
     - 'ROS 2 通訊方式': 'ros2/communication.md'
     - 'ROS 2 編譯': 'ros2/building.md'
     - 'ROS 2 QoS': 'ros2/qos.md'
+    - 'ROS 2 錄製與重放': 'ros2/record.md'
     - 'ROS 2 好用工具': 'ros2/tools.md'
     - 'SROS': 'ros2/sros.md'
   - 'ROS 2 通訊層':
