@@ -85,6 +85,9 @@ Records 有如下資訊：
 
 * 查看 MCAP 的基本資訊
 
+<details>
+  <summary>mcap info *.mcap</summary>
+
 ```bash
 $ mcap info *.mcap
 library:   libmcap 1.4.0                                               
@@ -109,7 +112,12 @@ attachments: 0
 metadata: 2
 ```
 
+</details>
+
 * 查看 MCAP 的訊息內容
+
+<details>
+  <summary>mcap cat *.mcap</summary>
 
 ```bash
 $ mcap cat *.mcap
@@ -121,7 +129,12 @@ $ mcap cat *.mcap
 ...
 ```
 
+</details>
+
 * 查看 MCAP 的 metadata
+
+<details>
+  <summary>mcap list metadata *.mcap</summary>
 
 ```bash
 $ mcap list metadata *.mcap
@@ -130,7 +143,12 @@ rosbag2    42    541   {"serialized_metadata":"version: 9\nstorage_identifier: m
 ...
 ```
 
+</details>
+
 * 查看 MCAP 的 schemas
+
+<details>
+  <summary>mcap list schemas *.mcap</summary>
 
 ```bash
 $ mcap list schemas *.mcap
@@ -142,7 +160,12 @@ id    name    encoding    data
 ...
 ```
 
+</details>
+
 * 查看 MCAP 的 channels
+
+<details>
+  <summary>mcap list channels *.mcap</summary>
 
 ```bash
 $ mcap list channels *.mcap
@@ -151,6 +174,8 @@ id    schemaId    topic    messageEncoding    metadata
 3    3    /chatter    cdr    {"offered_qos_profiles":"- history: keep_last\n  depth: 7\n  reliability: reliable\n  durability: volatile\n  deadline:\n    sec: 9223372036\n    nsec: 854775807\n  lifespan:\n    sec: 9223372036\n    nsec: 854775807\n  liveliness: automatic\n  liveliness_lease_duration:\n    sec: 9223372036\n    nsec: 854775807\n  avoid_ros_namespace_conventions: false","topic_type_hash":"RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18"} 
 ...
 ```
+
+</details>
 
 ### MCAP API
 
