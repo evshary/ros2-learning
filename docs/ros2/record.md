@@ -60,7 +60,8 @@ MCAP 最大的好處在於有較佳的 throughput、能自行包含 metadata 來
 
 ### MCAP 格式
 
-MCAP 格式最前面會有 `MCAP` 這個 magic code，剩下都由 Records 組成。
+根據[官方規格文件](https://mcap.dev/spec)，MCAP 封包格式為 `<Magic><Header><Data section>[<Summary section>][<Summary Offset section>]<Footer><Magic>`。
+Magic 是 `0x89, M, C, A, P, 0x30, \r, \n`，而剩下部份都是 Records 格式。
 Records 有如下資訊：
 
 * 操作碼（Opcode）：一個單一位元組，用於識別記錄的類型（例如：Schema、Channel、Message、Chunk 等）。
