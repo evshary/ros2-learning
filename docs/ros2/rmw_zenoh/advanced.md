@@ -185,7 +185,13 @@ liveliness 和一般的 key expression 很類似，主要差別就是用來確�
 * `<mangled_qualified_name>`：(node 不用填) topic 或是 service 的名稱
 * `<type_name>`：(node 不用填) ROS 2 topic 的 message type
 * `<type_hash>`：(node 不用填) message type 的雜湊值，這是後來 ROS 2 為了避免 topic message type 進版時彼此還是可以相互通訊索引入的，相關定義參考 [REP-2016](https://github.com/ros-infrastructure/rep/pull/381/files)
-* `<qos>`：(node 不用填) 會從 ROS 2 的 QoS 屬性轉換過來，實際轉換方式可以參考 [qos_to_keyexpr](https://github.com/ros2/rmw_zenoh/blob/cf09e854c9df17e0eb7e80ce4ab00e1b122a64e0/rmw_zenoh_cpp/src/detail/liveliness_utils.cpp#L239)
+* `<qos>`：(node 不用填) 會從 ROS 2 的 QoS 屬性轉換過來，中間用 `:` 分隔，實際轉換方式可以參考 [qos_to_keyexpr](https://github.com/ros2/rmw_zenoh/blob/cf09e854c9df17e0eb7e80ce4ab00e1b122a64e0/rmw_zenoh_cpp/src/detail/liveliness_utils.cpp#L239)
+    * 第一個欄位是 Reliability，沒有填代表 reliable，2 代表 best_effort
+    * 第二個欄位是 Durability，沒填是 volatile，1 代表 transient_local
+    * 第三個欄位是 History，可以為 `keep_all,` 或是 `keep_last,N`，其中 N 代表 History depth 的數字
+    * 第四個欄位是 Deadline，用 `,` 分隔，前半部是 second，後半部是 nanosecond
+    * 第五個欄位是 Lifespan，用 `,` 分隔，前半部是 second，後半部是 nanosecond
+    * 第六個欄位是 Liveliness，可以為 `automatic` 或 `manual_by_topic,X,Y`，其中 X 和 Y 分別代表 second 和 nanosecond
 
 舉實際例子
 
