@@ -1237,7 +1237,8 @@
 MCAP 最大的好處在於有較佳的 throughput、能自行包含 metadata 來描述自我資訊、提供更多的功能(如更好的 compression 等等)。
 最終在 <a href="https://discourse.openrobotics.org/t/psa-default-ros-2-bag-storage-format-is-changing-to-mcap-in-iron/28489">ROS 2 Iron 以後</a>，預設的 ROS bag 格式也改為 MCAP。</p>
 <h3 id="mcap">MCAP 格式</h3>
-<p>MCAP 格式最前面會有 <code>MCAP</code> 這個 magic code，剩下都由 Records 組成。
+<p>根據<a href="https://mcap.dev/spec">官方規格文件</a>，MCAP 封包格式為 <code>&lt;Magic&gt;&lt;Header&gt;&lt;Data section&gt;[&lt;Summary section&gt;][&lt;Summary Offset section&gt;]&lt;Footer&gt;&lt;Magic&gt;</code>。
+Magic 是 <code>0x89, M, C, A, P, 0x30, \r, \n</code>，而剩下部份都是 Records 格式。
 Records 有如下資訊：</p>
 <ul>
 <li>操作碼（Opcode）：一個單一位元組，用於識別記錄的類型（例如：Schema、Channel、Message、Chunk 等）。</li>
