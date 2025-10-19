@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="介紹 Zenoh 的 key expression 相關規則">
+        <meta name="description" content="如何利用 zenoh-bridge-ros2dds 來橋接 Zenoh 和 ROS 2 訊息">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/zenoh/keyexpr/">
+        <link rel="canonical" href="https://ros2.tw/zenoh/zenoh_bridge_ros2/">
       
       
-        <link rel="prev" href="../mode/">
+        <link rel="prev" href="../keyexpr/">
       
       
-        <link rel="next" href="../zenoh_bridge_ros2/">
+        <link rel="next" href="../../autoware/introduction/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Zenoh key - ROS 2 筆記</title>
+        <title>橋接 Zenoh 與 ROS 2 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#key-expression" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Zenoh key
+              橋接 Zenoh 與 ROS 2
             
           </span>
         </div>
@@ -830,6 +830,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../keyexpr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zenoh key
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -845,7 +868,7 @@
   
   
   <span class="md-ellipsis">
-    Zenoh key
+    橋接 Zenoh 與 ROS 2
     
   </span>
   
@@ -858,7 +881,7 @@
   
   
   <span class="md-ellipsis">
-    Zenoh key
+    橋接 Zenoh 與 ROS 2
     
   </span>
   
@@ -879,27 +902,87 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#key-expression" class="md-nav__link">
-    <span class="md-ellipsis">
-      key expression
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#selector" class="md-nav__link">
-    <span class="md-ellipsis">
-      Selector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      參考連結
+      使用情境
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      如何安裝
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="如何安裝">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apt" class="md-nav__link">
+    <span class="md-ellipsis">
+      apt 安裝
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker 安裝
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      原始碼編譯
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用方法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      運行原理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rmw_zenoh" class="md-nav__link">
+    <span class="md-ellipsis">
+      和 rmw_zenoh 的比較
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      有用連結
     </span>
   </a>
   
@@ -909,29 +992,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../zenoh_bridge_ros2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    橋接 Zenoh 與 ROS 2
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1106,27 +1166,87 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#key-expression" class="md-nav__link">
-    <span class="md-ellipsis">
-      key expression
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#selector" class="md-nav__link">
-    <span class="md-ellipsis">
-      Selector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      參考連結
+      使用情境
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      如何安裝
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="如何安裝">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apt" class="md-nav__link">
+    <span class="md-ellipsis">
+      apt 安裝
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker 安裝
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      原始碼編譯
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用方法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      運行原理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rmw_zenoh" class="md-nav__link">
+    <span class="md-ellipsis">
+      和 rmw_zenoh 的比較
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      有用連結
     </span>
   </a>
   
@@ -1148,61 +1268,114 @@
 
 
 
-  <h1>Zenoh key</h1>
+  <h1>橋接 Zenoh 與 ROS 2</h1>
 
-<p>Zenoh 對上層使用者來說就是提供 key/value 的配對。
-使用者不需要知道對方位置，只需要對 key 做操作即可彼此通訊。
-在其他 protocol 中，通常會稱之為 topic，但因為在 Zenoh 中還有其他的特性，所以我們稱之為 key。</p>
-<p>一個典型的例子是 <code>organizationA/building8/room275/sensor3/temperature</code>，代表著機構 A 的第 8 棟建築下房間 275 的 3 號 sensor 的溫度。</p>
-<p>我們可以看出 key 有兩個主要的特性：</p>
+<p>對於部份 ROS 2 使用者來說，可能有興趣使用 Zenoh 的各種功能，但是不想動到目前既有系統，這時候就需要能夠有個方法能轉換 ROS 2 和 Zenoh 的訊息。
+為此，Zenoh 提供 <a href="https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds">zenoh-bridge-ros2dds</a> 來橋接兩種不同協定。</p>
+<h2 id="_1">使用情境</h2>
+<p>那到底哪些應用情境會需要使用 <code>zenoh-bridge-ros2dds</code> 呢？</p>
 <ol>
-<li>階層關係：Zenoh 可以利用 <code>/</code> 來把一個 key 分成多個 chunk，這樣在比較兩個 key 的時候可以有效降低計算量。</li>
-<li>key expression：我們可以利用一些特殊字符來涵蓋多個 key，就如同 regular expression 一樣。</li>
+<li>
+<p>跨機通訊</p>
+<p>最常見的使用情境是跨網通訊，ROS 2 使用的 DDS 協定基本上需要多播 (multicast) 來發現其他節點，而多播預設不能在 4G/5G 環境通訊，更無法連到網際網路。
+因此假設使用者要控制的機器人不在同個網域，例如從雲端控制地端的機器人，就無法使用 DDS，需要別的協定來達成。
+在這種情況下，<code>zenoh-bridge-ros2dds</code> 可以幫我們轉換 ROS 2 的訊息到 Zenoh，來避免這個問題。</p>
+</li>
+<li>
+<p>多機控制</p>
+<p>一般來說如果我們有多台機器人同時運行，因為運行同樣的會軟體，所以會遇到有 topic 衝突的問題。
+我們可以先限定 ROS 流量只能在機器人內部運行，然後機器人外則是使用 Zenoh 互相交流訊息。
+兩者之間的轉換就是透過 <code>zenoh-bridge-ros2dds</code> 來橋接。
+值得注意的是，我們還可以指定<a href="https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds?tab=readme-ov-file#easy-multi-robots-via-namespace-configuration">不同 namespace 給不同機器人</a>，如此一來就可以指定哪個訊息要傳給特定機器人了。</p>
+</li>
+<li>
+<p>橋接不同的 ROS Domain</p>
+<p>ROS 使用者常常會用 ROS domain 來避免不同的 ROS 訊息互相混雜。
+不過如果有些時候我們需要部份訊息能穿透到其他 ROS domain 時，<code>zenoh-bridge-ros2dds</code> 就可以幫上忙。
+<code>zenoh-bridge-ros2dds</code> 有<a href="https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds/blob/aa75eb007a0ff9c6b882233d0ee33420446e76b2/DEFAULT_CONFIG.json5#L69">支援 Allow / Deny list</a>，決定只有哪些訊息可以被轉換成 Zenoh 訊息。</p>
+</li>
 </ol>
-<p>因此 key 中有些規則必須要遵守：</p>
+<h2 id="_2">如何安裝</h2>
+<p><code>zenoh-bridge-ros2dds</code> 提供了三種安裝的方式，分別是 apt 安裝、docker 安裝、原始碼編譯。</p>
+<h3 id="apt">apt 安裝</h3>
+<p>如果是使用 Ubuntu 的系統，Zenoh 官方有提供 Debian package 可以直接安裝，這是最方便的安裝方式。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 新增 Eclipse Zenoh 的 public key 到 apt keyring</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>curl<span class="w"> </span>-L<span class="w"> </span>https://download.eclipse.org/zenoh/debian-repo/zenoh-public-key<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>--yes<span class="w"> </span>--output<span class="w"> </span>/etc/apt/keyrings/zenoh-public-key.gpg
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [signed-by=/etc/apt/keyrings/zenoh-public-key.gpg] https://download.eclipse.org/zenoh/debian-repo/ /&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/apt/sources.list<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 安裝 zenoh-bridge-ros2dds</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zenoh-bridge-ros2dds
+</span></code></pre></div>
+<h3 id="docker">docker 安裝</h3>
+<p>如果你的環境是以 container 為主的話，直接使用官方提供的 container 會更為方便。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>eclipse/zenoh-bridge-ros2dds:latest
+</span></code></pre></div>
+<h3 id="_3">原始碼編譯</h3>
+<p>如果上述都不適合你，或是想要使用最新版本的 <code>zenoh-bridge-ros2dds</code>，那也可以選擇直接編譯。
+在安裝完 Rust、<code>llvm</code>、<code>clang</code>以後，執行編譯指令即可。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds.git
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>zenoh-plugin-ros2dds
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>cargo<span class="w"> </span>build<span class="w"> </span>--release
+</span></code></pre></div>
+<p>編譯完成後，你可以在 <code>./target/release</code> 找到 <code>zenoh-bridge-ros2dds</code> 的執行檔。</p>
+<h2 id="_4">使用方法</h2>
+<p><code>zenoh-bridge-ros2dds</code> 的使用方法也相當的簡單，只需要在你的機器人上直接執行即可。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>zenoh-bridge-ros2dds
+</span></code></pre></div>
+<p>當然 <code>zenoh-bridge-ros2dds</code> 有更多好用的功能：</p>
 <ul>
-<li>開頭結尾不能是 <code>/</code>，且在 key 內部也不能連續出現，例如 <code>//</code></li>
-<li>key 必須是非空的 UTF-8 字元</li>
-<li>key 內部不能用到一些保留字元，如 <code>*</code>, <code>$</code>, <code>?</code>, <code>#</code>，這些會在 key expression 中使用到</li>
+<li>namespace：所有從 ROS 傳到 Zenoh 的訊息都會加上 namespace，而從 Zenoh 傳到 ROS 的訊息則會被去掉 namespace</li>
 </ul>
-<h2 id="key-expression">key expression</h2>
-<p>Key expression 最大的用途在於，我們可以用他來對多個 key 進行存取，他主要的設計來自於 <a href="https://github.com/eclipse-zenoh/roadmap/blob/main/rfcs/ALL/Key%20Expressions.md">Key Expression Language</a>。</p>
-<p>主要特性有：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 如果 ROS topic 是 mytopic，在 Zenoh 的角度看到的訊息會是 mytopic/myrobot</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>zenoh-bridge-ros2dds<span class="w"> </span>-n<span class="w"> </span>myrobot
+</span></code></pre></div>
 <ul>
-<li><code>*</code> 只能單獨出現在 chunk 中，代表著可以對應到任意的字元，例如 <code>organizationA/building8/room275/*/temperature</code> 就包含了 room275 底下任何 sensor 的 temperature。</li>
-<li><code>$*</code> 一樣可以對應到任意字元，但是可以和其他字元一起出現在 chunk 之中，例如 <code>organizationA/building8/room275/sensor$*/temperature</code> 就是取得 sensor1, sensor2 等等感測器的溫度。</li>
-<li><code>**</code> 可以對應到 0 到多個 chunk，例如 <code>organizationA/**/temperature</code> 可以取得所有機構 A 下的所有溫度資訊。</li>
+<li>domain：在 ROS 的部份只會接收某個 ROS_DOMAIN_ID 的訊息，預設是 0</li>
 </ul>
-<p>為了避免冗於設計，也就是多種 key expression 對應到相同意思，有些規則必須要遵守：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># ROS 部份使用的 ROS_DOMAIN_ID 為 1</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>zenoh-bridge-ros2dds<span class="w"> </span>-d<span class="w"> </span><span class="m">1</span>
+</span></code></pre></div>
 <ul>
-<li>只允許一個 <code>**</code>，不能有 <code>**/**</code></li>
-<li>只允許 <code>*/**</code>，不能有 <code>**/*</code></li>
-<li>只允許單一 <code>$*</code>，不能有 <code>$*$*</code></li>
-<li>在一個 chunk 中，不能單獨存在 <code>$*</code>，只能用 <code>*</code> 替換</li>
+<li>允許使用 REST API 來看目前的轉換狀態，如有哪些 node 等基本資訊</li>
 </ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 在 8000 port 開啟 REST API</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>zenoh-bridge-ros2dds<span class="w"> </span>--rest-http-port<span class="w"> </span><span class="m">8000</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># 在別的 terminal 用 curl 抓資料，可以用 jq 來讓 JSON 好看一點</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># 抓目前看到的 node</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>curl<span class="w"> </span>http://localhost:8000/@/<span class="se">\*</span>/ros2/node/<span class="se">\*\*</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1"># Zenoh 和 ROS 如何互相轉換</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>curl<span class="w"> </span>http://localhost:8000/@/<span class="se">\*</span>/ros2/route/<span class="se">\*\*</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+</span></code></pre></div>
+<ul>
+<li>白名單與黑名單：我們可以創一個給 zenoh-bridge-ros2dds 的設定檔，然後在裡面設定白名單與黑名單。<ul>
+<li>官方提供的<a href="https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds/blob/main/DEFAULT_CONFIG.json5">設定檔範例</a></li>
+</ul>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 假設設定檔為 myconfig.json5</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>zenoh-bridge-ros2dds<span class="w"> </span>-c<span class="w"> </span>myconfig.json5
+</span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>少用 <code>$*</code>，因為效能較差，盡量多用 <code>*</code> 替換。例如 <code>robot/12</code> 和 <code>robot/18</code> 的設計就比 <code>robot12</code> 和 <code>robot12</code> 好，因為我們可以用 <code>robot/*</code> 來取得所有的 robot，而不是用效能較差的 <code>robot$*</code></p>
+<p>由於 <code>zenoh-bridge-ros2dds</code> 的 DDS 部份是使用 CycloneDDS 的 API，因此無法使用其他 DDS 的特殊功能。
+另外，由於 FastDDS 和 CycloneDDS 對於 ROS 2 service 和 action 的處理方式有些微不同，所以 <code>zenoh-bridge-ros2dds</code> 在 FastDDS 的情況下不支援 service 和 action。</p>
 </div>
-<h2 id="selector">Selector</h2>
-<p><a href="https://github.com/eclipse-zenoh/roadmap/blob/main/rfcs/ALL/Selectors/README.md">Selector</a>基本上就是 key expression 加上 parameters。
-這個只能使用在 Query 上，主要目的是提供 Query 更多可以判斷的參數。
-使用方式跟 HTTP URL 如何帶入 GET 參數很類似，在 key expression 後方加上 <code>?</code>，就可以放入多個 key/value 的配對了，中間一樣用 <code>;</code> 來做區隔。</p>
-<p>舉例來說，下面的 Selector 可以區分為 Key Expression 和 parameters 兩個部份</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>path/**/something?arg1=val1;arg2=value%202
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>^               ^ ^                      ^
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>|Key Expression-| |----- parameters -----|
-</span></code></pre></div>
-<p>在程式內部可以得到</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  key_expr: &quot;path/**/something&quot;,
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  parameters: {arg1: &quot;val1&quot;, arg2: &quot;value 2&quot;}
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>}
-</span></code></pre></div>
-<h2 id="_1">參考連結</h2>
+<h2 id="_5">運行原理</h2>
+<p>ROS 2 中有三種通訊模式： Topic、Service、Action。
+<code>zenoh-bridge-ros2dds</code> 會有各自的轉換方式：</p>
 <ul>
-<li><a href="https://zenoh.io/docs/manual/abstractions/">Zenoh Abstraction</a>：這邊有提供完整的 key, key expression, selector 的說明</li>
-<li><a href="https://github.com/eclipse-zenoh/roadmap/tree/main/rfcs/">Zenoh RFC</a>：如果要有明確的規格，可以參考 RFC</li>
+<li>ROS 2 Topic：對應到 Zenoh 的 publish 和 subscribe</li>
+<li>ROS 2 Service：對應到 Zenoh 的 query 和 queryable</li>
+<li>ROS 2 Action：因為 Action 本身就是由多個 Topic 和 Service 組成，所以對於 Zenoh 也是同樣的方式</li>
+</ul>
+<h2 id="rmw_zenoh">和 rmw_zenoh 的比較</h2>
+<p>對於 ROS 2，還蠻常會有人詢問到底要用 <code>zenoh-bridge-ros2dds</code> 還是 <code>rmw_zenoh</code>。
+如果需要有比較好的效能 <code>rmw_zenoh</code> 是比較好的選擇，可以有效避免不同協定轉換的成本，畢竟每次轉換就是一次訊息的複製。
+然而 <code>zenoh-bridge-ros2dds</code> 則是能在避免需要影響整個系統下，還能嘗試 Zenoh 的功能。
+我會建議先使用 <code>zenoh-bridge-ros2dds</code> 來評估 Zenoh 是否符合需求，如果符合再考慮全面使用 <code>rmw_zenoh</code>。</p>
+<h2 id="_6">有用連結</h2>
+<ul>
+<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds">zenoh-bridge-ros2dds 程式碼</a></li>
 </ul>
 
 
