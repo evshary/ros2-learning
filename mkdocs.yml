@@ -69,6 +69,7 @@ nav:
     - 'Zenoh 介紹': 'zenoh/introduction.md'
     - 'Zenoh 模式': 'zenoh/mode.md'
     - 'Zenoh key': 'zenoh/keyexpr.md'
+    - '橋接 Zenoh 與 ROS 2': 'zenoh/zenoh_bridge_ros2.md'
   - 'Autoware 入門':
     - 'Autoware 介紹': 'autoware/introduction.md'
     - 'Autoware 模組': 'autoware/modules.md'
