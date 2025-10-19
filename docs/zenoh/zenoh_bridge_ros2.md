@@ -1,5 +1,5 @@
 ---
-title: 橋接 Zenoh 與 ROS 2
+title: zenoh-bridge-ros2dds：橋接 ROS 2
 description: 如何利用 zenoh-bridge-ros2dds 來橋接 Zenoh 和 ROS 2 訊息
 keywords:
   - Zenoh
