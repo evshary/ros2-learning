@@ -66,4 +66,11 @@ export CYCLONEDDS_URI=file://$PWD/cyclonedds.xml
 iox-roudi
 ```
 
+* 預設 RouDi 會根據 `/opt/ros/${ROS_DISTRO}/etc/roudi_config_example.toml` 來預先保留記憶體，但如果用超過的話就會出現錯誤。我們可以另外產生一份適合自己的設定檔。
+
+```bash
+# 假設 config 名稱為 roudi_config.toml
+iox-roudi -c roudi_config.toml
+```
+
 相關細節可以參考[官方教學](https://github.com/ros2/rmw_cyclonedds/blob/rolling/shared_memory_support.md)
