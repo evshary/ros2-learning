@@ -60,6 +60,7 @@ nav:
     - 'ROS 2 好用工具': 'ros2/tools.md'
     - 'SROS': 'ros2/sros.md'
   - 'ROS 2 通訊層':
+    - 'rmw_cyclonedds 介紹': 'ros2/rmw_cyclonedds.md'
     - 'rmw_zenoh 基本介紹': 'ros2/rmw_zenoh/basic.md'
     - 'rmw_zenoh 進階介紹': 'ros2/rmw_zenoh/advanced.md'
     - 'rmw_zenoh 實戰': 'ros2/rmw_zenoh/hands_on.md'
