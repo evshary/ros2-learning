@@ -1207,6 +1207,12 @@
 </ul>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>iox-roudi
 </span></code></pre></div>
+<ul>
+<li>預設 RouDi 會根據 <code>/opt/ros/${ROS_DISTRO}/etc/roudi_config_example.toml</code> 來預先保留記憶體，但如果用超過的話就會出現錯誤。我們可以另外產生一份適合自己的設定檔。</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 假設 config 名稱為 roudi_config.toml</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>iox-roudi<span class="w"> </span>-c<span class="w"> </span>roudi_config.toml
+</span></code></pre></div>
 <p>相關細節可以參考<a href="https://github.com/ros2/rmw_cyclonedds/blob/rolling/shared_memory_support.md">官方教學</a></p>
 
 
