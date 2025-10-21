@@ -605,6 +605,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../rmw_cyclonedds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    rmw_cyclonedds 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../basic/" class="md-nav__link">
         
   
@@ -1225,6 +1248,13 @@ Zenoh 會自動偵測是否通訊雙方都能用共享記憶體，如果可以�
 </ul>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ZENOH_CONFIG_OVERRIDE</span><span class="o">=</span><span class="s1">&#39;transport/shared_memory/enabled=true&#39;</span>
 </span></code></pre></div>
+<ul>
+<li>除此之外，rmw_zenoh 也有提供兩個環境變數來做進階設定<ul>
+<li><code>ZENOH_SHM_ALLOC_SIZE</code>: Zenoh 的 shared memory 可以用多大的空間，預設為 48 MiB</li>
+<li><code>ZENOH_SHM_MESSAGE_SIZE_THRESHOLD</code>: 唯有超過一定 size 的資料才會使用 Shared Memory 傳輸，預設為 512 bytes</li>
+</ul>
+</li>
+</ul>
 <h2 id="security">安全通訊 (Security)</h2>
 <p>資安的重要性在怎麼強調也不為過，當然 Zenoh 也支援相關功能。
 當然 rmw_zenoh 也支援 SROS 功能，但如果只是單純要加密跨機通訊的話，我們可以直接利用 mTLS 的方式來確保流量離開網路都是有加密的。</p>
