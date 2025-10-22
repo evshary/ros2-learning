@@ -70,6 +70,7 @@ nav:
     - 'Zenoh 介紹': 'zenoh/introduction.md'
     - 'Zenoh 模式': 'zenoh/mode.md'
     - 'Zenoh key': 'zenoh/keyexpr.md'
+    - 'Zenoh 共享記憶體': 'zenoh/shared_memory.md'
     - 'zenoh-bridge-ros2dds': 'zenoh/zenoh_bridge_ros2.md'
   - 'Autoware 入門':
     - 'Autoware 介紹': 'autoware/introduction.md'
