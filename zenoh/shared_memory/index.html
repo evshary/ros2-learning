@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="ROS 2 的基本指令，包含 run、launch、topic、node 等等">
+        <meta name="description" content="Zenoh 共享記憶體(shared memory)介紹以及如何使用">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/ros2/command/">
+        <link rel="canonical" href="https://ros2.tw/zenoh/shared_memory/">
       
       
-        <link rel="prev" href="../installation/">
+        <link rel="prev" href="../keyexpr/">
       
       
-        <link rel="next" href="../communication/">
+        <link rel="next" href="../zenoh_bridge_ros2/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>ROS 2 指令 - ROS 2 筆記</title>
+        <title>Zenoh 共享記憶體 - ROS 2 筆記</title>
       
     
     
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ROS 2 指令
+              Zenoh 共享記憶體
             
           </span>
         </div>
@@ -306,7 +306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../ros2/introduction/" class="md-nav__link">
         
   
   
@@ -329,7 +329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../ros2/installation/" class="md-nav__link">
         
   
   
@@ -356,20 +356,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -385,7 +383,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             ROS 2 實戰
@@ -396,30 +394,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    ROS 2 指令
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ros2/command/" class="md-nav__link">
         
   
   
@@ -430,84 +408,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      常見指令
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="常見指令">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#run-ros-2-package" class="md-nav__link">
-    <span class="md-ellipsis">
-      Run ROS 2 package
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#launch-ros-2-package" class="md-nav__link">
-    <span class="md-ellipsis">
-      Launch ROS 2 package
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ros-2-node" class="md-nav__link">
-    <span class="md-ellipsis">
-      ROS 2 node
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ros-2-topic" class="md-nav__link">
-    <span class="md-ellipsis">
-      ROS 2 topic
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      參考
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -520,7 +420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../communication/" class="md-nav__link">
+      <a href="../../ros2/communication/" class="md-nav__link">
         
   
   
@@ -543,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../building/" class="md-nav__link">
+      <a href="../../ros2/building/" class="md-nav__link">
         
   
   
@@ -566,7 +466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qos/" class="md-nav__link">
+      <a href="../../ros2/qos/" class="md-nav__link">
         
   
   
@@ -589,7 +489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../record/" class="md-nav__link">
+      <a href="../../ros2/record/" class="md-nav__link">
         
   
   
@@ -612,7 +512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/" class="md-nav__link">
+      <a href="../../ros2/tools/" class="md-nav__link">
         
   
   
@@ -635,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sros/" class="md-nav__link">
+      <a href="../../ros2/sros/" class="md-nav__link">
         
   
   
@@ -703,7 +603,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_cyclonedds/" class="md-nav__link">
+      <a href="../../ros2/rmw_cyclonedds/" class="md-nav__link">
         
   
   
@@ -726,7 +626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/basic/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/basic/" class="md-nav__link">
         
   
   
@@ -749,7 +649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/advanced/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/advanced/" class="md-nav__link">
         
   
   
@@ -772,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/hands_on/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/hands_on/" class="md-nav__link">
         
   
   
@@ -867,18 +767,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -894,7 +796,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Zenoh 入門
@@ -908,7 +810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zenoh/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -931,7 +833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zenoh/mode/" class="md-nav__link">
+      <a href="../mode/" class="md-nav__link">
         
   
   
@@ -954,7 +856,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zenoh/keyexpr/" class="md-nav__link">
+      <a href="../keyexpr/" class="md-nav__link">
         
   
   
@@ -974,10 +876,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../zenoh/shared_memory/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Zenoh 共享記憶體
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -988,6 +910,102 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      運作原理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用方式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coding" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shared-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      如何判斷有無使用 Shared memory
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定檔
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      參考連結
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1000,7 +1018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zenoh/zenoh_bridge_ros2/" class="md-nav__link">
+      <a href="../zenoh_bridge_ros2/" class="md-nav__link">
         
   
   
@@ -1187,44 +1205,53 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      常見指令
+      運作原理
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="常見指令">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用方式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用方式">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#run-ros-2-package" class="md-nav__link">
+  <a href="#examples" class="md-nav__link">
     <span class="md-ellipsis">
-      Run ROS 2 package
+      Examples
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#launch-ros-2-package" class="md-nav__link">
+  <a href="#coding" class="md-nav__link">
     <span class="md-ellipsis">
-      Launch ROS 2 package
+      Coding
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#ros-2-node" class="md-nav__link">
+  <a href="#docker" class="md-nav__link">
     <span class="md-ellipsis">
-      ROS 2 node
+      Docker
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#ros-2-topic" class="md-nav__link">
+  <a href="#shared-memory" class="md-nav__link">
     <span class="md-ellipsis">
-      ROS 2 topic
+      如何判斷有無使用 Shared memory
     </span>
   </a>
   
@@ -1236,9 +1263,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      參考
+      設定檔
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      參考連結
     </span>
   </a>
   
@@ -1260,92 +1296,53 @@
 
 
 
-  <h1>ROS 2 指令</h1>
+  <h1>Zenoh 共享記憶體</h1>
 
-<p>ROS 2 的很多好用指令都是繼承 ROS 1，基本上用法差不多。
-這邊我們會介紹常用的幾個 command，讓大家對 ROS 2 操作有基本的概念。</p>
-<p>這邊要特別注意的是要使用 ROS 2 的指令前一定要先設定環境，也就是要執行如下指令：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 可以把 jazzy 改成你目前使用的 ROS 版本</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">source</span><span class="w"> </span>/opt/ros/jazzy/local_setup.bash
+<h2 id="_1">運作原理</h2>
+<p>TODO</p>
+<h2 id="_2">使用方式</h2>
+<h3 id="examples">Examples</h3>
+<p>如果要嘗試 Shared Memory 的範例，我們需要確保 shared_memory 這個 features 有被啟用。
+因此編譯的時候需要加上 <code>--all-features</code>。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--all-features<span class="w"> </span>--all-targets
 </span></code></pre></div>
-<p>執行這個指令後，就可以使用或編譯 ROS 2 相關的套件。
-當你有下載 ROS 2 套件(<code>sudo apt install ros-jazzy-xxxx</code>)，基本上也都會存放在該資料夾內 (<code>/opt/ros/&lt;ros_version&gt;/</code>)。</p>
-<h2 id="_1">常見指令</h2>
-<p>下面介紹指令時，都要記得先去 source ROS 2 才可以使用。
-另外有一點很方便的小技巧：當你 source ROS 2 後，你不只是可以用 <code>&lt;tab&gt;</code> 來補全 ROS 2 指令，也可以用 <code>&lt;tab&gt;</code> 來補全 package 名稱、executable 名稱，這可以大大增加效率。</p>
-<h3 id="run-ros-2-package">Run ROS 2 package</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>&lt;package&gt;<span class="w"> </span>&lt;executable&gt;
+<p>我們能夠執行 shared memory 的範例來觀察</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 第一個 terminal</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>./target/debug/examples/z_pub_shm
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># 第二個 terminal</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>./target/debug/examples/z_sub_shm
 </span></code></pre></div>
-<p><code>ros2 run</code> 的第一個參數是 ROS package，第二個參數則是這個 package 裡的執行檔。</p>
-<p>舉例來說，當我們想要跑 talker 和 listener 的時候，</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 第一個 terminal 視窗</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># 第二個 terminal 視窗</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>listener
+<p>我們可以分別在同個機器(使用 shared memory 通訊)和不同機器(使用網路通訊)分別執行 <code>z_sub_shm</code>。
+從下面可以看到收到的 buffer 分別是 <code>SHM (MUT)</code> 和 <code>RAW</code> 兩種不同的形式。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 同個機器，使用 Shared memory 的情況</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>&gt;&gt;<span class="w"> </span><span class="o">[</span>Subscriber<span class="o">]</span><span class="w"> </span>Received<span class="w"> </span>PUT<span class="w"> </span><span class="o">(</span><span class="s1">&#39;demo/example/zenoh-rs-pub&#39;</span>:<span class="w"> </span><span class="s1">&#39;[   0] Pub from Rust SHM!&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">[</span>SHM<span class="w"> </span><span class="o">(</span>MUT<span class="o">)]</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># 不同機器，沒有使用 Shared memory 的情況</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>&gt;&gt;<span class="w"> </span><span class="o">[</span>Subscriber<span class="o">]</span><span class="w"> </span>Received<span class="w"> </span>PUT<span class="w"> </span><span class="o">(</span><span class="s1">&#39;demo/example/zenoh-rs-pub&#39;</span>:<span class="w"> </span><span class="s1">&#39;[   0] Pub from Rust SHM!&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">[</span>RAW<span class="o">]</span>
 </span></code></pre></div>
-<p>執行完就可以看到 talker 把資訊丟給 listener 了。</p>
-<h3 id="launch-ros-2-package">Launch ROS 2 package</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>&lt;package&gt;<span class="w"> </span>&lt;launch<span class="w"> </span>file&gt;
-</span></code></pre></div>
-<p>當然要分開執行 ROS 2 的不同節點，還需要開兩個 terminal 並設定兩次環境，其實很不方便，你可以直接用 launch 來取代。</p>
-<p>要使用 launch 需要先有 launch file，幸好在 demo_nodes_cpp 的 package 內已經有寫好一次啟動 talker 和 listener 的 launch file。</p>
-<p>因此你可以執行如下指令：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker_listener.launch.py
-</span></code></pre></div>
-<h3 id="ros-2-node">ROS 2 node</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ros2<span class="w"> </span>node<span class="w"> </span>list
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ros2<span class="w"> </span>node<span class="w"> </span>info<span class="w"> </span>&lt;node<span class="w"> </span>name&gt;
-</span></code></pre></div>
-<p>我們知道 ROS 的世界中 node 是最基本單位，所以要怎麼得知 node 的資訊就非常重要了，這時候我們可以使用 <code>ros2 node</code> 這個 commande。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>ros2<span class="w"> </span>node<span class="w"> </span>list
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>/talker
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>/listener
-</span></code></pre></div>
-<p>node list 可以幫助我們列出目前有哪些存在的 node，舉個例子來說，如果在剛剛 talker / listener 的例子，你就可以看到有兩個 node 分別是 talker 和 listener。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span>ros2<span class="w"> </span>node<span class="w"> </span>info<span class="w"> </span>/talker
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>Subscribers:
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span>...
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span>Publishers:
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span>/chatter:<span class="w"> </span>std_msgs/msg/String
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span>...
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span>Services:
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span>...
-</span></code></pre></div>
-<p>node info 則是可以幫助我們看到每個 node 的細節資訊，如果我們觀察 /talker，就會看到這個 node 去 subscribe / publish 哪個 topic (例如 publish 到 /chatter 這個 topic)，以及提供哪些 service 的服務，甚至可以看到該 topic / service 的 type (例如 /chatter 是 std_msgs/msg/String)。</p>
-<h3 id="ros-2-topic">ROS 2 topic</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ros2<span class="w"> </span>topic<span class="w"> </span>list
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ros2<span class="w"> </span>topic<span class="w"> </span>info<span class="w"> </span>&lt;topic<span class="w"> </span>name&gt;
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>&lt;topic<span class="w"> </span>name&gt;
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>&lt;topic<span class="w"> </span>name&gt;<span class="w"> </span>&lt;message<span class="w"> </span>type&gt;<span class="w"> </span>&lt;message&gt;
-</span></code></pre></div>
-<p>我們這邊知道 ROS 的溝通方式基本上都是靠著 topic，publisher 把資料丟給某個 topic，subscriber 則是從該 topic 取得資料，因此 <code>ros2 topic</code> 系列的 command 也是非常容易被使用到的。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$<span class="w"> </span>ros2<span class="w"> </span>topic<span class="w"> </span>list
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>/chatter
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>...
-</span></code></pre></div>
-<p>一樣以 talker / listener 當作範例，我們可以看到使用 ros2 topic list 會有一個 topic 是 /chatter。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$<span class="w"> </span>ros2<span class="w"> </span>topic<span class="w"> </span>info<span class="w"> </span>/chatter
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Topic:<span class="w"> </span>/chatter
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Publisher<span class="w"> </span>count:<span class="w"> </span><span class="m">1</span>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Subscriber<span class="w"> </span>count:<span class="w"> </span><span class="m">1</span>
-</span></code></pre></div>
-<p>如果用 info 來看這個 topic，我們也能看到目前都多少人在 publish / subscribe 這個 topic。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$<span class="w"> </span>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/chatter
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>data:<span class="w"> </span><span class="s1">&#39;Hello World: 1169&#39;</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>---
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>data:<span class="w"> </span><span class="s1">&#39;Hello World: 1170&#39;</span>
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>---
-</span></code></pre></div>
-<p>可以用 echo 的方式來看這個 topic 收到的資料內容。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>$<span class="w"> </span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>-1<span class="w"> </span>/chatter<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="s2">&quot;data: 123&quot;</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>publisher:<span class="w"> </span>beginning<span class="w"> </span>loop
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>publishing<span class="w"> </span><span class="c1">#1: std_msgs.msg.String(data=&#39;123&#39;) </span>
-</span></code></pre></div>
-<p>當然我們也可以模仿 publisher 把資料直接打給 /chatter 這個 topic。</p>
-<h2 id="_2">參考</h2>
+<h3 id="coding">Coding</h3>
+<p>TODO</p>
+<h3 id="docker">Docker</h3>
+<p>如果你是在 docker 中運行 shared memory，由於預設 docker 允許使用 64 MB，用超過的話會有問題。
+你可以把 <code>/dev/shm</code> 掛入 container (<code>-v /dev/shm:/dev/shm</code>) 或者指定一個比較大的 <code>shm-size</code> (<code>--shm-size=32g</code>) 來避免這個問題。</p>
+<h3 id="shared-memory">如何判斷有無使用 Shared memory</h3>
+<p>要如何確認真的是使用 shared memory 呢？
+這邊有兩種方法：</p>
+<ol>
+<li>如果是使用 Linux 的話，可以觀察 <code>/dev/shm</code> 有沒有增加 <code>*.zenoh</code> 的檔案。這邊會放置預設 Linux 的 shared memory 空間。</li>
+<li>可以用 <code>export RUST_LOG=z=trace</code> 觀察，發布訊息時有沒有出現 <code>ext_shm: Some(ShmType)</code>，這代表使用 SHM 傳送，不然的話只會出現 <code>ext_shm: None</code></li>
+</ol>
+<h2 id="_3">設定檔</h2>
 <ul>
-<li><a href="https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Nodes/Understanding-ROS2-Nodes.html">Understanding ROS 2 nodes</a></li>
-<li><a href="https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding ROS 2 topics</a></li>
+<li><code>transport_optimization</code><ul>
+<li>除了自行使用 backend 產生 buffer，我們也可以直接用 <code>transport_optimization</code> 針對超過一定 size 的訊息自動用 shared memory 來傳輸</li>
+<li><code>pool_size</code> 代表有多少記憶體可以使用</li>
+<li><code>message_size_threshold</code> 則是超過多大的訊息才需要改用 shared memory 傳輸</li>
+</ul>
+</li>
+</ul>
+<h2 id="_4">參考連結</h2>
+<ul>
+<li><a href="https://github.com/eclipse-zenoh/roadmap/blob/main/rfcs/ALL/SHM.md">Zenoh Shared Memory RFC 規範</a></li>
 </ul>
 
 
