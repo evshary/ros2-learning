@@ -953,15 +953,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#coding" class="md-nav__link">
-    <span class="md-ellipsis">
-      Coding
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#docker" class="md-nav__link">
     <span class="md-ellipsis">
       Docker
@@ -1231,15 +1222,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#coding" class="md-nav__link">
-    <span class="md-ellipsis">
-      Coding
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#docker" class="md-nav__link">
     <span class="md-ellipsis">
       Docker
@@ -1299,44 +1281,44 @@
   <h1>Zenoh 共享記憶體</h1>
 
 <h2 id="_1">運作原理</h2>
-<p>TODO</p>
+<p>Zenoh 除了一般的網路傳輸，更重要的是有支援共享記憶體 (Shared Memory) 的功能。
+大多數的機器人或自駕車應用都以同台機器內的傳輸比較常見，而如果在同台機器內還需要透過作業系統的網路層，將會產生大量的 overhead，因為需要多次訊息的複製。
+而共享記憶體則可以有效避免這個問題，</p>
 <h2 id="_2">使用方式</h2>
 <h3 id="examples">Examples</h3>
-<p>如果要嘗試 Shared Memory 的範例，我們需要確保 shared_memory 這個 features 有被啟用。
+<p>如果要嘗試 Shared Memory 的範例，我們需要確保 <code>shared_memory</code> 這個 features 有被啟用。
 因此編譯的時候需要加上 <code>--all-features</code>。</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cargo<span class="w"> </span>build<span class="w"> </span>--all-features<span class="w"> </span>--all-targets
 </span></code></pre></div>
-<p>我們能夠執行 shared memory 的範例來觀察</p>
+<p>我們能夠執行 Shared Memory 的範例來觀察</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 第一個 terminal</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>./target/debug/examples/z_pub_shm
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># 第二個 terminal</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>./target/debug/examples/z_sub_shm
 </span></code></pre></div>
-<p>我們可以分別在同個機器(使用 shared memory 通訊)和不同機器(使用網路通訊)分別執行 <code>z_sub_shm</code>。
+<p>我們可以分別在同個機器(使用 Shared Memory 通訊)和不同機器(使用網路通訊)分別執行 <code>z_sub_shm</code>。
 從下面可以看到收到的 buffer 分別是 <code>SHM (MUT)</code> 和 <code>RAW</code> 兩種不同的形式。</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 同個機器，使用 Shared memory 的情況</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>&gt;&gt;<span class="w"> </span><span class="o">[</span>Subscriber<span class="o">]</span><span class="w"> </span>Received<span class="w"> </span>PUT<span class="w"> </span><span class="o">(</span><span class="s1">&#39;demo/example/zenoh-rs-pub&#39;</span>:<span class="w"> </span><span class="s1">&#39;[   0] Pub from Rust SHM!&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">[</span>SHM<span class="w"> </span><span class="o">(</span>MUT<span class="o">)]</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># 不同機器，沒有使用 Shared memory 的情況</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>&gt;&gt;<span class="w"> </span><span class="o">[</span>Subscriber<span class="o">]</span><span class="w"> </span>Received<span class="w"> </span>PUT<span class="w"> </span><span class="o">(</span><span class="s1">&#39;demo/example/zenoh-rs-pub&#39;</span>:<span class="w"> </span><span class="s1">&#39;[   0] Pub from Rust SHM!&#39;</span><span class="o">)</span><span class="w"> </span><span class="o">[</span>RAW<span class="o">]</span>
 </span></code></pre></div>
-<h3 id="coding">Coding</h3>
-<p>TODO</p>
 <h3 id="docker">Docker</h3>
-<p>如果你是在 docker 中運行 shared memory，由於預設 docker 允許使用 64 MB，用超過的話會有問題。
+<p>如果你是在 docker 中運行 Shared Memory，由於預設 docker 允許使用 64 MB，用超過的話會有問題。
 你可以把 <code>/dev/shm</code> 掛入 container (<code>-v /dev/shm:/dev/shm</code>) 或者指定一個比較大的 <code>shm-size</code> (<code>--shm-size=32g</code>) 來避免這個問題。</p>
 <h3 id="shared-memory">如何判斷有無使用 Shared memory</h3>
-<p>要如何確認真的是使用 shared memory 呢？
+<p>要如何確認真的是使用 Shared Memory 呢？
 這邊有兩種方法：</p>
 <ol>
-<li>如果是使用 Linux 的話，可以觀察 <code>/dev/shm</code> 有沒有增加 <code>*.zenoh</code> 的檔案。這邊會放置預設 Linux 的 shared memory 空間。</li>
+<li>如果是使用 Linux 的話，可以觀察 <code>/dev/shm</code> 有沒有增加 <code>*.zenoh</code> 的檔案。這邊會放置預設 Linux 的 Shared Memory 空間。</li>
 <li>可以用 <code>export RUST_LOG=z=trace</code> 觀察，發布訊息時有沒有出現 <code>ext_shm: Some(ShmType)</code>，這代表使用 SHM 傳送，不然的話只會出現 <code>ext_shm: None</code></li>
 </ol>
 <h2 id="_3">設定檔</h2>
 <ul>
 <li><code>transport_optimization</code><ul>
-<li>除了自行使用 backend 產生 buffer，我們也可以直接用 <code>transport_optimization</code> 針對超過一定 size 的訊息自動用 shared memory 來傳輸</li>
+<li>除了自行使用 backend 產生 buffer，我們也可以直接用 <code>transport_optimization</code> 針對超過一定 size 的訊息自動用 Shared Memory 來傳輸</li>
 <li><code>pool_size</code> 代表有多少記憶體可以使用</li>
-<li><code>message_size_threshold</code> 則是超過多大的訊息才需要改用 shared memory 傳輸</li>
+<li><code>message_size_threshold</code> 則是超過多大的訊息才需要改用 Shared Memory 傳輸</li>
 </ul>
 </li>
 </ul>
