@@ -96,16 +96,260 @@ zenoh-bridge-ros2dds -d 1
 ```
 
 * 允許使用 REST API 來看目前的轉換狀態，如有哪些 node 等基本資訊
+    * 在別的 terminal 用 curl 抓資料，可以用 jq 來讓 JSON 好看一點
+    * 下面範例我們跑一個 ROS 2 talker 來觀察可以取得哪些資訊
 
 ```bash
 # 在 8000 port 開啟 REST API
 zenoh-bridge-ros2dds --rest-http-port 8000
-# 在別的 terminal 用 curl 抓資料，可以用 jq 來讓 JSON 好看一點
-# 抓目前看到的 node
-curl http://localhost:8000/@/\*/ros2/node/\*\* | jq
-# Zenoh 和 ROS 如何互相轉換
-curl http://localhost:8000/@/\*/ros2/route/\*\* | jq
 ```
+
+<details>
+  <summary>REST API：抓目前看到的 ROS Node</summary>
+
+```bash
+$ curl http://localhost:8000/@/\*/ros2/node/\*\* | jq
+[
+  {
+    "key": "@/5a7c2bf14f92a2afccb58c7c5c6e59d6/ros2/node/0110bcec8211002a8dbc06f7000001c1/talker",
+    "value": {
+      "action_clients": [],
+      "action_servers": [],
+      "publishers": [
+        {
+          "name": "/rosout",
+          "type": "rcl_interfaces/msg/Log"
+        },
+        {
+          "name": "/chatter",
+          "type": "std_msgs/msg/String"
+        },
+        {
+          "name": "/parameter_events",
+          "type": "rcl_interfaces/msg/ParameterEvent"
+        }
+      ],
+      "service_clients": [],
+      "service_servers": [
+        {
+          "name": "/talker/set_parameters",
+          "type": "rcl_interfaces/srv/SetParameters"
+        },
+        {
+          "name": "/talker/set_parameters_atomically",
+          "type": "rcl_interfaces/srv/SetParametersAtomically"
+        },
+        {
+          "name": "/talker/describe_parameters",
+          "type": "rcl_interfaces/srv/DescribeParameters"
+        },
+        {
+          "name": "/talker/list_parameters",
+          "type": "rcl_interfaces/srv/ListParameters"
+        },
+        {
+          "name": "/talker/get_parameters",
+          "type": "rcl_interfaces/srv/GetParameters"
+        },
+        {
+          "name": "/talker/get_type_description",
+          "type": "type_description_interfaces/srv/GetTypeDescription"
+        },
+        {
+          "name": "/talker/get_parameter_types",
+          "type": "rcl_interfaces/srv/GetParameterTypes"
+        }
+      ],
+      "subscribers": []
+    },
+    "encoding": "application/json",
+    "timestamp": null
+  }
+]
+```
+
+</details>
+
+<details>
+  <summary>REST API：Zenoh 和 ROS 如何互相轉換</summary>
+
+```bash
+$ curl http://localhost:8000/@/\*/ros2/route/\*\* | jq
+[
+  {
+    "key": "@/f262131bc95ff1edff109873b6d49918/ros2/route/topic/pub/chatter",
+    "value": {
+      "dds_reader": "",
+      "local_nodes": [
+        "/talker"
+      ],
+      "priority": 5,
+      "publication_cache_size": 0,
+      "remote_routes": [],
+      "ros2_name": "/chatter",
+      "ros2_type": "std_msgs/msg/String",
+      "zenoh_key_expr": "chatter"
+    },
+    "encoding": "application/json",
+    "timestamp": null
+  },
+  {
+    "key": "@/f262131bc95ff1edff109873b6d49918/ros2/route/service/srv/talker/get_parameter_types",
+    "value": {
+      "is_active": true,
+      "local_nodes": [
+        "/talker"
+      ],
+      "remote_routes": [],
+      "rep_reader": "0110ffcc8892357cf4b3605500000d04",
+      "req_writer": "0110ffcc8892357cf4b3605500000c03",
+      "ros2_name": "/talker/get_parameter_types",
+      "ros2_type": "rcl_interfaces/srv/GetParameterTypes",
+      "zenoh_key_expr": "talker/get_parameter_types"
+    },
+    "encoding": "application/json",
+    "timestamp": null
+  },
+  {
+    "key": "@/f262131bc95ff1edff109873b6d49918/ros2/route/service/srv/talker/set_parameters_atomically",
+    "value": {
+      "is_active": true,
+      "local_nodes": [
+        "/talker"
+      ],
+      "remote_routes": [],
+      "rep_reader": "0110ffcc8892357cf4b3605500000b04",
+      "req_writer": "0110ffcc8892357cf4b3605500000a03",
+      "ros2_name": "/talker/set_parameters_atomically",
+      "ros2_type": "rcl_interfaces/srv/SetParametersAtomically",
+      "zenoh_key_expr": "talker/set_parameters_atomically"
+    },
+    "encoding": "application/json",
+    "timestamp": null
+  },
+  {
+    "key": "@/f262131bc95ff1edff109873b6d49918/ros2/route/service/srv/talker/get_type_description",
+    "value": {
+      "is_active": true,
+      "local_nodes": [
+        "/talker"
+      ],
+      "remote_routes": [],
+      "rep_reader": "0110ffcc8892357cf4b3605500000704",
+      "req_writer": "0110ffcc8892357cf4b3605500000603",
+      "ros2_name": "/talker/get_type_description",
+      "ros2_type": "type_description_interfaces/srv/GetTypeDescription",
+      "zenoh_key_expr": "talker/get_type_description"
+    },
+    "encoding": "application/json",
+    "timestamp": null
+  },
+  {
+    "key": "@/f262131bc95ff1edff109873b6d49918/ros2/route/topic/pub/rosout",
+    "value": {
+      "dds_reader": "",
+      "local_nodes": [
+        "/talker"
+      ],
+      "priority": 5,
+      "publication_cache_size": 10000,
+      "remote_routes": [],
+      "ros2_name": "/rosout",
+      "ros2_type": "rcl_interfaces/msg/Log",
+      "zenoh_key_expr": "rosout"
+    },
+    "encoding": "application/json",
+    "timestamp": null
+  },
+  {
+    "key": "@/f262131bc95ff1edff109873b6d49918/ros2/route/service/srv/talker/set_parameters",
+    "value": {
+      "is_active": true,
+      "local_nodes": [
+        "/talker"
+      ],
+      "remote_routes": [],
+      "rep_reader": "0110ffcc8892357cf4b3605500000904",
+      "req_writer": "0110ffcc8892357cf4b3605500000803",
+      "ros2_name": "/talker/set_parameters",
+      "ros2_type": "rcl_interfaces/srv/SetParameters",
+      "zenoh_key_expr": "talker/set_parameters"
+    },
+    "encoding": "application/json",
+    "timestamp": null
+  },
+  {
+    "key": "@/f262131bc95ff1edff109873b6d49918/ros2/route/service/srv/talker/describe_parameters",
+    "value": {
+      "is_active": true,
+      "local_nodes": [
+        "/talker"
+      ],
+      "remote_routes": [],
+      "rep_reader": "0110ffcc8892357cf4b3605500000f04",
+      "req_writer": "0110ffcc8892357cf4b3605500000e03",
+      "ros2_name": "/talker/describe_parameters",
+      "ros2_type": "rcl_interfaces/srv/DescribeParameters",
+      "zenoh_key_expr": "talker/describe_parameters"
+    },
+    "encoding": "application/json",
+    "timestamp": null
+  },
+  {
+    "key": "@/f262131bc95ff1edff109873b6d49918/ros2/route/topic/pub/parameter_events",
+    "value": {
+      "dds_reader": "",
+      "local_nodes": [
+        "/talker"
+      ],
+      "priority": 5,
+      "publication_cache_size": 0,
+      "remote_routes": [],
+      "ros2_name": "/parameter_events",
+      "ros2_type": "rcl_interfaces/msg/ParameterEvent",
+      "zenoh_key_expr": "parameter_events"
+    },
+    "encoding": "application/json",
+    "timestamp": null
+  },
+  {
+    "key": "@/f262131bc95ff1edff109873b6d49918/ros2/route/service/srv/talker/list_parameters",
+    "value": {
+      "is_active": true,
+      "local_nodes": [
+        "/talker"
+      ],
+      "remote_routes": [],
+      "rep_reader": "0110ffcc8892357cf4b3605500001104",
+      "req_writer": "0110ffcc8892357cf4b3605500001003",
+      "ros2_name": "/talker/list_parameters",
+      "ros2_type": "rcl_interfaces/srv/ListParameters",
+      "zenoh_key_expr": "talker/list_parameters"
+    },
+    "encoding": "application/json",
+    "timestamp": null
+  },
+  {
+    "key": "@/f262131bc95ff1edff109873b6d49918/ros2/route/service/srv/talker/get_parameters",
+    "value": {
+      "is_active": true,
+      "local_nodes": [
+        "/talker"
+      ],
+      "remote_routes": [],
+      "rep_reader": "0110ffcc8892357cf4b3605500001304",
+      "req_writer": "0110ffcc8892357cf4b3605500001203",
+      "ros2_name": "/talker/get_parameters",
+      "ros2_type": "rcl_interfaces/srv/GetParameters",
+      "zenoh_key_expr": "talker/get_parameters"
+    },
+    "encoding": "application/json",
+    "timestamp": null
+  }
+]
+```
+
+</details>
 
 * 白名單與黑名單：我們可以創一個給 zenoh-bridge-ros2dds 的設定檔，然後在裡面設定白名單與黑名單。
     * 官方提供的[設定檔範例](https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds/blob/main/DEFAULT_CONFIG.json5)
