@@ -18,7 +18,7 @@
         <link rel="prev" href="../record/">
       
       
-        <link rel="next" href="../sros/">
+        <link rel="next" href="../tips/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -568,10 +568,42 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#domain_bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      domain_bridge
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 小技巧
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1142,6 +1174,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#domain_bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      domain_bridge
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1173,6 +1214,33 @@
 </span></code></pre></div>
 <p>在使用上基本上就是 UI 的拖拉而已，可以建議大家跑個 turtlesim 來觀察。
 不過有個小地方要特別注意，如果你想要在 X 軸和 Y 軸各放上不同 topic 數值，記得拖拉時按著右鍵，這樣才能在不同軸放不同數值。</p>
+<h2 id="domain_bridge">domain_bridge</h2>
+<p>我們知道 ROS 支援 ROS_DOMAIN_ID 來避免不同環境的 ROS 流量互相影響。
+然而有時候會希望可以某些在不同 Domain ID 的 topic 可以溝通，這時候就可以使用 domain_bridge。
+細節設計可以參考<a href="https://github.com/ros2/domain_bridge/blob/main/doc/design.md">官方文件</a>，
+你也可以到 <code>/opt/ros/$ROS_DISTRO/share/domain_bridge/examples/</code> 參考範例設定檔。</p>
+<ul>
+<li>安裝</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-<span class="nv">$ROS_DISTRO</span>-domain-bridge
+</span></code></pre></div>
+<ul>
+<li>創一個簡單設定檔 <code>example_bridge_config.yaml</code></li>
+</ul>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_bridge</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">from_domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">to_domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">topics</span><span class="p">:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">chatter</span><span class="p">:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">std_msgs/msg/String</span>
+</span></code></pre></div>
+<ul>
+<li>使用</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>listener
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>ros2<span class="w"> </span>run<span class="w"> </span>domain_bridge<span class="w"> </span>domain_bridge<span class="w"> </span>example_bridge_config.yaml
+</span></code></pre></div>
 
 
 

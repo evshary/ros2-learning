@@ -2,98 +2,102 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ros2.tw/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/autoware/introduction/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/autoware/map/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/autoware/modules/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/autoware/simulation/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/dds/introduction/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/ros2/building/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/ros2/command/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/ros2/communication/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/ros2/installation/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/ros2/introduction/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/ros2/qos/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/ros2/record/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/ros2/rmw_cyclonedds/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/ros2/sros/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
+    </url>
+    <url>
+         <loc>https://ros2.tw/ros2/tips/</loc>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/ros2/tools/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/ros2/rmw_zenoh/advanced/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/ros2/rmw_zenoh/basic/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/ros2/rmw_zenoh/hands_on/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/zenoh/introduction/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/zenoh/keyexpr/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/zenoh/mode/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/zenoh/shared_memory/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
     <url>
          <loc>https://ros2.tw/zenoh/zenoh_bridge_ros2/</loc>
-         <lastmod>2025-11-05</lastmod>
+         <lastmod>2025-11-17</lastmod>
     </url>
 </urlset>

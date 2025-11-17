@@ -644,6 +644,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 小技巧
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../sros/" class="md-nav__link">
         
   
@@ -1359,10 +1382,12 @@
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>colcon<span class="w"> </span>build<span class="w"> </span>--symlink-install
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># 同時用 n 個 thread 進行編譯</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>colcon<span class="w"> </span>build<span class="w"> </span>--parallel-workers<span class="w"> </span>n
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># 預設 install 資料夾下的 component 都會有獨立資料夾，用 merge-install 則是不再用資料夾來歸類</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>colcon<span class="w"> </span>build<span class="w"> </span>--merge-install
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># 使用 release build，當要減少 code size 時，這個是很重要的指令</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>colcon<span class="w"> </span>build<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># 按照順序一一進行編譯</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>colcon<span class="w"> </span>build<span class="w"> </span>--executor<span class="w"> </span>sequential
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># 預設 install 資料夾下的 component 都會有獨立資料夾，用 merge-install 則是不再用資料夾來歸類</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>colcon<span class="w"> </span>build<span class="w"> </span>--merge-install
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># 使用 release build，當要減少 code size 時，這個是很重要的指令</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>colcon<span class="w"> </span>build<span class="w"> </span>--cmake-args<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
 </span></code></pre></div>
 <h2 id="_6">執行</h2>
 <p>執行的部份就非常容易了，只要 <code>source your_workspace/install/local_setup.bash</code> 後，你就可以輕易使用 <code>ros2 run</code> 或 <code>ros2 launch</code> 執行你編譯好的專案。這邊細節就不再多提了。</p>
