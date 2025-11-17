@@ -58,6 +58,7 @@ nav:
     - 'ROS 2 QoS': 'ros2/qos.md'
     - 'ROS 2 錄製與重放': 'ros2/record.md'
     - 'ROS 2 好用工具': 'ros2/tools.md'
+    - 'ROS 2 小技巧': 'ros2/tips.md'
     - 'SROS': 'ros2/sros.md'
   - 'ROS 2 通訊層':
     - 'rmw_cyclonedds 介紹': 'ros2/rmw_cyclonedds.md'

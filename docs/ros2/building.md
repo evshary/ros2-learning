@@ -113,6 +113,8 @@ colcon build --packages-select <certain project>
 colcon build --symlink-install
 # 同時用 n 個 thread 進行編譯
 colcon build --parallel-workers n
+# 按照順序一一進行編譯
+colcon build --executor sequential
 # 預設 install 資料夾下的 component 都會有獨立資料夾，用 merge-install 則是不再用資料夾來歸類
 colcon build --merge-install
 # 使用 release build，當要減少 code size 時，這個是很重要的指令
