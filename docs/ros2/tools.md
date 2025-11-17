@@ -27,7 +27,7 @@ ros2 run plotjuggler plotjuggler
 ## domain_bridge
 
 我們知道 ROS 支援 ROS_DOMAIN_ID 來避免不同環境的 ROS 流量互相影響。
-然而有時候會希望可以某些在不同 Domain ID 的 topic 可以溝通，這時候就可以使用 domain_bridge。
+然而有時候會希望可以某些在不同 Domain ID 的 topic 可以溝通，這時候就可以使用 [domain_bridge](https://github.com/ros2/domain_bridge/tree/main)。
 細節設計可以參考[官方文件](https://github.com/ros2/domain_bridge/blob/main/doc/design.md)，
 你也可以到 `/opt/ros/$ROS_DISTRO/share/domain_bridge/examples/` 參考範例設定檔。
 
