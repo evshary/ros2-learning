@@ -6,32 +6,34 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="正體中文 ROS 2 相關教學文件，包含 DDS、Zenoh 及 Autoware 等內容">
+        <meta name="description" content="快速運行 Autoware 的方法">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/">
+        <link rel="canonical" href="https://ros2.tw/autoware/installation/">
       
       
+        <link rel="prev" href="../introduction/">
       
-        <link rel="next" href="ros2/introduction/">
+      
+        <link rel="next" href="../modules/">
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
-        <title>ROS 2 筆記</title>
+        <title>Autoware 安裝 - ROS 2 筆記</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2a3383ac.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,7 +52,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -85,11 +87,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#ros-2" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -102,7 +99,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="ROS 2 筆記" class="md-header__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
+    <a href="../.." title="ROS 2 筆記" class="md-header__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -122,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              簡介
+              Autoware 安裝
             
           </span>
         </div>
@@ -226,7 +223,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="ROS 2 筆記" class="md-nav__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
+    <a href="../.." title="ROS 2 筆記" class="md-nav__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -241,19 +238,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -264,7 +252,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -314,7 +301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/introduction/" class="md-nav__link">
+      <a href="../../ros2/introduction/" class="md-nav__link">
         
   
   
@@ -337,7 +324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/installation/" class="md-nav__link">
+      <a href="../../ros2/installation/" class="md-nav__link">
         
   
   
@@ -405,7 +392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/command/" class="md-nav__link">
+      <a href="../../ros2/command/" class="md-nav__link">
         
   
   
@@ -428,7 +415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/communication/" class="md-nav__link">
+      <a href="../../ros2/communication/" class="md-nav__link">
         
   
   
@@ -451,7 +438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/building/" class="md-nav__link">
+      <a href="../../ros2/building/" class="md-nav__link">
         
   
   
@@ -474,7 +461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/qos/" class="md-nav__link">
+      <a href="../../ros2/qos/" class="md-nav__link">
         
   
   
@@ -497,7 +484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/record/" class="md-nav__link">
+      <a href="../../ros2/record/" class="md-nav__link">
         
   
   
@@ -520,7 +507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/tools/" class="md-nav__link">
+      <a href="../../ros2/tools/" class="md-nav__link">
         
   
   
@@ -543,7 +530,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/tips/" class="md-nav__link">
+      <a href="../../ros2/tips/" class="md-nav__link">
         
   
   
@@ -566,7 +553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/sros/" class="md-nav__link">
+      <a href="../../ros2/sros/" class="md-nav__link">
         
   
   
@@ -634,7 +621,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/rmw_cyclonedds/" class="md-nav__link">
+      <a href="../../ros2/rmw_cyclonedds/" class="md-nav__link">
         
   
   
@@ -657,7 +644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/rmw_zenoh/basic/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/basic/" class="md-nav__link">
         
   
   
@@ -680,7 +667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/rmw_zenoh/advanced/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/advanced/" class="md-nav__link">
         
   
   
@@ -703,7 +690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="ros2/rmw_zenoh/hands_on/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/hands_on/" class="md-nav__link">
         
   
   
@@ -771,7 +758,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dds/introduction/" class="md-nav__link">
+      <a href="../../dds/introduction/" class="md-nav__link">
         
   
   
@@ -839,7 +826,7 @@
   
   
     <li class="md-nav__item">
-      <a href="zenoh/introduction/" class="md-nav__link">
+      <a href="../../zenoh/introduction/" class="md-nav__link">
         
   
   
@@ -862,7 +849,7 @@
   
   
     <li class="md-nav__item">
-      <a href="zenoh/mode/" class="md-nav__link">
+      <a href="../../zenoh/mode/" class="md-nav__link">
         
   
   
@@ -885,7 +872,7 @@
   
   
     <li class="md-nav__item">
-      <a href="zenoh/keyexpr/" class="md-nav__link">
+      <a href="../../zenoh/keyexpr/" class="md-nav__link">
         
   
   
@@ -908,7 +895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="zenoh/shared_memory/" class="md-nav__link">
+      <a href="../../zenoh/shared_memory/" class="md-nav__link">
         
   
   
@@ -931,7 +918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="zenoh/zenoh_bridge_ros2/" class="md-nav__link">
+      <a href="../../zenoh/zenoh_bridge_ros2/" class="md-nav__link">
         
   
   
@@ -958,18 +945,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -985,7 +974,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Autoware 入門
@@ -999,7 +988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="autoware/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1019,10 +1008,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="autoware/installation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1033,6 +1029,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -1045,7 +1042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="autoware/modules/" class="md-nav__link">
+      <a href="../modules/" class="md-nav__link">
         
   
   
@@ -1068,7 +1065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="autoware/map/" class="md-nav__link">
+      <a href="../map/" class="md-nav__link">
         
   
   
@@ -1091,7 +1088,7 @@
   
   
     <li class="md-nav__item">
-      <a href="autoware/simulation/" class="md-nav__link">
+      <a href="../simulation/" class="md-nav__link">
         
   
   
@@ -1131,8 +1128,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -1148,31 +1143,49 @@
 
 
 
-<h1 id="ros-2">ROS 2 筆記</h1>
-<p>ROS 在自動化領域越來越被廣泛使用，從最早的輪型機器人(AMR)、機器手臂，到後來的無人機、無人船，甚至人形機器人和自駕車也都有所應用。
-過去我們談論的是資料處理上的自動化，偏向虛擬的世界，而未來實體世界上的自動化將會越來越重要，不論是在工廠、城市、軍工，都有很大的發展空間。</p>
-<p>台灣並不大，不可能完全從頭打造封閉的系統，最好的方式還是要借助全球開源的框架來發展自己的應用，因此 ROS 的使用就變成是必要的。
-基本上在機器人領域，ROS 幾乎一統整個江山，各種研究或是新創公司幾乎都是圍繞著 ROS 來開發系統。
-在現在 ROS 2 基本已經取代 ROS 1 的情況下，我們也應該要轉移到最新的版本，了解目前的發展狀況。</p>
-<p>由於從事跟機器人與自駕車相關的工作，常常會需要查找各種相關的知識，平常會做些筆記方便自己使用。
-後來認為也許對台灣從事機器人相關研究開發的學生或是工程師或許也有幫助，因此決定公開出來。</p>
-<p>機器人這個行業變化十分迅速，光是 ROS 2 幾乎是每年就會出一版更新，每兩年就有一版 LTS 版本，因此無法保證這邊所有資訊都會是最新的。
-若是有發現任何問題，或是有想增加的教學，都非常歡迎在 <a href="https://github.com/evshary/ros2-learning/issues">Issue</a> 上提出或是直接發 <a href="https://github.com/evshary/ros2-learning/pulls">Pull Request</a>。
-這個網頁是使用 mkdocs 加上 GitHub pages 架設的，可以參考 <a href="https://github.com/evshary/ros2-learning">README</a> 了解如何在本地端運行。</p>
-<p>若是有任何技術相關問題，隨時歡迎討論。</p>
+  <h1>Autoware 安裝</h1>
+
+<p>如果想要在本地端跑 Autoware，可以參考 Autoware 的<a href="https://autowarefoundation.github.io/autoware-documentation/main/installation/">官方安裝教學</a>，他們有分兩種：從 source code 編譯，以及使用 OpenADKit 的容器。</p>
+<p>然而，根據我的經驗，source code 編譯會需要在 Ubuntu 22.04 上，而且 OpenADKit 容器常常會有些小問題，更重要的是常常某些版本是有 bug 無法使用的。</p>
+<p>最好的方式是直接使用自己確定可以運行的容器會比較好，這邊是官方提供的<a href="https://github.com/autowarefoundation/autoware/pkgs/container/autoware">容器列表</a>。
+裡面有非常複雜的各種容器相關性，可以參考<a href="https://github.com/autowarefoundation/autoware/tree/main/docker">這張圖</a>來了解容器映像檔的相依行，但一般來說我們是使用 universe 即可，例如 <code>universe-20251118-amd64</code>。</p>
+<p>若是還是實在太複雜，可以直接使用我建立的環境，會比較簡單一點。下面說明一下使用方式：</p>
 <ul>
-<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m20 8-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2"/></svg></span> <a href="mailto:evshary@gmail.com">evshary@gmail.com</a></li>
-<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> <a href="https://github.com/evshary">GitHub</a></li>
-<li><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg></span> <a href="https://www.linkedin.com/in/evshary">LinkedIn</a></li>
+<li>從 GitHub 抓取程式</li>
 </ul>
-<p>關於所有內容如未特別註明，皆採用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/">創用 CC 姓名標示-非商業性-相同方式分享 3.0 台灣 授權條款</a></p>
-<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/tw/88x31.png" /></a></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/evshary/autoware_env.git
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>autoware_env
+</span></code></pre></div>
+<ul>
+<li>進入容器</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./run_container.sh
+</span></code></pre></div>
+<ul>
+<li>下載地圖</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gdown<span class="w"> </span>-O<span class="w"> </span>~/autoware_map/<span class="w"> </span><span class="s1">&#39;https://docs.google.com/uc?export=download&amp;id=1499_nsbUbIeturZaDj7jhUownh5fvXHd&#39;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>unzip<span class="w"> </span>-d<span class="w"> </span>~/autoware_map<span class="w"> </span>~/autoware_map/sample-map-planning.zip
+</span></code></pre></div>
+<ul>
+<li>運行 planning simulation</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">source</span><span class="w"> </span>/opt/autoware/setup.zsh
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RMW_IMPLEMENTATION</span><span class="o">=</span>rmw_cyclonedds_cpp
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>ros2<span class="w"> </span>launch<span class="w"> </span>autoware_launch<span class="w"> </span>planning_simulator.launch.xml<span class="w"> </span>map_path:<span class="o">=</span><span class="nv">$HOME</span>/autoware_map/sample-map-planning<span class="w"> </span>vehicle_model:<span class="o">=</span>sample_vehicle<span class="w"> </span>sensor_model:<span class="o">=</span>sample_sensor_kit
+</span></code></pre></div>
+<ul>
+<li>planning simulation 是 Autoware 中最簡單測試導航功能模擬器，剩下可以參考<a href="https://autowarefoundation.github.io/autoware-documentation/main/tutorials/ad-hoc-simulation/planning-simulation/#lane-driving-scenario">官方的操作教學</a></li>
+</ul>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -1217,10 +1230,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>
