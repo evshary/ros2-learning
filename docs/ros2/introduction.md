@@ -64,6 +64,7 @@ LTS 大多數情況都是兩版出一次，並且搭配 Ubuntu 的 LTS 版本。
 ## 好用的 ROS 資源
 
 * [ROS Discourse](https://discourse.ros.org/)：ROS 的官方討論區，全世界的 ROS 使用者會在這邊討論 ROS 相關的訊息，或是展現自己的成果
+* [ROSCon](https://roscon.ros.org)：每年都會舉辦 ROSCon，而每場分享都會留有錄影，會放在這個網站上
 * [Robotics StackExchange](https://robotics.stackexchange.com/)：專門解答 ROS 相關的問題的論壇，過去是 [ROS answer](https://answers.ros.org/questions/)，但後來社群決定和 StackExchange 合併
 * [ROS 2 design](https://design.ros2.org/)：ROS 2 當初設計的概念
 * [REPs](https://ros.org/reps/rep-0000.html)：Index of ROS Enhancement Proposals，ROS 相關的提案
