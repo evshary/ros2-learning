@@ -75,6 +75,7 @@ nav:
     - 'zenoh-bridge-ros2dds': 'zenoh/zenoh_bridge_ros2.md'
   - 'Autoware 入門':
     - 'Autoware 介紹': 'autoware/introduction.md'
+    - 'Autoware 安裝': 'autoware/installation.md'
     - 'Autoware 模組': 'autoware/modules.md'
     - 'Autoware 地圖': 'autoware/map.md'
     - 'Autoware 模擬': 'autoware/simulation.md'
