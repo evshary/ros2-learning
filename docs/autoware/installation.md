@@ -11,7 +11,7 @@ keywords:
 然而，根據我的經驗，source code 編譯會需要在 Ubuntu 22.04 上，而且 OpenADKit 容器常常會有些小問題，更重要的是常常某些版本是有 bug 無法使用的。
 
 最好的方式是直接使用自己確定可以運行的容器會比較好，這邊是官方提供的[容器列表](https://github.com/autowarefoundation/autoware/pkgs/container/autoware)。
-裡面有非常複雜的各種容器相關性，可以參考[這張圖](https://github.com/autowarefoundation/autoware/tree/main/docker)來了解容器映像檔的相依行，但一般來說我們是使用 universe 即可，例如 `universe-20251118-amd64`。
+裡面有非常複雜的各種容器相關性，可以參考[這張圖](https://github.com/autowarefoundation/autoware/tree/main/docker)來了解容器映像檔的相依行，但一般來說我們是使用 universe 即可，例如 `universe-1.5.0-amd64`。
 
 若是還是實在太複雜，可以直接使用我建立的環境，會比較簡單一點。下面說明一下使用方式：
 
@@ -38,7 +38,7 @@ unzip -d ~/autoware_map ~/autoware_map/sample-map-planning.zip
 * 運行 planning simulation
 
 ```bash
-source /opt/autoware/setup.zsh
+source /opt/autoware/setup.bash
 export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 ros2 launch autoware_launch planning_simulator.launch.xml map_path:=$HOME/autoware_map/sample-map-planning vehicle_model:=sample_vehicle sensor_model:=sample_sensor_kit
 ```
