@@ -80,3 +80,4 @@ nav:
     - 'Autoware 模組': 'autoware/modules.md'
     - 'Autoware 地圖': 'autoware/map.md'
     - 'Autoware 模擬': 'autoware/simulation.md'
+    - 'Autoware API': 'autoware/api.md'
