@@ -1193,12 +1193,30 @@
 相關資料可以參考<a href="https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/interfaces/#architecture">官方文件</a></p>
 <p>這邊會列上一些常用的 API：</p>
 <ul>
-<li>控制車子的操作模式</li>
+<li>控制車子的操作模式 (Operation Mode)</li>
 </ul>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 讓車子停下</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/api/operation_mode/change_to_stop<span class="w"> </span>autoware_adapi_v1_msgs/srv/ChangeOperationMode
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 讓車子回復到導航模式</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/api/operation_mode/change_to_autonomous<span class="w"> </span>autoware_adapi_v1_msgs/srv/ChangeOperationMode
+</span></code></pre></div>
+<ul>
+<li>追蹤車子當下位置</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 會提供當下經緯度以及 map 上的位置</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/api/vehicle/kinematics
+</span></code></pre></div>
+<ul>
+<li>路線相關</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 取得當下的路線，如果為空，代表沒有設定任何路線</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/api/routing/route
+</span></code></pre></div>
+<ul>
+<li>rviz 相關</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 取得 rviz 給的初始化位置</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/initialpose
 </span></code></pre></div>
 
 
