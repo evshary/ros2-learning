@@ -208,3 +208,12 @@ liveliness 和一般的 key expression 很類似，主要差別就是用來確�
 ```
 
 更詳細資訊可以參考[官方設計文件](https://github.com/ros2/rmw_zenoh/blob/rolling/docs/design.md#graph-cache)。
+
+## Zenoh 和 rmw_zenoh 溝通的相關函式庫
+
+如果你不想使用 ROS 2 的套件，但你又想要能夠用純 Zenoh 跟 ROS 2 的軟體通訊，這邊有不少範例可以參考：
+
+* [zenoh-ros-examples](https://github.com/ZettaScaleLabs/zenoh-ros-examples)：純 Zenoh C++ 程式，可以直接跟 rmw_zenoh / zenoh-bridge-ros2dds 溝通
+* [rmw-zenoh-mcap-writer](https://github.com/ZettaScaleLabs/rmw-zenoh-mcap-writer)：可以錄製運行 ROS 2 rmw_zenoh 的訊息，和 ros2 bag 可以互通
+* [zenoh-ros-type](https://github.com/evshary/zenoh-ros-type)：rmw_zenoh 和 Zenoh 最大的差異在於訊息格式的封裝，這個 Rust crate 收集大部份常見的訊息格式
+* [zenoh-ros-type-python](https://github.com/evshary/zenoh-ros-type-python)：同上，但是為 Python 版本
