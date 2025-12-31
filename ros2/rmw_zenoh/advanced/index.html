@@ -788,6 +788,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#zenoh-rmw_zenoh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zenoh 和 rmw_zenoh 溝通的相關函式庫
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1354,6 +1363,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#zenoh-rmw_zenoh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zenoh 和 rmw_zenoh 溝通的相關函式庫
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1554,6 +1572,14 @@ liveliness 和一般的 key expression 很類似，主要差別就是用來確�
 <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>@ros2_lv/2/8b20917502ee955ac4476e0266340d5c/0/10/MP/%/%/talker/%chatter/std_msgs::msg::dds_::String_/RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18/::,7:,:,:,,
 </span></code></pre></div>
 <p>更詳細資訊可以參考<a href="https://github.com/ros2/rmw_zenoh/blob/rolling/docs/design.md#graph-cache">官方設計文件</a>。</p>
+<h2 id="zenoh-rmw_zenoh">Zenoh 和 rmw_zenoh 溝通的相關函式庫</h2>
+<p>如果你不想使用 ROS 2 的套件，但你又想要能夠用純 Zenoh 跟 ROS 2 的軟體通訊，這邊有不少範例可以參考：</p>
+<ul>
+<li><a href="https://github.com/ZettaScaleLabs/zenoh-ros-examples">zenoh-ros-examples</a>：純 Zenoh C++ 程式，可以直接跟 rmw_zenoh / zenoh-bridge-ros2dds 溝通</li>
+<li><a href="https://github.com/ZettaScaleLabs/rmw-zenoh-mcap-writer">rmw-zenoh-mcap-writer</a>：可以錄製運行 ROS 2 rmw_zenoh 的訊息，和 ros2 bag 可以互通</li>
+<li><a href="https://github.com/evshary/zenoh-ros-type">zenoh-ros-type</a>：rmw_zenoh 和 Zenoh 最大的差異在於訊息格式的封裝，這個 Rust crate 收集大部份常見的訊息格式</li>
+<li><a href="https://github.com/evshary/zenoh-ros-type-python">zenoh-ros-type-python</a>：同上，但是為 Python 版本</li>
+</ul>
 
 
 
