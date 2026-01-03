@@ -7,6 +7,7 @@ keywords:
 ---
 
 Autoware 本質上是基於 ROS framework 上的自駕車軟體，所以也可以視為一系列的 ROS package 所組成。
+與 ROS 類似，也有自己的吉祥物，目前是設定為[馬](https://github.com/orgs/autowarefoundation/discussions/5825)。
 
 由於 Autoware 目前的連結有點分散很難尋找，我創了個 [awesome list](https://github.com/evshary/awesome-autoware/) 來收集，方便尋找。歡迎大家在上面新增有意思的專案。
 
@@ -20,7 +21,7 @@ Autoware 本質上是基於 ROS framework 上的自駕車軟體，所以也可�
     * [Autoware.core](https://github.com/autowarefoundation/autoware.core)：自駕車中最重要的套件會放在這裡，這邊的程式碼需要經過嚴格的品質驗證
     * [Autoware.universe](https://github.com/autowarefoundation/autoware.universe)：其他第三方社群所開發的套件會放在此
 
-目前 Autoware 沒有明確的版本細分，主要還是跟著 ROS 2 的版本變化，你可以到 [GitHub](https://github.com/autowarefoundation/autoware) 中切換不同 branch，例如 galactic, humble。
+原本 Autowware 是使用日期來分版本，但是現在已經[改用 semantic version](https://github.com/orgs/autowarefoundation/discussions/6637) 了，如 1.5、1.6 等等，changelog 的部份可以從 [GitHub release](https://github.com/autowarefoundation/autoware/releases) 看到。儘管如此，Autoware 還是相依於 ROS 2 LTS 版本變化，目前主要是跟著 Humble 走，未來將會移植到 Jazzy 上。
 
 ## 常用連結
 
