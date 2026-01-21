@@ -783,6 +783,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#attachment" class="md-nav__link">
+    <span class="md-ellipsis">
+      attachment
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1358,6 +1367,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#attachment" class="md-nav__link">
+    <span class="md-ellipsis">
+      attachment
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1572,6 +1590,18 @@ liveliness 和一般的 key expression 很類似，主要差別就是用來確�
 <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>@ros2_lv/2/8b20917502ee955ac4476e0266340d5c/0/10/MP/%/%/talker/%chatter/std_msgs::msg::dds_::String_/RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18/::,7:,:,:,,
 </span></code></pre></div>
 <p>更詳細資訊可以參考<a href="https://github.com/ros2/rmw_zenoh/blob/rolling/docs/design.md#graph-cache">官方設計文件</a>。</p>
+<h3 id="attachment">attachment</h3>
+<p>除了我們想要傳送的最主要的訊息以外，rmw_zenoh 本身也會攜帶其他的資訊，例如序列、發布時間等等。
+這些資訊會使用 Zenoh 的 attachment 機制來傳送，這樣就不會影響主要訊息的格式。
+這些資訊有什麼呢？</p>
+<ul>
+<li>8 bytes 的序號 (sequence number)，type 是 int64 且為 little-endian</li>
+<li>8 bytes 的時間戳 (tim的時間戳)，type 是 int64 且為 little-endian，代表的是從 UNIX EPOCH 開始到現在的 ns</li>
+<li>1 byte 的 GID 長度 (目前固定為 16)</li>
+<li>16 bytes 的 GID，type 是 int8</li>
+</ul>
+<p>基本上只要發送訊息就一定需要 attachment，所以不管是 publisher、client、service 都會用到。
+值得注意的是 service 在回覆 client 的 request 時，sequence number 必須要跟 request 一致。</p>
 <h2 id="zenoh-rmw_zenoh">Zenoh 和 rmw_zenoh 溝通的相關函式庫</h2>
 <p>如果你不想使用 ROS 2 的套件，但你又想要能夠用純 Zenoh 跟 ROS 2 的軟體通訊，這邊有不少範例可以參考：</p>
 <ul>
