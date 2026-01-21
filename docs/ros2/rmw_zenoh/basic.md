@@ -18,6 +18,12 @@ ROS 2 當初的設計就已經考慮到替換中間層 (Middleware) 的可能，
 目前 rmw_zenoh 從 Kilted 開始已經是 ROS 官方的 [Tier 1 支援](https://www.ros.org/reps/rep-2000.html#kilted-kaiju-may-2025-november-2026)，並且向前兼容 (backport) 到 ROS 2 Humble。
 基本上代表 ROS 2 目前還有維護的版本都可以使用 rmw_zenoh。
 
+讓我們總結一下機器人使用 rmw_zenoh 幾個主要優勢：
+
+* 解決 DDS 在無線網路下表現不好的問題
+* 不依賴多播，工廠就算是在 private 5G 環境下也能運作
+* 能跨網路，從地端的機器人到雲端的管理系統，全都可以使用同一套協定來運作，不需要還轉成 MQTT 等其他協定
+
 ## 安裝
 
 安裝 rmw_zenoh 最簡單的方法是直接針對 ROS 的版本來 `apt install`。

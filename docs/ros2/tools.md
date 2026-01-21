@@ -55,3 +55,12 @@ ROS_DOMAIN_ID=2 ros2 run demo_nodes_cpp talker
 ROS_DOMAIN_ID=3 ros2 run demo_nodes_cpp listener
 ros2 run domain_bridge domain_bridge example_bridge_config.yaml
 ```
+
+## 效能評測
+
+有時我們也會想要評測自己的 ROS 2 程式效能，主要是延遲 (latency) 的部份。
+下面有幾套工具可以參考：
+
+* [performance_test](https://gitlab.com/ApexAI/performance_test/-/tree/master/performance_test): 這是 Apex AI 出的效能評測工具，比較特別的是除了 ROS，他也可以評測一些 native protocol，如 FastDDS 和 CycloneDDS 的效能。
+* [ros2-performance](https://github.com/irobot-ros/ros2-performance): 這是 iRobot 所提供的效能評測工具，最特別的點是他可以自建網路拓樸，更真實地模擬各個點的效能。他們也提供了如何建立測試環境的方法 [ros2-benchmark-container](https://github.com/irobot-ros/ros2-benchmark-container)。
+* [ros2-simple-performance](https://github.com/ZettaScaleLabs/ros2-simple-performance): ZettaScale 發佈的最簡易測試 ping / pong 的工具，其中也包含了暖機時間、QoS、封包大小、發佈頻率等等設定。
