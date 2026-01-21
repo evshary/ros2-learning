@@ -577,6 +577,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      效能評測
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1252,6 +1261,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      效能評測
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1310,6 +1328,14 @@
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>listener
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>ros2<span class="w"> </span>run<span class="w"> </span>domain_bridge<span class="w"> </span>domain_bridge<span class="w"> </span>example_bridge_config.yaml
 </span></code></pre></div>
+<h2 id="_1">效能評測</h2>
+<p>有時我們也會想要評測自己的 ROS 2 程式效能，主要是延遲 (latency) 的部份。
+下面有幾套工具可以參考：</p>
+<ul>
+<li><a href="https://gitlab.com/ApexAI/performance_test/-/tree/master/performance_test">performance_test</a>: 這是 Apex AI 出的效能評測工具，比較特別的是除了 ROS，他也可以評測一些 native protocol，如 FastDDS 和 CycloneDDS 的效能。</li>
+<li><a href="https://github.com/irobot-ros/ros2-performance">ros2-performance</a>: 這是 iRobot 所提供的效能評測工具，最特別的點是他可以自建網路拓樸，更真實地模擬各個點的效能。他們也提供了如何建立測試環境的方法 <a href="https://github.com/irobot-ros/ros2-benchmark-container">ros2-benchmark-container</a>。</li>
+<li><a href="https://github.com/ZettaScaleLabs/ros2-simple-performance">ros2-simple-performance</a>: ZettaScale 發佈的最簡易測試 ping / pong 的工具，其中也包含了暖機時間、QoS、封包大小、發佈頻率等等設定。</li>
+</ul>
 
 
 
