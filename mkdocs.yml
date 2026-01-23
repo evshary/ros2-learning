@@ -83,3 +83,4 @@ nav:
     - 'Autoware API': 'autoware/api.md'
   - 'AGL 入門':
     - 'AGL 介紹': 'agl/introduction.md'
+    - 'AGL 安裝': 'agl/installation.md'
