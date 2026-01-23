@@ -81,3 +81,5 @@ nav:
     - 'Autoware 地圖': 'autoware/map.md'
     - 'Autoware 模擬': 'autoware/simulation.md'
     - 'Autoware API': 'autoware/api.md'
+  - 'AGL 入門':
+    - 'AGL 介紹': 'agl/introduction.md'

@@ -26,7 +26,7 @@ Autoware 本質上是基於 ROS framework 上的自駕車軟體，所以也可�
 ## 常用連結
 
 * [Autoware 官網](https://www.autoware.org)：上面有 Autoware 的最基本介紹
-* [Autoware Documentation](https://autowarefoundation.github.io/autoware-documentation/main/)：  最重要的部份，上面有非常詳細的安裝以及使用教學
+* [Autoware Documentation](https://autowarefoundation.github.io/autoware-documentation/main/)：最重要的部份，上面有非常詳細的安裝以及使用教學
 * [GitHub Discussion](https://github.com/autowarefoundation/autoware/discussions)：Autoware 社群的討論區，有問題的話可以直接在上面發問，甚至也可以發布一些自己的作品
 * [Project Wiki](https://github.com/autowarefoundation/autoware-projects/wiki)：對社群的運作有興趣的話可以參考這頁
 
