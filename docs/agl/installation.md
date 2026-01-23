@@ -27,6 +27,7 @@ sudo apt-get install build-essential chrpath cpio debianutils diffstat file gawk
 
 ```bash
 export AGL_TOP=$HOME/workspace/agl_ws
+mkdir $AGL_TOP
 cd $AGL_TOP
 ```
 
@@ -43,15 +44,13 @@ repo sync
 ```bash
 # 列出所有可能的選項
 source meta-agl/scripts/aglsetup.sh -h
-# 建立編譯環境
-# -m 代表平台，-b 是存放的資料夾，後面要接上要啟動的功能
-source meta-agl/scripts/aglsetup.sh -m qemux86-64 -b qemux86-64 agl-demo agl-devel
 ```
 
-* 可以嘗試編譯特定 demo
+* 編譯，這邊我們嘗試編譯 Qt based IVI demo
 
 ```bash
 # Sample Qt based IVI demo 
+# -m 代表平台，-b 是存放的資料夾，後面要接上要啟動的功能
 source meta-agl/scripts/aglsetup.sh -f -m qemux86-64 -b qemux86-64 agl-demo agl-devel
 echo "# reuse download directories" >> $AGL_TOP/site.conf
 echo "DL_DIR = \"$HOME/downloads/\"" >> $AGL_TOP/site.conf
