@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Autoware 的簡單介紹，以及相關常用連結">
+        <meta name="description" content="AGL 的安裝方法">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/autoware/introduction/">
+        <link rel="canonical" href="https://ros2.tw/agl/installation/">
       
       
-        <link rel="prev" href="../../zenoh/zenoh_bridge_ros2/">
+        <link rel="prev" href="../introduction/">
       
-      
-        <link rel="next" href="../installation/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>Autoware 簡介 - ROS 2 筆記</title>
+        <title>AGL 安裝 - ROS 2 筆記</title>
       
     
     
@@ -124,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Autoware 簡介
+              AGL 安裝
             
           </span>
         </div>
@@ -973,20 +971,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1002,7 +998,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Autoware 入門
@@ -1013,30 +1009,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Autoware 介紹
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../autoware/introduction/" class="md-nav__link">
         
   
   
@@ -1047,51 +1023,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      版本
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      常用連結
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#working-group" class="md-nav__link">
-    <span class="md-ellipsis">
-      Working Group
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1104,7 +1035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../autoware/installation/" class="md-nav__link">
         
   
   
@@ -1127,7 +1058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/" class="md-nav__link">
+      <a href="../../autoware/modules/" class="md-nav__link">
         
   
   
@@ -1150,7 +1081,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../map/" class="md-nav__link">
+      <a href="../../autoware/map/" class="md-nav__link">
         
   
   
@@ -1173,7 +1104,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../simulation/" class="md-nav__link">
+      <a href="../../autoware/simulation/" class="md-nav__link">
         
   
   
@@ -1196,7 +1127,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../../autoware/api/" class="md-nav__link">
         
   
   
@@ -1223,18 +1154,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -1250,7 +1183,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             AGL 入門
@@ -1264,7 +1197,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../agl/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1284,10 +1217,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../agl/installation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    AGL 安裝
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1298,6 +1251,42 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      前置安裝
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      編譯
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1337,7 +1326,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      版本
+      前置安裝
     </span>
   </a>
   
@@ -1346,16 +1335,7 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      常用連結
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#working-group" class="md-nav__link">
-    <span class="md-ellipsis">
-      Working Group
+      編譯
     </span>
   </a>
   
@@ -1377,37 +1357,62 @@
 
 
 
-  <h1>Autoware 介紹</h1>
+  <h1>AGL 安裝</h1>
 
-<p>Autoware 本質上是基於 ROS framework 上的自駕車軟體，所以也可以視為一系列的 ROS package 所組成。
-與 ROS 類似，也有自己的吉祥物，目前是設定為<a href="https://github.com/orgs/autowarefoundation/discussions/5825">馬</a>。</p>
-<p>由於 Autoware 目前的連結有點分散很難尋找，我創了個 <a href="https://github.com/evshary/awesome-autoware/">awesome list</a> 來收集，方便尋找。歡迎大家在上面新增有意思的專案。</p>
-<h2 id="_1">版本</h2>
-<p>在 Autoware 中有三個版本：</p>
+<p>這邊紀錄一下 AGL 的編譯以及安裝方法，我們假設使用的是 Ubuntu 系統，然後上面跑 Qeum。</p>
+<h2 id="_1">前置安裝</h2>
 <ul>
-<li><a href="https://github.com/autowarefoundation/autoware/tree/autoware-ai">Autoware.ai</a>：最早期的版本，使用 ROS 1</li>
-<li><a href="https://gitlab.com/autowarefoundation/autoware.auto/AutowareAuto">Autoware.auto</a>：升級到 ROS 2 後的新版本，值得注意的是這時候的程式碼是放在 GitLab</li>
-<li><a href="https://github.com/autowarefoundation/autoware">Autoware</a>：最新版基於 ROS 2 的 Autoware，這個版本主要目的是把 package 區分為 core 和 universe，方便維護<ul>
-<li><a href="https://github.com/autowarefoundation/autoware.core">Autoware.core</a>：自駕車中最重要的套件會放在這裡，這邊的程式碼需要經過嚴格的品質驗證</li>
-<li><a href="https://github.com/autowarefoundation/autoware.universe">Autoware.universe</a>：其他第三方社群所開發的套件會放在此</li>
+<li>先安裝 repo，AGL 常用的抓程式碼工具</li>
 </ul>
-</li>
-</ul>
-<p>原本 Autowware 是使用日期來分版本，但是現在已經<a href="https://github.com/orgs/autowarefoundation/discussions/6637">改用 semantic version</a> 了，如 1.5、1.6 等等，changelog 的部份可以從 <a href="https://github.com/autowarefoundation/autoware/releases">GitHub release</a> 看到。儘管如此，Autoware 還是相依於 ROS 2 LTS 版本變化，目前主要是跟著 Humble 走，未來將會移植到 Jazzy 上。</p>
-<h2 id="_2">常用連結</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>repo
+</span></code></pre></div>
 <ul>
-<li><a href="https://www.autoware.org">Autoware 官網</a>：上面有 Autoware 的最基本介紹</li>
-<li><a href="https://autowarefoundation.github.io/autoware-documentation/main/">Autoware Documentation</a>：最重要的部份，上面有非常詳細的安裝以及使用教學</li>
-<li><a href="https://github.com/autowarefoundation/autoware/discussions">GitHub Discussion</a>：Autoware 社群的討論區，有問題的話可以直接在上面發問，甚至也可以發布一些自己的作品</li>
-<li><a href="https://github.com/autowarefoundation/autoware-projects/wiki">Project Wiki</a>：對社群的運作有興趣的話可以參考這頁</li>
+<li>安裝編譯 Yocto 所需要的套件，可參考<a href="https://docs.yoctoproject.org/ref-manual/system-requirements.html#required-packages-for-the-build-host">官網</a></li>
 </ul>
-<h2 id="working-group">Working Group</h2>
-<p>Autoware 社群有許多 Working Group 所組成，可以選擇自己有興趣的參與，與社群討論各式各樣的議題</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>chrpath<span class="w"> </span>cpio<span class="w"> </span>debianutils<span class="w"> </span>diffstat<span class="w"> </span>file<span class="w"> </span>gawk<span class="w"> </span>gcc<span class="w"> </span>git<span class="w"> </span>iputils-ping<span class="w"> </span>libacl1<span class="w"> </span>locales<span class="w"> </span>python3<span class="w"> </span>python3-git<span class="w"> </span>python3-jinja2<span class="w"> </span>python3-pexpect<span class="w"> </span>python3-pip<span class="w"> </span>python3-subunit<span class="w"> </span>socat<span class="w"> </span>texinfo<span class="w"> </span>unzip<span class="w"> </span>wget<span class="w"> </span>xz-utils<span class="w"> </span>zstd<span class="w"> </span>liblz4-tool
+</span></code></pre></div>
+<h2 id="_2">編譯</h2>
 <ul>
-<li><a href="https://github.com/autowarefoundation/autoware-projects/wiki#working-group-list">Working Group List</a>：Working Group 的總覽</li>
-<li><a href="https://github.com/autowarefoundation/autoware/discussions/categories/workgroup-meetings">WG meeting minutes</a>：每次的 Working Group 會議記錄都會放到 GitHub Discussion 上</li>
-<li><a href="https://calendar.google.com/calendar/u/0/embed?src=autoware.org_6lol0ho5ft0217h8c60pi1fm30@group.calendar.google.com&amp;ctz=Asia/Taipei">Calendar</a>：所有 Working Group 的會議時間</li>
+<li>先建立編譯環境，可以指定 <code>AGL_TOP</code> 這個環境變數來方便使用</li>
 </ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AGL_TOP</span><span class="o">=</span><span class="nv">$HOME</span>/workspace/agl_ws
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$AGL_TOP</span>
+</span></code></pre></div>
+<ul>
+<li>抓取程式碼</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$AGL_TOP</span>/trout<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$AGL_TOP</span>/trout
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>repo<span class="w"> </span>init<span class="w"> </span>-b<span class="w"> </span>trout<span class="w"> </span>-u<span class="w"> </span>https://gerrit.automotivelinux.org/gerrit/AGL/AGL-repo
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>repo<span class="w"> </span>sync
+</span></code></pre></div>
+<ul>
+<li>接下來我們都會使用 <code>aglsetup.sh</code> 這個 script</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 列出所有可能的選項</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">source</span><span class="w"> </span>meta-agl/scripts/aglsetup.sh<span class="w"> </span>-h
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># 建立編譯環境</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># -m 代表平台，-b 是存放的資料夾，後面要接上要啟動的功能</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nb">source</span><span class="w"> </span>meta-agl/scripts/aglsetup.sh<span class="w"> </span>-m<span class="w"> </span>qemux86-64<span class="w"> </span>-b<span class="w"> </span>qemux86-64<span class="w"> </span>agl-demo<span class="w"> </span>agl-devel
+</span></code></pre></div>
+<ul>
+<li>可以嘗試編譯特定 demo</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Sample Qt based IVI demo </span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">source</span><span class="w"> </span>meta-agl/scripts/aglsetup.sh<span class="w"> </span>-f<span class="w"> </span>-m<span class="w"> </span>qemux86-64<span class="w"> </span>-b<span class="w"> </span>qemux86-64<span class="w"> </span>agl-demo<span class="w"> </span>agl-devel
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;# reuse download directories&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$AGL_TOP</span>/site.conf
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;DL_DIR = \&quot;</span><span class="nv">$HOME</span><span class="s2">/downloads/\&quot;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$AGL_TOP</span>/site.conf
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;SSTATE_DIR = \&quot;</span><span class="nv">$AGL_TOP</span><span class="s2">/sstate-cache/\&quot;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$AGL_TOP</span>/site.conf
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>ln<span class="w"> </span>-sf<span class="w"> </span><span class="nv">$AGL_TOP</span>/site.conf<span class="w"> </span>conf/
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Build</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nb">time</span><span class="w"> </span>bitbake<span class="w"> </span>agl-ivi-demo-qt
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>在 Ubuntu 24.04 編譯可能會出現如下錯誤
+<code>ERROR: User namespaces are not usable by BitBake, possibly due to AppArmor.</code>
+這個是因為 Ubuntu 引入了 user namespace 的機制，我們可以先暫時關閉
+<code>sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0</code></p>
+</div>
 
 
 

@@ -6,16 +6,16 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Autoware 的簡單介紹，以及相關常用連結">
+        <meta name="description" content="AGL 的簡單介紹">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/autoware/introduction/">
+        <link rel="canonical" href="https://ros2.tw/agl/introduction/">
       
       
-        <link rel="prev" href="../../zenoh/zenoh_bridge_ros2/">
+        <link rel="prev" href="../../autoware/api/">
       
       
         <link rel="next" href="../installation/">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Autoware 簡介 - ROS 2 筆記</title>
+        <title>AGL 介紹 - ROS 2 筆記</title>
       
     
     
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Autoware 簡介
+              AGL 介紹
             
           </span>
         </div>
@@ -973,20 +973,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1002,7 +1000,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Autoware 入門
@@ -1013,30 +1011,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Autoware 介紹
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../autoware/introduction/" class="md-nav__link">
         
   
   
@@ -1047,51 +1025,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      版本
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      常用連結
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#working-group" class="md-nav__link">
-    <span class="md-ellipsis">
-      Working Group
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1104,7 +1037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../autoware/installation/" class="md-nav__link">
         
   
   
@@ -1127,7 +1060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/" class="md-nav__link">
+      <a href="../../autoware/modules/" class="md-nav__link">
         
   
   
@@ -1150,7 +1083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../map/" class="md-nav__link">
+      <a href="../../autoware/map/" class="md-nav__link">
         
   
   
@@ -1173,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../simulation/" class="md-nav__link">
+      <a href="../../autoware/simulation/" class="md-nav__link">
         
   
   
@@ -1196,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../../autoware/api/" class="md-nav__link">
         
   
   
@@ -1223,18 +1156,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -1250,7 +1185,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             AGL 入門
@@ -1261,10 +1196,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../agl/introduction/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    AGL 介紹
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1275,6 +1230,33 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用連結
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1287,7 +1269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../agl/installation/" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   
@@ -1337,25 +1319,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      版本
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
       常用連結
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#working-group" class="md-nav__link">
-    <span class="md-ellipsis">
-      Working Group
     </span>
   </a>
   
@@ -1377,36 +1341,20 @@
 
 
 
-  <h1>Autoware 介紹</h1>
+  <h1>AGL 介紹</h1>
 
-<p>Autoware 本質上是基於 ROS framework 上的自駕車軟體，所以也可以視為一系列的 ROS package 所組成。
-與 ROS 類似，也有自己的吉祥物，目前是設定為<a href="https://github.com/orgs/autowarefoundation/discussions/5825">馬</a>。</p>
-<p>由於 Autoware 目前的連結有點分散很難尋找，我創了個 <a href="https://github.com/evshary/awesome-autoware/">awesome list</a> 來收集，方便尋找。歡迎大家在上面新增有意思的專案。</p>
-<h2 id="_1">版本</h2>
-<p>在 Autoware 中有三個版本：</p>
+<p>Automotive Grade Linux 是 Linux Foundation 底下的組織。
+主要目標是以提供汽車行業 OEM 廠商一個 Software Defined Vehicle (SDV) 的共通平台。
+如果參考<a href="[https://www.automotivelinux.org/about/members/](https://www.automotivelinux.org/about/members/)">會員名單</a>的話可以看到有很多日本的車企在裡面。</p>
+<p>軟體架構最主要是以 Yocto 為主，然後上面會有各式各樣跟汽車相關的應用層，例如 Flutter、KUKSA.val 等等，另外也有探討像是 Xen、VirtIO 等等的 hypervisor 的情境。
+目前最新版本為 Terrific Trout (v20.0)。</p>
+<h2 id="_1">常用連結</h2>
 <ul>
-<li><a href="https://github.com/autowarefoundation/autoware/tree/autoware-ai">Autoware.ai</a>：最早期的版本，使用 ROS 1</li>
-<li><a href="https://gitlab.com/autowarefoundation/autoware.auto/AutowareAuto">Autoware.auto</a>：升級到 ROS 2 後的新版本，值得注意的是這時候的程式碼是放在 GitLab</li>
-<li><a href="https://github.com/autowarefoundation/autoware">Autoware</a>：最新版基於 ROS 2 的 Autoware，這個版本主要目的是把 package 區分為 core 和 universe，方便維護<ul>
-<li><a href="https://github.com/autowarefoundation/autoware.core">Autoware.core</a>：自駕車中最重要的套件會放在這裡，這邊的程式碼需要經過嚴格的品質驗證</li>
-<li><a href="https://github.com/autowarefoundation/autoware.universe">Autoware.universe</a>：其他第三方社群所開發的套件會放在此</li>
-</ul>
-</li>
-</ul>
-<p>原本 Autowware 是使用日期來分版本，但是現在已經<a href="https://github.com/orgs/autowarefoundation/discussions/6637">改用 semantic version</a> 了，如 1.5、1.6 等等，changelog 的部份可以從 <a href="https://github.com/autowarefoundation/autoware/releases">GitHub release</a> 看到。儘管如此，Autoware 還是相依於 ROS 2 LTS 版本變化，目前主要是跟著 Humble 走，未來將會移植到 Jazzy 上。</p>
-<h2 id="_2">常用連結</h2>
-<ul>
-<li><a href="https://www.autoware.org">Autoware 官網</a>：上面有 Autoware 的最基本介紹</li>
-<li><a href="https://autowarefoundation.github.io/autoware-documentation/main/">Autoware Documentation</a>：最重要的部份，上面有非常詳細的安裝以及使用教學</li>
-<li><a href="https://github.com/autowarefoundation/autoware/discussions">GitHub Discussion</a>：Autoware 社群的討論區，有問題的話可以直接在上面發問，甚至也可以發布一些自己的作品</li>
-<li><a href="https://github.com/autowarefoundation/autoware-projects/wiki">Project Wiki</a>：對社群的運作有興趣的話可以參考這頁</li>
-</ul>
-<h2 id="working-group">Working Group</h2>
-<p>Autoware 社群有許多 Working Group 所組成，可以選擇自己有興趣的參與，與社群討論各式各樣的議題</p>
-<ul>
-<li><a href="https://github.com/autowarefoundation/autoware-projects/wiki#working-group-list">Working Group List</a>：Working Group 的總覽</li>
-<li><a href="https://github.com/autowarefoundation/autoware/discussions/categories/workgroup-meetings">WG meeting minutes</a>：每次的 Working Group 會議記錄都會放到 GitHub Discussion 上</li>
-<li><a href="https://calendar.google.com/calendar/u/0/embed?src=autoware.org_6lol0ho5ft0217h8c60pi1fm30@group.calendar.google.com&amp;ctz=Asia/Taipei">Calendar</a>：所有 Working Group 的會議時間</li>
+<li><a href="https://docs.automotivelinux.org/en/trout/">AGL 官方文件</a>：AGL 的基礎教學</li>
+<li><a href="https://wiki.automotivelinux.org/start">AGL Wiki</a>：裡面提一些常用連結和資訊</li>
+<li><a href="https://gerrit.automotivelinux.org/gerrit/admin/repos">程式碼</a>：比較特別的是程式碼的部份是放在 gerrit，而不是 GitHub</li>
+<li><a href="https://lists.automotivelinux.org/g/agl-dev-community/calendar">行事曆</a>：AGL 的相關社群活動</li>
+<li><a href="https://discord.gg/c3tngsS3">Discord</a>：AGL 社群交流的地方</li>
 </ul>
 
 
