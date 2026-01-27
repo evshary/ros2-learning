@@ -6,6 +6,7 @@ keywords:
 ---
 
 這邊紀錄一下 AGL 的編譯以及安裝方法，我們假設使用的是 Ubuntu 系統，然後上面跑 Qemu。
+根據我的實測，可能會需要有 200 GB 的空間才足夠。
 
 ## 前置安裝
 
@@ -65,3 +66,14 @@ time bitbake agl-ivi-demo-qt
     `ERROR: User namespaces are not usable by BitBake, possibly due to AppArmor.`
     這個是因為 Ubuntu 引入了 user namespace 的機制，我們可以先暫時關閉
     `sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0`
+
+## 運行
+
+```bash
+# 先 source 環境
+source $AGL_TOP/trout/qemux86-64/agl-init-build-env
+# 運行 qemu 環境
+runqemu tmp/deploy/images/qemux86-64/agl-ivi-demo-qt-qemux86-64.rootfs.qemuboot.conf kvm serialstdio slirp
+```
+
+這時候會進入 AGL Yocto 的視窗，密碼是 `root`。
