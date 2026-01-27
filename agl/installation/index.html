@@ -1283,6 +1283,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      運行
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1341,6 +1350,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      運行
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1359,7 +1377,8 @@
 
   <h1>AGL 安裝</h1>
 
-<p>這邊紀錄一下 AGL 的編譯以及安裝方法，我們假設使用的是 Ubuntu 系統，然後上面跑 Qemu。</p>
+<p>這邊紀錄一下 AGL 的編譯以及安裝方法，我們假設使用的是 Ubuntu 系統，然後上面跑 Qemu。
+根據我的實測，可能會需要有 200 GB 的空間才足夠。</p>
 <h2 id="_1">前置安裝</h2>
 <ul>
 <li>先安裝 repo，AGL 常用的抓程式碼工具</li>
@@ -1412,6 +1431,13 @@
 這個是因為 Ubuntu 引入了 user namespace 的機制，我們可以先暫時關閉
 <code>sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0</code></p>
 </div>
+<h2 id="_3">運行</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 先 source 環境</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">source</span><span class="w"> </span><span class="nv">$AGL_TOP</span>/trout/qemux86-64/agl-init-build-env
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># 運行 qemu 環境</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>runqemu<span class="w"> </span>tmp/deploy/images/qemux86-64/agl-ivi-demo-qt-qemux86-64.rootfs.qemuboot.conf<span class="w"> </span>kvm<span class="w"> </span>serialstdio<span class="w"> </span>slirp
+</span></code></pre></div>
+<p>這時候會進入 AGL Yocto 的視窗，密碼是 <code>root</code>。</p>
 
 
 
