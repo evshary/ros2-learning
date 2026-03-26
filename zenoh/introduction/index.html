@@ -1358,15 +1358,14 @@
 <p>Zenoh 的 <a href="https://github.com/eclipse-zenoh">GitHub namepace</a> 裡面底下有很多 project，下面列出幾個常用的</p>
 <ul>
 <li><a href="https://github.com/eclipse-zenoh/zenoh">zenoh</a>：zenoh 本身的主程式</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-dds">zenoh-plugin-dds</a>：結合 zenoh 和 DDS，將兩者的資料互相轉換</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds">zenoh-plugin-ros2dds</a>：雖然也是跟 DDS 相連，但是這特別限定是用在 ROS 2 的情境下</li>
 <li><a href="https://github.com/eclipse-zenoh/roadmap">Zenoh Roadmap</a>：Zenoh 部份的規格定義放在這邊</li>
-<li>Zenoh 各種程式語言的 repository<ul>
+<li>Zenoh 各種程式語言 API 的 repository<ul>
 <li>Rust: <a href="https://github.com/eclipse-zenoh/zenoh">zenoh</a><ul>
 <li><a href="https://docs.rs/zenoh/latest/zenoh/">基本 Zenoh API</a></li>
 <li><a href="https://docs.rs/zenoh-ext/latest/zenoh_ext/">進階 Zenoh API</a></li>
 </ul>
 </li>
+<li>C: <a href="https://github.com/eclipse-zenoh/zenoh-c">zenoh-c</a></li>
 <li>C++: <a href="https://github.com/eclipse-zenoh/zenoh-cpp">zenoh-cpp</a></li>
 <li>Python: <a href="https://github.com/eclipse-zenoh/zenoh-python">zenoh-python</a></li>
 <li>Kotlin: <a href="https://github.com/eclipse-zenoh/zenoh-kotlin">zenoh-kotlin</a></li>
@@ -1379,11 +1378,23 @@
 <li><a href="https://github.com/ZettaScaleLabs/zenoh-nostd">zenoh-nostd</a>：用純 Rust 寫成，且不需要用到標準函式庫，所以可以用在嵌入式系統</li>
 </ul>
 </li>
+<li>Plugin：Zenoh 支援多種 plugin，可以嵌入在 Zenoh 程式之中，將 Zenoh 的訊息轉成其他的 protocol<ul>
+<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-dds">zenoh-plugin-dds</a>：結合 zenoh 和 DDS，將兩者的資料互相轉換</li>
+<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds">zenoh-plugin-ros2dds</a>：雖然也是跟 DDS 相連，但是這特別限定是用在 ROS 2 的情境下</li>
+<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-mqtt">zenoh-plugin-mqtt</a>：將 MQTT 和 Zenoh 的訊息互相轉換</li>
+<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-webserver">zenoh-plugin-webserver</a>：可以用 Web URL 來取得 Zenoh 的資料</li>
 </ul>
-<p>如果你想了解還有哪些其他 project 使用 Zenoh，可以參考這邊</p>
-<ul>
-<li><a href="https://github.com/kydos/awesome-zenoh">awesome-zenoh</a></li>
+</li>
+<li>Backend：Zenoh 也支援多種 backend，可以將收到的訊息儲存在特定 Database 之中<ul>
+<li><a href="https://github.com/eclipse-zenoh/zenoh-backend-influxdb">zenoh-backend-influxdb</a>：將資料儲存在 InfluxDB 中，支援 V1 和 V2</li>
+<li><a href="https://github.com/eclipse-zenoh/zenoh-backend-filesystem">zenoh-backend-filesystem</a>：將資料儲存在檔案系統之中</li>
+<li><a href="https://github.com/eclipse-zenoh/zenoh-backend-rocksdb">zenoh-backend-rocksdb</a>：將資料儲存在 RocksDB 之中</li>
+<li><a href="https://github.com/eclipse-zenoh/zenoh-backend-s3">zenoh-backend-s3</a>：將資料儲存在 S3 資料庫之中</li>
 </ul>
+</li>
+<li><a href="https://github.com/eclipse-zenoh/zenoh-dissector">zenoh-dissector</a>：Zenoh 的 wireshark plugin，可以用來解析 Zenoh 的封包</li>
+</ul>
+<p>如果你想了解更多使用 Zenoh 的 project，可以參考 <a href="https://github.com/kydos/awesome-zenoh">awesome-zenoh</a>。</p>
 
 
 
