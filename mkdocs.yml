@@ -88,3 +88,4 @@ nav:
     - 'Eclipse SDV 介紹': 'eclipse-sdv/introduction.md'
   - 'Rust':
     - 'Rust 介紹': 'rust/introduction.md'
+    - 'Rust Ownership': 'rust/ownership.md'
