@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="介紹 Zenoh 的 key expression 相關規則">
+        <meta name="description" content="簡介 Rust，並列出常用的 Rust 資源">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/zenoh/keyexpr/">
+        <link rel="canonical" href="https://ros2.tw/rust/introduction/">
       
       
-        <link rel="prev" href="../mode/">
+        <link rel="prev" href="../../eclipse-sdv/introduction/">
       
-      
-        <link rel="next" href="../shared_memory/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>Zenoh key - ROS 2 筆記</title>
+        <title>Rust 介紹 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#key-expression" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Zenoh key
+              Rust 介紹
             
           </span>
         </div>
@@ -790,20 +788,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -819,7 +815,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Zenoh 入門
@@ -833,7 +829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../zenoh/introduction/" class="md-nav__link">
         
   
   
@@ -856,7 +852,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mode/" class="md-nav__link">
+      <a href="../../zenoh/mode/" class="md-nav__link">
         
   
   
@@ -876,30 +872,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Zenoh key
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../zenoh/keyexpr/" class="md-nav__link">
         
   
   
@@ -910,51 +886,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#key-expression" class="md-nav__link">
-    <span class="md-ellipsis">
-      key expression
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#selector" class="md-nav__link">
-    <span class="md-ellipsis">
-      Selector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      參考連結
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -967,7 +898,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../shared_memory/" class="md-nav__link">
+      <a href="../../zenoh/shared_memory/" class="md-nav__link">
         
   
   
@@ -990,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../debug/" class="md-nav__link">
+      <a href="../../zenoh/debug/" class="md-nav__link">
         
   
   
@@ -1013,7 +944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../zenoh_bridge_ros2/" class="md-nav__link">
+      <a href="../../zenoh/zenoh_bridge_ros2/" class="md-nav__link">
         
   
   
@@ -1382,18 +1313,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
         
           
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
@@ -1409,7 +1342,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             Rust
@@ -1420,10 +1353,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../rust/introduction/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Rust 介紹
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1434,6 +1387,84 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用資源
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      教學
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="教學">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rust" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rust 本身
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      影片教學
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async" class="md-nav__link">
+    <span class="md-ellipsis">
+      async
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-level-concurrency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low-Level Concurrency
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1471,29 +1502,62 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#key-expression" class="md-nav__link">
-    <span class="md-ellipsis">
-      key expression
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#selector" class="md-nav__link">
-    <span class="md-ellipsis">
-      Selector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      參考連結
+      常用資源
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      教學
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="教學">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rust" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rust 本身
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      影片教學
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#async" class="md-nav__link">
+    <span class="md-ellipsis">
+      async
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#low-level-concurrency" class="md-nav__link">
+    <span class="md-ellipsis">
+      Low-Level Concurrency
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1513,61 +1577,73 @@
 
 
 
-  <h1>Zenoh key</h1>
+  <h1>Rust 介紹</h1>
 
-<p>Zenoh 對上層使用者來說就是提供 key/value 的配對。
-使用者不需要知道對方位置，只需要對 key 做操作即可彼此通訊。
-在其他 protocol 中，通常會稱之為 topic，但因為在 Zenoh 中還有其他的特性，所以我們稱之為 key。</p>
-<p>一個典型的例子是 <code>organizationA/building8/room275/sensor3/temperature</code>，代表著機構 A 的第 8 棟建築下房間 275 的 3 號 sensor 的溫度。</p>
-<p>我們可以看出 key 有兩個主要的特性：</p>
-<ol>
-<li>階層關係：Zenoh 可以利用 <code>/</code> 來把一個 key 分成多個 chunk，這樣在比較兩個 key 的時候可以有效降低計算量。</li>
-<li>key expression：我們可以利用一些特殊字符來涵蓋多個 key，就如同 regular expression 一樣。</li>
-</ol>
-<p>因此 key 中有些規則必須要遵守：</p>
+<p>Rust 是一門越來越熱門的程式語言，因為他語法的設計，特別有安全性，可以避免很多常犯的 memory 問題。
+Rust 目前應用的領域有各類系統程式、網路協定設計、區塊鏈合約等等。
+而在車用領域，也開開始有很多廠商為了 safety 問題而開始採用 Rust。他們相信使用 Rust 可以寫出更加安全的程式，進而避免安全性的各種問題。
+因此這邊也列出一些跟 Rust 相關的資源。</p>
+<h2 id="_1">常用資源</h2>
 <ul>
-<li>開頭結尾不能是 <code>/</code>，且在 key 內部也不能連續出現，例如 <code>//</code></li>
-<li>key 必須是非空的 UTF-8 字元</li>
-<li>key 內部不能用到一些保留字元，如 <code>*</code>, <code>$</code>, <code>?</code>, <code>#</code>，這些會在 key expression 中使用到</li>
+<li><a href="https://play.rust-lang.org/">Rust playground</a>: 線上 compiler，可以用來測試 Rust 語法</li>
+<li><a href="https://rust.godbolt.org/">Compiler Explorer</a>: 可以用來觀察 Rust 編譯成組合語言會長怎麼樣</li>
+<li><a href="https://crates.io/">Rust Community Crate</a>: 社群所開發的套件會放在這邊</li>
 </ul>
-<h2 id="key-expression">key expression</h2>
-<p>Key expression 最大的用途在於，我們可以用他來對多個 key 進行存取，他主要的設計來自於 <a href="https://github.com/eclipse-zenoh/roadmap/blob/main/rfcs/ALL/Key%20Expressions.md">Key Expression Language</a>。</p>
-<p>主要特性有：</p>
+<h2 id="_2">教學</h2>
+<h3 id="rust">Rust 本身</h3>
 <ul>
-<li><code>*</code> 只能單獨出現在 chunk 中，代表著可以對應到任意的字元，例如 <code>organizationA/building8/room275/*/temperature</code> 就包含了 room275 底下任何 sensor 的 temperature。</li>
-<li><code>$*</code> 一樣可以對應到任意字元，但是可以和其他字元一起出現在 chunk 之中，例如 <code>organizationA/building8/room275/sensor$*/temperature</code> 就是取得 sensor1, sensor2 等等感測器的溫度。</li>
-<li><code>**</code> 可以對應到 0 到多個 chunk，例如 <code>organizationA/**/temperature</code> 可以取得所有機構 A 下的所有溫度資訊。</li>
+<li>The Rust Programming Language: 官方文件<ul>
+<li><a href="https://doc.rust-lang.org/book/?search=">英文</a></li>
+<li><a href="https://rust-lang.tw/book-tw/">中文</a></li>
 </ul>
-<p>為了避免冗於設計，也就是多種 key expression 對應到相同意思，有些規則必須要遵守：</p>
-<ul>
-<li>只允許一個 <code>**</code>，不能有 <code>**/**</code></li>
-<li>只允許 <code>*/**</code>，不能有 <code>**/*</code></li>
-<li>只允許單一 <code>$*</code>，不能有 <code>$*$*</code></li>
-<li>在一個 chunk 中，不能單獨存在 <code>$*</code>，只能用 <code>*</code> 替換</li>
+</li>
+<li><a href="https://course.rs/about-book.html">Rust语言圣经(Rust Course)</a>: 中國人寫的教學<ul>
+<li><a href="https://zh.practice.rs/why-exercise.html">Rust By Practice( Rust 练习实践 )</a>: 附上的練習題</li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>少用 <code>$*</code>，因為效能較差，盡量多用 <code>*</code> 替換。例如 <code>robot/12</code> 和 <code>robot/18</code> 的設計就比 <code>robot12</code> 和 <code>robot12</code> 好，因為我們可以用 <code>robot/*</code> 來取得所有的 robot，而不是用效能較差的 <code>robot$*</code></p>
-</div>
-<h2 id="selector">Selector</h2>
-<p><a href="https://github.com/eclipse-zenoh/roadmap/blob/main/rfcs/ALL/Selectors/README.md">Selector</a>基本上就是 key expression 加上 parameters。
-這個只能使用在 Query 上，主要目的是提供 Query 更多可以判斷的參數。
-使用方式跟 HTTP URL 如何帶入 GET 參數很類似，在 key expression 後方加上 <code>?</code>，就可以放入多個 key/value 的配對了，中間一樣用 <code>;</code> 來做區隔。</p>
-<p>舉例來說，下面的 Selector 可以區分為 Key Expression 和 parameters 兩個部份</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>path/**/something?arg1=val1;arg2=value%202
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>^               ^ ^                      ^
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>|Key Expression-| |----- parameters -----|
-</span></code></pre></div>
-<p>在程式內部可以得到</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  key_expr: &quot;path/**/something&quot;,
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  parameters: {arg1: &quot;val1&quot;, arg2: &quot;value 2&quot;}
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>}
-</span></code></pre></div>
-<h2 id="_1">參考連結</h2>
+</li>
+<li>Rust by Example<ul>
+<li><a href="https://doc.rust-lang.org/rust-by-example/">英文</a></li>
+<li><a href="https://rustwiki.org/zh-CN/rust-by-example/index.html">中文</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/rust-lang/rustlings">rustlings</a>: 有些 Rust 的練習可以確保知道基本概念</li>
+<li><a href="https://skyao.io/learning-rust/">Rust学习笔记</a>: 這個有點像查詢的資料庫</li>
+</ul>
+<h3 id="_3">影片教學</h3>
 <ul>
-<li><a href="https://zenoh.io/docs/manual/abstractions/">Zenoh Abstraction</a>：這邊有提供完整的 key, key expression, selector 的說明</li>
-<li><a href="https://github.com/eclipse-zenoh/roadmap/tree/main/rfcs/">Zenoh RFC</a>：如果要有明確的規格，可以參考 RFC</li>
+<li><a href="https://youtu.be/784JWR4oxOI">All Rust features explained</a>: Rust 和其他語言不同的特色</li>
+</ul>
+<h3 id="async">async</h3>
+<ul>
+<li>Asynchronous Programming in Rust: 官方文件<ul>
+<li><a href="https://rust-lang.github.io/async-book/">英文</a></li>
+<li><a href="https://huangjj27.github.io/async-book/">中文</a></li>
+<li><a href="https://course.rs/async-rust/intro.html">Rust语言圣经 - Rust 异步编程</a>: 含官方文件和 tokio 教學，但改寫得比較容易懂</li>
+</ul>
+</li>
+<li>tokio<ul>
+<li><a href="https://tokio.rs/tokio/tutorial/async">Tokio - Async in depth</a></li>
+<li><a href="https://rust-book.junmajinlong.com/ch100/00.html">Rust入门秘籍 - tokio简介</a></li>
+<li><a href="https://gist.github.com/weihanglo/4661db374f82fe91e931bab0f50d7a10">Tokio 內部機制：從頭理解 Rust 非同步 I/O 框架</a></li>
+</ul>
+</li>
+<li>async 內部分析 (FSM logic)<ul>
+<li><a href="https://segmentfault.com/a/1190000024540040">async/await 如何工作 | Rust学习笔记</a></li>
+</ul>
+</li>
+<li>async 比較易懂的教學:<ul>
+<li><a href="https://www.readfog.com/a/1666736268025892864">Rust Async 1- 異步編程的概念</a></li>
+<li><a href="https://www.readfog.com/a/1666818509749981184">Rust Async 2- 同步、多線程、異步的例子</a></li>
+<li><a href="https://www.readfog.com/a/1667010704884994048">Rust Async 3- 繼續理解 Async</a></li>
+<li><a href="https://www.readfog.com/a/1667010728788332544">Rust Async 4- 理解 Future</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIxODY5Mzc4Mg==&amp;mid=2247485328&amp;idx=1&amp;sn=87e20836cdb8de10d2de8e5db0fde598&amp;chksm=97e7ee69a090677f262035e3ab1882c9d8bf4c7259d7f5fcc56fcb3fc8b7f6069d631c71f14a&amp;scene=178&amp;cur_album_id=2364704891711045633#rd">Rust Async 5. 最后一个例子</a></li>
+<li><a href="http://liubin.org/blog/2021/03/25/hello-rust-async/">Hello Rust async/await</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="low-level-concurrency">Low-Level Concurrency</h3>
+<ul>
+<li><a href="https://marabos.nl/atomics/">Rust Atomics and Locks: Low-Level Concurrency in Practice</a>: 講解 Rust 底層的 concurrency 如何運作</li>
 </ul>
 
 
