@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="簡介 Rust，並列出常用的 Rust 資源">
+        <meta name="description" content="Rust Ownership 概念">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/rust/introduction/">
+        <link rel="canonical" href="https://ros2.tw/rust/ownership/">
       
       
-        <link rel="prev" href="../../eclipse-sdv/introduction/">
+        <link rel="prev" href="../introduction/">
       
-      
-        <link rel="next" href="../ownership/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>Rust 介紹 - ROS 2 筆記</title>
+        <title>Rust Ownership - ROS 2 筆記</title>
       
     
     
@@ -88,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#borrow-own" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rust 介紹
+              Rust Ownership
             
           </span>
         </div>
@@ -1355,6 +1353,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1370,7 +1391,7 @@
   
   
   <span class="md-ellipsis">
-    Rust 介紹
+    Rust Ownership
     
   </span>
   
@@ -1383,7 +1404,7 @@
   
   
   <span class="md-ellipsis">
-    Rust 介紹
+    Rust Ownership
     
   </span>
   
@@ -1404,55 +1425,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#borrow-own" class="md-nav__link">
     <span class="md-ellipsis">
-      常用資源
+      borrow &amp; own
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#mutable-immutable" class="md-nav__link">
     <span class="md-ellipsis">
-      教學
+      mutable &amp; immutable
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="教學">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy-clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copy &amp; Clone
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      實際使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="實際使用">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#rust" class="md-nav__link">
+  <a href="#rc-arc-shared-ownership" class="md-nav__link">
     <span class="md-ellipsis">
-      Rust 本身
+      Rc &amp; Arc: shared ownership
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#refcell-mixed-mutable-immutable" class="md-nav__link">
     <span class="md-ellipsis">
-      影片教學
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async" class="md-nav__link">
-    <span class="md-ellipsis">
-      async
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#low-level-concurrency" class="md-nav__link">
-    <span class="md-ellipsis">
-      Low-Level Concurrency
+      RefCell: mixed mutable &amp; immutable
     </span>
   </a>
   
@@ -1463,33 +1484,28 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#rc-refcell" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rc + RefCell 共同使用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      各種組合
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ownership/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust Ownership
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1527,9 +1543,69 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#borrow-own" class="md-nav__link">
+    <span class="md-ellipsis">
+      borrow &amp; own
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutable-immutable" class="md-nav__link">
+    <span class="md-ellipsis">
+      mutable &amp; immutable
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy-clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copy &amp; Clone
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      常用資源
+      實際使用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="實際使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rc-arc-shared-ownership" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rc &amp; Arc: shared ownership
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refcell-mixed-mutable-immutable" class="md-nav__link">
+    <span class="md-ellipsis">
+      RefCell: mixed mutable &amp; immutable
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rc-refcell" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rc + RefCell 共同使用
     </span>
   </a>
   
@@ -1538,51 +1614,9 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      教學
+      各種組合
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="教學">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rust" class="md-nav__link">
-    <span class="md-ellipsis">
-      Rust 本身
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      影片教學
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#async" class="md-nav__link">
-    <span class="md-ellipsis">
-      async
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#low-level-concurrency" class="md-nav__link">
-    <span class="md-ellipsis">
-      Low-Level Concurrency
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1602,74 +1636,156 @@
 
 
 
-  <h1>Rust 介紹</h1>
+  <h1>Rust Ownership</h1>
 
-<p>Rust 是一門越來越熱門的程式語言，因為他語法的設計，特別有安全性，可以避免很多常犯的 memory 問題。
-Rust 目前應用的領域有各類系統程式、網路協定設計、區塊鏈合約等等。
-而在車用領域，也開開始有很多廠商為了 safety 問題而開始採用 Rust。他們相信使用 Rust 可以寫出更加安全的程式，進而避免安全性的各種問題。
-因此這邊也列出一些跟 Rust 相關的資源。</p>
-<h2 id="_1">常用資源</h2>
+<p>Rust 其中一個很重要的概念是 ownership。
+Ownership 代表著有人要專門負責釋放沒有使用的記憶體，而不是靠著手動釋放或是系統的回收機制(Garbage Collection)。
+手動釋放的方式（如傳統的 C/C++）容易造成開發者忘記 free，導致有 memory leak 的狀況。
+另一方面 Garbage Collection（如 Java）則是因為要定期檢查回收記憶體，造成效能不佳。</p>
+<p>透過 ownership 機制，Rust 可以在維持效率的同時，又能確保程式的安全性。</p>
+<h2 id="borrow-own">borrow &amp; own</h2>
+<p>需要區分 borrow 和 own 兩個概念</p>
+<ol>
+<li>如果是 owner，可以對變數做任何事情，因為它會負責釋放</li>
+<li>如果是 borrow，那只能讀取變數，不能修改變數</li>
+<li>如果是 mutuable borrow，那可以修改變數，但是不能 move / destroy，因為最終還是要還給 owner 的</li>
+</ol>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">Basket</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">fruit</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">fn</span><span class="w"> </span><span class="nf">try_remove_fruit</span><span class="p">(</span><span class="n">b</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="n">Basket</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="c1">//let _fruit = b.fruit;   // 會編譯失敗，因為 b.fruit 會被移走</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Basket</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fruit</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Apple&quot;</span><span class="p">.</span><span class="n">to_owned</span><span class="p">()};</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="n">try_remove_fruit</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// 借用 b</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">_fruit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">fruit</span><span class="p">;</span><span class="w">  </span><span class="c1">// 前面儘管有借用，後面 b 還是可以繼續使用</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="mutable-immutable">mutable &amp; immutable</h2>
+<p>如果想要取得某個變數的 mutable reference，那個變數一定要是 mutable 的</p>
+<p>mutable reference 代表著目前它是唯一的引用，因為沒有其他引用，所以才可以更改該變數</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello&quot;</span><span class="p">.</span><span class="n">to_owned</span><span class="p">();</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">// r 不可變，但是指向的內容可以被改變</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">// r 也可變</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">r</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+</span></code></pre></div>
+<h2 id="copy-clone">Copy &amp; Clone</h2>
+<p>實現 Copy 的類型的一定也是 Clone 的類型，Clone 是 Supertrait</p>
+<p>Copy 的特性：</p>
+<ol>
+<li>只會完全複製 stack 的資料，不管 heap</li>
+<li>實作包在 Rust 內部，開發者無法修改</li>
+<li>觸發的時間點在幾個地方觸發：給值、參數傳入、回傳結果</li>
+<li>類型中的所有成員都必須是 Copy、並且沒有實現 Drop，該類型才能是 Copy</li>
+</ol>
+<p>Clone 的特性：</p>
+<ol>
+<li>複製 stack / heap 的資料都可以</li>
+<li>開發者必須要實作 <code>Clone::clone(&amp;self)</code></li>
+<li>觸發複製的時間點只有呼叫 <code>Clone::clone(&amp;self)</code> 的時候</li>
+<li>類型沒有特別限制</li>
+</ol>
+<h2 id="_1">實際使用</h2>
+<h3 id="rc-arc-shared-ownership">Rc &amp; Arc: shared ownership</h3>
+<p>雖然每個變數只能有一個 owner，但是總是有需要有多個 owner 的情況，這樣程式也比較好寫</p>
 <ul>
-<li><a href="https://play.rust-lang.org/">Rust playground</a>: 線上 compiler，可以用來測試 Rust 語法</li>
-<li><a href="https://rust.godbolt.org/">Compiler Explorer</a>: 可以用來觀察 Rust 編譯成組合語言會長怎麼樣</li>
-<li><a href="https://crates.io/">Rust Community Crate</a>: 社群所開發的套件會放在這邊</li>
+<li>Rc: single thread 中的 reference counter，可以共享所有權</li>
 </ul>
-<h2 id="_2">教學</h2>
-<h3 id="rust">Rust 本身</h3>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">rc</span><span class="p">::</span><span class="n">Rc</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rc</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v1</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v2</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="c1">// v1, v2, v3 都有 ownership</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
+</span></code></pre></div>
 <ul>
-<li>The Rust Programming Language: 官方文件<ul>
-<li><a href="https://doc.rust-lang.org/book/?search=">英文</a></li>
-<li><a href="https://rust-lang.tw/book-tw/">中文</a></li>
+<li>Arc: multi-thread 中的 reference counter，A 代表 atomic</li>
 </ul>
-</li>
-<li><a href="https://course.rs/about-book.html">Rust语言圣经(Rust Course)</a>: 中國人寫的教學<ul>
-<li><a href="https://zh.practice.rs/why-exercise.html">Rust By Practice( Rust 练习实践 )</a>: 附上的練習題</li>
-</ul>
-</li>
-<li>Rust by Example<ul>
-<li><a href="https://doc.rust-lang.org/rust-by-example/">英文</a></li>
-<li><a href="https://rustwiki.org/zh-CN/rust-by-example/index.html">中文</a></li>
-</ul>
-</li>
-<li><a href="https://github.com/rust-lang/rustlings">rustlings</a>: 有些 Rust 的練習可以確保知道基本概念</li>
-<li><a href="https://skyao.io/learning-rust/">Rust学习笔记</a>: 這個有點像查詢的資料庫</li>
-</ul>
-<h3 id="_3">影片教學</h3>
-<ul>
-<li><a href="https://youtu.be/784JWR4oxOI">All Rust features explained</a>: Rust 和其他語言不同的特色</li>
-</ul>
-<h3 id="async">async</h3>
-<ul>
-<li>Asynchronous Programming in Rust: 官方文件<ul>
-<li><a href="https://rust-lang.github.io/async-book/">英文</a></li>
-<li><a href="https://huangjj27.github.io/async-book/">中文</a></li>
-<li><a href="https://course.rs/async-rust/intro.html">Rust语言圣经 - Rust 异步编程</a>: 含官方文件和 tokio 教學，但改寫得比較容易懂</li>
-</ul>
-</li>
-<li>tokio<ul>
-<li><a href="https://tokio.rs/tokio/tutorial/async">Tokio - Async in depth</a></li>
-<li><a href="https://rust-book.junmajinlong.com/ch100/00.html">Rust入门秘籍 - tokio简介</a></li>
-<li><a href="https://gist.github.com/weihanglo/4661db374f82fe91e931bab0f50d7a10">Tokio 內部機制：從頭理解 Rust 非同步 I/O 框架</a></li>
-</ul>
-</li>
-<li>async 內部分析 (FSM logic)<ul>
-<li><a href="https://segmentfault.com/a/1190000024540040">async/await 如何工作 | Rust学习笔记</a></li>
-</ul>
-</li>
-<li>async 比較易懂的教學:<ul>
-<li><a href="https://www.readfog.com/a/1666736268025892864">Rust Async 1- 異步編程的概念</a></li>
-<li><a href="https://www.readfog.com/a/1666818509749981184">Rust Async 2- 同步、多線程、異步的例子</a></li>
-<li><a href="https://www.readfog.com/a/1667010704884994048">Rust Async 3- 繼續理解 Async</a></li>
-<li><a href="https://www.readfog.com/a/1667010728788332544">Rust Async 4- 理解 Future</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzIxODY5Mzc4Mg==&amp;mid=2247485328&amp;idx=1&amp;sn=87e20836cdb8de10d2de8e5db0fde598&amp;chksm=97e7ee69a090677f262035e3ab1882c9d8bf4c7259d7f5fcc56fcb3fc8b7f6069d631c71f14a&amp;scene=178&amp;cur_album_id=2364704891711045633#rd">Rust Async 5. 最后一个例子</a></li>
-<li><a href="http://liubin.org/blog/2021/03/25/hello-rust-async/">Hello Rust async/await</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="low-level-concurrency">Low-Level Concurrency</h3>
-<ul>
-<li><a href="https://marabos.nl/atomics/">Rust Atomics and Locks: Low-Level Concurrency in Practice</a>: 講解 Rust 底層的 concurrency 如何運作</li>
-</ul>
+<p>如果在多線程的情況，我們需要確保 reference counter 的操作不會有 race condition 的問題，所以要改用 Arc</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">sync</span><span class="p">::</span><span class="n">Arc</span><span class="p">;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">thread</span><span class="p">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="c1">// 用 Arc 包住 data</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arc</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">handles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[];</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="mi">3</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="c1">// Clone data，並放入其他 thread</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">data_clone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arc</span><span class="p">::</span><span class="n">clone</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">);</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">thread</span><span class="p">::</span><span class="n">spawn</span><span class="p">(</span><span class="k">move</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">            </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;value = {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data_clone</span><span class="p">);</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="p">});</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">        </span><span class="n">handles</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">handle</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">handles</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">        </span><span class="n">handle</span><span class="p">.</span><span class="n">join</span><span class="p">().</span><span class="n">unwrap</span><span class="p">();</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="refcell-mixed-mutable-immutable">RefCell: mixed mutable &amp; immutable</h3>
+<p>RefCell 讓變數擁有內部可變性，也就是讓不可變的值進行可變借用</p>
+<p>嚴格來說就是讓擁有者不一定需要有 mutable 才能修改內部，藉此避開只能一個 mutable 的問題(各個擁有者都是 immutable，所以不違反 Rust 原則)</p>
+<p>然而實際執行的時候就會真的見真章了，runtime 還是會檢查 mutable 和 immutable 混用的問題</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">cell</span><span class="p">::</span><span class="n">RefCell</span><span class="p">;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RefCell</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]);</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">borrow_mut</span><span class="p">().</span><span class="n">push</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">borrow</span><span class="p">().</span><span class="n">iter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="rc-refcell">Rc + RefCell 共同使用</h2>
+<p>參考 <a href="https://course.rs/advance/smart-pointer/cell-refcell.html">Rust 語言聖經: Cell &amp; RefCell</a></p>
+<table>
+<thead>
+<tr>
+<th>Rust 規則</th>
+<th>Wrapper 帶來的改變</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每個資料只能有一個擁有者</td>
+<td>Rc/Arc 可以讓資料有多個擁有者</td>
+</tr>
+<tr>
+<td>只能一個 mutable 或是多個 immutable</td>
+<td>RefCell 可以作到 compile 時 mutable 和 immutable 共存，但是 runtime 如果錯誤會 panic</td>
+</tr>
+</tbody>
+</table>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">cell</span><span class="p">::</span><span class="n">RefCell</span><span class="p">;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">rc</span><span class="p">::</span><span class="n">Rc</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rc</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">RefCell</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">.</span><span class="n">to_owned</span><span class="p">()));</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="c1">// 產生多個 owner</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="c1">// 針對其中一個 owner 進行 mutable borrow</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="n">s2</span><span class="p">.</span><span class="n">borrow_mut</span><span class="p">().</span><span class="n">push_str</span><span class="p">(</span><span class="s">&quot; World!&quot;</span><span class="p">);</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:?}</span><span class="se">\n</span><span class="s">{:?}</span><span class="se">\n</span><span class="s">{:?}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">);</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="_2">各種組合</h2>
+<p>這些概念單一來看其實都很簡單，但是組合在一起就會變得複雜，有時候我們也都不知道什麼情境該用什麼樣的組合。
+下面有一張在 Reddit 上很好的圖，可以總結 Ownership 搭配各個 smart pointer 的使用</p>
+<p><img alt="Rust Ownership" src="../images/ownership-reddit.jpeg" /></p>
+<p>一般 Unique 的情況就是遵守 Rust 的 ownership 機制，只能有單一個擁有者。
+如果要有多個擁有者，那就必須要根據是否為多線程來決定使用 Rc 還是 Arc。</p>
+<p>除了 Ownership，還有個概念就做 Accessibility，代表誰可以去存取這個變數。
+在 Unique 情況下，我們不需要有 Ownership，可以用 borrow 的方式來存取。
+然而如果是在單一線程下，我們想要多一點彈性，不要編譯器幫我們做 accessibility 的檢查，這時候就需要使用 Cell 或 RefCell。
+而在多線程的情況，那就必須要使用 Atomic、Mutex、或是 RwLock 了。</p>
 
 
 
