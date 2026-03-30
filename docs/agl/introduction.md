@@ -8,7 +8,7 @@ keywords:
 Automotive Grade Linux 是 Linux Foundation 底下的組織。
 主要目標是以提供汽車行業 OEM 廠商一個車載環境開發系統，也算是 Software Defined Vehicle (SDV) 的共通平台。
 通常會用在車載訊息娛樂系統(In-Vehicle Infotainment, IVI)上。
-如果參考[會員名單]([https://www.automotivelinux.org/about/members/](https://www.automotivelinux.org/about/members/))的話可以看到有很多汽車產業公司在裡面，特別是來自日本的公司。
+如果參考[會員名單](https://www.automotivelinux.org/about/members/)的話可以看到有很多汽車產業公司在裡面，特別是來自日本的公司。
 
 AGL 的所提供的軟體是 Unified Code Base (UCB)，也就是希望各家車廠共同維護的基底程式碼。
 UCB 整體架構是以 Yocto 為主，然後上面會有各式各樣跟汽車相關的應用層，例如 Flutter、KUKSA.val 等等，另外也有探討像是 Xen、VirtIO 等等的 hypervisor 的情境。
