@@ -86,4 +86,5 @@ nav:
     - 'AGL 安裝': 'agl/installation.md'
   - 'Eclipse SDV':
     - 'Eclipse SDV 介紹': 'eclipse-sdv/introduction.md'
-
+  - 'Rust':
+    - 'Rust 介紹': 'rust/introduction.md'
