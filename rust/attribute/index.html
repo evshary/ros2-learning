@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="ROS 2 的基本通訊方法，包含 Topic、Service、Action">
+        <meta name="description" content="Rust 屬性系統">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/ros2/communication/">
+        <link rel="canonical" href="https://ros2.tw/rust/attribute/">
       
       
-        <link rel="prev" href="../command/">
+        <link rel="prev" href="../module/">
       
-      
-        <link rel="next" href="../building/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>ROS 2 通訊方式 - ROS 2 筆記</title>
+        <title>Rust Attribute - ROS 2 筆記</title>
       
     
     
@@ -88,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#topic" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ROS 2 通訊方式
+              Rust Attribute
             
           </span>
         </div>
@@ -306,7 +304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../ros2/introduction/" class="md-nav__link">
         
   
   
@@ -329,7 +327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../ros2/installation/" class="md-nav__link">
         
   
   
@@ -356,20 +354,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -385,7 +381,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             ROS 2 實戰
@@ -399,7 +395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../command/" class="md-nav__link">
+      <a href="../../ros2/command/" class="md-nav__link">
         
   
   
@@ -419,30 +415,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    ROS 2 通訊方式
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ros2/communication/" class="md-nav__link">
         
   
   
@@ -453,69 +429,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#topic" class="md-nav__link">
-    <span class="md-ellipsis">
-      topic
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#service" class="md-nav__link">
-    <span class="md-ellipsis">
-      service
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#action" class="md-nav__link">
-    <span class="md-ellipsis">
-      action
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      總結
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      參考資料
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -528,7 +441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../building/" class="md-nav__link">
+      <a href="../../ros2/building/" class="md-nav__link">
         
   
   
@@ -551,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qos/" class="md-nav__link">
+      <a href="../../ros2/qos/" class="md-nav__link">
         
   
   
@@ -574,7 +487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../record/" class="md-nav__link">
+      <a href="../../ros2/record/" class="md-nav__link">
         
   
   
@@ -597,7 +510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/" class="md-nav__link">
+      <a href="../../ros2/tools/" class="md-nav__link">
         
   
   
@@ -620,7 +533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tips/" class="md-nav__link">
+      <a href="../../ros2/tips/" class="md-nav__link">
         
   
   
@@ -643,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sros/" class="md-nav__link">
+      <a href="../../ros2/sros/" class="md-nav__link">
         
   
   
@@ -711,7 +624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_cyclonedds/" class="md-nav__link">
+      <a href="../../ros2/rmw_cyclonedds/" class="md-nav__link">
         
   
   
@@ -734,7 +647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/basic/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/basic/" class="md-nav__link">
         
   
   
@@ -757,7 +670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/advanced/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/advanced/" class="md-nav__link">
         
   
   
@@ -780,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/hands_on/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/hands_on/" class="md-nav__link">
         
   
   
@@ -1400,18 +1313,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
         
           
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
@@ -1427,7 +1342,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             Rust
@@ -1441,7 +1356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1464,7 +1379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/ownership/" class="md-nav__link">
+      <a href="../ownership/" class="md-nav__link">
         
   
   
@@ -1487,7 +1402,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/module/" class="md-nav__link">
+      <a href="../module/" class="md-nav__link">
         
   
   
@@ -1507,10 +1422,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../rust/attribute/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Rust Attribute
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1521,6 +1456,84 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      分類
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分類">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      編譯器內建 attribute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lint-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      lint attribute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macro-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      macro attribute
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cratemod-level-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      crate/mod level attribute
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      feature
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1558,45 +1571,60 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#topic" class="md-nav__link">
-    <span class="md-ellipsis">
-      topic
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#service" class="md-nav__link">
-    <span class="md-ellipsis">
-      service
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#action" class="md-nav__link">
-    <span class="md-ellipsis">
-      action
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      總結
+      分類
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分類">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      編譯器內建 attribute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lint-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      lint attribute
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macro-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      macro attribute
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cratemod-level-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      crate/mod level attribute
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#feature" class="md-nav__link">
     <span class="md-ellipsis">
-      參考資料
+      feature
     </span>
   </a>
   
@@ -1618,182 +1646,147 @@
 
 
 
-  <h1>ROS 2 通訊方式</h1>
+  <h1>Rust Attribute</h1>
 
-<p>ROS 2 承接 ROS 1，同樣有三種常用的傳輸方式：</p>
+<p>在看 Rust 的程式的時候會常常看到 <code>#[]</code>，這個是 Rust 的屬性系統 (attribute)。
+他的功能在於提供給編譯器或其他工具在編譯時的一些額外資訊，例如改變編譯行為、code 生成、lint、macro 展開等等。</p>
+<p>下面是最基本的語法</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// 單純 attribute，例如 #[test]</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#[attribute]</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// 帶入 key、value，例如 #[cfg(feature = &quot;foo&quot;)]</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cp">#[attribute(key = </span><span class="s">&quot;value&quot;</span><span class="cp">)]</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">// 帶入其他參數，例如 #[allow(dead_code)]</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="cp">#[attribute(arg1, arg2)]</span>
+</span></code></pre></div>
+<h2 id="_1">分類</h2>
+<p>一般來說有下面這幾個分類</p>
+<h3 id="attribute">編譯器內建 attribute</h3>
+<p>調整 compiler 的行為，例如 cfg、inline、repr、derive 等等</p>
 <ul>
-<li>topic</li>
-<li>service</li>
-<li>action</li>
+<li>條件編譯：決定某個程式是否存在</li>
 </ul>
-<p>接著會依序介紹三者的特色與差異</p>
-<h2 id="topic">topic</h2>
-<p>ROS 中最基本的通訊模式就是 topic。
-發佈者(publisher)會指定要把資料丟給某個 topic，需要這個資料的訂閱者(subscriber)則是透過訂閱 topic 來接收資料。
-topic 的概念其實跟我們訂閱雜誌很像，出版社(publisher)會發行雜誌(也就是 topic)，而對這個雜誌有興趣的讀者(subscriber)會去訂閱，這樣當出版社發售新的更新時，就會把雜誌送給各個有訂閱的讀者來閱讀。</p>
-<p>為什麼要設計 topic 這樣的通訊方式呢？
-因為透過 topic 的方式可以簡化通訊的概念，publisher 和 subscriber 不需要知道彼此的狀況，他們只需要關心 topic 即可。
-如果沒有 topic 的機制，傳送端就需要知道現在有多少接收端，而且當新增或減少接收端時，傳送端也都還需要做對應的處理，整體的通訊會變得十分複雜。
-對我們最重要的其實不是傳送端或接收端，而是資料本身，topic 的機制就可以讓開發者專注於資料本身的交換，而不是在通訊上。</p>
-<p><img alt="Topic-MultiplePublisherandMultipleSubscriber" src="../images/Topic-MultiplePublisherandMultipleSubscriber.gif" /></p>
-<p>由上面 ROS 2 官方教學的動畫我們可以知道 topic 有如下的特色：</p>
-<ul>
-<li>不論有多少 publisher / subscriber，都可以用 topic 來做到資料的交換</li>
-<li>publisher 只需要發送一次資料就可以同時讓多個 subscriber 收到，不需要重複發送多次</li>
-<li>topic 可以分開 publisher / subscriber，讓兩者專注於資料的處理上，而非通訊上</li>
-</ul>
-<p>基本上在 ROS 2 中的 topic 觀察方法已經在 ROS 2 指令一章有所提及，這邊就不在重複了。</p>
-<h2 id="service">service</h2>
-<p>ROS 2 中 service 的概念類似我們熟知的 client / server 架構。
-Service server 會提供某種功能的服務，當 service client 需要使用的時候就會發送 request 並等待 server，server 接收到並進行處理後，就會把結果回傳給 client (response)。</p>
-<p>Service 能夠補足 topic 的一些不足。
-舉例來說，當涉及到資料處理而不僅僅是資料傳輸時，我們需要知道資料的處理結果如何，但 topic 的設計只有單向並沒有雙向傳輸，所以我們無法得知接收端處理的狀態，這時就可以用 service 解決這個問題。</p>
-<p><img alt="Service-MultipleServiceClient" src="../images/Service-MultipleServiceClient.gif" /></p>
-<p>上面 ROS 2 官方教學的動畫傳達幾個 service 的特色：</p>
-<ul>
-<li>Service server 只能有一個，但是可以提供 service 給多個 service client</li>
-<li>使用 service 需要定義 request 和 response，也就是 client 和 server 相互溝通的格式定義</li>
-</ul>
-<p>這邊簡單介紹跟 ROS 2 service 相關的操作：</p>
-<ul>
-<li>首先我們先跑個 service 的 example</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>examples_rclcpp_minimal_service<span class="w"> </span>service_main
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#[cfg(feature = </span><span class="s">&quot;foo&quot;</span><span class="cp">)]</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">#[cfg(target_os = </span><span class="s">&quot;linux&quot;</span><span class="cp">)]</span>
 </span></code></pre></div>
 <ul>
-<li>接著可以列出目前有提供的 service，你可以看到會列出多個可使用的 service</li>
+<li>derive：產生實作</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>ros2<span class="w"> </span>service<span class="w"> </span>list
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>/add_two_ints
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>/minimal_service/describe_parameters
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>/minimal_service/get_parameter_types
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>/minimal_service/get_parameters
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>/minimal_service/list_parameters
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>/minimal_service/set_parameters
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>/minimal_service/set_parameters_atomically
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">#[derive(Debug, Clone, PartialEq)]</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">struct</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
 </span></code></pre></div>
 <ul>
-<li>我們可以用 <code>ros2 service call</code> 直接發 request 給 <code>/add_two_ints</code> 這個 service<ul>
-<li>這邊要特別注意我們需要知道 service type，基本上你可以用 tab 來讓 ROS 2 幫你自動補全</li>
+<li>編譯優化 / 行為控制</li>
 </ul>
-</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 指令格式： ros2 service call &lt;service name&gt; &lt;service type&gt; &lt;request&gt;</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>$<span class="w"> </span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/add_two_ints<span class="w"> </span>example_interfaces/srv/AddTwoInts<span class="w"> </span><span class="s2">&quot;{a: 5, b: 5}&quot;</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>requester:<span class="w"> </span>making<span class="w"> </span>request:<span class="w"> </span>example_interfaces.srv.AddTwoInts_Request<span class="o">(</span><span class="nv">a</span><span class="o">=</span><span class="m">5</span>,<span class="w"> </span><span class="nv">b</span><span class="o">=</span><span class="m">5</span><span class="o">)</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>response:
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>example_interfaces.srv.AddTwoInts_Response<span class="o">(</span><span class="nv">sum</span><span class="o">=</span><span class="m">10</span><span class="o">)</span>
-</span></code></pre></div>
-<h2 id="action">action</h2>
-<p>最後一個通訊方式是 action，一定會有人好奇為什麼已經有 topic / service，還要 action 做什麼。
-其實 action 是要強化 service 的不足之處。
-service 雖然可以處理 request / response 的通訊型態，但如果 server 需要很長時間的處理和運算，client 將需要花很長的時間等待，而且也無法知道目前的處理狀態。
-而且假設 client 又收到了新的 request 要把舊的覆蓋掉，他也必須等 server 回應後才能發下一次的 request，非常沒效率。</p>
-<p>action 為了解決這個問題，除了 request / response 外，還多提供了 feedback 的功能，action client 可以在 action server 處理的過程中去詢問目前處理狀態，甚至可以取消當前的 request，變得更加彈性。
-這樣的通訊方法對一些需要花長時間處理的機器人應用非常實用，舉例來說 AMR 不可能一瞬間從 A 點到 B 點，所以當 action server 在導航 A 到 B 時，client 可以知道現在 AMR 的狀態，如果有接收到新的目標 C 點，client 也可以立即取消 A 到 B 的 request ，改成往 C 點。</p>
-<p><img alt="Action-SingleActionClient" src="../images/Action-SingleActionClient.gif" /></p>
-<p>從官方的教學動畫，一樣可以整理出幾個重點：</p>
-<ul>
-<li>Action 的設計結構比 service 還要複雜，分為 Goal Service, Feedback Topic, Result Service</li>
-<li>Goal Service 觸發 action server 開始運作，接著再從 Result Service 取得得結果，而等待結果的過程，可以用 Feedback Topic 來得知目前執行狀態</li>
-<li>上述這些細節都被隱藏在 action 中，我們無法直接看到組成 action 的 topic 和 service</li>
-</ul>
-<p>這邊用 ROS 2 的 action example 來講解一下操作方法：</p>
-<ul>
-<li>先跑一個 Fibonacci 的 action server</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>examples_rclcpp_minimal_action_server<span class="w"> </span>action_server_member_functions
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#[inline]</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="cp">#[inline(always)]</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="cp">#[inline(never)]</span>
 </span></code></pre></div>
 <ul>
-<li>列出目前有的 action，可以看到 /fibonacci</li>
+<li>測試相關</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>ros2<span class="w"> </span>action<span class="w"> </span>list
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>/fibonacci
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">#[test]</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">fn</span><span class="w"> </span><span class="nf">test_add</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">}</span>
 </span></code></pre></div>
 <ul>
-<li>看看 /fibonacci 這個 action 裡面有幾個 server 和 client</li>
+<li>repr：記憶體布局控制</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>ros2<span class="w"> </span>action<span class="w"> </span>info<span class="w"> </span>/fibonacci
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Action:<span class="w"> </span>/fibonacci
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Action<span class="w"> </span>clients:<span class="w"> </span><span class="m">0</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Action<span class="w"> </span>servers:<span class="w"> </span><span class="m">1</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span>/minimal_action_server
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cp">#[repr(C)]</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">struct</span><span class="w"> </span><span class="nc">MyStruct</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">a</span><span class="p">:</span><span class="w"> </span><span class="kt">u8</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="n">b</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="p">,</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
 </span></code></pre></div>
 <ul>
-<li>看 action 的格式是什麼</li>
+<li>doc：產生文件，<code>///</code> 就是 <code>doc</code> 的語法糖</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>ros2<span class="w"> </span>action<span class="w"> </span>show<span class="w"> </span>action_tutorials/action/Fibonacci
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>int32<span class="w"> </span>order
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>---
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>int32<span class="o">[]</span><span class="w"> </span>sequence
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>---
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>int32<span class="o">[]</span><span class="w"> </span>partial_sequence
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cp">#[doc = </span><span class="s">&quot;This is a function&quot;</span><span class="cp">]</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1">// 等同於</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="sd">/// This is a function</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 </span></code></pre></div>
 <ul>
-<li>直接對 action server 發送 request<ul>
-<li><code>--feedback</code> 代表要觀察目前計算狀況</li>
+<li>feature： 把某些 nightly 的功能啟動</li>
 </ul>
-</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 指令格式： ros2 action send_goal &lt;action name&gt; &lt;action type&gt; &lt;request&gt; [--feedback]</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>$<span class="w"> </span>ros2<span class="w"> </span>action<span class="w"> </span>send_goal<span class="w"> </span>/fibonacci<span class="w"> </span>example_interfaces/action/Fibonacci<span class="w"> </span><span class="s2">&quot;{order: 20}&quot;</span><span class="w"> </span>--feedback
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Waiting<span class="w"> </span><span class="k">for</span><span class="w"> </span>an<span class="w"> </span>action<span class="w"> </span>server<span class="w"> </span>to<span class="w"> </span>become<span class="w"> </span>available...
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Sending<span class="w"> </span>goal:
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">     </span>order:<span class="w"> </span><span class="m">20</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>Goal<span class="w"> </span>accepted<span class="w"> </span>with<span class="w"> </span>ID:<span class="w"> </span>9130b8fa240740d5866445719d9b6cb2
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>Feedback:
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span>sequence:
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>-<span class="w"> </span><span class="m">0</span>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>-<span class="w"> </span><span class="m">1</span>
-</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>-<span class="w"> </span><span class="m">1</span>
-</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>...
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cp">#![feature(async_fn_in_trait)]</span>
 </span></code></pre></div>
-<h2 id="_1">總結</h2>
-<p>這邊簡單總結一下 ROS 2 幾種通訊方式的比較：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>描述</th>
-<th>方向</th>
-<th>同步</th>
-<th>應用範例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>topic</td>
-<td>不間斷傳送資料對接收端</td>
-<td>單向</td>
-<td>非同步</td>
-<td>機器人現在狀態、感測器資料</td>
-</tr>
-<tr>
-<td>service</td>
-<td>發送 request 並等待處理結果</td>
-<td>雙向</td>
-<td>同步</td>
-<td>觸發狀態變化、事件</td>
-</tr>
-<tr>
-<td>action</td>
-<td>發送 request 但不等待，可以得知或中斷處理過程</td>
-<td>雙向</td>
-<td>非同步</td>
-<td>命令機器人導航、機器手臂移動</td>
-</tr>
-</tbody>
-</table>
-<p>三種通訊方式都有自己適合的應用場景，並沒有誰優誰劣，使用者必須自行判斷什麼場景適合使用哪種通訊方式才行。</p>
-<h2 id="_2">參考資料</h2>
+<h3 id="lint-attribute">lint attribute</h3>
+<p>lint / warning 控制，決定哪些要跳出 warning</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cp">#[allow(dead_code)]</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="cp">#[deny(unused_variables)]</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="cp">#[warn(missing_docs)]</span>
+</span></code></pre></div>
+<h3 id="macro-attribute">macro attribute</h3>
+<p>也可以用 attribute 來展開 macro</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="cp">#[macro_use]</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">extern</span><span class="w"> </span><span class="k">crate</span><span class="w"> </span><span class="n">foo</span><span class="p">;</span>
+</span></code></pre></div>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="cp">#[tokio::main]</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</span></code></pre></div>
+<h2 id="cratemod-level-attribute">crate/mod level attribute</h2>
+<p>如果我們想要讓某個 attribute 附在整個 scope 上，那就需要使用 <code>#![...]</code></p>
 <ul>
-<li><a href="https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding ROS 2 topics</a></li>
-<li><a href="https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html">Understanding ROS 2 services</a></li>
-<li><a href="https://docs.ros.org/en/rolling/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html">Understanding ROS 2 actions</a></li>
+<li>crate level</li>
 </ul>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="cp">#![no_std]</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="cp">#![feature(async_fn_in_trait)]</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</span></code></pre></div>
+<ul>
+<li>mod level</li>
+</ul>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">mod</span><span class="w"> </span><span class="nn">foo</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="cp">#![allow(unused)]</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="feature">feature</h2>
+<p>feature 是其中一個最常用到的 attribute，用來決定編譯時期哪些功能要被啟動</p>
+<p>在 <code>Cargo.toml</code> 中加上 <code>[features]</code></p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;feature_a&quot;</span><span class="p">]</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">feature_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">feature_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+</span></code></pre></div>
+<p>程式中就可以用 <code>#[cfg(feature = "xxx")]</code></p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="cp">#[cfg(feature = </span><span class="s">&quot;feature_a&quot;</span><span class="cp">)]</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;feature_a enabled&quot;</span><span class="p">);</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">}</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="cp">#[cfg(not(feature = </span><span class="s">&quot;feature_a&quot;</span><span class="cp">))]</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;feature_a disabled&quot;</span><span class="p">);</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>編譯時期可以決定要開哪個 feature</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># 開 feature_a</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>cargo<span class="w"> </span>build<span class="w"> </span>--features<span class="w"> </span>feature_a
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c1"># 開 feature_a 和 feature_b</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>cargo<span class="w"> </span>build<span class="w"> </span>--features<span class="w"> </span><span class="s2">&quot;feature_a feature_b&quot;</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1"># 不要開任何 feature (default的)</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>cargo<span class="w"> </span>build<span class="w"> </span>--no-default-features
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1"># 不要開任何 default feature，然後再開 feature_b</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>cargo<span class="w"> </span>build<span class="w"> </span>--no-default-features<span class="w"> </span>--features<span class="w"> </span>feature_b
+</span></code></pre></div>
+<p>還有其他進階使用方法，例如條件整理</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1">// 有 foo</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="cp">#[cfg(feature = </span><span class="s">&quot;foo&quot;</span><span class="cp">)]</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="c1">// 沒有 foo</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="cp">#[cfg(not(feature = </span><span class="s">&quot;foo&quot;</span><span class="cp">))]</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1">// 需要有 a 和 b</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="cp">#[cfg(all(feature = </span><span class="s">&quot;a&quot;</span><span class="cp">, feature = </span><span class="s">&quot;b&quot;</span><span class="cp">))]</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1">// a 和 b 任一成立即可</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="cp">#[cfg(any(feature = </span><span class="s">&quot;a&quot;</span><span class="cp">, feature = </span><span class="s">&quot;b&quot;</span><span class="cp">))]</span>
+</span></code></pre></div>
 
 
 
