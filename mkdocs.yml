@@ -90,3 +90,4 @@ nav:
     - 'Rust 介紹': 'rust/introduction.md'
     - 'Rust Ownership': 'rust/ownership.md'
     - 'Rust Module': 'rust/module.md'
+    - 'Rust Attribute': 'rust/attribute.md'
