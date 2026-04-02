@@ -91,3 +91,4 @@ nav:
     - 'Rust Ownership': 'rust/ownership.md'
     - 'Rust Module': 'rust/module.md'
     - 'Rust Attribute': 'rust/attribute.md'
+    - 'Rust async': 'rust/async.md'
