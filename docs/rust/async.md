@@ -120,7 +120,59 @@ Rust 中有些常見的 runtime
 
 ## Pin & Unpin
 
-參考資料
+Pin 是用來保證資料在記憶體不會被移動的機制，通常是用在 self-referential 的資料結構，避免因為資料移動造成資料結構出現問題。
+
+Unpin 是 Rust 中的一個 trait，代表該型別可以自由被移動，大多數的型別都支援，除了 self-referential struct 和 future。
+
+```rust
+// 創一個有 pointer 的資料結構
+struct SelfRef {
+    data: String,
+    ptr: *const String,
+}
+// 把 ptr 指向自己的 data
+let mut x = SelfRef {
+    data: "hello".to_string(),
+    ptr: std::ptr::null(),
+};
+x.ptr = &x.data;
+
+// 把 x 移動，這時候 x.ptr 就會指向錯誤的地方
+let y = x;
+
+// 為了避免被 move，我們需要用 Unpin
+use std::pin::Pin;
+let p = Pin::new(&mut x);
+```
+
+### 和 async 的關係
+
+async 由於要儲存當前 future 的所有變數狀態，而這些變數可能有 reference
+
+```rust
+// future
+async fn foo() {
+    let s = String::from("hello");
+    let r = &s;
+    do_something(r).await;
+}
+// 編譯後的示意
+struct FooFuture {
+    state: ...,
+    s: String,
+    r: *const String, // 指向 s
+}
+```
+
+如果 future 可以 move，r 就會出錯，所以 executor 在 poll 的時候會強制只能用 Pin，讓 future 不能被 move
+
+```rust
+trait Future {
+    fn poll(self: Pin<&mut Self>, ...) -> Poll<T>;
+}
+```
+
+### 參考資料
 
 * [Rust语言圣经 - 定海神针 Pin 和 Unpin](https://course.rs/advance/async/pin-unpin.html)
 * [Rust 的 Pin 与 Unpin](https://folyd.com/blog/rust-pin-unpin/): 這個講的比較清楚
