@@ -86,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#function" class="md-skip">
+        <a href="#syntax" class="md-skip">
           Skip to content
         </a>
       
@@ -1313,6 +1313,74 @@
       
   
   
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Embodied AI
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Embodied AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../embodied-ai/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embodied AI 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -1326,10 +1394,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
-          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
             
   
   
@@ -1342,8 +1410,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             Rust
           </label>
@@ -1494,18 +1562,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#function" class="md-nav__link">
+  <a href="#syntax" class="md-nav__link">
     <span class="md-ellipsis">
-      常用 function
+      syntax
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
+  <a href="#function" class="md-nav__link">
     <span class="md-ellipsis">
-      syntax
+      常用 function
     </span>
   </a>
   
@@ -1526,6 +1594,30 @@
       Pin &amp; Unpin
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Pin &amp; Unpin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#async" class="md-nav__link">
+    <span class="md-ellipsis">
+      和 async 的關係
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      參考資料
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1570,18 +1662,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#function" class="md-nav__link">
+  <a href="#syntax" class="md-nav__link">
     <span class="md-ellipsis">
-      常用 function
+      syntax
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
+  <a href="#function" class="md-nav__link">
     <span class="md-ellipsis">
-      syntax
+      常用 function
     </span>
   </a>
   
@@ -1602,6 +1694,30 @@
       Pin &amp; Unpin
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Pin &amp; Unpin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#async" class="md-nav__link">
+    <span class="md-ellipsis">
+      和 async 的關係
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      參考資料
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1624,48 +1740,63 @@
   <h1>Rust async</h1>
 
 <p>為什麼會需要 async 呢？
-最主要的是因為程式的運作有時候會需要等待 I/O 的回應，等待的過程中勢必將資源讓給其他人執行。
+最主要的是因為程式的運作有時候會需要等待 I/O 的回應，等待的過程中如果沒有適當的機制 CPU 將會閒置。
 一般我們會想說開 thread，但是當這個 I/O 數量很大的時候（例如同時有成千上百的網路連線），開 thread 的 overhead 就會很大。
 這時候就是 async 可以派上用場的地方。</p>
+<p>async 本質上就是狀態機（FSM）和 executor 的一種組合。
+相對於 thread 是使用 OS 來切換任務並排程，async 則是由程式自行決定什麼時候讓出執行權。
+async 中一樣有很多任務，這些任務會交由 executor 來執行。
+當某個任務要去存取需要等待比較久的 I/O 時，可以主動交還執行權給 executor，讓 executor 安排其他的任務來運行。
+一旦 I/O 部份完成，就會通知 executor 可以把該任務重新放入 queue 中來等待運行權。
+這樣的好處是，少數幾個 thread 就可以負責執行大量任務，
+透過在 user space 進行任務切換，避免頻繁建立 thread 和 OS 層級的 context switch 所帶來的 overhead。</p>
+<p>在 async 中，最基本的單位是 future。
+future 是「尚未完成的計算」，本質上是一個狀態機，可以被反覆詢問是否已完成。
+future 不會自動執行，需要由 executor 去 poll 才會回答現在是可以運行 (Ready)，還是還在等待 I/O (Pending)。
+當一個 future 被交由 executor 管理與排程時，通常會稱之為一個 task。</p>
+<p>比較一下 thread 和 async：</p>
 <ul>
-<li>async 的優點：開銷比 thread 還要小</li>
-<li>async 的缺點：因為是 FSM 的架構，所以編譯出來的程式碼會很大且複雜</li>
+<li>async 的優點：<ul>
+<li>可以用少量 thread 處理大量 I/O 任務</li>
+<li>context switch 發生在 user space，成本較低</li>
 </ul>
-<p>一般來說，thread 適合 CPU bound 的程式，async 適合 I/O bound 的程式。</p>
-<p>常用的名詞</p>
-<ul>
-<li>future：延遲的計算。也就是尚未執行的程式區塊，要交給 executor 執行</li>
-<li>task：future 被放入要給 executor 執行的 queue，就叫做 task</li>
+</li>
+<li>async 的缺點：<ul>
+<li>需要 cooperative scheduling，future 內如果沒有主動讓出執行權限可能會造成 starvation</li>
+<li>除錯與理解難度較高</li>
+<li>編譯後的狀態機可能較複雜（但通常不是主要瓶頸）</li>
 </ul>
-<h2 id="function">常用 function</h2>
-<ul>
-<li><code>block_on</code>：只能用在非 async，會呼叫 future，當下 thread block，並且執行 async task (future)</li>
-<li><code>spawn</code>：用在 async 中，當下的 thread 不會 block，把 future 放入 task queue，注意的是他是跑在 worker thread 上面</li>
-<li><code>spawn_blocking</code>：當我們要跑的是 CPU-heavy 的程式碼，那就不適合用 async，spawn_blocking 會把這段程式放在 blocking thread 上面執行，而不會影響 async runtime。</li>
-<li><code>await</code>：用在 async 中，當下的 thread 會 block，然後把 future 放入 task queue，並執行其他的 async task</li>
-<li><code>select</code>：當有我們同時跑多個 future，且希望哪個先完成就做對應的處理，就可以用 select。要記住他必須是 cancellation safe。</li>
+</li>
 </ul>
+<p>需要注意的是，async 並不等於多執行緒，
+它解決的是 concurrency（並發），而不是 parallelism（平行）。
+兩者要處理的問題是不一樣的。</p>
+<p>一般來說，CPU-bound 的工作適合使用 thread 或 parallelism（例如 thread pool），
+而 I/O-bound 的工作則更適合使用 async，以提升資源利用率。</p>
 <h2 id="syntax">syntax</h2>
 <ul>
-<li><code>await</code>：其實是 Rust 提供的特別語法，可以看成下面的程式碼轉換</li>
+<li><code>await</code>：Rust 提供的特別語法，讓當前 future 暫停執行並把執行權交給 executor，等被 await 的 future 完成後才會從該處繼續往下執行</li>
 </ul>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">some_future</span><span class="p">.</span><span class="k">await</span><span class="p">;</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// 等同於</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">loop</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">some_future</span><span class="p">.</span><span class="n">poll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="n">Pending</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kr">yield</span><span class="p">,</span><span class="w">  </span><span class="c1">// some_future 還沒完成，所以把權限讓出給其他人執行</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="n">Ready</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">break</span><span class="p">,</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">some_future</span><span class="p">.</span><span class="n">poll</span><span class="p">(</span><span class="n">cx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="n">Poll</span><span class="p">::</span><span class="n">Pending</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">            </span><span class="c1">// 註冊 waker，讓 future 完成時可以喚醒</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Poll</span><span class="p">::</span><span class="n">Pending</span><span class="p">;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="n">Poll</span><span class="p">::</span><span class="n">Ready</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">break</span><span class="w"> </span><span class="n">x</span><span class="p">,</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">}</span>
 </span></code></pre></div>
 <ul>
-<li><code>async fn</code> 是 syntax sugar，等同於下面的程式碼</li>
+<li><code>async fn</code> 是 syntax sugar，等同於下面的程式碼，會回傳 future，可以被 await</li>
 </ul>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="c1">//...</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">}</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">// 等同於</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">impl</span><span class="w"> </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">Output</span><span class="o">=</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">impl</span><span class="w"> </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">Output</span><span class="o">=</span><span class="nb">String</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="c1">//...</span>
 </span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="p">}</span>
@@ -1688,15 +1819,72 @@
 </span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="p">.</span><span class="n">block_on</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="p">});</span>
 </span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">}</span>
 </span></code></pre></div>
-<h2 id="runtime">runtime</h2>
-<p><a href="https://magiclen.org/rust-async-await/">三種 runtime</a></p>
+<h2 id="function">常用 function</h2>
 <ul>
-<li>tokio</li>
-<li>smol</li>
-<li>async-std：已經不再維護</li>
+<li><code>block_on</code>：只能用在非 async 環境，用來啟動 executor 並執行一個 future，呼叫的 thread 會被阻塞，直到 future 完成</li>
+<li><code>spawn</code>：用在 async 中，把 future 放入 task queue，交給 executor 排程，呼叫的 task 不會被阻塞，注意的是他是跑在 worker thread 上面</li>
+<li><code>spawn_blocking</code>：當我們要跑的是 CPU-heavy 的程式碼，那就不適合用 async，spawn_blocking 會把這段程式放在 blocking thread 上面執行，而不會影響 async runtime。</li>
+<li><code>await</code>：用在 async 中，當下的 task 會暫停執行，然後把該 future 放入 task queue，並執行其他的 async task</li>
+<li><code>select</code>：同時等待多個 future，哪個先完成就處理哪個。需要注意 future 必須是 cancellation safe，因為未完成的 future 可能會被中途 drop。</li>
 </ul>
+<h2 id="runtime">runtime</h2>
+<p>前面我們提到 executor，但實際上 executor 其實是被包在 runtime 中。</p>
+<p>runtime = executor + I/O driver + timer + thread pool</p>
+<p>其中 executor 負責排程 task，
+而 I/O driver（例如 epoll / io_uring）則負責在 I/O 完成時喚醒對應的任務。</p>
+<p>Rust 中有些常見的 runtime</p>
+<ul>
+<li>tokio：最熱門的 runtime，社群最大，功能也最多，甚至還有專門的 TokioConf</li>
+<li>smol：輕量版本的 runtime</li>
+<li>monoio：能夠 leverage Linux io_uring 的高效能</li>
+<li>async-std：API 設計類似 Rust std library，但已經不再維護</li>
+</ul>
+<p>不同 runtime 的差異，不只是 API，
+而是底層的 thread 模型與 I/O 機制設計，
+這會直接影響效能、延遲以及系統的可擴展性。</p>
 <h2 id="pin-unpin">Pin &amp; Unpin</h2>
-<p>參考資料</p>
+<p>Pin 是用來保證資料在記憶體不會被移動的機制，通常是用在 self-referential 的資料結構，避免因為資料移動造成資料結構出現問題。</p>
+<p>Unpin 是 Rust 中的一個 trait，代表該型別可以自由被移動，大多數的型別都支援，除了 self-referential struct 和 future。</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// 創一個有 pointer 的資料結構</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">struct</span><span class="w"> </span><span class="nc">SelfRef</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">ptr</span><span class="p">:</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">// 把 ptr 指向自己的 data</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SelfRef</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">.</span><span class="n">to_string</span><span class="p">(),</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="n">ptr</span><span class="p">:</span><span class="w"> </span><span class="nc">std</span><span class="p">::</span><span class="n">ptr</span><span class="p">::</span><span class="n">null</span><span class="p">(),</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">};</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">x</span><span class="p">.</span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">.</span><span class="n">data</span><span class="p">;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1">// 把 x 移動，這時候 x.ptr 就會指向錯誤的地方</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="kd">let</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="c1">// 為了避免被 move，我們需要用 Unpin</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">pin</span><span class="p">::</span><span class="n">Pin</span><span class="p">;</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="kd">let</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pin</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">x</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="async">和 async 的關係</h3>
+<p>async 由於要儲存當前 future 的所有變數狀態，而這些變數可能有 reference</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// future</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span><span class="p">::</span><span class="n">from</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">);</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">do_something</span><span class="p">(</span><span class="n">r</span><span class="p">).</span><span class="k">await</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1">// 編譯後的示意</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">struct</span><span class="w"> </span><span class="nc">FooFuture</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="n">state</span><span class="p">:</span><span class="w"> </span><span class="o">..</span><span class="p">.,</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="n">s</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="n">r</span><span class="p">:</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span><span class="w"> </span><span class="c1">// 指向 s</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>如果 future 可以 move，r 就會出錯，所以 executor 在 poll 的時候會強制只能用 Pin，讓 future 不能被 move</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">trait</span><span class="w"> </span><span class="n">Future</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">poll</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Pin</span><span class="o">&lt;&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">Self</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">..</span><span class="p">.)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">Poll</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="_1">參考資料</h3>
 <ul>
 <li><a href="https://course.rs/advance/async/pin-unpin.html">Rust语言圣经 - 定海神针 Pin 和 Unpin</a></li>
 <li><a href="https://folyd.com/blog/rust-pin-unpin/">Rust 的 Pin 与 Unpin</a>: 這個講的比較清楚</li>
