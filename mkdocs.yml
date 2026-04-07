@@ -86,6 +86,7 @@ nav:
     - 'AGL 安裝': 'agl/installation.md'
   - 'Eclipse SDV':
     - 'Eclipse SDV 介紹': 'eclipse-sdv/introduction.md'
+    - 'Eclipse uProtocol 介紹': 'eclipse-sdv/uprotocol.md'
   - 'Embodied AI':
     - 'Embodied AI 介紹': 'embodied-ai/introduction.md'
   - 'Rust':
