@@ -8,13 +8,58 @@ keywords:
 Rust 是一門越來越熱門的程式語言，因為他語法的設計，特別有安全性，可以避免很多常犯的 memory 問題。
 Rust 目前應用的領域有各類系統程式、網路協定設計、區塊鏈合約等等。
 而在車用領域，也開開始有很多廠商為了 safety 問題而開始採用 Rust。他們相信使用 Rust 可以寫出更加安全的程式，進而避免安全性的各種問題。
-因此這邊也列出一些跟 Rust 相關的資源。
+除了安全性外，Rust 的效能也幾乎和 C/C++ 差不多，很多傳統的專案為了能利用 Rust 的高性能和安全性，常常都會 RIIR (Rewrite it in Rust)。
+
+## 安裝與使用
+
+要使用 Rust，我們需要先安裝 rustup 這套管理 Rust 的工具。
+我們可以用 rustup 來指定要使用哪個版本的 Rust，下載方式可以直接用 curl。
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+如果要更新 rustup，他也有自更新的機制。
+
+```bash
+rustup update
+```
+
+有了 rustup，我們就可以來決定使用哪個版本的 Rust。
+這邊用到的是 cargo———Rust 的專案管理和建構工具。
+
+```bash
+# 創立新的專案，會產生出 Cargo.toml
+cargo new my_project
+# 建置專案
+cargo build
+# 運行專案
+cargo run
+# 測試專案
+cargo test
+cargo bench
+```
+
+我們也可以在編譯過程加上一些參數。
+
+編譯通常是平行化，所以使用的記憶體非常多。
+如果想要減少同時編譯的 job 數量，可以用如下方式
+
+```bash
+# 用 -j 參數控制
+cargo build -j 1
+# 用環境變數控制
+CARGO_BUILD_JOBS=1 cargo build
+```
 
 ## 常用資源
 
-* [Rust playground](https://play.rust-lang.org/): 線上 compiler，可以用來測試 Rust 語法
-* [Compiler Explorer](https://rust.godbolt.org/): 可以用來觀察 Rust 編譯成組合語言會長怎麼樣
-* [Rust Community Crate](https://crates.io/): 社群所開發的套件會放在這邊
+這邊也列出一些跟 Rust 相關的資源。
+
+* [官網](https://rust-lang.org/)：Rust 官網
+* [Rust playground](https://play.rust-lang.org/):線上 compiler，可以用來測試 Rust 語法
+* [Compiler Explorer](https://rust.godbolt.org/):可以用來觀察 Rust 編譯成組合語言會長怎麼樣
+* [Rust Community Crate](https://crates.io/):社群所開發的套件會放在這邊
 
 ## 教學
 
@@ -34,26 +79,6 @@ Rust 目前應用的領域有各類系統程式、網路協定設計、區塊鏈
 ### 影片教學
 
 * [All Rust features explained](https://youtu.be/784JWR4oxOI): Rust 和其他語言不同的特色
-
-### async
-
-* Asynchronous Programming in Rust: 官方文件
-    * [英文](https://rust-lang.github.io/async-book/)
-    * [中文](https://huangjj27.github.io/async-book/)
-    * [Rust语言圣经 - Rust 异步编程](https://course.rs/async-rust/intro.html): 含官方文件和 tokio 教學，但改寫得比較容易懂
-* tokio
-    * [Tokio - Async in depth](https://tokio.rs/tokio/tutorial/async)
-    * [Rust入门秘籍 - tokio简介](https://rust-book.junmajinlong.com/ch100/00.html)
-    * [Tokio 內部機制：從頭理解 Rust 非同步 I/O 框架](https://gist.github.com/weihanglo/4661db374f82fe91e931bab0f50d7a10)
-* async 內部分析 (FSM logic)
-    * [async/await 如何工作 | Rust学习笔记](https://segmentfault.com/a/1190000024540040)
-* async 比較易懂的教學:
-    * [Rust Async 1- 異步編程的概念](https://www.readfog.com/a/1666736268025892864)
-    * [Rust Async 2- 同步、多線程、異步的例子](https://www.readfog.com/a/1666818509749981184)
-    * [Rust Async 3- 繼續理解 Async](https://www.readfog.com/a/1667010704884994048)
-    * [Rust Async 4- 理解 Future](https://www.readfog.com/a/1667010728788332544)
-    * [Rust Async 5. 最后一个例子](https://mp.weixin.qq.com/s?__biz=MzIxODY5Mzc4Mg==&mid=2247485328&idx=1&sn=87e20836cdb8de10d2de8e5db0fde598&chksm=97e7ee69a090677f262035e3ab1882c9d8bf4c7259d7f5fcc56fcb3fc8b7f6069d631c71f14a&scene=178&cur_album_id=2364704891711045633#rd)
-    * [Hello Rust async/await](http://liubin.org/blog/2021/03/25/hello-rust-async/)
 
 ### Low-Level Concurrency
 
