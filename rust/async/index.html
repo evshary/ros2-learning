@@ -1630,17 +1630,17 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       參考資料
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1730,17 +1730,17 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       參考資料
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1907,10 +1907,38 @@ future 不會自動執行，需要由 executor 去 poll 才會回答現在是可
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">poll</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span><span class="w"> </span><span class="nc">Pin</span><span class="o">&lt;&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">Self</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">..</span><span class="p">.)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">Poll</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">}</span>
 </span></code></pre></div>
-<h3 id="_1">參考資料</h3>
+<h2 id="_1">參考資料</h2>
 <ul>
+<li>Asynchronous Programming in Rust: 官方文件<ul>
+<li><a href="https://rust-lang.github.io/async-book/">英文</a></li>
+<li><a href="https://huangjj27.github.io/async-book/">中文</a></li>
+<li><a href="https://course.rs/async-rust/intro.html">Rust语言圣经 - Rust 异步编程</a>: 含官方文件和 tokio 教學，但改寫得比較容易懂</li>
+</ul>
+</li>
+<li>tokio<ul>
+<li><a href="https://tokio.rs/tokio/tutorial/async">Tokio - Async in depth</a></li>
+<li><a href="https://rust-book.junmajinlong.com/ch100/00.html">Rust入门秘籍 - tokio简介</a></li>
+<li><a href="https://gist.github.com/weihanglo/4661db374f82fe91e931bab0f50d7a10">Tokio 內部機制：從頭理解 Rust 非同步 I/O 框架</a></li>
+</ul>
+</li>
+<li>async 內部分析 (FSM logic)<ul>
+<li><a href="https://segmentfault.com/a/1190000024540040">async/await 如何工作 | Rust学习笔记</a></li>
+</ul>
+</li>
+<li>async 比較易懂的教學:<ul>
+<li><a href="https://www.readfog.com/a/1666736268025892864">Rust Async 1- 異步編程的概念</a></li>
+<li><a href="https://www.readfog.com/a/1666818509749981184">Rust Async 2- 同步、多線程、異步的例子</a></li>
+<li><a href="https://www.readfog.com/a/1667010704884994048">Rust Async 3- 繼續理解 Async</a></li>
+<li><a href="https://www.readfog.com/a/1667010728788332544">Rust Async 4- 理解 Future</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzIxODY5Mzc4Mg==&amp;mid=2247485328&amp;idx=1&amp;sn=87e20836cdb8de10d2de8e5db0fde598&amp;chksm=97e7ee69a090677f262035e3ab1882c9d8bf4c7259d7f5fcc56fcb3fc8b7f6069d631c71f14a&amp;scene=178&amp;cur_album_id=2364704891711045633#rd">Rust Async 5. 最后一个例子</a></li>
+<li><a href="http://liubin.org/blog/2021/03/25/hello-rust-async/">Hello Rust async/await</a></li>
+</ul>
+</li>
+<li>Pin 和 Unpin<ul>
 <li><a href="https://course.rs/advance/async/pin-unpin.html">Rust语言圣经 - 定海神针 Pin 和 Unpin</a></li>
 <li><a href="https://folyd.com/blog/rust-pin-unpin/">Rust 的 Pin 与 Unpin</a>: 這個講的比較清楚</li>
+</ul>
+</li>
 </ul>
 
 
