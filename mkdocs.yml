@@ -95,3 +95,4 @@ nav:
     - 'Rust Module': 'rust/module.md'
     - 'Rust Attribute': 'rust/attribute.md'
     - 'Rust async': 'rust/async.md'
+    - 'Rust unsafe': 'rust/unsafe.md'
