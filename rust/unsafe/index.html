@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Rust Ownership 概念">
+        <meta name="description" content="Rust unsafe 機制">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/rust/ownership/">
+        <link rel="canonical" href="https://ros2.tw/rust/unsafe/">
       
       
-        <link rel="prev" href="../introduction/">
+        <link rel="prev" href="../async/">
       
-      
-        <link rel="next" href="../module/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>Rust Ownership - ROS 2 筆記</title>
+        <title>Rust unsafe - ROS 2 筆記</title>
       
     
     
@@ -88,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#borrow-own" class="md-skip">
+        <a href="#unsafe" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rust Ownership
+              Rust unsafe
             
           </span>
         </div>
@@ -1469,30 +1467,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Rust Ownership
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ownership/" class="md-nav__link">
         
   
   
@@ -1503,102 +1481,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#borrow-own" class="md-nav__link">
-    <span class="md-ellipsis">
-      borrow &amp; own
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mutable-immutable" class="md-nav__link">
-    <span class="md-ellipsis">
-      mutable &amp; immutable
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#copy-clone" class="md-nav__link">
-    <span class="md-ellipsis">
-      Copy &amp; Clone
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      實際使用
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="實際使用">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rc-arc-shared-ownership" class="md-nav__link">
-    <span class="md-ellipsis">
-      Rc &amp; Arc: shared ownership
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#refcell-mixed-mutable-immutable" class="md-nav__link">
-    <span class="md-ellipsis">
-      RefCell: mixed mutable &amp; immutable
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rc-refcell" class="md-nav__link">
-    <span class="md-ellipsis">
-      Rc + RefCell 共同使用
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      各種組合
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1677,10 +1559,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../unsafe/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Rust unsafe
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1691,6 +1593,75 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unsafe" class="md-nav__link">
+    <span class="md-ellipsis">
+      unsafe 省略的檢查
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unsafe_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      unsafe 使用情境
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unsafe_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      unsafe 使用注意事項
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="unsafe 使用注意事項">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unsafe_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      unsafe 範例
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsafe_op_in_unsafe_fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      檢查 unsafe_op_in_unsafe_fn
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1728,55 +1699,46 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#borrow-own" class="md-nav__link">
+  <a href="#unsafe" class="md-nav__link">
     <span class="md-ellipsis">
-      borrow &amp; own
+      unsafe 省略的檢查
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mutable-immutable" class="md-nav__link">
+  <a href="#unsafe_1" class="md-nav__link">
     <span class="md-ellipsis">
-      mutable &amp; immutable
+      unsafe 使用情境
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#copy-clone" class="md-nav__link">
+  <a href="#unsafe_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Copy &amp; Clone
+      unsafe 使用注意事項
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      實際使用
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="實際使用">
+    <nav class="md-nav" aria-label="unsafe 使用注意事項">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#rc-arc-shared-ownership" class="md-nav__link">
+  <a href="#unsafe_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Rc &amp; Arc: shared ownership
+      unsafe 範例
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#refcell-mixed-mutable-immutable" class="md-nav__link">
+  <a href="#unsafe_op_in_unsafe_fn" class="md-nav__link">
     <span class="md-ellipsis">
-      RefCell: mixed mutable &amp; immutable
+      檢查 unsafe_op_in_unsafe_fn
     </span>
   </a>
   
@@ -1784,24 +1746,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rc-refcell" class="md-nav__link">
-    <span class="md-ellipsis">
-      Rc + RefCell 共同使用
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      各種組合
-    </span>
-  </a>
   
 </li>
       
@@ -1821,156 +1765,177 @@
 
 
 
-  <h1>Rust Ownership</h1>
+  <h1>Rust unsafe</h1>
 
-<p>Rust 其中一個很重要的概念是 ownership。
-Ownership 代表著有人要專門負責釋放沒有使用的記憶體，而不是靠著手動釋放或是系統的回收機制(Garbage Collection)。
-手動釋放的方式（如傳統的 C/C++）容易造成開發者忘記 free，導致有 memory leak 的狀況。
-另一方面 Garbage Collection（如 Java）則是因為要定期檢查回收記憶體，造成效能不佳。</p>
-<p>透過 ownership 機制，Rust 可以在維持效率的同時，又能確保程式的安全性。</p>
-<h2 id="borrow-own">borrow &amp; own</h2>
-<p>需要區分 borrow 和 own 兩個概念</p>
-<ol>
-<li>如果是 owner，可以對變數做任何事情，因為它會負責釋放</li>
-<li>如果是 borrow，那只能讀取變數，不能修改變數</li>
-<li>如果是 mutuable borrow，那可以修改變數，但是不能 move / destroy，因為最終還是要還給 owner 的</li>
-</ol>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">Basket</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">fruit</span><span class="p">:</span><span class="w"> </span><span class="nb">String</span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">fn</span><span class="w"> </span><span class="nf">try_remove_fruit</span><span class="p">(</span><span class="n">b</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="n">Basket</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="c1">//let _fruit = b.fruit;   // 會編譯失敗，因為 b.fruit 會被移走</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Basket</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fruit</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Apple&quot;</span><span class="p">.</span><span class="n">to_owned</span><span class="p">()};</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="n">try_remove_fruit</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">// 借用 b</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">_fruit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">fruit</span><span class="p">;</span><span class="w">  </span><span class="c1">// 前面儘管有借用，後面 b 還是可以繼續使用</span>
+<p>雖然 Rust 在編譯時期就可以幫忙確認一些安全性的問題，但是有時候為了方便，我們會希望可以省略這些確認。
+這個就是 Rust 中所謂的 unsafe 的機制。</p>
+<h2 id="unsafe">unsafe 省略的檢查</h2>
+<p>當我們用 unsafe block 把程式碼框起來時，並不代表所有檢查都可以跳過，主要是可以要編譯器省略下面五種檢查：</p>
+<details>
+  <summary>解引用原始指標(dereferencing raw pointers)</summary>
+
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// 建立原始指標是安全的 (Safe)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kd">let</span><span class="w"> </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">num</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="kt">i32</span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kd">let</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">*</span><span class="k">mut</span><span class="w"> </span><span class="kt">i32</span><span class="p">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="c1">// 解引用（讀取或寫入）是不安全的 (Unsafe)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;r1: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">r1</span><span class="p">);</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="o">*</span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;修改後的 num: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">num</span><span class="p">);</span>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">}</span>
 </span></code></pre></div>
-<h2 id="mutable-immutable">mutable &amp; immutable</h2>
-<p>如果想要取得某個變數的 mutable reference，那個變數一定要是 mutable 的</p>
-<p>mutable reference 代表著目前它是唯一的引用，因為沒有其他引用，所以才可以更改該變數</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello&quot;</span><span class="p">.</span><span class="n">to_owned</span><span class="p">();</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">// r 不可變，但是指向的內容可以被改變</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kd">let</span><span class="w"> </span><span class="n">r</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">// r 也可變</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">r</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="nb">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+
+</details>
+
+<details>
+  <summary>呼叫 Unsafe 函式</summary>
+
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">let</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">];</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">// 安全寫法：v[10] 會 panic</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="c1">// 這是 Unsafe 函式，它假設索引 10 絕對存在</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="c1">// 如果不存在，會讀取到隔壁鄰居的記憶體（未定義行為）</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">get_unchecked</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"> </span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;抓到值了：{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
 </span></code></pre></div>
-<h2 id="copy-clone">Copy &amp; Clone</h2>
-<p>實現 Copy 的類型的一定也是 Clone 的類型，Clone 是 Supertrait</p>
-<p>Copy 的特性：</p>
-<ol>
-<li>只會完全複製 stack 的資料，不管 heap</li>
-<li>實作包在 Rust 內部，開發者無法修改</li>
-<li>觸發的時間點在幾個地方觸發：給值、參數傳入、回傳結果</li>
-<li>類型中的所有成員都必須是 Copy、並且沒有實現 Drop，該類型才能是 Copy</li>
-</ol>
-<p>Clone 的特性：</p>
-<ol>
-<li>複製 stack / heap 的資料都可以</li>
-<li>開發者必須要實作 <code>Clone::clone(&amp;self)</code></li>
-<li>觸發複製的時間點只有呼叫 <code>Clone::clone(&amp;self)</code> 的時候</li>
-<li>類型沒有特別限制</li>
-</ol>
-<h2 id="_1">實際使用</h2>
-<h3 id="rc-arc-shared-ownership">Rc &amp; Arc: shared ownership</h3>
-<p>雖然每個變數只能有一個 owner，但是總是有需要有多個 owner 的情況，這樣程式也比較好寫</p>
-<ul>
-<li>Rc: single thread 中的 reference counter，可以共享所有權</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">rc</span><span class="p">::</span><span class="n">Rc</span><span class="p">;</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rc</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v1</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v2</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="c1">// v1, v2, v3 都有 ownership</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
+
+</details>
+
+<details>
+  <summary>修改可變靜態變數(static mut)</summary>
+
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">static</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">COUNTER</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">fn</span><span class="w"> </span><span class="nf">add_to_counter</span><span class="p">(</span><span class="n">inc</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="c1">// 存取與修改全域變數必須在 unsafe 中</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="n">COUNTER</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">inc</span><span class="p">;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="n">add_to_counter</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;Counter: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">COUNTER</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">}</span>
 </span></code></pre></div>
-<ul>
-<li>Arc: multi-thread 中的 reference counter，A 代表 atomic</li>
-</ul>
-<p>如果在多線程的情況，我們需要確保 reference counter 的操作不會有 race condition 的問題，所以要改用 Arc</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">sync</span><span class="p">::</span><span class="n">Arc</span><span class="p">;</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">thread</span><span class="p">;</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="c1">// 用 Arc 包住 data</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arc</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">handles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="fm">vec!</span><span class="p">[];</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="mi">3</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="c1">// Clone data，並放入其他 thread</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">data_clone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arc</span><span class="p">::</span><span class="n">clone</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data</span><span class="p">);</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">handle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">thread</span><span class="p">::</span><span class="n">spawn</span><span class="p">(</span><span class="k">move</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">            </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;value = {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data_clone</span><span class="p">);</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="p">});</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">        </span><span class="n">handles</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">handle</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">handles</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">        </span><span class="n">handle</span><span class="p">.</span><span class="n">join</span><span class="p">().</span><span class="n">unwrap</span><span class="p">();</span>
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="p">}</span>
+
+</details>
+
+<details>
+  <summary>存取 Union 的欄位</summary>
+
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#[repr(C)]</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">union</span><span class="w"> </span><span class="nc">MyValue</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">f</span><span class="p">:</span><span class="w"> </span><span class="kt">f32</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">u</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyValue</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">u</span><span class="p">:</span><span class="w"> </span><span class="mi">1065353216</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// 這在二進位中剛好是 1.0 (f32)</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="c1">// 編譯器不知道現在裡面存的是 u 還是 f</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="c1">// 如果你存入 u 卻讀取 f，編譯器會隨便你</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;以浮點數讀取：{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">.</span><span class="n">f</span><span class="p">);</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">}</span>
 </span></code></pre></div>
-<h3 id="refcell-mixed-mutable-immutable">RefCell: mixed mutable &amp; immutable</h3>
-<p>RefCell 讓變數擁有內部可變性，也就是讓不可變的值進行可變借用</p>
-<p>嚴格來說就是讓擁有者不一定需要有 mutable 才能修改內部，藉此避開只能一個 mutable 的問題(各個擁有者都是 immutable，所以不違反 Rust 原則)</p>
-<p>然而實際執行的時候就會真的見真章了，runtime 還是會檢查 mutable 和 immutable 混用的問題</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">cell</span><span class="p">::</span><span class="n">RefCell</span><span class="p">;</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RefCell</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="fm">vec!</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]);</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">borrow_mut</span><span class="p">().</span><span class="n">push</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">borrow</span><span class="p">().</span><span class="n">iter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="p">}</span>
+
+</details>
+
+<details>
+  <summary>實作 Unsafe Trait</summary>
+
+要求使用該 trait 的使用者必須確定符合某個 safety 標準，類似簽下切結書表示自己已經知道
+
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// 假設我們有一個標記 Trait，代表這個結構可以在某些極限環境下運行</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">unsafe</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="n">SecureStorage</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">struct</span><span class="w"> </span><span class="nc">MyVault</span><span class="p">;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">// 實作時必須加上 unsafe，代表「我發誓我已經處理好安全細節了」</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">unsafe</span><span class="w"> </span><span class="k">impl</span><span class="w"> </span><span class="n">SecureStorage</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">MyVault</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="c1">// 使用這個 Trait 的函式會相信 MyVault 已經符合規則</span>
 </span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">}</span>
 </span></code></pre></div>
-<h2 id="rc-refcell">Rc + RefCell 共同使用</h2>
-<p>參考 <a href="https://course.rs/advance/smart-pointer/cell-refcell.html">Rust 語言聖經: Cell &amp; RefCell</a></p>
-<table>
-<thead>
-<tr>
-<th>Rust 規則</th>
-<th>Wrapper 帶來的改變</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>每個資料只能有一個擁有者</td>
-<td>Rc/Arc 可以讓資料有多個擁有者</td>
-</tr>
-<tr>
-<td>只能一個 mutable 或是多個 immutable</td>
-<td>RefCell 可以作到 compile 時 mutable 和 immutable 共存，但是 runtime 如果錯誤會 panic</td>
-</tr>
-</tbody>
-</table>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">cell</span><span class="p">::</span><span class="n">RefCell</span><span class="p">;</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">rc</span><span class="p">::</span><span class="n">Rc</span><span class="p">;</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rc</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="n">RefCell</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">.</span><span class="n">to_owned</span><span class="p">()));</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="c1">// 產生多個 owner</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="c1">// 針對其中一個 owner 進行 mutable borrow</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="n">s2</span><span class="p">.</span><span class="n">borrow_mut</span><span class="p">().</span><span class="n">push_str</span><span class="p">(</span><span class="s">&quot; World!&quot;</span><span class="p">);</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{:?}</span><span class="se">\n</span><span class="s">{:?}</span><span class="se">\n</span><span class="s">{:?}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">);</span>
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="p">}</span>
+
+</details>
+
+<h2 id="unsafe_1">unsafe 使用情境</h2>
+<p>上面提到的是 unsafe 所省略的檢查，而為何我們需要省略這些檢查呢？
+主要有這四種使用情境：</p>
+<ul>
+<li>要進行記憶體操作：如果要實作 memory pool、linked list 等等直接記憶體的操作，我們必須要用 unsafe 來做</li>
+<li>避免 borrow check：某些資料結構，例如 Graph 的實作，會需要避開 Rust 編譯器的借用檢查</li>
+<li>FFI(Foreign Function Interface)：如果要呼叫其他程式語言的函式，一定得用 unsafe 才行</li>
+<li>增加效能：一般 Rust 都會自行做一些檢查，如果我們希望可以完全省略，就必須使用 unsafe，例如 <code>*data.get_unchecked(index)</code> 就等同於 <code>data[index]</code>，但是省略檢查合法範圍</li>
+</ul>
+<h2 id="unsafe_2">unsafe 使用注意事項</h2>
+<ul>
+<li>我們應該要儘可能讓 unsafe 的區域越小越好，讓編譯器幫我們檢查大多數的程式碼</li>
+<li><code>unsafe fn</code> 有兩層含意：<ul>
+<li>開發者希望使用者要特別注意呼叫該函式需要符合某些前提條件，才能夠避免 UB (Undefined Behavior)</li>
+<li>等同於此函式內部被一個大的 unsafe block 包住，所以可以任意在內部使用 unsafe 語法<ul>
+<li>不過這個通常不太被建議使用，一般還是要用有限的 unsafe block 包住 unsafe 語法比較好。</li>
+<li><a href="https://doc.rust-lang.org/nightly/edition-guide/rust-2024/unsafe-op-in-unsafe-fn.html"><code>unsafe_op_in_unsafe_fn</code></a> 會在 Edition 2024 預設被啟動，如果沒有符合就會收到編譯器的警告</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>unsafe fn</code> 是責任語法，意思是是否要用 <code>unsafe fn</code> 完全由開發者決定，編譯器不會介入</li>
+<li>由於 <code>unsafe fn</code> 代表要使用者小心使用前提，如果我們可以藉由一些檢查來避開使用 <code>unsafe fn</code>，那就應該要這麼做</li>
+<li>在 <code>unsafe fn</code> 之前應該要有 <code>/// # Safety</code> 的註解說明為何這是 unsafe，以及要滿足何種條件才能使用</li>
+<li>在 unsafe block 之前應該要有 <code>// SAFETY:</code> 的註解來解釋這個區塊為何不安全</li>
+</ul>
+<h3 id="unsafe_3">unsafe 範例</h3>
+<p>假設我們有一個 unsafe 函式如下</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">pub</span><span class="w"> </span><span class="k">unsafe</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">read_at_safe</span><span class="p">(</span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="p">[</span><span class="kt">i32</span><span class="p">],</span><span class="w"> </span><span class="n">index</span><span class="p">:</span><span class="w"> </span><span class="kt">usize</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="o">*</span><span class="n">data</span><span class="p">.</span><span class="n">as_ptr</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="p">}</span>
 </span></code></pre></div>
-<h2 id="_2">各種組合</h2>
-<p>這些概念單一來看其實都很簡單，但是組合在一起就會變得複雜，有時候我們也都不知道什麼情境該用什麼樣的組合。
-下面有一張在 Reddit 上很好的圖，可以總結 Ownership 搭配各個 smart pointer 的使用</p>
-<p><img alt="Rust Ownership" src="../images/ownership-reddit.jpeg" /></p>
-<p>一般 Unique 的情況就是遵守 Rust 的 ownership 機制，只能有單一個擁有者。
-如果要有多個擁有者，那就必須要根據是否為多線程來決定使用 Rc 還是 Arc。</p>
-<p>除了 Ownership，還有個概念就做 Accessibility，代表誰可以去存取這個變數。
-在 Unique 情況下，我們不需要有 Ownership，可以用 borrow 的方式來存取。
-然而如果是在單一線程下，我們想要多一點彈性，不要編譯器幫我們做 accessibility 的檢查，這時候就需要使用 Cell 或 RefCell。
-而在多線程的情況，那就必須要使用 Atomic、Mutex、或是 RwLock 了。</p>
+<p>他的功用是存取 data 這個 array 的第 index 元素，等價於 <code>data[index]</code>。
+然而這在 unsafe 使用上有些可以改善的地方</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="sd">/// # Safety</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="sd">/// Caller must ensure that:</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="sd">/// - `index &lt; data.len()`</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="sd">///</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="sd">/// This function performs unchecked pointer access.</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">pub</span><span class="w"> </span><span class="k">unsafe</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">read_at_safe</span><span class="p">(</span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="p">[</span><span class="kt">i32</span><span class="p">],</span><span class="w"> </span><span class="n">index</span><span class="p">:</span><span class="w"> </span><span class="kt">usize</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="c1">// SAFETY:</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="c1">// The caller guarantees that `index` is in-bounds.</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">        </span><span class="nb">Some</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="p">.</span><span class="n">as_ptr</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>我們在函式的最開頭加上 <code>/// # Safety</code>，告訴使用者這個 <code>unsafe fn</code> 應該要符合什麼條件。
+除此之外，也用 <code>unsafe {}</code> 把不安全的函式框起來，並且在前面標注 <code>// SAFETY</code> 告知安全的條件為何。
+不過，其實我們還可以更進一步。</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">read_at_safe</span><span class="p">(</span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="p">[</span><span class="kt">i32</span><span class="p">],</span><span class="w"> </span><span class="n">index</span><span class="p">:</span><span class="w"> </span><span class="kt">usize</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Option</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">        </span><span class="c1">// SAFETY:</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">        </span><span class="c1">// - `index &lt; data.len()` ensures the access is in-bounds.</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">        </span><span class="c1">// - `data.as_ptr()` is valid for `data.len()` elements.</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span><span class="c1">// - `add(index)` stays within the allocated object.</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">        </span><span class="c1">// - The element is initialized, so dereferencing is safe.</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">            </span><span class="nb">Some</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="p">.</span><span class="n">as_ptr</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">        </span><span class="nb">None</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>我們發現其實這個函式唯一會發生不安全的情況就是 index 超過 data 的合理長度。
+如果我們能再存取之前就先做好檢查，這樣就根本不需要將這個函式當成是 <code>unsafe fn</code>，更加符合使用 unsafe 的規範。</p>
+<h3 id="unsafe_op_in_unsafe_fn">檢查 unsafe_op_in_unsafe_fn</h3>
+<p>要如何來檢查 <code>unsafe_op_in_unsafe_fn</code> 呢？</p>
+<p>我們可以直接跑 <code>cargo clippy -- -D unsafe_op_in_unsafe_fn</code></p>
+<p>又或者是在 <code>Cargo.toml</code> 加上</p>
+<div class="language-toml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">[lints.rust]</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">unsafe_op_in_unsafe_fn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;warn&quot;</span>
+</span></code></pre></div>
 
 
 
