@@ -35,7 +35,7 @@ export ZENOH_CONFIG_OVERRIDE='transport/shared_memory/enabled=true'
 ```
 
 * 除此之外，rmw_zenoh 也有提供兩個環境變數來做進階設定
-    * `ZENOH_SHM_ALLOC_SIZE`: Zenoh 的 shared memory 可以用多大的空間，預設為 48 MiB
+    * `ZENOH_SHM_ALLOC_SIZE`: Zenoh 的 shared memory 可以用多大的空間，預設為 48 MiB。要特別注意為了減少延遲，一開始啟動的時候就會把這塊記憶體預先保留，所以如果同時有多個 Zenoh session 的話，就會使用大量的記憶體。
     * `ZENOH_SHM_MESSAGE_SIZE_THRESHOLD`: 唯有超過一定 size 的資料才會使用 Shared Memory 傳輸，預設為 512 bytes
 
 ## 安全通訊 (Security)

@@ -58,6 +58,10 @@ struct A {
 fn test_add() {
     assert_eq!(1 + 1, 2);
 }
+
+#[test]
+#[ignore = "requires network access"]
+fn test_api() {}
 ```
 
 * repr：記憶體布局控制
