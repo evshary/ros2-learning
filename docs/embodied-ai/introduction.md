@@ -27,6 +27,16 @@ keywords:
 
 VLA 目前最知名的專案有 Google 的 [RT-2](https://deepmind.google/blog/rt-2-new-model-translates-vision-and-language-into-action/)，以及 [OpenVLA](https://github.com/openvla/openvla)。
 
+## Sim-to-Real
+
+機器人領域之所以不像是大語言模型(LLM)發展那麼迅速，最主要的原因在於「資料瓶頸」(Data Bottleneck)，特別是高品質的資料。
+機器人所需要的運動資料，相較於網路上隨手可得的文字資料少上不少，這類資料不只是包含視覺影像，更有複雜的物理特性（如扭矩、摩擦力、感測器回饋等等），且還跟硬體規格高度綁定。
+如果要靠自己產生訓練資料，那又會遇到「物理時鐘」的極限：一個十秒的動作，在現實中就必須實打實花費十秒，還伴隨著硬體的磨損和電力損耗。
+
+這時有些人就提出了利用模擬世界來產生出資料，幫助我們在模擬器中並行化訓練機器人模型，大幅提昇學習效率，更是能符合特定硬體設計，達到數位孿生（Digital Twin）的成效。
+
+然而，Sim-to-Real 最大的挑戰在於與現實世界的鴻溝。模擬世界難以完美還原物理世界的一切細節，還需要透過領域隨機化（Domain Randomization）———對各個參數引入隨機性，如外觀、重量等等———來增強模型在不確定環境的泛化性。
+
 ## 學習資源
 
 * [具身智能技术指南](https://github.com/TianxingChen/Embodied-AI-Guide)：簡體中文的各種學習資源
