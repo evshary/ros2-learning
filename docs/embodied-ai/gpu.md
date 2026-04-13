@@ -86,6 +86,39 @@ nvcc --version
 nvidia-smi
 ```
 
+## cuDNN (CUDA Deep Neural Network library)
+
+如果是專門用在深度神經網路(DNN, Deep Neural Networks)，NVIDIA 也有提供專門的函式庫可以用來加速，稱為 cuDNN。
+要注意的是 cuDNN 版本跟 CUDA 相依，所以要確認版本是否相符。
+
+```bash
+# 如果只是要執行
+sudo apt install libcudnn9-cuda-13
+# 如果要開發用
+sudo apt install libcudnn9-dev-cuda-13
+```
+
+測試方式(記住要先設定好 CUDA 環境變數)
+
+```bash
+# 安裝範例
+sudo apt install libcudnn9-samples
+# 複製範例
+cp -r /usr/src/cudnn_samples_v9 ~/
+cd ~/cudnn_samples_v9/conv_sample
+# 編譯並且執行
+make
+./conv_sample
+```
+
+## TensorRT
+
+TensorRT 是 NVIDIA 專門用來加速推論的框架，當把 `.onnx` 檔案優化成 `.plan` 格式後，就可以非常有效加速推論結果。
+要注意的是，這個優化的過程是綁定該版本 GPU 的，所以輸出的 `.plan` 無法跑在其他平台上面。
+
+* 先從[官網](https://developer.nvidia.com/tensorrt)下載
+* 跟著[教學](https://docs.nvidia.com/deeplearning/tensorrt/latest/installing-tensorrt/installing.html)來安裝
+
 ## 在容器中使用 GPU
 
 如果要在虛擬化容器使用 GPU，那就還需要安裝 NVIDIA Container Toolkit。
@@ -116,3 +149,19 @@ sudo apt purge 'nvidia-.*'
 sudo apt purge 'cuda-.*'
 sudo apt purge "libnv*"
 ```
+
+## 其他
+
+不一定要依賴 NVIDIA 平台的框架
+
+### PyTorch
+
+可以用在訓練以及推論的深度學習框架，不過大多數都是用在訓練和開發，推論會用 ONNX Runtime 或 TensorRT。
+
+* 可以從[官網](https://pytorch.org/get-started/locally/)下載
+
+### ONNX Runtime
+
+專門用來跑模型的推論引擎
+
+* 可以從 [GitHub](https://github.com/microsoft/onnxruntime/releases) 下載

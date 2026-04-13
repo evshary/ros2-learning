@@ -89,6 +89,7 @@ nav:
     - 'Eclipse uProtocol 介紹': 'eclipse-sdv/uprotocol.md'
   - 'Embodied AI':
     - 'Embodied AI 介紹': 'embodied-ai/introduction.md'
+    - 'NVIDIA GPU 安裝': 'embodied-ai/gpu.md'
   - 'Rust':
     - 'Rust 介紹': 'rust/introduction.md'
     - 'Rust Ownership': 'rust/ownership.md'
