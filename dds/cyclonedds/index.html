@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="ROS 2 的基本概念，以及相關連結資源">
+        <meta name="description" content="介紹 CycloneDDS 的使用方法">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/ros2/introduction/">
+        <link rel="canonical" href="https://ros2.tw/dds/cyclonedds/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../introduction/">
       
       
-        <link rel="next" href="../installation/">
+        <link rel="next" href="../../zenoh/introduction/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>ROS 2 介紹 - ROS 2 筆記</title>
+        <title>CycloneDDS - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#why-ros-2" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ROS 2 介紹
+              CycloneDDS
             
           </span>
         </div>
@@ -265,20 +265,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -294,7 +292,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             ROS 2 入門
@@ -305,30 +303,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    ROS 2 介紹
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ros2/introduction/" class="md-nav__link">
         
   
   
@@ -339,60 +317,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#why-ros-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why ROS 2
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ros-2" class="md-nav__link">
-    <span class="md-ellipsis">
-      ROS 2 架構
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ros-2_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      ROS 2 版本
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ros" class="md-nav__link">
-    <span class="md-ellipsis">
-      好用的 ROS 資源
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -405,7 +329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../ros2/installation/" class="md-nav__link">
         
   
   
@@ -473,7 +397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../command/" class="md-nav__link">
+      <a href="../../ros2/command/" class="md-nav__link">
         
   
   
@@ -496,7 +420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../communication/" class="md-nav__link">
+      <a href="../../ros2/communication/" class="md-nav__link">
         
   
   
@@ -519,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../building/" class="md-nav__link">
+      <a href="../../ros2/building/" class="md-nav__link">
         
   
   
@@ -542,7 +466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qos/" class="md-nav__link">
+      <a href="../../ros2/qos/" class="md-nav__link">
         
   
   
@@ -565,7 +489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../record/" class="md-nav__link">
+      <a href="../../ros2/record/" class="md-nav__link">
         
   
   
@@ -588,7 +512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/" class="md-nav__link">
+      <a href="../../ros2/tools/" class="md-nav__link">
         
   
   
@@ -611,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tips/" class="md-nav__link">
+      <a href="../../ros2/tips/" class="md-nav__link">
         
   
   
@@ -634,7 +558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sros/" class="md-nav__link">
+      <a href="../../ros2/sros/" class="md-nav__link">
         
   
   
@@ -702,7 +626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_cyclonedds/" class="md-nav__link">
+      <a href="../../ros2/rmw_cyclonedds/" class="md-nav__link">
         
   
   
@@ -725,7 +649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/basic/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/basic/" class="md-nav__link">
         
   
   
@@ -748,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/advanced/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/advanced/" class="md-nav__link">
         
   
   
@@ -771,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/hands_on/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/hands_on/" class="md-nav__link">
         
   
   
@@ -798,18 +722,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -825,7 +751,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             DDS 入門
@@ -839,7 +765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -859,10 +785,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../dds/cyclonedds/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    CycloneDDS
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -873,6 +819,51 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      文件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      編譯
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定環境變數
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1732,36 +1723,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#why-ros-2" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Why ROS 2
+      文件
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ros-2" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      ROS 2 架構
+      編譯
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ros-2_1" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      ROS 2 版本
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ros" class="md-nav__link">
-    <span class="md-ellipsis">
-      好用的 ROS 資源
+      設定環境變數
     </span>
   </a>
   
@@ -1783,61 +1765,91 @@
 
 
 
-  <h1>ROS 2 介紹</h1>
+  <h1>CycloneDDS</h1>
 
-<p>隨著 ROS 1 所有版本已經 <a href="https://www.ros.org/blog/noetic-eol/">EOL (End of Life)</a>，使用 ROS 2 已經是無法避免的趨勢了。
-在這邊整理一些跟 ROS 2 相關資訊提供給大家參考。</p>
-<h2 id="why-ros-2">Why ROS 2</h2>
-<p>當初 Open Robotics 為什麼要提出 ROS 2 呢？
-一開始 ROS 1 是學術單位所提出來的，然後慢慢擴及到社群和各種機器上面，所以在將機器人產品化的過程上也遇到了很多先天性的限制。
-為了解決這些問題，於是提出了 ROS 2 的架構，希望解決如下的問題：</p>
+<p><a href="https://github.com/eclipse-cyclonedds/cyclonedds">CycloneDDS</a> 是 ZettaScale 提出開源解決方案，並且目前託管於 <a href="https://projects.eclipse.org/projects/iot.cyclonedds">Eclipse Foundation 底下</a>。</p>
+<h2 id="_1">文件</h2>
 <ul>
-<li>多台機器人的協作：未來機器人會從單一轉變成多機，因此能夠新的架構要能考慮到多機的問題</li>
-<li>適用 embedded 的 ROS 架構：有些機器人可能是跑在資源有限的嵌入式平台上面，因此要能夠讓 footprint 盡可能的減少。</li>
-<li>擁有 realtime 的能力：在一些用在工業領域上的機器人會需要擁有即時性，確保重要任務可以在一定時限內完成，否則可能會有安全上的疑慮。</li>
-<li>在網路環境糟糕的情況下仍然可以確保通訊品質：機器人運行的環境不一定是良好的有線網路，需要擁有確保通訊品質的能力。</li>
+<li><a href="https://cyclonedds.io/docs/cyclonedds/latest/">官方文件</a></li>
+<li><a href="https://cyclonedds.io/docs/cyclonedds/latest/ddsc.html">C API</a></li>
+<li><a href="https://cyclonedds.io/docs/cyclonedds-cxx/latest/">C++ API</a></li>
+<li><a href="https://cyclonedds.io/docs/cyclonedds-python/latest/">Python API</a></li>
 </ul>
-<p>那為什麼不要修改 ROS 1 架構就好呢？
-<a href="https://design.ros2.org/articles/why_ros2.html#why-not-just-enhance-ros-1">官方的說法</a>是不希望因為架構上的改動而影響到現有的使用者，所以另起爐灶，建立新的架構。
-當然 ROS 1 和 ROS 2 還是擁有彼此相互通訊的方法：ROS bridge，未來會再另外說明。</p>
-<h2 id="ros-2">ROS 2 架構</h2>
-<p>ROS 1 和 ROS 2 最大的差異在於<strong>通訊方式的改變</strong>，ROS 1 是用 master-client 的架構，所有的 ROS node 都必須要連線到一個 master 上，由這個 master 來協調誰和誰連線，然而在 ROS 2 上面就不須要有 master 的角色了。</p>
-<p>在 <a href="https://www.researchgate.net/publication/309128426_Exploring_the_performance_of_ROS2">Exploring the performance of ROS2</a> 這篇論文裡有一張比較 ROS 1 和 ROS 2 的架構圖：</p>
-<p><img alt="ROS 1 &amp; ROS 2 architecture" src="../images/ROS_architecture.png" /></p>
-<p>我們可以看到兩者比較架構中有兩個不同：</p>
-<ol>
-<li>ROS 1 的 ROS Master 被移除了</li>
-<li>ROS 2 的底層通訊方式從 TCPROS/UDPROS 轉換成 DDS</li>
-</ol>
-<p>ROS 2 架構的特色是把上層應用以及下層網路通訊分開，Open Robotics 希望專注於上層應用的開發，下層則可以借助其他既有已成熟的網路通訊技術，減少重造輪子的工(少掉 ROS 1 的 TCPROS/UDPROS)。
-預設的 ROS 2 底層通訊使用了 DDS(Data Distributed Service) 的技術，可以用分散式的方式進行網路通訊。
-DDS 的最大特色是不需要擁有中央控管(ROS Master)的角色，每個通訊節點都可以相互溝通，因此在 ROS 上就可以少掉 master 的角色，任何有需要通訊的 ROS node 只要啟動就可以藉由 DDS 來連線到其他的 ROS node 上。</p>
-<p>DDS 是一個很複雜的通訊技術，ROS 會選用 DDS 是因為該協定在工業、軍事上面已經擁有悠久可靠的歷史，之後後面會再另外介紹 DDS。</p>
-<h2 id="ros-2_1">ROS 2 版本</h2>
-<p>ROS 2 的版本規則仍然跟 ROS 1 一樣，採取英文字母開頭的方式，用英文的形容詞搭配一隻烏龜的品種。
-舉個例子來說，F 版的 ROS 2 正式名稱叫做 Foxy Fitzroy (狡猾的菲茨羅伊河龜)，一般來說我們都稱呼為 foxy 來簡化。</p>
-<p>這個命名基本上每次都會在 ROS Discourse 上公開徵選，像是 <a href="https://discourse.ros.org/t/ros-2-f-name-brainstorming/11081">ROS 2 F Name Brainstorming</a></p>
-<p>到目前為止的 ROS 2 的release版本可以參考<a href="https://index.ros.org/doc/ros2/Releases/">官方網站</a>。</p>
-<p>第一版的 LTS 是 dashing，雖說是 LTS ，不過也只有維護兩年而已，而且很多好用功能和套件支援都有些缺乏，建議使用之後的 LTS 會比較好。</p>
-<p>LTS 大多數情況都是兩版出一次，並且搭配 Ubuntu 的 LTS 版本。例如 foxy 搭配 Ubuntu 20.04，humble 搭配 Ubuntu 22.04 等等。最新一版是 jazzy，支援 Ubuntu 24.04。</p>
-<p>另外值得一提的是 ROS 2 提出了 rolling version 的概念，除了 LTS 以外，會有一個版本是會不斷進版的，相關資訊可以參考下面連結</p>
+<h2 id="_2">編譯</h2>
+<p>這邊簡單描述編譯 CycloneDDS 方法，這邊使用的環境是 Ubuntu。</p>
 <ul>
-<li><a href="https://discourse.ros.org/t/ros-2-rolling-distribution-plans/13227">ROS 2 Rolling distribution plans</a></li>
-<li><a href="https://ros.org/reps/rep-2002.html">REP 2002</a></li>
+<li>安裝相依性</li>
 </ul>
-<h2 id="ros">好用的 ROS 資源</h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>bison<span class="w"> </span>cmake
+</span></code></pre></div>
 <ul>
-<li><a href="https://discourse.ros.org/">ROS Discourse</a>：ROS 的官方討論區，全世界的 ROS 使用者會在這邊討論 ROS 相關的訊息，或是展現自己的成果</li>
-<li><a href="https://roscon.ros.org">ROSCon</a>：每年都會舉辦 ROSCon，而每場分享都會留有錄影，會放在這個網站上</li>
-<li><a href="https://robotics.stackexchange.com/">Robotics StackExchange</a>：專門解答 ROS 相關的問題的論壇，過去是 <a href="https://answers.ros.org/questions/">ROS answer</a>，但後來社群決定和 StackExchange 合併</li>
-<li><a href="https://design.ros2.org/">ROS 2 design</a>：ROS 2 當初設計的概念</li>
-<li><a href="https://ros.org/reps/rep-0000.html">REPs</a>：Index of ROS Enhancement Proposals，ROS 相關的提案</li>
-<li><a href="https://index.ros.org/packages/">ROS packages</a>: ROS 現有的 package 列表</li>
-<li><a href="https://index.ros.org/">ROS Index</a>: 可以搜尋 ROS 資源的入口</li>
-<li><a href="https://docs.ros.org/en/rolling/index.html">ROS 2 Documentation</a>: ROS 2 的文件，這邊附上 Rolling 版本</li>
-<li><a href="https://github.com/ros2/demos">ROS 2 Demo Code</a>: ROS 2 的 Demo Code，通常要寫程式都會從這邊參考</li>
-<li><a href="https://github.com/ros2/examples">ROS 2 Example Code</a>: ROS 2 的 Example Code，通常要寫程式都會從這邊參考</li>
+<li>從 GitHub 抓程式碼</li>
 </ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/eclipse-cyclonedds/cyclonedds.git
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>cyclonedds
+</span></code></pre></div>
+<ul>
+<li>開始編譯</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mkdir<span class="w"> </span>build
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>build
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># 要把 example 編譯出來</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>cmake<span class="w"> </span>-DBUILD_IDLC<span class="o">=</span>ON<span class="w"> </span>-DBUILD_EXAMPLES<span class="o">=</span>ON<span class="w"> </span>..
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>cmake<span class="w"> </span>--build<span class="w"> </span>.
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nb">cd</span><span class="w"> </span>..
+</span></code></pre></div>
+<ul>
+<li>完成編譯後可以跑個 Hello World 來看看</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Publisher</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>build/bin/HelloworldPublisher
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Subscriber (另一個 terminal)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>build/bin/HelloworldSubscriber
+</span></code></pre></div>
+<ul>
+<li>可以看到 publisher 和 subscriber 可以互相通訊了</li>
+</ul>
+<h2 id="_3">設定環境變數</h2>
+<p>當然 CycloneDDS 也是可以做一些簡易環境設定，只要設定好 <code>CYCLONEDDS_URI</code> 這個環境變數就可以了。這邊我們以 GitHub 上的設定檔為範例。</p>
+<ul>
+<li>新創 cyclonedds.xml 的檔案</li>
+</ul>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">&lt;CycloneDDS</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;https://cdds.io/config&quot;</span><span class="w"> </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="w"> </span><span class="na">xsi:schemaLocation=</span><span class="s">&quot;https://cdds.io/config https://raw.githubusercontent.com/eclipse-cyclonedds/cyclonedds/master/etc/cyclonedds.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">&lt;Domain</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;any&quot;</span><span class="nt">&gt;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="nt">&lt;General&gt;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">            </span><span class="nt">&lt;NetworkInterfaceAddress&gt;</span>auto<span class="nt">&lt;/NetworkInterfaceAddress&gt;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">            </span><span class="nt">&lt;AllowMulticast&gt;</span>default<span class="nt">&lt;/AllowMulticast&gt;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">            </span><span class="nt">&lt;MaxMessageSize&gt;</span>65500B<span class="nt">&lt;/MaxMessageSize&gt;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">            </span><span class="nt">&lt;FragmentSize&gt;</span>4000B<span class="nt">&lt;/FragmentSize&gt;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="nt">&lt;/General&gt;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="nt">&lt;Internal&gt;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">            </span><span class="nt">&lt;Watermarks&gt;</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">                </span><span class="nt">&lt;WhcHigh&gt;</span>500kB<span class="nt">&lt;/WhcHigh&gt;</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">            </span><span class="nt">&lt;/Watermarks&gt;</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">        </span><span class="nt">&lt;/Internal&gt;</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">        </span><span class="nt">&lt;Tracing&gt;</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">            </span><span class="nt">&lt;Verbosity&gt;</span>config<span class="nt">&lt;/Verbosity&gt;</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">            </span><span class="nt">&lt;OutputFile&gt;</span>stdout<span class="nt">&lt;/OutputFile&gt;</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">        </span><span class="nt">&lt;/Tracing&gt;</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">    </span><span class="nt">&lt;/Domain&gt;</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="nt">&lt;/CycloneDDS&gt;</span>
+</span></code></pre></div>
+<ul>
+<li>設定環境變數</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">CYCLONEDDS_URI</span><span class="o">=</span>file://<span class="nv">$PWD</span>/cyclonedds.xml
+</span></code></pre></div>
+<ul>
+<li>
+<p>接著重跑 CycloneDDS 的程式就會自動使用新的 config 了。關於更多 config 可以怎麼設定，可以參考 <a href="https://cyclonedds.io/docs/cyclonedds/latest/config/config_file_reference.html">CycloneDDS 的文件</a></p>
+</li>
+<li>
+<p>另外也有偷吃步的直接改 config 的方法，假設我們要改 DDS 的 domain ID</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nv">CYCLONEDDS_URI</span><span class="o">=</span><span class="s2">&quot;&lt;CycloneDDS&gt;&lt;Domain&gt;&lt;Id&gt;1&lt;/Id&gt;&lt;/Domain&gt;&lt;/CycloneDDS&gt;&quot;</span><span class="w"> </span>build/bin/HelloworldPublisher
+</span></code></pre></div>
 
 
 

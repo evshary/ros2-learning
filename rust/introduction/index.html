@@ -779,6 +779,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dds/cyclonedds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CycloneDDS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1826,13 +1849,14 @@ Rust 目前應用的領域有各類系統程式、網路協定設計、區塊鏈
 這邊用到的是 cargo———Rust 的專案管理和建構工具。</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 創立新的專案，會產生出 Cargo.toml</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>cargo<span class="w"> </span>new<span class="w"> </span>my_project
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># 建置專案</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>cargo<span class="w"> </span>build
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># 運行專案</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>cargo<span class="w"> </span>run
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># 測試專案</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>cargo<span class="w"> </span><span class="nb">test</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>cargo<span class="w"> </span>bench
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># 在不產生 binary 下快速確認有無編譯失誤</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>cargo<span class="w"> </span>check
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># 建置專案</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>cargo<span class="w"> </span>build
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># 編譯 release 版本</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>cargo<span class="w"> </span>build<span class="w"> </span>--release
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># 運行專案</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>cargo<span class="w"> </span>run
 </span></code></pre></div>
 <p>我們也可以在編譯過程加上一些參數。</p>
 <p>編譯通常是平行化，所以使用的記憶體非常多。
@@ -1841,6 +1865,19 @@ Rust 目前應用的領域有各類系統程式、網路協定設計、區塊鏈
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>cargo<span class="w"> </span>build<span class="w"> </span>-j<span class="w"> </span><span class="m">1</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># 用環境變數控制</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nv">CARGO_BUILD_JOBS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>cargo<span class="w"> </span>build
+</span></code></pre></div>
+<p>cargo 其實還有很多其他功能，包括調整程式碼格式 lint、測試、效能等等。
+<code>cargo fmt</code> 會參考 <code>rustfmt.toml</code> 的設定，而 <code>cargo clippy</code> 會參考 <code>clippy.toml</code> 的設定。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 調整程式碼格式，底層會呼叫 rustfmt</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>cargo<span class="w"> </span>fmt
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>cargo<span class="w"> </span>fmt<span class="w"> </span>--<span class="w"> </span>--check<span class="w"> </span><span class="c1"># 如果只是確認而不去修改</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># lint 分析，看程式品質</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>cargo<span class="w"> </span>clippy
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>cargo<span class="w"> </span>--<span class="w"> </span>-D<span class="w"> </span>warnings<span class="w"> </span><span class="c1"># 設定哪些等級的 lint 要報錯，預設是 warnings</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># 測試專案</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>cargo<span class="w"> </span><span class="nb">test</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># 評測效能</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>cargo<span class="w"> </span>bench
 </span></code></pre></div>
 <h2 id="_2">常用資源</h2>
 <p>這邊也列出一些跟 Rust 相關的資源。</p>
