@@ -31,13 +31,14 @@ rustup update
 ```bash
 # 創立新的專案，會產生出 Cargo.toml
 cargo new my_project
+# 在不產生 binary 下快速確認有無編譯失誤
+cargo check
 # 建置專案
 cargo build
+# 編譯 release 版本
+cargo build --release
 # 運行專案
 cargo run
-# 測試專案
-cargo test
-cargo bench
 ```
 
 我們也可以在編譯過程加上一些參數。
@@ -50,6 +51,22 @@ cargo bench
 cargo build -j 1
 # 用環境變數控制
 CARGO_BUILD_JOBS=1 cargo build
+```
+
+cargo 其實還有很多其他功能，包括調整程式碼格式 lint、測試、效能等等。
+`cargo fmt` 會參考 `rustfmt.toml` 的設定，而 `cargo clippy` 會參考 `clippy.toml` 的設定。
+
+```bash
+# 調整程式碼格式，底層會呼叫 rustfmt
+cargo fmt
+cargo fmt -- --check # 如果只是確認而不去修改
+# lint 分析，看程式品質
+cargo clippy
+cargo -- -D warnings # 設定哪些等級的 lint 要報錯，預設是 warnings
+# 測試專案
+cargo test
+# 評測效能
+cargo bench
 ```
 
 ## 常用資源
