@@ -67,6 +67,7 @@ nav:
     - 'rmw_zenoh 實戰': 'ros2/rmw_zenoh/hands_on.md'
   - 'DDS 入門':
     - 'DDS 介紹': 'dds/introduction.md'
+    - 'CycloneDDS': 'dds/cyclonedds.md'
   - 'Zenoh 入門':
     - 'Zenoh 介紹': 'zenoh/introduction.md'
     - 'Zenoh 模式': 'zenoh/mode.md'
