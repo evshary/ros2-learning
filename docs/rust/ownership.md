@@ -48,24 +48,6 @@ let r: &mut String = &mut s;
 let mut r: &mut String = &mut s;
 ```
 
-## Copy & Clone
-
-實現 Copy 的類型的一定也是 Clone 的類型，Clone 是 Supertrait
-
-Copy 的特性：
-
-1. 只會完全複製 stack 的資料，不管 heap
-2. 實作包在 Rust 內部，開發者無法修改
-3. 觸發的時間點在幾個地方觸發：給值、參數傳入、回傳結果
-4. 類型中的所有成員都必須是 Copy、並且沒有實現 Drop，該類型才能是 Copy
-
-Clone 的特性：
-
-1. 複製 stack / heap 的資料都可以
-2. 開發者必須要實作 `Clone::clone(&self)`
-3. 觸發複製的時間點只有呼叫 `Clone::clone(&self)` 的時候
-4. 類型沒有特別限制
-
 ## 實際使用
 
 ### Rc & Arc: shared ownership
