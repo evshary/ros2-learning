@@ -76,6 +76,7 @@ nav:
     - 'Zenoh debug 方法': 'zenoh/debug.md'
     - 'zenoh-bridge-ros2dds': 'zenoh/zenoh_bridge_ros2.md'
     - 'Zenoh C++': 'zenoh/cpp.md'
+    - 'Zenoh Pico': 'zenoh/pico.md'
   - 'Autoware 入門':
     - 'Autoware 介紹': 'autoware/introduction.md'
     - 'Autoware 安裝': 'autoware/installation.md'
