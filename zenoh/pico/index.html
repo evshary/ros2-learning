@@ -1884,7 +1884,8 @@
 
   <h1>Zenoh Pico</h1>
 
-<p>zenoh-pico 是 Zenoh 的輕量級版本，主要用於嵌入式系統。</p>
+<p>zenoh-pico 是 Zenoh 的輕量級版本，主要用於嵌入式系統。
+我們可以把 zenoh-pico 想成是 Zenoh 的用 C 寫成的輕量級實作，擁有大多數的功能，但是不支援共享記憶體 (Shared Memory)、Gossip (分享並接收連接狀態的資訊)。</p>
 <h2 id="_1">編譯教學</h2>
 <p>以下我們使用 <a href="https://github.com/evshary/zenoh-example/tree/main/zenoh-pico">zenoh-example/zenoh-pico</a> 作為範例，說明如何編譯並執行基於 Zenoh Pico 的 C 程式。</p>
 <h3 id="1-zenoh-pico">1. 編譯 zenoh-pico</h3>
@@ -1895,12 +1896,13 @@
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>../zenoh-pico-install<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span>-DZ_FEATURE_UNSTABLE_API<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span>-DZ_FEATURE_ADVANCED_PUBLICATION<span class="o">=</span><span class="m">1</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>make
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>make<span class="w"> </span>install
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nb">cd</span><span class="w"> </span>..
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span>-DZ_FEATURE_ADVANCED_PUBLICATION<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">      </span>-DZ_FEATURE_ADVANCED_SUBSCRIPTION<span class="o">=</span><span class="m">1</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>make
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>make<span class="w"> </span>install
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nb">cd</span><span class="w"> </span>..
 </span></code></pre></div>
-<p><em>註：<code>Z_FEATURE_ADVANCED_PUBLICATION</code> 需要開啟 <code>Z_FEATURE_UNSTABLE_API=1</code>。此範例所需的其他功能在 <code>zenoh-pico</code> 預設皆已開啟。</em></p>
+<p><em>註：<code>Z_FEATURE_ADVANCED_PUBLICATION</code> 和 <code>Z_FEATURE_ADVANCED_SUBSCRIPTION</code> 需要開啟 <code>Z_FEATURE_UNSTABLE_API=1</code>。此範例所需的其他功能在 <code>zenoh-pico</code> 預設皆已開啟。</em></p>
 <h3 id="2">2. 編譯範例程式</h3>
 <p>接著，編譯應用程式範例。建立 <code>build</code> 資料夾，並透過 <code>CMAKE_PREFIX_PATH</code> 指定剛剛安裝好的 <code>zenoh-pico</code> 路徑</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>build
@@ -1911,14 +1913,15 @@
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>make
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">cd</span><span class="w"> </span>..
 </span></code></pre></div>
-<p>編譯成功後，您會得到以下兩個執行檔：</p>
+<p>編譯成功後，會得到以下兩個執行檔：</p>
 <ul>
-<li><code>zp_simple_pub</code></li>
-<li><code>zp_simple_advanced_pub</code></li>
+<li><code>zp_simple_pubsub</code></li>
+<li><code>zp_simple_advanced_pubsub</code></li>
 </ul>
 <h3 id="3">3. 執行範例</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./build/zp_simple_pub
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>./build/zp_simple_advanced_pub
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 先執行 zenohd</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>./build/zp_simple_pubsub
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>./build/zp_simple_advanced_pubsub
 </span></code></pre></div>
 <h3 id="4">4. 清理環境</h3>
 <p>如果需要清除編譯的暫存檔與安裝資料夾，可以執行：</p>
