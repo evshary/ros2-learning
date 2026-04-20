@@ -6,6 +6,7 @@ keywords:
 ---
 
 zenoh-pico 是 Zenoh 的輕量級版本，主要用於嵌入式系統。
+我們可以把 zenoh-pico 想成是 Zenoh 的用 C 寫成的輕量級實作，擁有大多數的功能，但是不支援共享記憶體 (Shared Memory)、Gossip (分享並接收連接狀態的資訊)。
 
 ## 編譯教學
 
@@ -22,13 +23,14 @@ cmake ../zenoh-pico \
       -DCMAKE_INSTALL_PREFIX=../zenoh-pico-install \
       -DCMAKE_BUILD_TYPE=Release \
       -DZ_FEATURE_UNSTABLE_API=1 \
-      -DZ_FEATURE_ADVANCED_PUBLICATION=1
+      -DZ_FEATURE_ADVANCED_PUBLICATION=1 \
+      -DZ_FEATURE_ADVANCED_SUBSCRIPTION=1
 make
 make install
 cd ..
 ```
 
-*註：`Z_FEATURE_ADVANCED_PUBLICATION` 需要開啟 `Z_FEATURE_UNSTABLE_API=1`。此範例所需的其他功能在 `zenoh-pico` 預設皆已開啟。*
+*註：`Z_FEATURE_ADVANCED_PUBLICATION` 和 `Z_FEATURE_ADVANCED_SUBSCRIPTION` 需要開啟 `Z_FEATURE_UNSTABLE_API=1`。此範例所需的其他功能在 `zenoh-pico` 預設皆已開啟。*
 
 ### 2. 編譯範例程式
 
@@ -44,16 +46,17 @@ make
 cd ..
 ```
 
-編譯成功後，您會得到以下兩個執行檔：
+編譯成功後，會得到以下兩個執行檔：
 
-* `zp_simple_pub`
-* `zp_simple_advanced_pub`
+* `zp_simple_pubsub`
+* `zp_simple_advanced_pubsub`
 
 ### 3. 執行範例
 
 ```bash
-./build/zp_simple_pub
-./build/zp_simple_advanced_pub
+# 先執行 zenohd
+./build/zp_simple_pubsub
+./build/zp_simple_advanced_pubsub
 ```
 
 ### 4. 清理環境
