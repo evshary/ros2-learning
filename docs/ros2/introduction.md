@@ -73,3 +73,4 @@ LTS 大多數情況都是兩版出一次，並且搭配 Ubuntu 的 LTS 版本。
 * [ROS 2 Documentation](https://docs.ros.org/en/rolling/index.html): ROS 2 的文件，這邊附上 Rolling 版本
 * [ROS 2 Demo Code](https://github.com/ros2/demos): ROS 2 的 Demo Code，通常要寫程式都會從這邊參考
 * [ROS 2 Example Code](https://github.com/ros2/examples): ROS 2 的 Example Code，通常要寫程式都會從這邊參考
+* [ROS trademark](https://www.ros.org/blog/media/)：如果要用到 ROS 的名稱，要注意一下這邊的使用規範
