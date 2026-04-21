@@ -6,3 +6,6 @@ __pycache__
 
 # mkdocs
 site
+
+# AI-related
+.codex
