@@ -240,10 +240,38 @@ Copy 的特性：
 2. 實作包在 Rust 內部，開發者無法修改
 3. 觸發的時間點在幾個地方觸發：給值、參數傳入、回傳結果
 4. 類型中的所有成員都必須是 Copy、並且沒有實現 Drop，該類型才能是 Copy
+5. 絕大多數都是用 `#[derive(Copy, Clone)]` 來宣告，一般也會加上 Clone
 
 Clone 的特性：
 
 1. 複製 stack / heap 的資料都可以
-2. 開發者必須要實作 `Clone::clone(&self)`
-3. 觸發複製的時間點只有呼叫 `Clone::clone(&self)` 的時候
-4. 類型沒有特別限制
+2. 如果所有欄位都有實作 Clone，開發者可以直接用 `#[derive(Clone)]`
+3. 如果沒有的話，那就必須要實作 `Clone::clone(&self)`
+4. 觸發複製的時間點只有呼叫 `Clone::clone(&self)` 的時候
+5. 類型沒有特別限制
+
+這邊提供 impl Clone 的簡單範例：
+
+```rust
+struct Person {
+    name: String,
+}
+
+impl Clone for Person {
+    fn clone(&self) -> Self {
+        Self {
+            name: self.name.clone(),
+        }
+    }
+}
+
+fn main() {
+    let p1 = Person {
+        name: String::from("Alice"),
+    };
+    let p2 = p1.clone();
+
+    println!("{}", p1.name);
+    println!("{}", p2.name);
+}
+```
