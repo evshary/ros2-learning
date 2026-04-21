@@ -275,3 +275,61 @@ fn main() {
     println!("{}", p2.name);
 }
 ```
+
+#### Debug
+
+通常我們都會需要在 Debug 的時候印出 struct 的一些相關資訊，例如使用 `println!("{:?}", value);`。
+這時怎麼顯示就必須要依靠 Debug 這個 trait。
+
+我們可以用 `#[derive(Debug)]` 來使用預設的實作（但是 struct 內部必須都要有實作 Debug），也可以自行 impl。
+
+根據 [Rust 官方建議](https://doc.rust-lang.org/std/fmt/#fmtdisplay-vs-fmtdebug)，所有公開的 struct 都應該要有實作 Debug，這是因為使用者預設就會認為他們可以直接印出相關細節，也更容易整合到不同開發工具之中。
+
+當然，這也是會有副作用的，但是大體上都還在可以接受範圍
+
+* 編譯時間和 code size 會稍微增加，不過跟帶來的好處想比，是可以被接受的
+* 部份比較敏感的資訊會暴露出來，這部份可能會需要自行 impl Debug
+
+我們可以用 `RUSTFLAGS="-W missing_debug_implementations" cargo check` 來確認當前專案到底有哪些公開的 struct 沒有 Debug 這個 trait。
+
+簡單範例：
+
+```rust
+#[derive(Debug)]
+struct Point {
+    x: i32,
+    y: i32,
+}
+
+fn main() {
+    let p = Point { x: 3, y: 5 };
+
+    println!("{:?}", p);
+}
+```
+
+如果想要自訂輸出的內容，也可以自己實作 `Debug`：
+
+```rust
+use std::fmt;
+
+struct User {
+    name: String,
+    age: u8,
+}
+
+impl fmt::Debug for User {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "User {{ name: {}, age: {} }}", self.name, self.age)
+    }
+}
+
+fn main() {
+    let user = User {
+        name: String::from("Alice"),
+        age: 18,
+    };
+
+    println!("{:?}", user);
+}
+```
