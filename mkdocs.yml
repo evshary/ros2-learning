@@ -102,3 +102,4 @@ nav:
     - 'Rust async': 'rust/async.md'
     - 'Rust unsafe': 'rust/unsafe.md'
     - 'Rust trait': 'rust/trait.md'
+    - 'Rust fuzzy': 'rust/fuzzy.md'
