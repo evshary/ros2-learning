@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="介紹 Zenoh C++ 的 API 用法">
+        <meta name="description" content="簡介怎麼在 Rust 進行各種 fuzzy 測試">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/zenoh/cpp/">
+        <link rel="canonical" href="https://ros2.tw/rust/fuzzy/">
       
       
-        <link rel="prev" href="../zenoh_bridge_ros2/">
+        <link rel="prev" href="../trait/">
       
-      
-        <link rel="next" href="../pico/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>Zenoh C++ - ROS 2 筆記</title>
+        <title>Rust fuzzy - ROS 2 筆記</title>
       
     
     
@@ -124,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Zenoh C++
+              Rust fuzzy
             
           </span>
         </div>
@@ -836,20 +834,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -865,7 +861,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Zenoh 入門
@@ -879,7 +875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../zenoh/introduction/" class="md-nav__link">
         
   
   
@@ -902,7 +898,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mode/" class="md-nav__link">
+      <a href="../../zenoh/mode/" class="md-nav__link">
         
   
   
@@ -925,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../keyexpr/" class="md-nav__link">
+      <a href="../../zenoh/keyexpr/" class="md-nav__link">
         
   
   
@@ -948,7 +944,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../shared_memory/" class="md-nav__link">
+      <a href="../../zenoh/shared_memory/" class="md-nav__link">
         
   
   
@@ -971,7 +967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../debug/" class="md-nav__link">
+      <a href="../../zenoh/debug/" class="md-nav__link">
         
   
   
@@ -994,7 +990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../zenoh_bridge_ros2/" class="md-nav__link">
+      <a href="../../zenoh/zenoh_bridge_ros2/" class="md-nav__link">
         
   
   
@@ -1014,30 +1010,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Zenoh C++
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../zenoh/cpp/" class="md-nav__link">
         
   
   
@@ -1048,33 +1024,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      範例
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1087,7 +1036,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pico/" class="md-nav__link">
+      <a href="../../zenoh/pico/" class="md-nav__link">
         
   
   
@@ -1570,18 +1519,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -1597,7 +1548,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             Rust
@@ -1611,7 +1562,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1634,7 +1585,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/ownership/" class="md-nav__link">
+      <a href="../ownership/" class="md-nav__link">
         
   
   
@@ -1657,7 +1608,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/module/" class="md-nav__link">
+      <a href="../module/" class="md-nav__link">
         
   
   
@@ -1680,7 +1631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/attribute/" class="md-nav__link">
+      <a href="../attribute/" class="md-nav__link">
         
   
   
@@ -1703,7 +1654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/async/" class="md-nav__link">
+      <a href="../async/" class="md-nav__link">
         
   
   
@@ -1726,7 +1677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/unsafe/" class="md-nav__link">
+      <a href="../unsafe/" class="md-nav__link">
         
   
   
@@ -1749,7 +1700,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/trait/" class="md-nav__link">
+      <a href="../trait/" class="md-nav__link">
         
   
   
@@ -1769,10 +1720,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../rust/fuzzy/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Rust fuzzy
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1783,6 +1754,117 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      分類
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分類">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fuzzy" class="md-nav__link">
+    <span class="md-ellipsis">
+      fuzzy 測試框架
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      輔助測試函式庫
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      實戰
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="實戰">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cargo-fuzzy" class="md-nav__link">
+    <span class="md-ellipsis">
+      cargo-fuzzy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aflrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      afl.rs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#honggfuzz-rs" class="md-nav__link">
+    <span class="md-ellipsis">
+      honggfuzz-rs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arbitrary" class="md-nav__link">
+    <span class="md-ellipsis">
+      arbitrary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proptest" class="md-nav__link">
+    <span class="md-ellipsis">
+      proptest
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1822,9 +1904,93 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      範例
+      分類
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="分類">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fuzzy" class="md-nav__link">
+    <span class="md-ellipsis">
+      fuzzy 測試框架
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      輔助測試函式庫
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      實戰
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="實戰">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cargo-fuzzy" class="md-nav__link">
+    <span class="md-ellipsis">
+      cargo-fuzzy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aflrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      afl.rs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#honggfuzz-rs" class="md-nav__link">
+    <span class="md-ellipsis">
+      honggfuzz-rs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arbitrary" class="md-nav__link">
+    <span class="md-ellipsis">
+      arbitrary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proptest" class="md-nav__link">
+    <span class="md-ellipsis">
+      proptest
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1844,40 +2010,99 @@
 
 
 
-  <h1>Zenoh C++</h1>
+  <h1>Rust fuzzy</h1>
 
-<p>C++ 算是最熱門的程式語言之一，所以 Zenoh 也提供 zenoh-cpp 讓使用者可以透過 C++ API 來使用 Zenoh。</p>
-<p>zenoh-cpp 的設計比較特別，他其實只是一群 header 檔案，後面可以接上 zenoh-c (完整版的 Zenoh) 或是 zenoh-pico (嵌入式) 的實作。</p>
-<h2 id="_1">範例</h2>
-<p>我創了一個簡單的專案 <a href="https://github.com/evshary/zenoh-cpp-example">zenoh-cpp-example</a> 來展示怎麼在你的程式中使用 zenoh-cpp。</p>
+<p>fuzzy 測試專門用在產生隨機的輸入，來確保程式的結果都會符合我們預期。
+fuzzy 測試和一般測試的不同在於，我們不會預先知道他的輸入，所以更能夠發現一些預想不到的問題。
+很多安全漏洞或是 bug 都是透過 fuzzy 測試來找出來的。</p>
+<p>在 Rust 中如果要使用 fuzzy 測試，有幾個推薦的函式庫。
+我們將其分成兩大類：</p>
 <ul>
-<li>首先我們抓下這個專案，並且同步裡面的 submodule</li>
+<li>fuzzy 測試框架：會不斷去修改輸入的 byte，並餵給待測函式，並且提供測試結果/報告，甚至有些可以直接開啟 debugger 來找問題。</li>
+<li>輔助測試函式庫：如果輸入只是單純 raw data 的改變，測試還是會受限，我們需要其他函式庫幫忙，例如產生特殊的 struct，又或者是根據一定規則來產生測試輸入</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/evshary/zenoh-cpp-example
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>zenoh-cpp-example
+<p>一般來說是選擇一個 fuzzy 測試框架，然後另外搭配輔助測試函式庫。</p>
+<h2 id="_1">分類</h2>
+<h3 id="fuzzy">fuzzy 測試框架</h3>
+<ul>
+<li><a href="https://github.com/rust-fuzz/cargo-fuzz">cargo-fuzz</a><ul>
+<li>Rust 社群最熱門的選擇，一般來說會推薦優先使用</li>
+<li>只有單一 process，速度非常快</li>
+<li>但也因此缺乏 process 隔離，狀態可能會被污染</li>
+</ul>
+</li>
+<li><a href="https://github.com/rust-fuzz/afl.rs">afl.rs</a><ul>
+<li>提供一層 Rust wrapper 來使用 AFL (American Fuzzy Lop)</li>
+<li>mutation（變換 input）的能力很強</li>
+<li>使用 fork process 的方式測試，隔離很好</li>
+<li>但速度也相較更慢</li>
+</ul>
+</li>
+<li><a href="https://github.com/rust-fuzz/honggfuzz-rs">honggfuzz-rs</a><ul>
+<li>提供一層 Rust wrapper 來使用 Google 所開發的 Honggfuzz</li>
+<li>有整合 debugger、sanitizer (ASan/UBSan)，方便進行分析</li>
+<li>同樣也有用 fork process 來隔離</li>
+</ul>
+</li>
+</ul>
+<h3 id="_2">輔助測試函式庫</h3>
+<ul>
+<li><a href="https://github.com/rust-fuzz/arbitrary">arbitrary</a><ul>
+<li>測試框架一般只有產生 raw byte 輸入，但是實際函式的輸入會是 struct，我們需要將 raw byte 轉換成 struct，這就是 arbitrary 幫我們做的事情</li>
+</ul>
+</li>
+<li><a href="https://github.com/proptest-rs/proptest">prop-test</a><ul>
+<li>我們可以針對測試輸入設定一些規則，而不是使用完全隨機的輸入，這樣更有機會幫我們鎖定應該測試的範圍</li>
+<li>prop-test 還可以在發現某個錯誤時，主動幫我們縮小測試的範圍，鎖定到底是誰導致這個錯誤產生</li>
+</ul>
+</li>
+</ul>
+<h2 id="_3">實戰</h2>
+<p>這邊弄了一個範例 GitHub repo <a href="https://github.com/evshary/rust_fuzzy_examples">rust_fuzzy_examples</a>，幫助我們快速理解這些函式庫的使用。</p>
+<p>這個範例是一個將字串轉為數字的函式，但是留了一個 bug，只要字串是是 "0"，就會導致函式 panic。
+我們分別用不同 fuzz 函式庫來說明。</p>
+<h3 id="cargo-fuzzy">cargo-fuzzy</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>cargo_fuzzy_example
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># 安裝</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-fuzz
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>rustup<span class="w"> </span>toolchain<span class="w"> </span>install<span class="w"> </span>nightly
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># fuzzy 測試 parse_port</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>fuzz<span class="w"> </span>run<span class="w"> </span>parse_port
 </span></code></pre></div>
-<ul>
-<li>安裝 library</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libzenohc-dev
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libzenohpico-dev
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libzenohcpp-dev
+<p>可以看到 cargo-fuzzy 是在當前 crate 下另外有一個 fuzz 的資料夾，放 fuzzy test 相關的程式碼。
+運行的結果，正常沒問題的 input 會放在 corpus 資料夾，會 crash 的 input 就放到 artifacts 資料夾下。</p>
+<p>要特別注意的是 cargo-fuzzy 會需要使用 nightly feature，所以執行時要加上 <code>+nightly</code>。</p>
+<h3 id="aflrs">afl.rs</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>afl_rs_example
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># 安裝</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-afl
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>cargo<span class="w"> </span>afl<span class="w"> </span>system-config
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># 編譯 afl 測試的 binary，特別注意這邊我是故意用 afl-harness feature 來隔開，不影響正常程式運作</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>cargo<span class="w"> </span>afl<span class="w"> </span>build<span class="w"> </span>--features<span class="w"> </span>afl-harness<span class="w"> </span>--bin<span class="w"> </span>fuzz_parse_port
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 用 in/seed.txt 來當作 input 基底來隨機調整，結果會放到 out 資料夾</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>cargo<span class="w"> </span>afl<span class="w"> </span>fuzz<span class="w"> </span>-i<span class="w"> </span><span class="k">in</span><span class="w"> </span>-o<span class="w"> </span>out<span class="w"> </span>target/debug/fuzz_parse_port
 </span></code></pre></div>
-<ul>
-<li>執行 cmake</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>cmake<span class="w"> </span>-DBUILD_ZENOHC<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">      </span>-DBUILD_ZENOHCPP_ZENOHC<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span>-DBUILD_ZENOHCPP_ZENOHPICO<span class="o">=</span>ON<span class="w"> </span>..
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>cmake<span class="w"> </span>--build<span class="w"> </span>.
+<p>測試會造成 crash 的 input 會放在 <code>out/default/crashes</code> 底下。</p>
+<h3 id="honggfuzz-rs">honggfuzz-rs</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>honggfuzz_rs_example
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># 安裝</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>cargo<span class="w"> </span>install<span class="w"> </span>honggfuzz
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 跑 fuzzy test</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>cargo<span class="w"> </span>hfuzz<span class="w"> </span>run<span class="w"> </span>parse_port
 </span></code></pre></div>
-<p>這邊有三個選項 <code>BUILD_ZENOHC</code>、<code>BUILD_ZENOHCPP_ZENOHC</code>、<code>BUILD_ZENOHCPP_ZENOHPICO</code>，可以去 <code>CMakeLists.txt</code> 查看分別對應的編譯選項。</p>
-<ul>
-<li><code>BUILD_ZENOHC</code>：代表編譯 zenoh-c 的 API 的範例</li>
-<li><code>BUILD_ZENOHCPP_ZENOHC</code>：代表編譯 zenoh-cpp 的 API 範例，但是用 zenoh-c 當 backend</li>
-<li><code>BUILD_ZENOHCPP_ZENOHPICO</code>：代表編譯 zenoh-cpp 的 API 範例，但是用 zenoh-pico 當 backend</li>
-</ul>
+<p><code>hfuzz_workspace/parse_port/input/seed.txt</code> 要填入一般正常的輸入，然後運行失敗的結果和報告會被放到 <code>hfuzz_workspace/parse_port/</code>。</p>
+<h3 id="arbitrary">arbitrary</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>arbitrary_example
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># 測試 (我們寫成一般 Rust 測試，一般來說是跟前面的 fuzzy framework 搭配</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>cargo<span class="w"> </span><span class="nb">test</span>
+</span></code></pre></div>
+<p>我們可以先在要當成輸入的 struct 加上 <code>#[derive(Arbitrary)]</code>，然後再用 <code>arbitrary::Unstructured</code> 把一般的 byte 輸入轉換成 struct。</p>
+<h3 id="proptest">proptest</h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>proptest_example
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># 測試 (我們寫成一般 Rust 測試，一般來說是跟前面的 fuzzy framework 搭配</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>cargo<span class="w"> </span><span class="nb">test</span><span class="w"> </span>parse_port_matches_std<span class="w"> </span>--<span class="w"> </span>--ignored
+</span></code></pre></div>
+<p>運行測試發現錯誤時，proptest 會產生最小可複製的測試 case 放在 <code>proptest-regressions/</code> 資料夾下，下次再次執行時，會優先從這個資料夾執行有問題的 case。</p>
 
 
 
