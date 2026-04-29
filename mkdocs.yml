@@ -75,6 +75,7 @@ nav:
     - 'Zenoh key': 'zenoh/keyexpr.md'
     - 'Zenoh 共享記憶體': 'zenoh/shared_memory.md'
     - 'Zenoh debug 方法': 'zenoh/debug.md'
+    - 'Zenoh 協定': 'zenoh/protocol.md'
     - 'zenoh-bridge-ros2dds': 'zenoh/zenoh_bridge_ros2.md'
     - 'Zenoh C++': 'zenoh/cpp.md'
     - 'Zenoh Pico': 'zenoh/pico.md'
