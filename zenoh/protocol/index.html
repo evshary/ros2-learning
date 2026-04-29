@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Rust 屬性系統">
+        <meta name="description" content="介紹 Zenoh 協定內容以及如何用 dissector 觀察">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/rust/attribute/">
+        <link rel="canonical" href="https://ros2.tw/zenoh/protocol/">
       
       
-        <link rel="prev" href="../module/">
+        <link rel="prev" href="../debug/">
       
       
-        <link rel="next" href="../async/">
+        <link rel="next" href="../zenoh_bridge_ros2/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Rust Attribute - ROS 2 筆記</title>
+        <title>Zenoh 協定 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#zenoh-dissector" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rust Attribute
+              Zenoh 協定
             
           </span>
         </div>
@@ -836,18 +836,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -863,7 +865,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Zenoh 入門
@@ -877,7 +879,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zenoh/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -900,7 +902,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zenoh/mode/" class="md-nav__link">
+      <a href="../mode/" class="md-nav__link">
         
   
   
@@ -923,7 +925,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zenoh/keyexpr/" class="md-nav__link">
+      <a href="../keyexpr/" class="md-nav__link">
         
   
   
@@ -946,7 +948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zenoh/shared_memory/" class="md-nav__link">
+      <a href="../shared_memory/" class="md-nav__link">
         
   
   
@@ -969,7 +971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zenoh/debug/" class="md-nav__link">
+      <a href="../debug/" class="md-nav__link">
         
   
   
@@ -989,10 +991,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../zenoh/protocol/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Zenoh 協定
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1003,6 +1025,33 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#zenoh-dissector" class="md-nav__link">
+    <span class="md-ellipsis">
+      zenoh-dissector
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1015,7 +1064,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zenoh/zenoh_bridge_ros2/" class="md-nav__link">
+      <a href="../zenoh_bridge_ros2/" class="md-nav__link">
         
   
   
@@ -1038,7 +1087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zenoh/cpp/" class="md-nav__link">
+      <a href="../cpp/" class="md-nav__link">
         
   
   
@@ -1061,7 +1110,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zenoh/pico/" class="md-nav__link">
+      <a href="../pico/" class="md-nav__link">
         
   
   
@@ -1544,20 +1593,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -1573,7 +1620,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             Rust
@@ -1587,7 +1634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../rust/introduction/" class="md-nav__link">
         
   
   
@@ -1610,7 +1657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ownership/" class="md-nav__link">
+      <a href="../../rust/ownership/" class="md-nav__link">
         
   
   
@@ -1633,7 +1680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../module/" class="md-nav__link">
+      <a href="../../rust/module/" class="md-nav__link">
         
   
   
@@ -1653,30 +1700,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Rust Attribute
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../rust/attribute/" class="md-nav__link">
         
   
   
@@ -1687,84 +1714,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      分類
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="分類">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      編譯器內建 attribute
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lint-attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      lint attribute
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#macro-attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      macro attribute
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cratemod-level-attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      crate/mod level attribute
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#feature" class="md-nav__link">
-    <span class="md-ellipsis">
-      feature
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1777,7 +1726,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../async/" class="md-nav__link">
+      <a href="../../rust/async/" class="md-nav__link">
         
   
   
@@ -1800,7 +1749,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../unsafe/" class="md-nav__link">
+      <a href="../../rust/unsafe/" class="md-nav__link">
         
   
   
@@ -1823,7 +1772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../trait/" class="md-nav__link">
+      <a href="../../rust/trait/" class="md-nav__link">
         
   
   
@@ -1846,7 +1795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fuzzy/" class="md-nav__link">
+      <a href="../../rust/fuzzy/" class="md-nav__link">
         
   
   
@@ -1894,60 +1843,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#zenoh-dissector" class="md-nav__link">
     <span class="md-ellipsis">
-      分類
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="分類">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      編譯器內建 attribute
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lint-attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      lint attribute
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#macro-attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      macro attribute
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cratemod-level-attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      crate/mod level attribute
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#feature" class="md-nav__link">
-    <span class="md-ellipsis">
-      feature
+      zenoh-dissector
     </span>
   </a>
   
@@ -1969,150 +1867,30 @@
 
 
 
-  <h1>Rust Attribute</h1>
+  <h1>Zenoh 協定</h1>
 
-<p>在看 Rust 的程式的時候會常常看到 <code>#[]</code>，這個是 Rust 的屬性系統 (attribute)。
-他的功能在於提供給編譯器或其他工具在編譯時的一些額外資訊，例如改變編譯行為、code 生成、lint、macro 展開等等。</p>
-<p>下面是最基本的語法</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// 單純 attribute，例如 #[test]</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#[attribute]</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// 帶入 key、value，例如 #[cfg(feature = &quot;foo&quot;)]</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cp">#[attribute(key = </span><span class="s">&quot;value&quot;</span><span class="cp">)]</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">// 帶入其他參數，例如 #[allow(dead_code)]</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="cp">#[attribute(arg1, arg2)]</span>
-</span></code></pre></div>
-<h2 id="_1">分類</h2>
-<p>一般來說有下面這幾個分類</p>
-<h3 id="attribute">編譯器內建 attribute</h3>
-<p>調整 compiler 的行為，例如 cfg、inline、repr、derive 等等</p>
+<h2 id="zenoh-dissector">zenoh-dissector</h2>
+<p>如果想要學習 Zenoh Protocol，那我們一定需要使用 <a href="https://github.com/eclipse-zenoh/zenoh-dissector">zenoh-dissector</a> 這個 wireshark plugin 來看。</p>
 <ul>
-<li>條件編譯：決定某個程式是否存在</li>
+<li>先確保已經有安裝 wireshark</li>
 </ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#[cfg(feature = </span><span class="s">&quot;foo&quot;</span><span class="cp">)]</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">#[cfg(target_os = </span><span class="s">&quot;linux&quot;</span><span class="cp">)]</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:wireshark-dev/stable
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>wireshark
 </span></code></pre></div>
 <ul>
-<li>derive：產生實作</li>
+<li>到 <a href="https://github.com/eclipse-zenoh/zenoh-dissector/releases">GitHub Release page</a> 下載對應自己作業系統的 library</li>
+<li>解壓縮後會看到 <code>libzenoh_dissector.so</code> 這個檔案，要放到對應的位置，這邊是以 <code>4.6.x</code> 為例，你要放到對應自己版本的資料夾</li>
 </ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">#[derive(Debug, Clone, PartialEq)]</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">struct</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="p">,</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.local/lib/wireshark/plugins/4.6/epan
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cp<span class="w"> </span>libzenoh_dissector.so<span class="w"> </span>~/.local/lib/wireshark/plugins/4.6/epan/libzenoh_dissector.so
 </span></code></pre></div>
 <ul>
-<li>編譯優化 / 行為控制</li>
+<li>開啟 wireshark 之後，就可以輸入 zenoh 來查看 protocol</li>
+<li>我們可以用 Zenoh 最基本的範例來觀察，注意的是目前預設 Zenoh plugin 只會追蹤 port 7447，所以讓我們特別指定 listener 和 connector</li>
 </ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#[inline]</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="cp">#[inline(always)]</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="cp">#[inline(never)]</span>
-</span></code></pre></div>
-<ul>
-<li>測試相關</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">#[test]</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">fn</span><span class="w"> </span><span class="nf">test_add</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">}</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="cp">#[test]</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="cp">#[ignore = </span><span class="s">&quot;requires network access&quot;</span><span class="cp">]</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">fn</span><span class="w"> </span><span class="nf">test_api</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span></code></pre></div>
-<ul>
-<li>repr：記憶體布局控制</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cp">#[repr(C)]</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">struct</span><span class="w"> </span><span class="nc">MyStruct</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">a</span><span class="p">:</span><span class="w"> </span><span class="kt">u8</span><span class="p">,</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="n">b</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="p">,</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
-</span></code></pre></div>
-<ul>
-<li>doc：產生文件，<code>///</code> 就是 <code>doc</code> 的語法糖</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cp">#[doc = </span><span class="s">&quot;This is a function&quot;</span><span class="cp">]</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1">// 等同於</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="sd">/// This is a function</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span></code></pre></div>
-<ul>
-<li>feature： 把某些 nightly 的功能啟動</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cp">#![feature(async_fn_in_trait)]</span>
-</span></code></pre></div>
-<h3 id="lint-attribute">lint attribute</h3>
-<p>lint / warning 控制，決定哪些要跳出 warning</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cp">#[allow(dead_code)]</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="cp">#[deny(unused_variables)]</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="cp">#[warn(missing_docs)]</span>
-</span></code></pre></div>
-<h3 id="macro-attribute">macro attribute</h3>
-<p>也可以用 attribute 來展開 macro</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="cp">#[macro_use]</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">extern</span><span class="w"> </span><span class="k">crate</span><span class="w"> </span><span class="n">foo</span><span class="p">;</span>
-</span></code></pre></div>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="cp">#[tokio::main]</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span></code></pre></div>
-<h2 id="cratemod-level-attribute">crate/mod level attribute</h2>
-<p>如果我們想要讓某個 attribute 附在整個 scope 上，那就需要使用 <code>#![...]</code></p>
-<ul>
-<li>crate level</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="cp">#![no_std]</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="cp">#![feature(async_fn_in_trait)]</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span></code></pre></div>
-<ul>
-<li>mod level</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">mod</span><span class="w"> </span><span class="nn">foo</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="cp">#![allow(unused)]</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">}</span>
-</span></code></pre></div>
-<h2 id="feature">feature</h2>
-<p>feature 是其中一個最常用到的 attribute，用來決定編譯時期哪些功能要被啟動</p>
-<p>在 <code>Cargo.toml</code> 中加上 <code>[features]</code></p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">[</span><span class="n">features</span><span class="p">]</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;feature_a&quot;</span><span class="p">]</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">feature_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">feature_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
-</span></code></pre></div>
-<p>程式中就可以用 <code>#[cfg(feature = "xxx")]</code></p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="cp">#[cfg(feature = </span><span class="s">&quot;feature_a&quot;</span><span class="cp">)]</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;feature_a enabled&quot;</span><span class="p">);</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">}</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="cp">#[cfg(not(feature = </span><span class="s">&quot;feature_a&quot;</span><span class="cp">))]</span>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;feature_a disabled&quot;</span><span class="p">);</span>
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="p">}</span>
-</span></code></pre></div>
-<p>編譯時期可以決定要開哪個 feature</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># 開 feature_a</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>cargo<span class="w"> </span>build<span class="w"> </span>--features<span class="w"> </span>feature_a
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c1"># 開 feature_a 和 feature_b</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>cargo<span class="w"> </span>build<span class="w"> </span>--features<span class="w"> </span><span class="s2">&quot;feature_a feature_b&quot;</span>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1"># 不要開任何 feature (default的)</span>
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>cargo<span class="w"> </span>build<span class="w"> </span>--no-default-features
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1"># 不要開任何 default feature，然後再開 feature_b</span>
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>cargo<span class="w"> </span>build<span class="w"> </span>--no-default-features<span class="w"> </span>--features<span class="w"> </span>feature_b
-</span></code></pre></div>
-<p>還有其他進階使用方法，例如條件整理</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1">// 有 foo</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="cp">#[cfg(feature = </span><span class="s">&quot;foo&quot;</span><span class="cp">)]</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="c1">// 沒有 foo</span>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="cp">#[cfg(not(feature = </span><span class="s">&quot;foo&quot;</span><span class="cp">))]</span>
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1">// 需要有 a 和 b</span>
-</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="cp">#[cfg(all(feature = </span><span class="s">&quot;a&quot;</span><span class="cp">, feature = </span><span class="s">&quot;b&quot;</span><span class="cp">))]</span>
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1">// a 和 b 任一成立即可</span>
-</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="cp">#[cfg(any(feature = </span><span class="s">&quot;a&quot;</span><span class="cp">, feature = </span><span class="s">&quot;b&quot;</span><span class="cp">))]</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./z_sub<span class="w"> </span>-l<span class="w"> </span>tcp/127.0.0.1:7447
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>./z_pub<span class="w"> </span>-e<span class="w"> </span>tcp/127.0.0.1:7447
 </span></code></pre></div>
 
 
