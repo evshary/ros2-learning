@@ -18,7 +18,7 @@
         <link rel="prev" href="../debug/">
       
       
-        <link rel="next" href="../zenoh_bridge_ros2/">
+        <link rel="next" href="../format/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -1048,10 +1048,66 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#zenoh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zenoh 協定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Zenoh 協定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scouting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scouting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transport
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zenoh 封包格式
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1851,6 +1907,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#zenoh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zenoh 協定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Zenoh 協定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scouting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scouting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transport
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1891,6 +1980,57 @@
 </ul>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./z_sub<span class="w"> </span>-l<span class="w"> </span>tcp/127.0.0.1:7447
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>./z_pub<span class="w"> </span>-e<span class="w"> </span>tcp/127.0.0.1:7447
+</span></code></pre></div>
+<h2 id="zenoh">Zenoh 協定</h2>
+<p>基本上 Zenoh 的協定可以分成兩種：</p>
+<ul>
+<li>Scouting：用來發現不同節點的協定，預設會監聽 multicast 的位址 <code>224.0.0.224:7446</code></li>
+<li>Transport：用在一般傳輸上面，一般來說我們會使用 port 7447。</li>
+</ul>
+<h3 id="scouting">Scouting</h3>
+<p>在 Zenoh 中，不同節點可以不需要輸入固定 IP 位址就能彼此通訊，這就是依靠 Scouting 的機制。
+Scouting 會廣播自己的資訊給其他人，其他節點就可以依靠這個資訊來建立 Zenoh 的連線。</p>
+<p>Scouting 的流程大概如下：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>A                   B                   C
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>|       SCOUT       |                   |   (multicast/broadcast)
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>|─────────────────&gt;|                   |
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>|         \──────────────────────────&gt;|
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>|                   |                   |
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>|       HELLO       |                   |   (unicast, if B matches)
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>|&lt;─────────────────|                   |
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>|                   |      HELLO        |   (unicast, if C matches)
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>|&lt;──────────────────────────────────── |
+</span></code></pre></div>
+<p>A 會透過 multicast 或是 broadcast 發送 SCOUT 的訊息給其他人，
+如果 B 或 C 有相對應的 Zenoh 服務，就會用 unicast 回傳 HELLO 的訊息給 A</p>
+<h3 id="transport">Transport</h3>
+<p>Transport 的部份就是實際 Zenoh 怎麼傳輸資料。</p>
+<ul>
+<li>一開始 A 會發送 INIT SYN 給 B，B 會回覆 INIT ACK，這是用來確保雙方協定一致</li>
+<li>再來 A 就會開啟實際的 SESSION，B 一樣會回覆 OPEN ACK，表示確認</li>
+<li>後續兩者就會透過 FRAME 的 message 來傳輸資料</li>
+<li>其中也會利用 KEEP_ALIVE message 確保連線暢通</li>
+<li>結束後 A 就可以發送 CLOSE 把這段通訊關閉</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>A                           B
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>|                           |
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>|  INIT SYN  (A=0)          |   propose version, ZID, parameters
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>|─────────────────────────&gt;|
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>|          INIT ACK  (A=1)  |   accept + cookie
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>|&lt;─────────────────────────|
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>|  OPEN SYN  (A=0)          |   echo cookie + propose lease / initial_sn
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>|─────────────────────────&gt;|
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>|          OPEN ACK  (A=1)  |   confirm; session is now active
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>|&lt;─────────────────────────|
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>|                           |
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>|  FRAME / direct network   |   low-latency sessions may skip FRAME batching
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>|  messages                 |
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>|&lt;────────────────────────&gt;|
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>|  KEEP_ALIVE               |   every lease/4
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>|&lt;────────────────────────&gt;|
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>|                           |
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>|  CLOSE (when done)        |
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>|─────────────────────────&gt;|
 </span></code></pre></div>
 
 
