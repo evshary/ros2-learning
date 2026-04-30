@@ -39,6 +39,8 @@ markdown_extensions:
   - pymdownx.magiclink
   # Admonition support
   - admonition
+  # Support details syntax
+  - pymdownx.details
 
 extra:
   # Google Analytics
@@ -76,6 +78,7 @@ nav:
     - 'Zenoh 共享記憶體': 'zenoh/shared_memory.md'
     - 'Zenoh debug 方法': 'zenoh/debug.md'
     - 'Zenoh 協定': 'zenoh/protocol.md'
+    - 'Zenoh 封包格式': 'zenoh/format.md'
     - 'zenoh-bridge-ros2dds': 'zenoh/zenoh_bridge_ros2.md'
     - 'Zenoh C++': 'zenoh/cpp.md'
     - 'Zenoh Pico': 'zenoh/pico.md'
