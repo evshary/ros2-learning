@@ -1633,6 +1633,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../why_rust/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    為什麼選擇 Rust
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ownership/" class="md-nav__link">
         
   
@@ -2296,7 +2319,7 @@
 <tr>
 <td><code>RefCell&lt;T&gt;</code></td>
 <td>O</td>
-<td>X</td>
+<td>X (內部借用狀態不是 atomic，所以不能多人同時更新)</td>
 </tr>
 <tr>
 <td><code>Mutex&lt;T&gt;</code>/<code>RwLock&lt;T&gt;</code></td>
@@ -2305,6 +2328,10 @@
 </tr>
 </tbody>
 </table>
+<p>特別注意一下像是 String、i32 都是同時有 Send 和 Sync，代表可以多個 thread 同時擁有。
+然而在開 thread 的時候會需要使用 <code>Arc&lt;T&gt;</code> 是因為 Arc 可以確保內部 T 的 lifetime 是 <code>'static</code>。
+傳遞的 String 和 i32 是 local 變數，有可能會活得比 thread 還短，所以才要用 Arc。
+如果確定 thread 的 lifetime 會在當前區域結束，也可以用 <code>thread::scope</code>，這樣就不用 <code>Arc&lt;T&gt;</code>。</p>
 <p>如果我們真的確認某個 struct 沒有 data race，那也可以自行用 unsafe trait 加上 Send 和 Sync。</p>
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">unsafe</span><span class="w"> </span><span class="k">impl</span><span class="w"> </span><span class="nb">Send</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">MyType</span><span class="w"> </span><span class="p">{}</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">unsafe</span><span class="w"> </span><span class="k">impl</span><span class="w"> </span><span class="nb">Sync</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">MyType</span><span class="w"> </span><span class="p">{}</span>
