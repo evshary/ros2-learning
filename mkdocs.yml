@@ -100,6 +100,7 @@ nav:
     - 'NVIDIA GPU 安裝': 'embodied-ai/gpu.md'
   - 'Rust':
     - 'Rust 介紹': 'rust/introduction.md'
+    - '為什麼選擇 Rust': 'rust/why_rust.md'
     - 'Rust Ownership': 'rust/ownership.md'
     - 'Rust Module': 'rust/module.md'
     - 'Rust Attribute': 'rust/attribute.md'
