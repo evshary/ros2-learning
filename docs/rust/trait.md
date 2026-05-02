@@ -218,8 +218,13 @@ thread::spawn(move || {
 | ------------ | ---- | ---- |
 | `Rc<T>` | X | X |
 | `Arc<T>` | O | O (但是 T 需要是 Send+Sync) |
-| `RefCell<T>` | O | X |
+| `RefCell<T>` | O | X (內部借用狀態不是 atomic，所以不能多人同時更新) |
 | `Mutex<T>`/`RwLock<T>` | O | O |
+
+特別注意一下像是 String、i32 都是同時有 Send 和 Sync，代表可以多個 thread 同時擁有。
+然而在開 thread 的時候會需要使用 `Arc<T>` 是因為 Arc 可以確保內部 T 的 lifetime 是 `'static`。
+傳遞的 String 和 i32 是 local 變數，有可能會活得比 thread 還短，所以才要用 Arc。
+如果確定 thread 的 lifetime 會在當前區域結束，也可以用 `thread::scope`，這樣就不用 `Arc<T>`。
 
 如果我們真的確認某個 struct 沒有 data race，那也可以自行用 unsafe trait 加上 Send 和 Sync。
 
