@@ -34,6 +34,12 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
     * 提供一層 Rust wrapper 來使用 Google 所開發的 Honggfuzz
     * 有整合 debugger、sanitizer (ASan/UBSan)，方便進行分析
     * 同樣也有用 fork process 來隔離
+* [libAFL](https://github.com/AFLplusplus/LibAFL)
+    * 可以自己定義 fuzz engine，而不是使用他人定義好的框架
+    * 學習成本高，但也有最高的彈性
+* [bolero](https://github.com/camshaft/bolero)
+    * 能夠一個工具搞定 fuzz test + property testing + shrinking
+    * 不過算是新興專案，社群活躍度並沒有那麼大
 
 ### 輔助測試函式庫
 
@@ -92,6 +98,29 @@ cargo hfuzz run parse_port
 ```
 
 `hfuzz_workspace/parse_port/input/seed.txt` 要填入一般正常的輸入，然後運行失敗的結果和報告會被放到 `hfuzz_workspace/parse_port/`。
+
+### libAFL
+
+```bash
+cd libafl_example
+# 我們可以用 libAFL 產生出 input，然後再餵給待測函數
+cargo run
+```
+
+可以觀察 `mutate_seed` 函式，libAFL 給我們很大的彈性來看如何產生測試的 input。
+
+### bolero
+
+```bash
+cd bolero_example
+# 安裝
+cargo install cargo-bolero
+rustup toolchain install nightly
+# 跑 fuzz test
+cargo +nightly bolero test parse_port_matches_std
+```
+
+可以觀察 `parse_port_matches_std`，我們可以在 input 這邊多動一些手腳。
 
 ### arbitrary
 
