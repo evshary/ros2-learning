@@ -5,9 +5,21 @@ keywords:
   - Zenoh
 ---
 
+## VLE
+
+在 Zenoh 中，常常會使用 VLE (Variable-Length Encoding) 的方式來表達數值。
+這個與一般表達方式不同的方式在於，他的長度會是動態的。
+當數值小的時候可以用一個 byte 表示，但是數值大的時候可能會比一般表達方式大一個 byte。
+然而這並不是太大的問題，因為大多數情況數值都不會太大。
+VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous bit，當後面七個 bit 用完的時候，就會把第一個 bit 拉成 1，然後往下長下一個 byte。
+所以 127 的表達方式是 `0x7F`，然後 128 就會變成 `0x80 0x01` 了。
+詳細的邏輯可以參考 [spec](https://spec.zenoh.io/spec/1.0.0/wire/primitives.html#vle) 的說明。
+
+## 封包格式
+
 讓我們實際看看 Zenoh 實際的封包格式，這邊一樣要分成 Scouting 和 Transport 的部份
 
-## Scout & Hello 封包
+### Scout & Hello 封包
 
 Scouting 的部份有 Scout 和 Hello 兩種封包
 
@@ -70,7 +82,7 @@ Scouting 的部份有 Scout 和 Hello 兩種封包
     ```
 <!-- markdownlint-enable MD046 -->
 
-## Transport 封包
+### Transport 封包
 
 Transport Messages 有多個，例如 SYN、OPEN、FRAME、KEEPALIVE、CLOSE 等等，其中最重要的 FRAME。
 
@@ -78,7 +90,7 @@ FRAME 底下還可以切分成更細的 Network Messages，例如 OAM、RESPONSE
 
 而最常用的 Network Messages，PUSH、REQUEST、RESPONSE 底下還可以有 Data Sub-Messages，如 PUT、DEL、QUERY、REPLY、ERR 等等。
 
-### Transport Messages
+#### Transport Messages
 
 <details>
   <summary>INIT 封包</summary>
@@ -202,7 +214,7 @@ FRAME 底下還可以切分成更細的 Network Messages，例如 OAM、RESPONSE
 
 </details>
 
-### Network Messages
+#### Network Messages
 
 <details>
   <summary>OAM 封包</summary>
@@ -355,7 +367,7 @@ FRAME 底下還可以切分成更細的 Network Messages，例如 OAM、RESPONSE
 
 </details>
 
-### Data Sub-Messages
+#### Data Sub-Messages
 
 以下是 Network Messages 會對應到的 Data Sub-Messages
 

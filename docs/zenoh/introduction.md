@@ -24,7 +24,7 @@ Zenoh 則是另起爐灶，在保留 DDS 去中心化和高效能的同時，也
 Zenoh 的 [GitHub namepace](https://github.com/eclipse-zenoh) 裡面底下有很多 project，下面列出幾個常用的
 
 * [zenoh](https://github.com/eclipse-zenoh/zenoh)：zenoh 本身的主程式
-* [zenoh-spec](https://spec.zenoh.io/spec/)：Zenoh 的正式協定規格
+* [zenoh-spec](https://spec.zenoh.io/)：Zenoh 的正式協定規格
 * [Zenoh Roadmap](https://github.com/eclipse-zenoh/roadmap)：Zenoh 部份的規格定義放在這邊
 * Zenoh 各種程式語言 API 的 repository
     * Rust: [zenoh](https://github.com/eclipse-zenoh/zenoh)
