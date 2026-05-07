@@ -2131,20 +2131,55 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
 <h3 id="fuzz">fuzz 測試框架</h3>
 <ul>
 <li><a href="https://github.com/rust-fuzz/cargo-fuzz">cargo-fuzz</a><ul>
+<li>使用 LLVM 提供的 fuzzing engine —— libFuzzer</li>
 <li>Rust 社群最熱門的選擇，一般來說會推薦優先使用</li>
 <li>只有單一 process，速度非常快</li>
 <li>但也因此缺乏 process 隔離，狀態可能會被污染</li>
 </ul>
 </li>
+</ul>
+<!-- markdownlint-disable MD046 -->
+<details>
+<summary>libFuzzer 補充</summary>
+<p>libFuzzer 是 fuzz test 很常被使用的技術，是 LLVM toolchain 所提供的 fuzzing runtime library。
+最主要的優勢有：</p>
+<ul>
+<li>Coverage-guided：透過 LLVM instrumentation，知道 input 會經過程式走過的路徑 (converage)，並且依此來調整 input</li>
+<li>Mutation：可以用各種技術來變化 input</li>
+<li>Corpus：會收集目前有價值的 input 集合</li>
+<li>In-process execution：同個 process 呼叫不同 function，速度很快，但也容易造成 global state 污染</li>
+<li>Minimization：發生 crash 的時候，會自動找出造成 crash 的最小 input</li>
+</ul>
+</details>
+<!-- markdownlint-enable MD046 -->
+
+<ul>
 <li><a href="https://github.com/rust-fuzz/afl.rs">afl.rs</a><ul>
-<li>提供一層 Rust wrapper 來使用 AFL (American Fuzzy Lop)</li>
+<li>提供一層 Rust wrapper 來使用 AFL (American Fuzzy Lop)，是外部的 fuzz engine</li>
 <li>mutation（變換 input）的能力很強</li>
 <li>使用 fork process 的方式測試，隔離很好</li>
 <li>但速度也相較更慢</li>
 </ul>
 </li>
+</ul>
+<!-- markdownlint-disable MD046 -->
+<details>
+<summary>AFL 補充</summary>
+<p>AFL 是另一種 fuzz test 的類型，主要是基於外部的 fuzz engine。
+主要的特色有：</p>
+<ul>
+<li>Coverage-guided：有自己的 instrumentation 技術，可以用在 clang 或 gcc 等不同編譯器</li>
+<li>Mutation：可以用各種技術來變化 input</li>
+<li>Corpus：會收集目前有價值的 input 集合</li>
+<li>Fork server：透過 fork 快速複製 process，在確保隔離的情況下，提高執行速度</li>
+<li>外部控制：會有外部的 engine 來控制輸入和執行</li>
+</ul>
+</details>
+<!-- markdownlint-enable MD046 -->
+
+<ul>
 <li><a href="https://github.com/rust-fuzz/honggfuzz-rs">honggfuzz-rs</a><ul>
-<li>提供一層 Rust wrapper 來使用 Google 所開發的 Honggfuzz</li>
+<li>提供一層 Rust wrapper 來使用 Google 所開發的 Honggfuzz，是外部的 fuzz engine</li>
 <li>有整合 debugger、sanitizer (ASan/UBSan)，方便進行分析</li>
 <li>同樣也有用 fork process 來隔離</li>
 </ul>
@@ -2183,6 +2218,8 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>rustup<span class="w"> </span>toolchain<span class="w"> </span>install<span class="w"> </span>nightly
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># fuzz 測試 parse_port</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>fuzz<span class="w"> </span>run<span class="w"> </span>parse_port
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># 嘗試找出最小造成 bug 的 input</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>fuzz<span class="w"> </span>tmin<span class="w"> </span>parse_port<span class="w"> </span>fuzz/artifacts/parse_port/&lt;crash-file&gt;
 </span></code></pre></div>
 <p>可以看到 cargo-fuzz 是在當前 crate 下另外有一個 fuzz 的資料夾，放 fuzz test 相關的程式碼。
 運行的結果，正常沒問題的 input 會放在 corpus 資料夾，會 crash 的 input 就放到 artifacts 資料夾下。</p>
