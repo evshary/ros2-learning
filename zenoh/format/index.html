@@ -2128,7 +2128,7 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>INIT 封包</summary>
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a> 7 6 5 4 3 2 1 0
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a> 7 6 5 4 3 2 1 0
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>+-+-+-+-+-+-+-+-+
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>|Z|S|A|   INIT  |   ID = 0x01
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>+-+-+-+---------+
@@ -2155,7 +2155,7 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>OPEN 封包</summary>
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a> 7 6 5 4 3 2 1 0
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a> 7 6 5 4 3 2 1 0
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>+-+-+-+-+-+-+-+-+
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>|Z|T|A|   OPEN  |   ID = 0x02
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>+-+-+-+---------+
@@ -2174,7 +2174,7 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>CLOSE 封包</summary>
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a> 7 6 5 4 3 2 1 0
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a> 7 6 5 4 3 2 1 0
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>+-+-+-+-+-+-+-+-+
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>|Z|X|S|  CLOSE  |   ID = 0x03
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>+-+-+-+---------+
@@ -2189,7 +2189,7 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>KEEPALIVE 封包</summary>
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a> 7 6 5 4 3 2 1 0
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a> 7 6 5 4 3 2 1 0
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>+-+-+-+-+-+-+-+-+
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>|Z|X|X| KALIVE  |   ID = 0x04
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>+-+-+-+---------+
@@ -2235,7 +2235,7 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>FRAGMENT 封包</summary>
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a> 7 6 5 4 3 2 1 0
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a> 7 6 5 4 3 2 1 0
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>+-+-+-+-+-+-+-+-+
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>|Z|M|R| FRAGMENT|   ID = 0x06
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>+-+-+-+---------+
@@ -2253,9 +2253,9 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>OAM 封包</summary>
 
-    Orchestration, Administration, Maintainence (OAM) 相關的封包
+Orchestration, Administration, Maintainence (OAM) 相關的封包
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a> 7 6 5 4 3 2 1 0
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a> 7 6 5 4 3 2 1 0
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>+-+-+-+-+-+-+-+-+
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>|Z|ENC|  OAM    |   ID = 0x1F
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>+-+-+-+---------+
@@ -2272,9 +2272,9 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>PUSH 封包</summary>
 
-    用在 Publish 資料上面
+用在 Publish 資料上面
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a> 7 6 5 4 3 2 1 0
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a> 7 6 5 4 3 2 1 0
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>+-+-+-+-+-+-+-+-+
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>|Z|M|N|  PUSH   |   ID = 0x1D
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>+-+-+-+---------+
@@ -2293,9 +2293,9 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>REQUEST 封包</summary>
 
-    用在發送 Query 資料上
+用在發送 Query 資料上
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a> 7 6 5 4 3 2 1 0
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a> 7 6 5 4 3 2 1 0
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>+-+-+-+-+-+-+-+-+
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>|Z|M|N| Request |   ID = 0x1C
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>+-+-+-+---------+
@@ -2316,9 +2316,9 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>RESPONSE 封包</summary>
 
-    用在回覆 Query 資訊上面
+用在回覆 Query 資訊上面
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a> 7 6 5 4 3 2 1 0
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a> 7 6 5 4 3 2 1 0
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>+-+-+-+-+-+-+-+-+
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>|Z|M|N| Response|   ID = 0x1B
 </span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>+-+-+-+---------+
@@ -2339,7 +2339,7 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>RESPONSE_FINAL 封包</summary>
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a> 7 6 5 4 3 2 1 0
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a> 7 6 5 4 3 2 1 0
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>+-+-+-+-+-+-+-+-+
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>|Z|X|X| ResFinal|   ID = 0x1A
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>+-+-+-+---------+
@@ -2354,10 +2354,10 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>DECLARE 封包</summary>
 
-    DECLARE 有幾個用途，把 key expression 對應到 ID 減少傳輸量、宣告 subscriber、queryables、liveliness token。
-    值得注意的是 publish 或 query 並不需要 declare，這可以減少協定的複雜度。
+DECLARE 有幾個用途，把 key expression 對應到 ID 減少傳輸量、宣告 subscriber、queryables、liveliness token。
+值得注意的是 publish 或 query 並不需要 declare，這可以減少協定的複雜度。
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a> 7 6 5 4 3 2 1 0
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a> 7 6 5 4 3 2 1 0
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>+-+-+-+-+-+-+-+-+
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>|Z|X|I| DECLARE |   ID = 0x1E
 </span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>+-+-+-+---------+
@@ -2374,9 +2374,9 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>INTEREST 封包</summary>
 
-    比較晚加入的節點如果要得知當前網路上的狀態，就必須送出 INTEREST 來得到之前已經送出過的 DECLARE。
+比較晚加入的節點如果要得知當前網路上的狀態，就必須送出 INTEREST 來得到之前已經送出過的 DECLARE。
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a> 7 6 5 4 3 2 1 0
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a> 7 6 5 4 3 2 1 0
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>+-+-+-+-+-+-+-+-+
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>|Z|Mod| INTEREST|   ID = 0x19; Mod in bits 6:5
 </span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>+-+-+-+---------+
@@ -2404,18 +2404,18 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>PUT 封包</summary>
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a> 7 6 5 4 3 2 1 0
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>+-+-+-+-+-+-+-+-+
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>|Z|E|T|   PUT   |   ID = 0x01
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>+-+-+-+---------+
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>~  ts: &lt;u8;z16&gt; ~   if T==1: Timestamp
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>+---------------+
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>~   encoding    ~   if E==1: Encoding field (z32 with S-bit + optional schema)
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>+---------------+
-</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>~  [put_exts]   ~   if Z==1 (SourceInfo, Shm, Attachment)
-</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>+---------------+
-</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>~ pl: &lt;u8;z32&gt;  ~   Payload bytes
-</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>+---------------+
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>  7 6 5 4 3 2 1 0
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a> +-+-+-+-+-+-+-+-+
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a> |Z|E|T|   PUT   |   ID = 0x01
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a> +-+-+-+---------+
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a> ~  ts: &lt;u8;z16&gt; ~   if T==1: Timestamp
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a> +---------------+
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a> ~   encoding    ~   if E==1: Encoding field (z32 with S-bit + optional schema)
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a> +---------------+
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a> ~  [put_exts]   ~   if Z==1 (SourceInfo, Shm, Attachment)
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a> +---------------+
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a> ~ pl: &lt;u8;z32&gt;  ~   Payload bytes
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a> +---------------+
 </span></code></pre></div>
 
 </details>
@@ -2423,14 +2423,14 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>DEL 封包</summary>
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a> 7 6 5 4 3 2 1 0
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>+-+-+-+-+-+-+-+-+
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>|Z|X|T|   DEL   |   ID = 0x02
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>+-+-+-+---------+
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>~  ts: &lt;u8;z16&gt; ~   if T==1: Timestamp
-</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>+---------------+
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>~  [del_exts]   ~   if Z==1 (SourceInfo, Attachment)
-</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>+---------------+
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>  7 6 5 4 3 2 1 0
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a> +-+-+-+-+-+-+-+-+
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a> |Z|X|T|   DEL   |   ID = 0x02
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a> +-+-+-+---------+
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a> ~  ts: &lt;u8;z16&gt; ~   if T==1: Timestamp
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a> +---------------+
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a> ~  [del_exts]   ~   if Z==1 (SourceInfo, Attachment)
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a> +---------------+
 </span></code></pre></div>
 
 </details>
@@ -2438,16 +2438,16 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>QUERY 封包</summary>
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a> 7 6 5 4 3 2 1 0
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>+-+-+-+-+-+-+-+-+
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>|Z|P|C|  QUERY  |   ID = 0x03
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>+-+-+-+---------+
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>|consolidation  |   if C==1: ConsolidationMode (u8)
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>+---------------+
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>~ ps: &lt;u8;z16&gt;  ~   if P==1: query parameters (UTF-8)
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>+---------------+
-</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>~  [qry_exts]   ~   if Z==1 (SourceInfo, QueryBody, Attachment)
-</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>+---------------+
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>  7 6 5 4 3 2 1 0
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a> +-+-+-+-+-+-+-+-+
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a> |Z|P|C|  QUERY  |   ID = 0x03
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a> +-+-+-+---------+
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a> |consolidation  |   if C==1: ConsolidationMode (u8)
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a> +---------------+
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a> ~ ps: &lt;u8;z16&gt;  ~   if P==1: query parameters (UTF-8)
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a> +---------------+
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a> ~  [qry_exts]   ~   if Z==1 (SourceInfo, QueryBody, Attachment)
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a> +---------------+
 </span></code></pre></div>
 
 </details>
@@ -2455,16 +2455,16 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>REPLY 封包</summary>
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a> 7 6 5 4 3 2 1 0
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>+-+-+-+-+-+-+-+-+
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>|Z|X|C|  REPLY  |   ID = 0x04
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>+-+-+-+---------+
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>|consolidation  |   if C==1: ConsolidationMode (u8)
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>+---------------+
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>~  [repl_exts]  ~   if Z==1
-</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>+---------------+
-</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>~   ReplyBody   ~   PushBody: PUT (0x01) or DEL (0x02)
-</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>+---------------+
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>  7 6 5 4 3 2 1 0
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a> +-+-+-+-+-+-+-+-+
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a> |Z|X|C|  REPLY  |   ID = 0x04
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a> +-+-+-+---------+
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a> |consolidation  |   if C==1: ConsolidationMode (u8)
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a> +---------------+
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a> ~  [repl_exts]  ~   if Z==1
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a> +---------------+
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a> ~   ReplyBody   ~   PushBody: PUT (0x01) or DEL (0x02)
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a> +---------------+
 </span></code></pre></div>
 
 </details>
@@ -2472,16 +2472,16 @@ VLE 的原理其實就只是保留一個 byte 中的第一個 bit 當 continuous
 <details>
   <summary>ERR 封包</summary>
 
-    <div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a> 7 6 5 4 3 2 1 0
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>+-+-+-+-+-+-+-+-+
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>|Z|E|X|   ERR   |   ID = 0x05
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>+-+-+-+---------+
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>~   encoding    ~   if E==1: Encoding field
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>+---------------+
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>~  [err_exts]   ~   if Z==1 (SourceInfo, Shm)
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>+---------------+
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>~ pl: &lt;u8;z32&gt;  ~   Error payload bytes
-</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>+---------------+
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>  7 6 5 4 3 2 1 0
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a> +-+-+-+-+-+-+-+-+
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a> |Z|E|X|   ERR   |   ID = 0x05
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a> +-+-+-+---------+
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a> ~   encoding    ~   if E==1: Encoding field
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a> +---------------+
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a> ~  [err_exts]   ~   if Z==1 (SourceInfo, Shm)
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a> +---------------+
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a> ~ pl: &lt;u8;z32&gt;  ~   Error payload bytes
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a> +---------------+
 </span></code></pre></div>
 
 </details>
