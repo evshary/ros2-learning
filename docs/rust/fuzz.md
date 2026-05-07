@@ -22,16 +22,47 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
 ### fuzz 測試框架
 
 * [cargo-fuzz](https://github.com/rust-fuzz/cargo-fuzz)
+    * 使用 LLVM 提供的 fuzzing engine —— libFuzzer
     * Rust 社群最熱門的選擇，一般來說會推薦優先使用
     * 只有單一 process，速度非常快
     * 但也因此缺乏 process 隔離，狀態可能會被污染
+
+<!-- markdownlint-disable MD046 -->
+??? "libFuzzer 補充"
+
+    libFuzzer 是 fuzz test 很常被使用的技術，是 LLVM toolchain 所提供的 fuzzing runtime library。
+    最主要的優勢有：
+    
+    * Coverage-guided：透過 LLVM instrumentation，知道 input 會經過程式走過的路徑 (converage)，並且依此來調整 input
+    * Mutation：可以用各種技術來變化 input
+    * Corpus：會收集目前有價值的 input 集合
+    * In-process execution：同個 process 呼叫不同 function，速度很快，但也容易造成 global state 污染
+    * Minimization：發生 crash 的時候，會自動找出造成 crash 的最小 input
+
+<!-- markdownlint-enable MD046 -->
+
 * [afl.rs](https://github.com/rust-fuzz/afl.rs)
-    * 提供一層 Rust wrapper 來使用 AFL (American Fuzzy Lop)
+    * 提供一層 Rust wrapper 來使用 AFL (American Fuzzy Lop)，是外部的 fuzz engine
     * mutation（變換 input）的能力很強
     * 使用 fork process 的方式測試，隔離很好
     * 但速度也相較更慢
+
+<!-- markdownlint-disable MD046 -->
+??? "AFL 補充"
+
+    AFL 是另一種 fuzz test 的類型，主要是基於外部的 fuzz engine。
+    主要的特色有：
+    
+    * Coverage-guided：有自己的 instrumentation 技術，可以用在 clang 或 gcc 等不同編譯器
+    * Mutation：可以用各種技術來變化 input
+    * Corpus：會收集目前有價值的 input 集合
+    * Fork server：透過 fork 快速複製 process，在確保隔離的情況下，提高執行速度
+    * 外部控制：會有外部的 engine 來控制輸入和執行
+
+<!-- markdownlint-enable MD046 -->
+
 * [honggfuzz-rs](https://github.com/rust-fuzz/honggfuzz-rs)
-    * 提供一層 Rust wrapper 來使用 Google 所開發的 Honggfuzz
+    * 提供一層 Rust wrapper 來使用 Google 所開發的 Honggfuzz，是外部的 fuzz engine
     * 有整合 debugger、sanitizer (ASan/UBSan)，方便進行分析
     * 同樣也有用 fork process 來隔離
 * [libAFL](https://github.com/AFLplusplus/LibAFL)
@@ -65,6 +96,8 @@ cargo install cargo-fuzz
 rustup toolchain install nightly
 # fuzz 測試 parse_port
 cargo +nightly fuzz run parse_port
+# 嘗試找出最小造成 bug 的 input
+cargo +nightly fuzz tmin parse_port fuzz/artifacts/parse_port/<crash-file>
 ```
 
 可以看到 cargo-fuzz 是在當前 crate 下另外有一個 fuzz 的資料夾，放 fuzz test 相關的程式碼。
