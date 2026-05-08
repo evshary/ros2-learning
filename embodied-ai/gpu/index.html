@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#compute-capability" class="md-skip">
+        <a href="#gpu-som" class="md-skip">
           Skip to content
         </a>
       
@@ -1588,6 +1588,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#gpu-som" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPU 架構對應的型號和 SOM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#compute-capability" class="md-nav__link">
     <span class="md-ellipsis">
       Compute Capability
@@ -1976,6 +1985,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#gpu-som" class="md-nav__link">
+    <span class="md-ellipsis">
+      GPU 架構對應的型號和 SOM
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#compute-capability" class="md-nav__link">
     <span class="md-ellipsis">
       Compute Capability
@@ -2090,6 +2108,67 @@
   <h1>NVIDIA GPU 安裝</h1>
 
 <p>NVIDIA GPU 有很多概念，例如 Compute Capability、CUDA Toolkit、cuDNN 等等，為了方便理解，這邊重新整理一下。</p>
+<h2 id="gpu-som">GPU 架構對應的型號和 SOM</h2>
+<table>
+<thead>
+<tr>
+<th>架構</th>
+<th>Compute Capability</th>
+<th>代表 GPU</th>
+<th>Jetson 對應</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Volta</td>
+<td>7.0 / 7.2</td>
+<td>V100</td>
+<td>Jetson AGX Xavier / Xavier NX</td>
+</tr>
+<tr>
+<td>Turing</td>
+<td>7.5</td>
+<td>RTX 20x0、T4</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ampere</td>
+<td>8.0 / 8.6 / 8.7</td>
+<td>A10、A100、RTX 30x0</td>
+<td>Jetson AGX Orin / Orin NX / Orin Nano</td>
+</tr>
+<tr>
+<td>Ada Lovelace</td>
+<td>8.9</td>
+<td>RTX 40x0、L4、L40、L40S</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Hopper</td>
+<td>9.0</td>
+<td>H100、H200、GH200</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Blackwell Datacenter</td>
+<td>10.0 / 10.3</td>
+<td>B200、B300、GB200、GB300</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Blackwell Jetson</td>
+<td>11.0</td>
+<td>-</td>
+<td>Jetson Thor / T5000 / T4000</td>
+</tr>
+<tr>
+<td>Blackwell RTX / Workstation</td>
+<td>12.0</td>
+<td>RTX 50x0、RTX PRO Blackwell</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
 <h2 id="compute-capability">Compute Capability</h2>
 <p>簡稱為 CC，代表的是這個 GPU 所支援的硬體指令集，所以無法被改變。
 如果要查自己手上的 GPU 到底是對應到哪個 CC，可以參考 NVIDIA 的<a href="https://developer.nvidia.com/cuda/gpus">官網</a>。</p>

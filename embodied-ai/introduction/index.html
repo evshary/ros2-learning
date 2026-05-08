@@ -1574,6 +1574,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#act-vla-wam" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACT / VLA / WAM 比較
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sim-to-real" class="md-nav__link">
     <span class="md-ellipsis">
       Sim-to-Real
@@ -1585,7 +1594,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      學習資源
+      相關連結
     </span>
   </a>
   
@@ -1916,6 +1925,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#act-vla-wam" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACT / VLA / WAM 比較
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#sim-to-real" class="md-nav__link">
     <span class="md-ellipsis">
       Sim-to-Real
@@ -1927,7 +1945,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      學習資源
+      相關連結
     </span>
   </a>
   
@@ -1965,16 +1983,41 @@
 <p>但是端到端也不是沒有缺點。第一，他無法進行語言的邏輯推理，例如我請機器人拿玩具，他就必須要了解玩具的定義是什麼。第二，我們無法了解為何 model 會做這樣的決定，例如自駕車決定在某個路口煞車時，我們需要知道他的判斷邏輯是什麼。這兩個情境說明了語言在其中的重要性。</p>
 <p>因此 VLA (Vision-Language-Action) 就出現了。Vision 代表輸入接收影像資料，透過語言邏輯的判讀，最終產生出了行動。由於可以使用自然語言，就可以使用網路上的文本資料協助訓練，並且也提供更好的人機界面了。</p>
 <p>VLA 目前最知名的專案有 Google 的 <a href="https://deepmind.google/blog/rt-2-new-model-translates-vision-and-language-into-action/">RT-2</a>，以及 <a href="https://github.com/openvla/openvla">OpenVLA</a>。</p>
+<h2 id="act-vla-wam">ACT / VLA / WAM 比較</h2>
+<p><strong>ACT</strong>: Action Chunking with Transformers</p>
+<p>這種方法類似於 imitation learning，輸入是畫面和機器人狀態，會輸出一連串的機器人動作，但是不會有任何的語意理解。</p>
+<p><strong>VLA</strong>: Vision-Language-Action model</p>
+<p>在 ACT 的基礎上，多增加了語言指令，通常是借用 VLM 的語意能力。
+輸入除了畫面和機器人狀態外，多增加了語言指令，輸出會根據指令而有不一樣的行動。</p>
+<p><strong>WAM</strong>: World Action Model</p>
+<p>最新的研究進展，會加上對物理世界的理解，思考自己的動作會對世界造成什麼樣的變化。
+這樣對未來的想像能力，可以有更好的行動策略，例如往前推杯子，杯子會移動多遠，會不會掉下桌子等等。
+然而，這需要很高的運算量，也會提高 latency。</p>
 <h2 id="sim-to-real">Sim-to-Real</h2>
 <p>機器人領域之所以不像是大語言模型(LLM)發展那麼迅速，最主要的原因在於「資料瓶頸」(Data Bottleneck)，特別是高品質的資料。
 機器人所需要的運動資料，相較於網路上隨手可得的文字資料少上不少，這類資料不只是包含視覺影像，更有複雜的物理特性（如扭矩、摩擦力、感測器回饋等等），且還跟硬體規格高度綁定。
 如果要靠自己產生訓練資料，那又會遇到「物理時鐘」的極限：一個十秒的動作，在現實中就必須實打實花費十秒，還伴隨著硬體的磨損和電力損耗。</p>
 <p>這時有些人就提出了利用模擬世界來產生出資料，幫助我們在模擬器中並行化訓練機器人模型，大幅提昇學習效率，更是能符合特定硬體設計，達到數位孿生（Digital Twin）的成效。</p>
 <p>然而，Sim-to-Real 最大的挑戰在於與現實世界的鴻溝。模擬世界難以完美還原物理世界的一切細節，還需要透過領域隨機化（Domain Randomization）———對各個參數引入隨機性，如外觀、重量等等———來增強模型在不確定環境的泛化性。</p>
-<h2 id="_1">學習資源</h2>
+<h2 id="_1">相關連結</h2>
 <ul>
+<li>學習資源：<ul>
 <li><a href="https://github.com/TianxingChen/Embodied-AI-Guide">具身智能技术指南</a>：簡體中文的各種學習資源</li>
+<li><a href="https://github.com/walkinglabs/hands-on-modern-rl">现代强化学习实战课程</a>：簡體中文針對強化學習的課程</li>
+<li><a href="https://github.com/DravenALG/awesome-vla-wam">Awesome VLA &amp; WAM</a>：列出所有 VLA 和 WAM 相關研究和資源</li>
+</ul>
+</li>
+<li>模型與 dataset<ul>
+<li><a href="https://openvla.github.io/">OpenVLA</a>：經典 open-source VLA</li>
+<li><a href="https://huggingface.co/docs/lerobot/smolvla">SmolVLA</a>：Hugging Face 所提出，輕量級 VLA，和 LeRobot 生態系整合良好</li>
+<li><a href="https://octo-models.github.io/">Octo</a>：目標是通用機器人策略，可以支援多種機器人平台和 sensor 配置</li>
+<li><a href="https://github.com/Physical-Intelligence/openpi">openpi</a>：Physical Intelligence 提出，特色是 flow-matching / action chunking 路線，目標是讓 robot 做更連續、靈活</li>
+<li><a href="https://github.com/NVIDIA/Isaac-GR00T">NVIDIA Isaac GR00T N1 / N1.7</a>：面向 humanoid 的 robot foundation model，和 NVIDIA 生態系緊密綁定</li>
+<li><a href="https://github.com/allenai/molmoact2">MolmoAct 2</a>：Ai2 / Allen Institute for AI 所提出，特色是偏 Open Science：不只開模型，也強調 datasets、training code、robot policies、evaluation。</li>
+<li><a href="https://github.com/XiaomiRobotics/Xiaomi-Robotics-0">Xiaomi-Robotics-0</a>：小米的 open VLA model</li>
 <li><a href="https://robotics-transformer-x.github.io/">Open X-Embodiment</a>：Goodle DeepMind 和全球學術單位合作推出的開源巨型數據集</li>
+</ul>
+</li>
 <li>機器人重要研討會：<ul>
 <li><a href="https://www.corl.org/">CoRL (Conference on Robot Learning)</a>：Embodied AI 最頂尖的研討會</li>
 <li><a href="https://ieee-icra.org">ICRA (IEEE International Conference on Robotics and Automation)</a>：機器人領域最早也最權威的研討會，討論各種理論與演算法的創新</li>
