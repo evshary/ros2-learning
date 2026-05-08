@@ -27,6 +27,23 @@ keywords:
 
 VLA 目前最知名的專案有 Google 的 [RT-2](https://deepmind.google/blog/rt-2-new-model-translates-vision-and-language-into-action/)，以及 [OpenVLA](https://github.com/openvla/openvla)。
 
+## ACT / VLA / WAM 比較
+
+**ACT**: Action Chunking with Transformers
+
+這種方法類似於 imitation learning，輸入是畫面和機器人狀態，會輸出一連串的機器人動作，但是不會有任何的語意理解。
+
+**VLA**: Vision-Language-Action model
+
+在 ACT 的基礎上，多增加了語言指令，通常是借用 VLM 的語意能力。
+輸入除了畫面和機器人狀態外，多增加了語言指令，輸出會根據指令而有不一樣的行動。
+
+**WAM**: World Action Model
+
+最新的研究進展，會加上對物理世界的理解，思考自己的動作會對世界造成什麼樣的變化。
+這樣對未來的想像能力，可以有更好的行動策略，例如往前推杯子，杯子會移動多遠，會不會掉下桌子等等。
+然而，這需要很高的運算量，也會提高 latency。
+
 ## Sim-to-Real
 
 機器人領域之所以不像是大語言模型(LLM)發展那麼迅速，最主要的原因在於「資料瓶頸」(Data Bottleneck)，特別是高品質的資料。
