@@ -7,6 +7,19 @@ keywords:
 
 NVIDIA GPU 有很多概念，例如 Compute Capability、CUDA Toolkit、cuDNN 等等，為了方便理解，這邊重新整理一下。
 
+## GPU 架構對應的型號和 SOM
+
+| 架構 | Compute Capability | 代表 GPU | Jetson 對應 |
+| - | - | - | - |
+| Volta | 7.0 / 7.2 | V100 | Jetson AGX Xavier / Xavier NX |
+| Turing | 7.5 | RTX 20x0、T4 | - |
+| Ampere | 8.0 / 8.6 / 8.7 | A10、A100、RTX 30x0 | Jetson AGX Orin / Orin NX / Orin Nano |
+| Ada Lovelace | 8.9 | RTX 40x0、L4、L40、L40S | - |
+| Hopper | 9.0 | H100、H200、GH200 | - |
+| Blackwell Datacenter | 10.0 / 10.3 | B200、B300、GB200、GB300 | - |
+| Blackwell Jetson | 11.0 | - | Jetson Thor / T5000 / T4000 |
+| Blackwell RTX / Workstation | 12.0 | RTX 50x0、RTX PRO Blackwell | - |
+
 ## Compute Capability
 
 簡稱為 CC，代表的是這個 GPU 所支援的硬體指令集，所以無法被改變。

@@ -37,10 +37,21 @@ VLA 目前最知名的專案有 Google 的 [RT-2](https://deepmind.google/blog/r
 
 然而，Sim-to-Real 最大的挑戰在於與現實世界的鴻溝。模擬世界難以完美還原物理世界的一切細節，還需要透過領域隨機化（Domain Randomization）———對各個參數引入隨機性，如外觀、重量等等———來增強模型在不確定環境的泛化性。
 
-## 學習資源
+## 相關連結
 
-* [具身智能技术指南](https://github.com/TianxingChen/Embodied-AI-Guide)：簡體中文的各種學習資源
-* [Open X-Embodiment](https://robotics-transformer-x.github.io/)：Goodle DeepMind 和全球學術單位合作推出的開源巨型數據集
+* 學習資源：
+    * [具身智能技术指南](https://github.com/TianxingChen/Embodied-AI-Guide)：簡體中文的各種學習資源
+    * [现代强化学习实战课程](https://github.com/walkinglabs/hands-on-modern-rl)：簡體中文針對強化學習的課程
+    * [Awesome VLA & WAM](https://github.com/DravenALG/awesome-vla-wam)：列出所有 VLA 和 WAM 相關研究和資源
+* 模型與 dataset
+    * [OpenVLA](https://openvla.github.io/)：經典 open-source VLA
+    * [SmolVLA](https://huggingface.co/docs/lerobot/smolvla)：Hugging Face 所提出，輕量級 VLA，和 LeRobot 生態系整合良好
+    * [Octo](https://octo-models.github.io/)：目標是通用機器人策略，可以支援多種機器人平台和 sensor 配置
+    * [openpi](https://github.com/Physical-Intelligence/openpi)：Physical Intelligence 提出，特色是 flow-matching / action chunking 路線，目標是讓 robot 做更連續、靈活
+    * [NVIDIA Isaac GR00T N1 / N1.7](https://github.com/NVIDIA/Isaac-GR00T)：面向 humanoid 的 robot foundation model，和 NVIDIA 生態系緊密綁定
+    * [MolmoAct 2](https://github.com/allenai/molmoact2)：Ai2 / Allen Institute for AI 所提出，特色是偏 Open Science：不只開模型，也強調 datasets、training code、robot policies、evaluation。
+    * [Xiaomi-Robotics-0](https://github.com/XiaomiRobotics/Xiaomi-Robotics-0)：小米的 open VLA model
+    * [Open X-Embodiment](https://robotics-transformer-x.github.io/)：Goodle DeepMind 和全球學術單位合作推出的開源巨型數據集
 * 機器人重要研討會：
     * [CoRL (Conference on Robot Learning)](https://www.corl.org/)：Embodied AI 最頂尖的研討會
     * [ICRA (IEEE International Conference on Robotics and Automation)](https://ieee-icra.org)：機器人領域最早也最權威的研討會，討論各種理論與演算法的創新
