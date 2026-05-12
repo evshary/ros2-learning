@@ -85,12 +85,17 @@ cargo bench
 * The Rust Programming Language: 官方文件
     * [英文](https://doc.rust-lang.org/book/?search=)
     * [中文](https://rust-lang.tw/book-tw/)
-* [Rust语言圣经(Rust Course)](https://course.rs/about-book.html): 中國人寫的教學
-    * [Rust By Practice( Rust 练习实践 )](https://zh.practice.rs/why-exercise.html): 附上的練習題
 * Rust by Example
     * [英文](https://doc.rust-lang.org/rust-by-example/)
     * [中文](https://rustwiki.org/zh-CN/rust-by-example/index.html)
 * [rustlings](https://github.com/rust-lang/rustlings): 有些 Rust 的練習可以確保知道基本概念
+* [The Cargo Book](https://doc.rust-lang.org/cargo/): Rust 官方建構系統與套件管理器 cargo 的詳細介紹
+* The Rustonomicon (死靈書): 講解寫 unsafe Rust 要注意的事項
+    * [英文](https://doc.rust-lang.org/nomicon/)
+    * [中文](https://nomicon.purewhite.io/)
+* [Rust Forge](https://forge.rust-lang.org/): 理解 Rust project release、team、contribution 等流程
+* [Rust语言圣经(Rust Course)](https://course.rs/about-book.html): 中國人寫的教學
+    * [Rust By Practice( Rust 练习实践 )](https://zh.practice.rs/why-exercise.html): 附上的練習題
 * [Rust学习笔记](https://skyao.io/learning-rust/): 這個有點像查詢的資料庫
 
 ### 影片教學
