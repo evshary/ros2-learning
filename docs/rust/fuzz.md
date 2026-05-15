@@ -9,6 +9,10 @@ fuzz 測試專門用在產生隨機的輸入，來確保程式的結果都會符
 fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入，所以更能夠發現一些預想不到的問題。
 很多安全漏洞或是 bug 都是透過 fuzz 測試來找出來的。
 
+關於 fuzz 測試，並不是測越久就越好，重點是要看測試的 coverage 有沒有提昇。
+一般來說 fuzz 測試都會搭配編譯器來評估每個 input 有走過哪些程式路徑，走得越多就代表測試越完整，我們的信心度也會比較大。
+好的 fuzz 測試工具會將能夠走新路徑的 input 存起來（稱之為 corpus），並且基於這些 corpus 來進行不同的變化。
+
 在 Rust 中如果要使用 fuzz 測試，有幾個推薦的函式庫。
 我們將其分成兩大類：
 
@@ -105,6 +109,27 @@ cargo +nightly fuzz tmin parse_port fuzz/artifacts/parse_port/<crash-file>
 
 要特別注意的是 cargo-fuzz 會需要使用 nightly feature，所以執行時要加上 `+nightly`。
 
+隨著我們測試的時間拉長，corpus 的數量也就會隨之增加，我們也可以利用這些 corpus 來評估針對 source code 的部份測試覆蓋度（有哪些程式碼有被測試到）
+
+```bash
+# 重新編譯 binary，涵蓋 coverage instrumentation，這能用來統計所有部份程式走過的路徑
+# 然後他就會重跑 fuzz/corpus/parse_port/* 底下所有 corpus
+# 把統計結果輸出 raw profile，也就是 *.profraw
+# 並且 merge 多個 *.profraw 到 coverage.profdata
+cargo +nightly fuzz coverage --sanitizer none parse_port fuzz/corpus/parse_port
+# 用 LLVM 的工具比較 parse_port 這個 binary 內的 coverage mapping 和 coverage.profdata 內的計數結果，回推出整體的 coverage 結果
+LLVM_BIN="$(dirname "$(rustc +nightly --print target-libdir)")/bin"
+# 產生 summary report
+"$LLVM_BIN"/llvm-cov report \
+  target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/parse_port \
+  --instr-profile fuzz/coverage/parse_port/coverage.profdata
+# 或是用 HTML 顯示
+"$LLVM_BIN"/llvm-cov show \
+  target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/parse_port \
+  --instr-profile fuzz/coverage/parse_port/coverage.profdata \
+  src/lib.rs
+```
+
 ### afl.rs
 
 ```bash
@@ -174,3 +199,7 @@ cargo test parse_port_matches_std -- --ignored
 ```
 
 運行測試發現錯誤時，proptest 會產生最小可複製的測試 case 放在 `proptest-regressions/` 資料夾下，下次再次執行時，會優先從這個資料夾執行有問題的 case。
+
+## 參考連結
+
+* [Rust Fuzz Book](https://rust-fuzz.github.io/book/): 主要是介紹 Rust 中 afl.rs and cargo-fuzz 這兩個測試工具。
