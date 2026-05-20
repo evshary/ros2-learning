@@ -297,3 +297,102 @@ A                           B                   C
 
 * JOIN (Multicast): https://spec.zenoh.io/spec/1.0.0/transport/join.html
 * Keep-Alive / Relationship to JOIN: https://spec.zenoh.io/spec/1.0.0/transport/keep-alive.html
+
+### Router 與 Router 的轉傳
+
+如果我們的網路有多個 Zenoh Router，那他是如何彼此知道對有連接哪些節點的？
+下面幾個名詞跟這個機制有關：
+
+* `gossip`：Router 和 Router 彼此交換資訊的機制
+* `link-state`：實際散播的內容
+* `graph / tree / next hop`：router 內部算出來的結果
+
+#### gossip 的流程
+
+從 `zenoh` 原始碼來看，gossip 沒有一個獨立的新封包型別，也沒有一套和 `INIT` / `OPEN` 類似的獨立 handshake。
+它實際上是把 `LinkStateList` 包進 `Transport OAM` 的 `OAM_LINKSTATE` body，然後送給其他 router / peer。
+
+常見流程可以想成：
+
+```text
+R1                           R2                           R3
+|                            |                            |
+|  OAM_LINKSTATE             |                            |
+|───────────────────────────>|
+|                            |                            |
+|                            |  OAM_LINKSTATE            |   if gossip / multihop enabled
+|                            |───────────────────────────>|
+```
+
+新 link 建立時，router 也會把目前已知的 node 狀態送給新鄰居。
+如果開了 gossip autoconnect，而且 message 裡帶有 locators，實作還可能依此主動去連新的 peer / router。
+
+參考：
+
+* Source / Gossip message creation: `zenoh/src/net/protocol/gossip.rs`
+* Source / Gossip receive path: `zenoh/src/net/protocol/gossip.rs`
+* Source / Gossip add_link behavior: `zenoh/src/net/protocol/gossip.rs`
+
+#### link-state 怎麼建立 router graph
+
+`link-state` 才是 router graph 的原始資料。
+每個 `LinkState` 會描述：
+
+* 這個 node 的 `psid`
+* sequence number
+* 可選的 `zid`
+* 可選的 `locators`
+* 它目前有哪些鄰居 `links`
+* 可選的 link weights
+
+本地 router 收到 `LinkStateList` 後，會：
+
+1. 先把 remote `psid` 轉成本地可識別的 `zid`
+2. 更新本地 `graph` 裡的 node
+3. 依 `links` 新增 / 更新 edge
+4. 再重新計算 routing tree
+
+也就是說，router graph 不是從資料流量反推，而是直接從 `link-state` 重建。
+
+參考：
+
+* Source / LinkState definitions: `zenoh/src/net/protocol/linkstate.rs`
+* Source / apply link-state to graph: `zenoh/src/net/protocol/network.rs`
+* Source / psid <-> zid mapping: `zenoh/src/net/protocol/network.rs`
+
+#### 如何避免 loop
+
+避免 loop 的主因，不是 gossip 本身，而是 router 在 graph 建好之後會先算出：
+
+* `tree`
+* `next hop`
+
+之後資料只沿著算好的 next hop 前進，不會任意 flood 到所有鄰居。
+這就是為什麼實作上能避免 `R1 -> R2 -> R3 -> R1` 這種大圈。
+
+`NodeId` 還是有用，但它比較像第二層保護：
+
+* 它記錄上一跳的 routing context
+* 用來避免把 message 立刻送回來源 session
+
+所以可以把它理解成：
+
+* `graph / tree / next hop`
+    * 防止大圈 loop
+* `NodeId`
+    * 防止逐跳回彈
+
+參考：
+
+* Source / compute trees: `zenoh/src/net/protocol/network.rs`
+* Source / routers network uses full link-state: `zenoh/src/net/routing/hat/router/mod.rs`
+* Source / compute routes after tree changes: `zenoh/src/net/routing/hat/router/mod.rs`
+* Source / pubsub next-hop lookup: `zenoh/src/net/routing/hat/router/pubsub.rs`
+* Source / query next-hop lookup: `zenoh/src/net/routing/hat/router/queries.rs`
+* Source / per-hop NodeId mapping: `zenoh/src/net/routing/hat/router/mod.rs`
+
+參考：
+
+* Routing / Data Routing: https://spec.zenoh.io/spec/1.0.0/architecture/routing.html
+* Routing / Forwarding Loop Prevention: https://spec.zenoh.io/spec/1.0.0/architecture/routing.html
+* Roles / Router: https://spec.zenoh.io/spec/1.0.0/architecture/roles.html

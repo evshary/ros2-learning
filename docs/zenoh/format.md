@@ -172,6 +172,8 @@ Transport message 是 batch 中真正出現的 message 類型。
 
     Spec: https://spec.zenoh.io/spec/1.0.0/wire/message-format.html
 
+    Router 之間用來同步 `link-state` / `router graph` 的 `OAM_LINKSTATE` 就是承載在這個 `Transport OAM` 的 body 裡。
+
     ```text
      7 6 5 4 3 2 1 0
     +-+-+-+-+-+-+-+-+
@@ -184,6 +186,80 @@ Transport message 是 batch 中真正出現的 message 類型。
     ~     body      ~   body encoding selected by ENC
     +---------------+
     ```
+
+    參考：
+
+    - Spec / Message Reference: https://spec.zenoh.io/spec/1.0.0/wire/message-format.html
+    - Source / Router OAM handler: `zenoh/src/net/routing/hat/router/mod.rs`
+    - Source / OAM_LINKSTATE message creation: `zenoh/src/net/protocol/network.rs`
+
+??? "Transport OAM: OAM_LINKSTATE body"
+
+    這個 body 是 `ZBuf` 內部的資料格式。
+    `zenoh` 原始碼中的 `OAM_LINKSTATE` ID 是 `0x0001`，body 內容是一個 `LinkStateList`。
+
+    ```text
+    OAM body
+    +----------------------+
+    | LinkStateList        |
+    +----------------------+
+
+    LinkStateList
+     7 6 5 4 3 2 1 0
+    +-+-+-+-+-+-+-+-+
+    |X|X|X|LK_ST_LS |
+    +-+-+-+---------+
+    ~ [link_states] ~   one or more LinkState entries
+    +---------------+
+
+    LinkState
+     7 6 5 4 3 2 1 0
+    +-+-+-+-+-+-+-+-+
+    |X|X|X|G|H|L|W|P|
+    +-+-+-+-+-+-+-+-+
+    ~     psid      ~   per-link session-local node id
+    +---------------+
+    ~      sn       ~   sequence number for this node state
+    +---------------+
+    ~      zid      ~   if P==1
+    +---------------+
+    ~    whatami    ~   if W==1
+    +---------------+
+    ~  [locators]   ~   if L==1
+    +---------------+
+    ~    [links]    ~   neighbour psid list
+    +---------------+
+    ~   [weights]   ~   if H==1: per-link weights
+    +---------------+
+    ```
+
+    Flag 意義：
+
+    - `P`
+        - 是否帶 `zid`
+    - `W`
+        - 是否帶 `whatami`
+    - `L`
+        - 是否帶 `locators`
+    - `H`
+        - 是否帶 `link_weights`
+    - `G`
+        - `is_gateway`
+
+    這個 body 的作用是：
+
+    - 宣告某個 router 的 `psid`
+    - 宣告它目前知道的鄰居 `links`
+    - 可選地附上 `locators` 和 `weights`
+
+    Router 收到 `LinkStateList` 後，會把它寫進本地 `graph`，再重新計算 `tree` 和 `next hop`。
+
+    參考：
+
+    - Source / LinkState definitions: `zenoh/src/net/protocol/linkstate.rs`
+    - Source / OAM_LINKSTATE constant: `commons/zenoh-protocol/src/network/oam.rs`
+    - Source / encode LinkStateList into OAM body: `zenoh/src/net/protocol/network.rs`
+    - Source / apply LinkStateList to graph: `zenoh/src/net/protocol/network.rs`
 
 ??? "INIT 封包"
 
