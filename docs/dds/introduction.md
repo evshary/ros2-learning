@@ -15,11 +15,15 @@ DDS (Data Distribution Service) 是一種 pub-sub 的通訊規格，希望可以
 
 在 [DDS foundation](https://www.dds-foundation.org/omg-dds-standard/) 裡面有許多關於 DDS 的文件，其中比較值得注意的是下面這五份：
 
-* DDS v1.4: 定義 DCPS，主要是 API 的制定
+* DDS v1.4: 定義 DCPS (Data-Centric Publish-Subscribe)，主要是定義各種通訊角色的行為以及 API 的制定
 * DDSI-RTPS v2.3: 定義 DDSI，定義 DDS 的行為
 * DDS-XTypes v1.2: 用在 topic 的 data type 規範
 * DDS-Security v1.1: 定義 security 的規範
 * Interface Definition Language (IDL) v4.2: IDL 的定義規範
+
+從網路 OSI 7 layer 的角度來看，DDS 是在 transport layer 之上，橫跨 session, presentation, application layer。DDSI 定義了實際的封包應該要長什麼樣子，DCPS 則是定義了 pub/sub 等各種角色是如何進行互通。可參考下圖來看 spec 是怎麼對應到不同的 layer ([圖源](https://www.researchgate.net/publication/352717240_Enterprise_service_composition_models_in_IoT_context_solutions_comparison))。
+
+![DDS Stack](./images/DDS%20stack.png)
 
 DDS 最初是用在軍事、航太上，已經有悠久的歷史了，後來 ROS 2 在尋找可利用的通訊層時也看上 DDS 的可靠穩定，所以 DDS 也開始被應用在機器人領域。
 
