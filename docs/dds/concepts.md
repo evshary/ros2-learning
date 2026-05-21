@@ -35,7 +35,7 @@ Topic 包含以下資訊：
 
 * topic name：專屬的名稱
 * data type：資料格式應該如何
-* QoS：有哪些 quality of service
+* QoS：有哪些 quality of service，後面我們會專門來探討這個部份
 
 ### Publisher / Subscriber
 
