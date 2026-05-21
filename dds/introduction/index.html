@@ -837,6 +837,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../qos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DDS QoS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../cyclonedds/" class="md-nav__link">
         
   
@@ -1892,7 +1915,10 @@
 <li>DDS-Security v1.1: 定義 security 的規範</li>
 <li>Interface Definition Language (IDL) v4.2: IDL 的定義規範</li>
 </ul>
-<p>從網路 OSI 7 layer 的角度來看，DDS 是在 transport layer 之上，橫跨 session, presentation, application layer。DDSI 定義了實際的封包應該要長什麼樣子，DCPS 則是定義了 pub/sub 等各種角色是如何進行互通。可參考下圖來看 spec 是怎麼對應到不同的 layer (<a href="https://www.researchgate.net/publication/352717240_Enterprise_service_composition_models_in_IoT_context_solutions_comparison">圖源</a>)。</p>
+<p>從網路 OSI 7 layer 的角度來看，DDS 是在 transport layer 之上，橫跨 session, presentation, application layer。
+雖然規格上 DDS 支援在 TCP / UDP 上運作，不過實際上大多數都是跑在 UDP 比較多。
+DDSI 定義了實際的封包應該要長什麼樣子，DCPS 則是定義了 pub/sub 等各種角色是如何進行互通。
+可參考下圖來看 spec 是怎麼對應到不同的 layer (<a href="https://www.researchgate.net/publication/352717240_Enterprise_service_composition_models_in_IoT_context_solutions_comparison">圖源</a>)。</p>
 <p><img alt="DDS Stack" src="../images/DDS%20stack.png" /></p>
 <p>DDS 最初是用在軍事、航太上，已經有悠久的歷史了，後來 ROS 2 在尋找可利用的通訊層時也看上 DDS 的可靠穩定，所以 DDS 也開始被應用在機器人領域。</p>
 <p>DDS 目前有很多種選擇：</p>

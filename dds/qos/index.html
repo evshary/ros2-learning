@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Autoware 的地圖格式">
+        <meta name="description" content="介紹 DDS 中各種 QoS 的使用">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/autoware/map/">
+        <link rel="canonical" href="https://ros2.tw/dds/qos/">
       
       
-        <link rel="prev" href="../modules/">
+        <link rel="prev" href="../concepts/">
       
       
-        <link rel="next" href="../simulation/">
+        <link rel="next" href="../cyclonedds/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Autoware 地圖 - ROS 2 筆記</title>
+        <title>DDS QoS 的概念 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#dds-qos" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Autoware 地圖
+              DDS QoS 的概念
             
           </span>
         </div>
@@ -745,18 +745,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -772,7 +774,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             DDS 入門
@@ -786,7 +788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -809,7 +811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/concepts/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         
   
   
@@ -829,10 +831,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../dds/qos/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    DDS QoS
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -843,6 +865,138 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dds-qos" class="md-nav__link">
+    <span class="md-ellipsis">
+      為什麼 DDS 需要 QoS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qos" class="md-nav__link">
+    <span class="md-ellipsis">
+      QoS 不只影響傳輸，也影響配對
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qos-entity" class="md-nav__link">
+    <span class="md-ellipsis">
+      QoS 可以掛在不同實體 (entity)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      常見 QoS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常見 QoS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reliability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reliability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#durability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Durability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    <span class="md-ellipsis">
+      History
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deadline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deadline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#liveliness" class="md-nav__link">
+    <span class="md-ellipsis">
+      Liveliness
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifespan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lifespan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ownership" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ownership
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transport-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transport Priority
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -855,7 +1009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/cyclonedds/" class="md-nav__link">
+      <a href="../cyclonedds/" class="md-nav__link">
         
   
   
@@ -1157,20 +1311,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1186,7 +1338,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Autoware 入門
@@ -1200,7 +1352,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../autoware/introduction/" class="md-nav__link">
         
   
   
@@ -1223,7 +1375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../autoware/installation/" class="md-nav__link">
         
   
   
@@ -1246,7 +1398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/" class="md-nav__link">
+      <a href="../../autoware/modules/" class="md-nav__link">
         
   
   
@@ -1266,30 +1418,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Autoware 地圖
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../autoware/map/" class="md-nav__link">
         
   
   
@@ -1300,117 +1432,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      常見的自駕車地圖
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#lanelet2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Lanelet2
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Lanelet2">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      地圖投影格式
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#autoware" class="md-nav__link">
-    <span class="md-ellipsis">
-      Autoware
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      建立地圖
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="建立地圖">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pcd" class="md-nav__link">
-    <span class="md-ellipsis">
-      PCD
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vector-map" class="md-nav__link">
-    <span class="md-ellipsis">
-      Vector Map
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      地圖轉換
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code-study" class="md-nav__link">
-    <span class="md-ellipsis">
-      Code Study
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1423,7 +1444,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../simulation/" class="md-nav__link">
+      <a href="../../autoware/simulation/" class="md-nav__link">
         
   
   
@@ -1446,7 +1467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../../autoware/api/" class="md-nav__link">
         
   
   
@@ -2019,28 +2040,109 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#dds-qos" class="md-nav__link">
     <span class="md-ellipsis">
-      常見的自駕車地圖
+      為什麼 DDS 需要 QoS
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#lanelet2" class="md-nav__link">
+  <a href="#qos" class="md-nav__link">
     <span class="md-ellipsis">
-      Lanelet2
+      QoS 不只影響傳輸，也影響配對
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Lanelet2">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qos-entity" class="md-nav__link">
+    <span class="md-ellipsis">
+      QoS 可以掛在不同實體 (entity)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      常見 QoS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常見 QoS">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#reliability" class="md-nav__link">
     <span class="md-ellipsis">
-      地圖投影格式
+      Reliability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#durability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Durability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    <span class="md-ellipsis">
+      History
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deadline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deadline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#liveliness" class="md-nav__link">
+    <span class="md-ellipsis">
+      Liveliness
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lifespan" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lifespan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ownership" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ownership
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transport-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transport Priority
     </span>
   </a>
   
@@ -2048,66 +2150,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#autoware" class="md-nav__link">
-    <span class="md-ellipsis">
-      Autoware
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      建立地圖
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="建立地圖">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pcd" class="md-nav__link">
-    <span class="md-ellipsis">
-      PCD
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vector-map" class="md-nav__link">
-    <span class="md-ellipsis">
-      Vector Map
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      地圖轉換
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code-study" class="md-nav__link">
-    <span class="md-ellipsis">
-      Code Study
-    </span>
-  </a>
   
 </li>
       
@@ -2127,109 +2169,88 @@
 
 
 
-  <h1>Autoware 地圖</h1>
+  <h1>DDS QoS</h1>
 
-<h2 id="_1">常見的自駕車地圖</h2>
+<p>QoS (Quality of Service) 是 DDS 最重要也最容易讓人混亂的一部份。
+在 DDS 規格中有多達 20 多種 QoS，功能強大，但是非常複雜。
+它不只是「本地端的傳輸偏好設定」，還會直接影響 writer 和 reader 能不能成功配對。</p>
+<h2 id="dds-qos">為什麼 DDS 需要 QoS</h2>
+<p>可能會有人不懂，為何會需要 QoS 的設定，但其實不同系統對資料的要求差很多。
+有些情境比較在意可靠性，例如我們要送一些指令或是接收緊急事件的時候。
+有些情境更在意低延遲，就像是要傳輸影像給對方的時候。
+還有些則希望晚加入的節點也能拿到之前已經發佈的資料。
+這些總總要求，不可能只用一種傳輸方式來解決，需要更多細微設定，也就是 QoS 存在的意義。</p>
+<h2 id="qos">QoS 不只影響傳輸，也影響配對</h2>
+<p>一個很重要的觀念是：Discovery 成功，不代表資料一定會通。
+writer 和 reader 要能通訊，除了前面提過 name 和 type 要一致外，還需要 QoS 能相容。
+能否相容的關鍵在於 RxO (Request vs Offered)，會影響相容性的 QoS 都會註明 RxO 為何。
+一般來說 writer 的 QoS 如果比 reader 的 QoS 還嚴格，通常是可以相通，反過來則不行。
+例如 Reliable 比 Best Effort 還要嚴苛，所以 writer 是 Reliable 可以跟任意 reader 通訊。</p>
+<p>有哪些 QoS 有 RxO 的限制，可以參考 <a href="https://community.rti.com/static/documentation/connext-dds/current/doc/manuals/connext_dds_professional/qos_reference/qos_reference/BasicQoS.htm">RTI</a> 這邊的文件</p>
+<h2 id="qos-entity">QoS 可以掛在不同實體 (entity)</h2>
+<p>QoS 可以被掛在 participant、topic、writer、reader 等等實體上面。</p>
 <ul>
-<li>OpenDRIVE：副檔名為 <code>.xodr</code>，內容為 XML 的格式 (Carla / Apollo 使用)</li>
-<li>Lanelet2: 副檔名為 <code>.osm</code>，Lanelet2 是基於 OpenStreetMap 的擴充，也是 XML 的格式 (Autoware 使用)</li>
+<li>DomainParticipant：管理全局資源的 QoS，如 Resource Limit，也是其他實體預設的 QoS。</li>
+<li>Topic：定義某些 Topic 預設要用的 QoS。</li>
+<li>Publisher：底下 Writer 的預設 QoS。</li>
+<li>Writer：發送端的 QoS 規則。</li>
+<li>Subscriber：底下 Reader 的預設 QoS。</li>
+<li>Reader：接收端的 QoS 規則。</li>
 </ul>
-<h2 id="lanelet2">Lanelet2</h2>
-<p><a href="https://github.com/fzi-forschungszentrum-informatik/Lanelet2">Lanelet2</a> 是專門為自動駕駛設計的地圖框架，使用 OSM 格式，Autoware 是使用這個</p>
-<p>分為三層：</p>
+<p><a href="https://community.rti.com/static/documentation/connext-dds/current/doc/manuals/connext_dds_professional/qos_reference/qos_reference/BasicQoS.htm">RTI</a> 這邊的文件也有提到各種 QoS 可以被套用在哪些實體上面。</p>
+<h2 id="qos_1">常見 QoS</h2>
+<h3 id="reliability">Reliability</h3>
+<p><code>Reliability</code> 用來決定資料是否需要可靠送達。</p>
+<p>常見設定：</p>
 <ul>
-<li>物理層：包含能具體觀測的元素，如道路、停車格等等</li>
-<li>關聯層：物理元素關聯到虛擬規則，如車道、區域、交通規則</li>
-<li>拓樸層：物理元素如何彼此連接</li>
+<li><code>BestEffort</code>：盡力送，不保證每筆都到</li>
+<li><code>Reliable</code>：需要確認與重傳</li>
 </ul>
-<p>其他細節可參考<a href="https://ppfocus.com/0/di1e5d759.html">面向自動駕駛的高精度地圖框架解析和實戰</a></p>
-<p>常用資源：</p>
+<p>Reliable 不一定比較好，雖然可以帶來更高的保證，但也可能帶來更高延遲、更多狀態維護，以及更大的資源消耗。
+對某些高頻感測資料來說，<code>BestEffort</code> 反而更合適。</p>
+<h3 id="durability">Durability</h3>
+<p><code>Durability</code> 用來決定晚加入的 reader 能不能拿到過去已經發送的資料。</p>
+<p>常見設定：</p>
 <ul>
-<li>OSM 地圖 tag：OSM 地圖上面的各個 tag 涵義，可參考<a href="https://github.com/fzi-forschungszentrum-informatik/Lanelet2/blob/master/lanelet2_core/doc/LinestringTagging.md">這邊</a></li>
+<li><code>Volatile</code>：不保留歷史給晚加入者</li>
+<li><code>Transient Local</code>：writer 可保留部分歷史給晚加入者</li>
+<li><code>Transient</code>：reader 也會幫忙保留部份歷史</li>
+<li><code>Persistent</code>：就算是重開機，歷史資料還是會保存</li>
 </ul>
-<h3 id="_2">地圖投影格式</h3>
-<p>我們需要有一個專門的檔案來描述如何把全球投影座標轉換成 local 的座標</p>
-<p>Autoware 支援三種投影格式
-<a href="https://github.com/autowarefoundation/autoware.universe/blob/main/map/autoware_map_projection_loader/README.md">https://github.com/autowarefoundation/autoware.universe/blob/main/map/autoware_map_projection_loader/README.md</a></p>
+<h3 id="history">History</h3>
+<p><code>History</code> 決定 entity 會保留多少筆樣本。</p>
+<p>常見設定：</p>
 <ul>
-<li>MGRS（Military Grid Reference System）<ul>
-<li>NATO 專用</li>
-<li>把全球地圖切成多個方格，在每個方格用數字定位</li>
+<li><code>KeepLast</code>：只保留最近 N 筆</li>
+<li><code>KeepAll</code>：保留所有樣本，直到資源限制介入</li>
 </ul>
-</li>
-<li>Local Cartesian UTM<ul>
-<li>切成較小的平面並設立原點，方便定位</li>
-</ul>
-</li>
-<li>Transverse Mercator (UTM)<ul>
-<li>把地球座標投影到圓柱上面來定位</li>
-</ul>
-</li>
-</ul>
-<h2 id="autoware">Autoware</h2>
-<p>Autoware 有用到兩種地圖：</p>
+<h3 id="deadline">Deadline</h3>
+<p><code>Deadline</code> 描述的是資料更新週期的期望。
+如果超過某段時間沒有收到新資料，系統可以視為 deadline miss。</p>
+<h3 id="liveliness">Liveliness</h3>
+<p><code>Liveliness</code> 用來確認 writer 是否還活著。
+它不是資料內容本身，而是「這個資料來源是否還存在」的保證機制。</p>
+<p>常見設定：</p>
 <ul>
-<li>點雲地圖 (<a href="https://docs.web.auto/en/user-manuals/vector-map-builder/introduction#pcd">PCD 格式</a>， <code>.pcd</code> 結尾): 來自 Lidar</li>
-<li>向量地圖 (<a href="https://docs.web.auto/en/user-manuals/vector-map-builder/introduction#what-is-lanelet2">OSM 格式</a>，<code>.osm</code> 結尾): 提供道路相關的訊息，又稱為 Vector Map<ul>
-<li>路線: 如車道如何連接，能否變道...</li>
-<li>物體形狀: 車道、紅綠燈、斑馬線、停車格...</li>
-<li>交通規則: 紅綠燈、停止線、限速、車道方向...</li>
+<li>automatic / manual：底層 DDS 自動確認對方是否還存在，還是要上層手動確認</li>
+<li>lease duration：多久時間判斷對方已經不存在</li>
 </ul>
-</li>
-</ul>
-<h2 id="_3">建立地圖</h2>
-<p>可以參考 <a href="https://autowarefoundation.github.io/autoware-documentation/main/how-to-guides/integrating-autoware/creating-maps/">Autoware 的教學</a></p>
-<h3 id="pcd">PCD</h3>
-<p>如果是現實環境，需要用 <a href="https://autowarefoundation.github.io/autoware-documentation/main/how-to-guides/integrating-autoware/creating-maps/open-source-slam/">SLAM 的技術</a>來建地圖</p>
-<p>如果是 Carla，這邊有些<a href="https://carla.readthedocs.io/projects/ros-bridge/en/latest/pcl_recorder/">相對應的套件</a>可以使用</p>
-<h3 id="vector-map">Vector Map</h3>
+<h3 id="lifespan">Lifespan</h3>
+<p><code>Lifespan</code> 用來描述資料的有效期限。
+如果一筆樣本已經過期，即使晚一點送到 reader，也可能被直接丟棄。</p>
+<h3 id="ownership">Ownership</h3>
+<p>當有多個 writer 同時發佈資料的時候，reader 要優先聽誰的。
+通常我們會把這個當成是 backup 來用，例如同時收兩方的指令，但是只聽優先權高的，一旦優先權高的那方掛掉，就改成聽優先權低的。</p>
+<p>常見設定：</p>
 <ul>
-<li><a href="https://tools.tier4.jp/vector_map_builder_ll2/">Vector Map Builder</a>： TierIV 出的地圖編輯器，可以吃 pcd 並且在上面創造出 Lanelet2，不過需要註冊帳號才能用，可參考<a href="https://docs.web.auto/en/user-manuals/vector-map-builder/introduction">教學</a></li>
-<li><a href="https://github.com/fzi-forschungszentrum-informatik/Lanelet2/blob/master/lanelet2_maps/README.md">JOSM</a>：可以用來編輯 Lanelet2 地圖</li>
+<li>shared：預設狀態，reader 會收所有資料</li>
+<li>exclusive：根據優先權來決定要收誰的資料，只會收優先權最大的那個 writer</li>
+<li>strength：誰的優先權比較高</li>
 </ul>
-<h2 id="_4">地圖轉換</h2>
-<p>常見的 map 是 OpenDrive 格式 (xodr)，像是 Carla 的預設地圖就是 xodr，如果要能讓 Autoware 使用，就需要轉換成 OpenStreetMap 格式 (osm)</p>
-<p>我在整合 Carla 和 Autoware 的時候就有遇到地圖轉換的問題，下面找了許多解法，雖然很多都無法正常使用</p>
-<ul>
-<li>xodr 轉 osm (但是是 trial 版本，且無法順利運作): <a href="https://github.com/carla-simulator/carla-autoware/issues/117">https://github.com/carla-simulator/carla-autoware/issues/117</a></li>
-<li><a href="https://github.com/tiev-tongji/xodr-OSM-Converter">xodr-OSM-Converter</a>: xodr 轉 osm 的工具，但我嘗試後轉換的地圖並無法使用</li>
-<li><a href="https://github.com/wenlong-dev/opendrive2lanelets-converter">opendrive2lanelets-converter</a>: opendrive 轉 lanelets，但我轉換後發現格式還是有問題</li>
-<li>Carla 提供已經轉好的 Autoware Map，但有點過時: <a href="https://bitbucket.org/carla-simulator/autoware-contents/src/master/">https://bitbucket.org/carla-simulator/autoware-contents/src/master/</a></li>
-<li>後來找到別人提供的轉好地圖： <a href="https://github.com/hatem-darweesh/op_agent/tree/ros2/autoware-contents/maps/vector_maps/lanelet2">https://github.com/hatem-darweesh/op_agent/tree/ros2/autoware-contents/maps/vector_maps/lanelet2</a></li>
-</ul>
-<h2 id="code-study">Code Study</h2>
-<p>注意這邊以 galactic 版本為主，新版可能有改動</p>
-<p>理論上只要有 pcd 和 osm 就可以跑 map_loader</p>
-<p>Autoware 會去讀 <code>map_path</code> 這個 argument 的值，然後從底下找出 pcd 和 osm 兩個檔案</p>
-<p><code>map.launch.py</code> 會跑如下幾個 Node</p>
-<ul>
-<li>map_loader 中的 <strong>map_hash_generator</strong><ul>
-<li>publisher <code>/api/autoware/get/map/info/hash</code>: 會把 lanelet 的內容和 pcd 的路徑 hash 起來並發佈出去</li>
-<li>service <code>/api/autoware/get/map/lanelet/xml</code>: 當 client 來詢問時，提供 lanelet 的內容</li>
-</ul>
-</li>
-<li>Composable:<ul>
-<li>map_loader 中的 plugin <strong>Lanelet2MapLoaderNode</strong>: 讀取 Lanelet2 格式<ul>
-<li>publish <code>vector_map</code>: 讀 lanlet2 的檔案，並將其轉成 binary，用 transient_local</li>
-</ul>
-</li>
-<li>map_loader 中的 plugin <strong>Lanelet2MapVisualizationNode</strong>: 在 RViz 畫圖<ul>
-<li>subscribe <code>vector_map</code>，然後 publish <code>vector_map_marker</code> 給 RViz</li>
-</ul>
-</li>
-<li>map_loader 中的 plugin <strong>PointCloudMapLoaderNode</strong>: 讀取 PCD 格式<ul>
-<li>publish <code>PointCloud2</code> 的 msg 到 <code>pointcloud_map</code></li>
-<li>service <code>/map/get_partial_pointcloud_map</code> 可以提供 client 部份的 PCD  map</li>
-<li><strong>問題</strong>：<code>map.launch.py</code> 中的 LINE 88 remap，似乎沒用到 <code>service/get_differential_pcd_map</code>，懷疑是忘記刪掉</li>
-</ul>
-</li>
-<li>map_loader 中的 plugin <strong>VectorMapTFGeneratorNode</strong>: 接收 pointcloud 資訊後進行座標轉換<ul>
-<li>subscriber <code>vector_map</code>，然後發布 TF 轉換 (map_frame &lt;=&gt; viewer_frame)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<h3 id="transport-priority">Transport Priority</h3>
+<p>根據優先級，在傳輸層排程的時候來決定誰可以優先傳。
+然而這並不是保證，只能算是給 DDS middleware 的一種暗示，實際怎麼運作還是根據 DDS vendor 的實作來決定。
+不同 DDS 實作可能會調整 thread priority、socket priority、queue priority，或是封或是封包的 traffic class，甚至還搭配 TSN，所以不一定絕對有效。</p>
 
 
 
