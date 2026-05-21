@@ -21,7 +21,10 @@ DDS (Data Distribution Service) 是一種 pub-sub 的通訊規格，希望可以
 * DDS-Security v1.1: 定義 security 的規範
 * Interface Definition Language (IDL) v4.2: IDL 的定義規範
 
-從網路 OSI 7 layer 的角度來看，DDS 是在 transport layer 之上，橫跨 session, presentation, application layer。DDSI 定義了實際的封包應該要長什麼樣子，DCPS 則是定義了 pub/sub 等各種角色是如何進行互通。可參考下圖來看 spec 是怎麼對應到不同的 layer ([圖源](https://www.researchgate.net/publication/352717240_Enterprise_service_composition_models_in_IoT_context_solutions_comparison))。
+從網路 OSI 7 layer 的角度來看，DDS 是在 transport layer 之上，橫跨 session, presentation, application layer。
+雖然規格上 DDS 支援在 TCP / UDP 上運作，不過實際上大多數都是跑在 UDP 比較多。
+DDSI 定義了實際的封包應該要長什麼樣子，DCPS 則是定義了 pub/sub 等各種角色是如何進行互通。
+可參考下圖來看 spec 是怎麼對應到不同的 layer ([圖源](https://www.researchgate.net/publication/352717240_Enterprise_service_composition_models_in_IoT_context_solutions_comparison))。
 
 ![DDS Stack](./images/DDS%20stack.png)
 
