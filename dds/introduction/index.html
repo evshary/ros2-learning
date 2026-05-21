@@ -18,7 +18,7 @@
         <link rel="prev" href="../../ros2/rmw_zenoh/hands_on/">
       
       
-        <link rel="next" href="../cyclonedds/">
+        <link rel="next" href="../concepts/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -802,6 +802,29 @@
 
       </a>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DDS 核心概念
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1863,12 +1886,14 @@
 <p><a href="https://www.omg.org/omg-dds-portal/">DDS 的規格</a>制定是由 OMG (Object Management Group) 這個組織所負責，OMG 其實也有制定不少跟程式設計師有關的規格，舉例來說 Object Oriented (物件導向)常用到的 UML，就是由 OMG 所制定。</p>
 <p>在 <a href="https://www.dds-foundation.org/omg-dds-standard/">DDS foundation</a> 裡面有許多關於 DDS 的文件，其中比較值得注意的是下面這五份：</p>
 <ul>
-<li>DDS v1.4: 定義 DCPS，主要是 API 的制定</li>
+<li>DDS v1.4: 定義 DCPS (Data-Centric Publish-Subscribe)，主要是定義各種通訊角色的行為以及 API 的制定</li>
 <li>DDSI-RTPS v2.3: 定義 DDSI，定義 DDS 的行為</li>
 <li>DDS-XTypes v1.2: 用在 topic 的 data type 規範</li>
 <li>DDS-Security v1.1: 定義 security 的規範</li>
 <li>Interface Definition Language (IDL) v4.2: IDL 的定義規範</li>
 </ul>
+<p>從網路 OSI 7 layer 的角度來看，DDS 是在 transport layer 之上，橫跨 session, presentation, application layer。DDSI 定義了實際的封包應該要長什麼樣子，DCPS 則是定義了 pub/sub 等各種角色是如何進行互通。可參考下圖來看 spec 是怎麼對應到不同的 layer (<a href="https://www.researchgate.net/publication/352717240_Enterprise_service_composition_models_in_IoT_context_solutions_comparison">圖源</a>)。</p>
+<p><img alt="DDS Stack" src="../images/DDS%20stack.png" /></p>
 <p>DDS 最初是用在軍事、航太上，已經有悠久的歷史了，後來 ROS 2 在尋找可利用的通訊層時也看上 DDS 的可靠穩定，所以 DDS 也開始被應用在機器人領域。</p>
 <p>DDS 目前有很多種選擇：</p>
 <ul>

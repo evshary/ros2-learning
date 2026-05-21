@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Embodied AI 介紹">
+        <meta name="description" content="介紹 DDS 的核心角色、名詞以及資料流">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/embodied-ai/introduction/">
+        <link rel="canonical" href="https://ros2.tw/dds/concepts/">
       
       
-        <link rel="prev" href="../../eclipse-sdv/uprotocol/">
+        <link rel="prev" href="../introduction/">
       
       
-        <link rel="next" href="../gpu/">
+        <link rel="next" href="../cyclonedds/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Embodied AI 介紹 - ROS 2 筆記</title>
+        <title>DDS 核心概念 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#end-to-end" class="md-skip">
+        <a href="#dds" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Embodied AI 介紹
+              DDS 核心概念
             
           </span>
         </div>
@@ -745,18 +745,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -772,7 +774,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             DDS 入門
@@ -786,7 +788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -806,10 +808,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../dds/concepts/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    DDS 核心概念
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -820,6 +842,126 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dds" class="md-nav__link">
+    <span class="md-ellipsis">
+      DDS 角色
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DDS 角色">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gds-dds-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      GDS (DDS Domain)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#domain-participant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Domain Participant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publisher-subscriber" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publisher / Subscriber
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datawriter-datareader" class="md-nav__link">
+    <span class="md-ellipsis">
+      DataWriter / DataReader
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      資料流
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="資料流">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writer-reader" class="md-nav__link">
+    <span class="md-ellipsis">
+      從 writer 到 reader
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topic_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      topic 配對
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      一對多、多對多
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -832,7 +974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/cyclonedds/" class="md-nav__link">
+      <a href="../cyclonedds/" class="md-nav__link">
         
   
   
@@ -1499,20 +1641,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
         
           
           <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
@@ -1528,7 +1668,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             Embodied AI
@@ -1539,30 +1679,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Embodied AI 介紹
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../embodied-ai/introduction/" class="md-nav__link">
         
   
   
@@ -1573,60 +1693,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#end-to-end" class="md-nav__link">
-    <span class="md-ellipsis">
-      端到端 (End-to-End)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#act-vla-wam" class="md-nav__link">
-    <span class="md-ellipsis">
-      ACT / VLA / WAM 比較
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sim-to-real" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sim-to-Real
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      相關連結
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1639,7 +1705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../gpu/" class="md-nav__link">
+      <a href="../../embodied-ai/gpu/" class="md-nav__link">
         
   
   
@@ -1939,38 +2005,104 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#end-to-end" class="md-nav__link">
+  <a href="#dds" class="md-nav__link">
     <span class="md-ellipsis">
-      端到端 (End-to-End)
+      DDS 角色
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DDS 角色">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gds-dds-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      GDS (DDS Domain)
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#act-vla-wam" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#domain-participant" class="md-nav__link">
     <span class="md-ellipsis">
-      ACT / VLA / WAM 比較
+      Domain Participant
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#sim-to-real" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#topic" class="md-nav__link">
     <span class="md-ellipsis">
-      Sim-to-Real
+      Topic
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publisher-subscriber" class="md-nav__link">
+    <span class="md-ellipsis">
+      Publisher / Subscriber
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datawriter-datareader" class="md-nav__link">
+    <span class="md-ellipsis">
+      DataWriter / DataReader
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      相關連結
+      資料流
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="資料流">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writer-reader" class="md-nav__link">
+    <span class="md-ellipsis">
+      從 writer 到 reader
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topic_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      topic 配對
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      一對多、多對多
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1990,71 +2122,52 @@
 
 
 
-  <h1>Embodied AI 介紹</h1>
+  <h1>DDS 核心概念</h1>
 
-<p>隨著人工智慧的發展，有身體的 AI，也就是 Embodied AI 也開始被大量關注。
-相對於一般雲端的聊天機器人，Embodied AI 強調物理載體，以及怎麼感知物理世界的資料，並且與其互動。
-比起傳統機器人或自駕車的固定演算法，Embodied AI 因為能從物理世界中學習，更加能夠應對日益複雜的情況。</p>
-<h2 id="end-to-end">端到端 (End-to-End)</h2>
-<p>傳統的機器人演算法需要人類去撰寫複雜的邏輯和狀態機，例如 ROS 的 navigation 或是 moveit 套件，分別對應 AMR 或是機器手臂的應用。
-這些套件的作法通常是把邏輯拆分成多個模組，例如感知模組、定位模組、控制模組等等，每個模組透過定義好的接口（像是 ROS topic）來傳遞資料。
-然而面對複雜的真實世界，人類的設計往往無法考量周全，每遇到一個新的情境就要加入新的邏輯，這也是機器人領域過去發展的痛點。</p>
-<p>後來有人想到既然人為設計這麼困難，那是否我們可以直接從原始資料產生出對應的行為呢？
-那個流派就被稱作端到端。</p>
-<p>一般來說端到端的輸入是各種感測器的資料，像是攝影機、光達等等，經過一個我們所訓練的 model，會直接產生出控制指令，像是馬達控制。
-這樣的方式很有用，不用想辦法去處理各種 corner case，更容易應對真實世界的挑戰。</p>
-<p>但是端到端也不是沒有缺點。第一，他無法進行語言的邏輯推理，例如我請機器人拿玩具，他就必須要了解玩具的定義是什麼。第二，我們無法了解為何 model 會做這樣的決定，例如自駕車決定在某個路口煞車時，我們需要知道他的判斷邏輯是什麼。這兩個情境說明了語言在其中的重要性。</p>
-<p>因此 VLA (Vision-Language-Action) 就出現了。Vision 代表輸入接收影像資料，透過語言邏輯的判讀，最終產生出了行動。由於可以使用自然語言，就可以使用網路上的文本資料協助訓練，並且也提供更好的人機界面了。</p>
-<p>VLA 目前最知名的專案有 Google 的 <a href="https://deepmind.google/blog/rt-2-new-model-translates-vision-and-language-into-action/">RT-2</a>，以及 <a href="https://github.com/openvla/openvla">OpenVLA</a>。</p>
-<h2 id="act-vla-wam">ACT / VLA / WAM 比較</h2>
-<p><strong>ACT</strong>: Action Chunking with Transformers</p>
-<p>這種方法類似於 imitation learning，輸入是畫面和機器人狀態，會輸出一連串的機器人動作，但是不會有任何的語意理解。</p>
-<p><strong>VLA</strong>: Vision-Language-Action model</p>
-<p>在 ACT 的基礎上，多增加了語言指令，通常是借用 VLM 的語意能力。
-輸入除了畫面和機器人狀態外，多增加了語言指令，輸出會根據指令而有不一樣的行動。</p>
-<p><strong>WAM</strong>: World Action Model</p>
-<p>最新的研究進展，會加上對物理世界的理解，思考自己的動作會對世界造成什麼樣的變化。
-這樣對未來的想像能力，可以有更好的行動策略，例如往前推杯子，杯子會移動多遠，會不會掉下桌子等等。
-然而，這需要很高的運算量，也會提高 latency。</p>
-<h2 id="sim-to-real">Sim-to-Real</h2>
-<p>機器人領域之所以不像是大語言模型(LLM)發展那麼迅速，最主要的原因在於「資料瓶頸」(Data Bottleneck)，特別是高品質的資料。
-機器人所需要的運動資料，相較於網路上隨手可得的文字資料少上不少，這類資料不只是包含視覺影像，更有複雜的物理特性（如扭矩、摩擦力、感測器回饋等等），且還跟硬體規格高度綁定。
-如果要靠自己產生訓練資料，那又會遇到「物理時鐘」的極限：一個十秒的動作，在現實中就必須實打實花費十秒，還伴隨著硬體的磨損和電力損耗。</p>
-<p>這時有些人就提出了利用模擬世界來產生出資料，幫助我們在模擬器中並行化訓練機器人模型，大幅提昇學習效率，更是能符合特定硬體設計，達到數位孿生（Digital Twin）的成效。</p>
-<p>然而，Sim-to-Real 最大的挑戰在於與現實世界的鴻溝。模擬世界難以完美還原物理世界的一切細節，還需要透過領域隨機化（Domain Randomization）———對各個參數引入隨機性，如外觀、重量等等———來增強模型在不確定環境的泛化性。</p>
-<h2 id="_1">相關連結</h2>
+<p>接下來我們來先探到 DDS 的概念，我們可以想像 DDS 所有參與者都可以看到這個網路中的所有資訊，不論是有哪些 data writer、data reader、topic 等等。
+我們稱這些資訊都在同個 GDS (global data space) 之中。
+當然實際上並沒有魔法———有一個共通的空間來存這些資訊，這其實是靠著 DDS protocol 彼此交換訊息，在每個參與者本地端建立起自己的 GDS，然後不斷去更新它。</p>
+<p>接下來讓我們參考下圖(<a href="https://www.mdpi.com/2218-6581/14/5/63">圖源</a>)來介紹 DDS 協定中常見的角色。</p>
+<p><img alt="DDS architecture" src="../images/DDS%20architecture.png" /></p>
+<h2 id="dds">DDS 角色</h2>
+<h3 id="gds-dds-domain">GDS (DDS Domain)</h3>
+<p>如同前面提到的 GDS 是一個用來儲存所有 DDS 網路資訊的概念圖，但這邊有個 DDS Domain 的概念值得注意。
+有時候我們會希望可以切分不同網域，建立邏輯隔離層，確保某些節點群的資訊不會互相干擾。
+這樣的設計在 DDS 中叫做 DDS domain，不同的 domain 的節點彼此是無法通訊的。</p>
+<p>在 ROS 中，有 ROS_DOMAIN_ID 的設計，而這個設計有 ROS_DOMAIN_ID 的設計，而這個設計就是使用到 DDS domain 的概念。</p>
+<h3 id="domain-participant">Domain Participant</h3>
+<p>DDS 節點要參與某個 domain 的通訊，就會需要建立一個 participant 的身份。
+這個 participant 內部包含後面我們會提到的 publisher、subscriber 等等，另外也包含 DDS 節點用來發現彼此的 builtin entities。</p>
+<h3 id="topic">Topic</h3>
+<p>Topic 是 DDS data-centric 通訊的重點，定義了「這筆資料是什麼」。
+Topic 包含以下資訊：</p>
 <ul>
-<li>學習資源：<ul>
-<li><a href="https://github.com/TianxingChen/Embodied-AI-Guide">具身智能技术指南</a>：簡體中文的各種學習資源</li>
-<li><a href="https://github.com/walkinglabs/hands-on-modern-rl">现代强化学习实战课程</a>：簡體中文針對強化學習的課程</li>
-<li><a href="https://github.com/DravenALG/awesome-vla-wam">Awesome VLA &amp; WAM</a>：列出所有 VLA 和 WAM 相關研究和資源</li>
+<li>topic name：專屬的名稱</li>
+<li>data type：資料格式應該如何</li>
+<li>QoS：有哪些 quality of service</li>
 </ul>
-</li>
-<li>模型與 dataset<ul>
-<li><a href="https://openvla.github.io/">OpenVLA</a>：經典 open-source VLA</li>
-<li><a href="https://huggingface.co/docs/lerobot/smolvla">SmolVLA</a>：Hugging Face 所提出，輕量級 VLA，和 LeRobot 生態系整合良好</li>
-<li><a href="https://octo-models.github.io/">Octo</a>：目標是通用機器人策略，可以支援多種機器人平台和 sensor 配置</li>
-<li><a href="https://github.com/Physical-Intelligence/openpi">openpi</a>：Physical Intelligence 提出，特色是 flow-matching / action chunking 路線，目標是讓 robot 做更連續、靈活</li>
-<li><a href="https://github.com/NVIDIA/Isaac-GR00T">NVIDIA Isaac GR00T N1 / N1.7</a>：面向 humanoid 的 robot foundation model，和 NVIDIA 生態系緊密綁定</li>
-<li><a href="https://github.com/allenai/molmoact2">MolmoAct 2</a>：Ai2 / Allen Institute for AI 所提出，特色是偏 Open Science：不只開模型，也強調 datasets、training code、robot policies、evaluation。</li>
-<li><a href="https://github.com/XiaomiRobotics/Xiaomi-Robotics-0">Xiaomi-Robotics-0</a>：小米的 open VLA model</li>
-<li><a href="https://robotics-transformer-x.github.io/">Open X-Embodiment</a>：Goodle DeepMind 和全球學術單位合作推出的開源巨型數據集</li>
+<h3 id="publisher-subscriber">Publisher / Subscriber</h3>
+<p><code>Publisher</code> 和 <code>Subscriber</code> 可以看成 writer / reader 的管理容器。
+真正送資料與收資料的，通常還是底下的 <code>DataWriter</code> 和 <code>DataReader</code>。</p>
+<h3 id="datawriter-datareader">DataWriter / DataReader</h3>
+<p><code>DataWriter</code> 負責將資料寫入某個 topic，<code>DataReader</code> 則負責接收對應 topic 的資料。</p>
+<p>這一組概念是 DDS 資料流的核心：</p>
+<ul>
+<li>writer 宣告自己會發送某種 topic</li>
+<li>reader 宣告自己想接收某種 topic</li>
+<li>當 name、type、QoS 相容時，雙方才可能成功配對</li>
 </ul>
-</li>
-<li>機器人重要研討會：<ul>
-<li><a href="https://www.corl.org/">CoRL (Conference on Robot Learning)</a>：Embodied AI 最頂尖的研討會</li>
-<li><a href="https://ieee-icra.org">ICRA (IEEE International Conference on Robotics and Automation)</a>：機器人領域最早也最權威的研討會，討論各種理論與演算法的創新</li>
-<li>IROS (IEEE/RSJ International Conference on Intelligent Robots and Systems)：由 IEEE RAS 與 日本機器人學會 (RSJ) 共同主辦，更強調實際的應用。</li>
-</ul>
-</li>
-<li>自駕車重要研討會<ul>
-<li><a href="http://ieee-iv.org/">IEEE IV (Intelligent Vehicles Symposium)</a>：專注於自動駕駛系統的技術實現與測試。</li>
-<li>CVPR (Conference on Computer Vision and Pattern Recognition)：電腦視覺第一大會，強調如何落地應用</li>
-<li>ICCV (International Conference on Computer Vision)：兩年一次(基數年)，偏向學術底層理論</li>
-<li>ECCV (European Conference on Computer Vision)：兩年一次(偶數年)，有強烈歐洲色彩</li>
-</ul>
-</li>
-</ul>
+<h2 id="_1">資料流</h2>
+<h3 id="writer-reader">從 writer 到 reader</h3>
+<p>跟點對點的傳統通訊不一樣，DDS 不重視要傳給誰，而是重視要發佈什麼東西，也就是我們前面說的 topic。
+上層應用程式使用 DDS API 發布資料後，DDS middleware 就會透過 data writer 發布某個 topic 的資料。
+對面的應用程式由於也使用 DDS API 說要關注某個 topic 資料，DDS middleware 的 data reader 就會從 writer 那邊收取資料，並且通知上層應用已經有收到資料了。</p>
+<h3 id="topic_1">topic 配對</h3>
+<p>如同前面我們說過的 topic 有三個部份 name、type、QoS，writer 和 reader 的 topic 要都對上，才能夠進行連線。
+不過值得注意的是 QoS 並不是要百分之百完全一致才行，而是只要符合一定規則就能相通，這個我們稱之為 RxO。</p>
+<h3 id="_2">一對多、多對多</h3>
+<p>由於 DDS 使用 topic 的方式來傳輸資料，所以當然可以有多個 publisher 對一個 topic 送資料，或是多個 subscriber 從同一個 topic 收資料。
+不過 DDS 他特別有效率的地方是如果發現有多個接收方的時候，它不會使用 unicast 的方式，而是使用 multicast 來傳送，這可以有效減少網路的封包數量。</p>
 
 
 
