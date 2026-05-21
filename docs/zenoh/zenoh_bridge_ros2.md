@@ -22,7 +22,7 @@ keywords:
 
 2. 多機控制
 
-    一般來說如果我們有多台機器人同時運行，因為運行同樣的會軟體，所以會遇到有 topic 衝突的問題。
+    一般來說如果我們有多台機器人同時運行，因為運行同樣的軟體，所以會遇到有 topic 衝突的問題。
     我們可以先限定 ROS 流量只能在機器人內部運行，然後機器人外則是使用 Zenoh 互相交流訊息。
     兩者之間的轉換就是透過 `zenoh-bridge-ros2dds` 來橋接。
     值得注意的是，我們還可以指定[不同 namespace 給不同機器人](https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds?tab=readme-ov-file#easy-multi-robots-via-namespace-configuration)，如此一來就可以指定哪個訊息要傳給特定機器人了。
