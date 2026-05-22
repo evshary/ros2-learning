@@ -84,6 +84,19 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
     * 我們可以針對測試輸入設定一些規則，而不是使用完全隨機的輸入，這樣更有機會幫我們鎖定應該測試的範圍
     * prop-test 還可以在發現某個錯誤時，主動幫我們縮小測試的範圍，鎖定到底是誰導致這個錯誤產生
 
+## 階段
+
+我們可以分多個階段來引入 fuzz 測試：
+
+1. 最基本的 fuzz 測試
+    * parse input 的時候不應該 crash
+    * round-trip: encode / decode 的結果應該要一樣
+2. 引入 arbitrary，來測試 structured message
+3. 利用 proptest 來測試 protocol 的 state machine
+4. DST (Deterministic Simulation Testing): 針對複雜的分散式系統進行測試，可以確保發生的問題可以重複覆現
+
+除此之外，Google 有提出 [OSS-Fuzz 平台](https://github.com/google/oss-fuzz)可以幫開源軟體做 fuzz test，這是可以善用的資源。
+
 ## 實戰
 
 這邊弄了一個範例 GitHub repo [rust_fuzz_examples](https://github.com/evshary/rust_fuzz_examples)，幫助我們快速理解這些函式庫的使用。
