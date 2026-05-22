@@ -1919,6 +1919,15 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
+      階段
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
       實戰
     </span>
   </a>
@@ -1995,7 +2004,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       參考連結
     </span>
@@ -2079,6 +2088,15 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
+      階段
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
       實戰
     </span>
   </a>
@@ -2155,7 +2173,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       參考連結
     </span>
@@ -2274,7 +2292,20 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
 </ul>
 </li>
 </ul>
-<h2 id="_3">實戰</h2>
+<h2 id="_3">階段</h2>
+<p>我們可以分多個階段來引入 fuzz 測試：</p>
+<ol>
+<li>最基本的 fuzz 測試<ul>
+<li>parse input 的時候不應該 crash</li>
+<li>round-trip: encode / decode 的結果應該要一樣</li>
+</ul>
+</li>
+<li>引入 arbitrary，來測試 structured message</li>
+<li>利用 proptest 來測試 protocol 的 state machine</li>
+<li>DST (Deterministic Simulation Testing): 針對複雜的分散式系統進行測試，可以確保發生的問題可以重複覆現</li>
+</ol>
+<p>除此之外，Google 有提出 <a href="https://github.com/google/oss-fuzz">OSS-Fuzz 平台</a>可以幫開源軟體做 fuzz test，這是可以善用的資源。</p>
+<h2 id="_4">實戰</h2>
 <p>這邊弄了一個範例 GitHub repo <a href="https://github.com/evshary/rust_fuzz_examples">rust_fuzz_examples</a>，幫助我們快速理解這些函式庫的使用。</p>
 <p>這個範例是一個將字串轉為數字的函式，但是留了一個 bug，只要字串是是 "0"，就會導致函式 panic。
 我們分別用不同 fuzz 函式庫來說明。</p>
@@ -2355,7 +2386,7 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>cargo<span class="w"> </span><span class="nb">test</span><span class="w"> </span>parse_port_matches_std<span class="w"> </span>--<span class="w"> </span>--ignored
 </span></code></pre></div>
 <p>運行測試發現錯誤時，proptest 會產生最小可複製的測試 case 放在 <code>proptest-regressions/</code> 資料夾下，下次再次執行時，會優先從這個資料夾執行有問題的 case。</p>
-<h2 id="_4">參考連結</h2>
+<h2 id="_5">參考連結</h2>
 <ul>
 <li><a href="https://rust-fuzz.github.io/book/">Rust Fuzz Book</a>: 主要是介紹 Rust 中 afl.rs and cargo-fuzz 這兩個測試工具。</li>
 </ul>
