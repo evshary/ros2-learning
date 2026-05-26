@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="ROS 2 的安裝方法">
+        <meta name="description" content="介紹 DDS 的 entity 是如何做到彼此發現的">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/ros2/installation/">
+        <link rel="canonical" href="https://ros2.tw/dds/discovery/">
       
       
-        <link rel="prev" href="../introduction/">
+        <link rel="prev" href="../qos/">
       
       
-        <link rel="next" href="../command/">
+        <link rel="next" href="../cyclonedds/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>ROS 2 安裝 - ROS 2 筆記</title>
+        <title>DDS Discovery 機制 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#spdp" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ROS 2 安裝
+              DDS Discovery 機制
             
           </span>
         </div>
@@ -265,20 +265,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -294,7 +292,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             ROS 2 入門
@@ -308,7 +306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../ros2/introduction/" class="md-nav__link">
         
   
   
@@ -328,30 +326,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    ROS 2 安裝
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ros2/installation/" class="md-nav__link">
         
   
   
@@ -362,42 +340,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      官方安裝方法
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ros-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      ROS + docker
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -455,7 +397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../command/" class="md-nav__link">
+      <a href="../../ros2/command/" class="md-nav__link">
         
   
   
@@ -478,7 +420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../communication/" class="md-nav__link">
+      <a href="../../ros2/communication/" class="md-nav__link">
         
   
   
@@ -501,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../building/" class="md-nav__link">
+      <a href="../../ros2/building/" class="md-nav__link">
         
   
   
@@ -524,7 +466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qos/" class="md-nav__link">
+      <a href="../../ros2/qos/" class="md-nav__link">
         
   
   
@@ -547,7 +489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../record/" class="md-nav__link">
+      <a href="../../ros2/record/" class="md-nav__link">
         
   
   
@@ -570,7 +512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/" class="md-nav__link">
+      <a href="../../ros2/tools/" class="md-nav__link">
         
   
   
@@ -593,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tips/" class="md-nav__link">
+      <a href="../../ros2/tips/" class="md-nav__link">
         
   
   
@@ -616,7 +558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../navigation/" class="md-nav__link">
+      <a href="../../ros2/navigation/" class="md-nav__link">
         
   
   
@@ -639,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sros/" class="md-nav__link">
+      <a href="../../ros2/sros/" class="md-nav__link">
         
   
   
@@ -707,7 +649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_cyclonedds/" class="md-nav__link">
+      <a href="../../ros2/rmw_cyclonedds/" class="md-nav__link">
         
   
   
@@ -730,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/basic/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/basic/" class="md-nav__link">
         
   
   
@@ -753,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/advanced/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/advanced/" class="md-nav__link">
         
   
   
@@ -776,7 +718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/hands_on/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/hands_on/" class="md-nav__link">
         
   
   
@@ -803,18 +745,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -830,7 +774,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             DDS 入門
@@ -844,7 +788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -867,7 +811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/concepts/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         
   
   
@@ -890,7 +834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/qos/" class="md-nav__link">
+      <a href="../qos/" class="md-nav__link">
         
   
   
@@ -910,10 +854,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../dds/discovery/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    DDS Discovery
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -924,6 +888,42 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#spdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      SPDP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sedp" class="md-nav__link">
+    <span class="md-ellipsis">
+      SEDP
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -936,7 +936,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/cyclonedds/" class="md-nav__link">
+      <a href="../cyclonedds/" class="md-nav__link">
         
   
   
@@ -1967,18 +1967,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#spdp" class="md-nav__link">
     <span class="md-ellipsis">
-      官方安裝方法
+      SPDP
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ros-docker" class="md-nav__link">
+  <a href="#sedp" class="md-nav__link">
     <span class="md-ellipsis">
-      ROS + docker
+      SEDP
     </span>
   </a>
   
@@ -2000,53 +2000,87 @@
 
 
 
-  <h1>ROS 2 安裝</h1>
+  <h1>DDS Discovery</h1>
 
-<p>ROS 2 的官方主要支援三個主流平台：Linux, Windows, MAC。
-不過由於 Linux 還是比較多人在使用，所以初學還是推薦用 Linux 來學習。</p>
-<p>Linux 的部份目前官方只有原生支援 Ubuntu，建議使用最新版 ROS 2 LTS 搭配對應的 Ubuntu 版本。
-例如目前是 jazzy 搭配 Ubuntu 24.04。</p>
-<h2 id="_1">官方安裝方法</h2>
-<p>ROS 2 的安裝有很多方法，像是使用 apt 安裝 Debian 套件，或從 source code 自行編譯都可以，可以參考 <a href="https://docs.ros.org/en/jazzy/Installation.html">Installing ROS 2 Jazzy Jalisco</a>。</p>
-<p>最一開始還是先用 apt 安裝比較簡單，具體細節請參考 <a href="https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html">Installing ROS 2 via Debian Packages</a>。</p>
+<p>DDS 是去中心化的系統，和其他協定最大的不同在於它能夠做到彼此發現，而不需要有一個中央的伺服器來事先註冊。
+當節點加入網路以後，會透過 discovery 來找到其他的節點 (participant)，然後再建立實際的資料流。</p>
+<p>我們可以把 discovery 分成兩個部份：</p>
 <ul>
-<li>安裝 ROS 2 的 repository</li>
+<li><code>SPDP</code>：用來尋找網路上有哪些 participant</li>
+<li><code>SEDP</code>：用來發現 participant 底下有哪些 endpoint (reader / writer)</li>
 </ul>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>software-properties-common
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>universe
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl<span class="w"> </span>-y
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_APT_SOURCE_VERSION</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;tag_name&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="se">\&quot;</span><span class="w"> </span><span class="s1">&#39;{print $4}&#39;</span><span class="k">)</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>curl<span class="w"> </span>-L<span class="w"> </span>-o<span class="w"> </span>/tmp/ros2-apt-source.deb<span class="w"> </span><span class="s2">&quot;https://github.com/ros-infrastructure/ros-apt-source/releases/download/</span><span class="si">${</span><span class="nv">ROS_APT_SOURCE_VERSION</span><span class="si">}</span><span class="s2">/ros2-apt-source_</span><span class="si">${</span><span class="nv">ROS_APT_SOURCE_VERSION</span><span class="si">}</span><span class="s2">.</span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">UBUNTU_CODENAME</span><span class="k">:-</span><span class="si">${</span><span class="nv">VERSION_CODENAME</span><span class="si">}}</span><span class="k">)</span><span class="s2">_all.deb&quot;</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>/tmp/ros2-apt-source.deb
-</span></code></pre></div>
+<h2 id="spdp">SPDP</h2>
+<p>SPDP 全名是 <code>Simple Participant Discovery Protocol</code>，目標是讓同個 DDS domain 的 Participant 彼此知道對方存在。</p>
+<p>SPDP 本身也是利用 RTPS 的 Reader / Writer 機制來完成。
+每個 participant 會有兩個 built-in endpoints。</p>
 <ul>
-<li>安裝 ROS 的套件 (含開發 library)</li>
+<li><code>SPDPbuiltinParticipantWriter</code>：用來對外宣告自己存在，entity ID 是 <code>ENTITYID_SPDP_BUILTIN_PARTICIPANT_WRITER</code></li>
+<li><code>SPDPbuiltinParticipantReader</code>：用來接收別人的宣告，entity ID 是 <code>ENTITYID_SPDP_BUILTIN_PARTICIPANT_READER</code></li>
 </ul>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-dev-tools<span class="w"> </span>ros-jazzy-desktop
-</span></code></pre></div>
-<h2 id="ros-docker">ROS + docker</h2>
-<p>如果你不是用 Ubuntu 或是 Ubuntu 版本無法跟最新的 ROS 2 搭配起來，可以使用容器 (container) 的方式來運行。
-因為我常常需要跨不同 ROS 2 版本來測試，所以建立了我的容器化開發環境。</p>
+<p>兩者會透過 <code>DCPSParticipant</code> 這個固定的 topic 名稱來交換資訊，其 type 為 <code>ParticipantBuiltinTopicData</code>。</p>
+<p>這個宣告的封包是透過 multicast 來發送，因此不需要有對方的 IP。
+封包內部包含如下資訊</p>
 <ul>
-<li>下載程式</li>
+<li>Participant GUID / GUID Prefix</li>
+<li>Domain ID 相關資訊</li>
+<li>Vendor ID：哪些的 DDS</li>
+<li>Protocol version</li>
+<li>可用的 locator，例如 IP address / UDP port</li>
+<li>內建 endpoint 資訊</li>
+<li>lease duration：如果一段時間都沒收到更新，就會認為這個 participant 已經離線，並移除相關資訊。</li>
 </ul>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/evshary/ros2_build_env
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>ros2_build_env
+<p>大概的流程如下圖：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Participant A                              Participant B
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>     │                                           │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>     │  SPDP announcement: &quot;A is here&quot;           │
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>     ├──────────────────────────────────────────&gt;│
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>     │                                           │
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>     │  SPDP announcement: &quot;B is here&quot;           │
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>     │&lt;──────────────────────────────────────────┤
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>     │                                           │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>     │       Participant discovery complete      │
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>     │                                           │
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>     │  接著才開始 SEDP endpoint discovery         │
 </span></code></pre></div>
+<h2 id="sedp">SEDP</h2>
+<p>SEDP 全名是 <code>Simple Endpoint Discovery Protocol</code>，讓 participant 彼此可以交換底下有哪些 endpoint。
+endpoint 是收送資料的通訊端點，也就是 data reader 和 data writer。</p>
+<p>SEDP 本身也是利用 built-in Reader / Writer，有分成下面三類</p>
 <ul>
-<li>進入你想運行的 ROS 版本(第一次跑會需要時間建立容器)</li>
+<li>SEDPbuiltinPublicationsWriter / SEDPbuiltinPublicationsReader<ul>
+<li>用來交換彼此 DataWriter 的資訊</li>
+<li>訂閱的 topic name 是 <code>DCPSPublication</code></li>
 </ul>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">#./containers/&lt;the environment you want&gt;/run_container.sh</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># 假設想要跑 jazzy</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>./containers/ros2-jazzy-gui/run_container.sh
-</span></code></pre></div>
-<ul>
-<li>完成後會進入容器的環境內，你的 shell 前面會有 <code>(ros2-jazzy-gui)</code>，代表是在容器內的 terminal<ul>
-<li>我是把 ros2_build_env 掛載進容器內，所以在這資料夾做的修改都可以在本機端看到</li>
-<li>容器內部我是使用 zsh，所以在 source ROS 2 環境變數時要注意一下</li>
+</li>
+<li>SEDPbuiltinSubscriptionsWriter / SEDPbuiltinSubscriptionsReader<ul>
+<li>用來交換彼此 DataReader 的資訊</li>
+<li>訂閱的 topic name 是 <code>DCPSSubscription</code></li>
+</ul>
+</li>
+<li>SEDPbuiltinTopicsWriter / SEDPbuiltinTopicsReader<ul>
+<li>用來交換彼此 Topic 的資訊，這並非強制，並不是所有實作都會有</li>
+<li>訂閱的 topic name 是 <code>DCPSTopic</code></li>
 </ul>
 </li>
 </ul>
+<p>封包的資訊大概會有</p>
+<ul>
+<li>DataWriter / DataReader 的 GUID</li>
+<li>Topic name</li>
+<li>Type name</li>
+<li>QoS 相關資訊</li>
+<li>Locator，也就是這個 endpoint 的資料要往哪裡送 / 從哪裡收</li>
+<li>Endpoint kind，例如 writer 或 reader</li>
+</ul>
+<p>假設 A 有個 writer，B 有個 reader，雙方用 /chatter 這個 topic 溝通，SEDP 的流程大概如下：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Participant A                                    Participant B
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  Publication Writer ── A 的 DataWriter 資訊 ──&gt; Publication Reader
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  Subscription Reader &lt;─ B 的 DataReader 資訊 ── Subscription Writer
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  A:/chatter DataWriter  &lt;──── matched ────&gt;  B:/chatter DataReader
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  A:/chatter DataWriter  ───── data ───────&gt;  B:/chatter DataReader
+</span></code></pre></div>
+<p>Writer 和 Reader 得知對方的資訊以後，就就會在本地比較對方 topic / type / QoS 和自己的有沒有 match，有了才會進行進一步通訊。</p>
 
 
 
