@@ -1926,6 +1926,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#oss-fuzz" class="md-nav__link">
+    <span class="md-ellipsis">
+      OSS-Fuzz
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       實戰
@@ -2089,6 +2098,15 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       階段
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oss-fuzz" class="md-nav__link">
+    <span class="md-ellipsis">
+      OSS-Fuzz
     </span>
   </a>
   
@@ -2304,86 +2322,111 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
 <li>利用 proptest 來測試 protocol 的 state machine</li>
 <li>DST (Deterministic Simulation Testing): 針對複雜的分散式系統進行測試，可以確保發生的問題可以重複覆現</li>
 </ol>
-<p>除此之外，Google 有提出 <a href="https://github.com/google/oss-fuzz">OSS-Fuzz 平台</a>可以幫開源軟體做 fuzz test，這是可以善用的資源。</p>
+<h2 id="oss-fuzz">OSS-Fuzz</h2>
+<p>Google 有提出 <a href="https://github.com/google/oss-fuzz">OSS-Fuzz 平台</a>可以幫開源軟體做 fuzz test。
+我們只要在該平台設定好怎麼編譯和執行，Google 會自動幫軟體進行 fuzz test，當有發現問題也會回報給我們。
+這樣就不用擔心自己沒有足夠的資源可以來進行 fuzz test，畢竟 fuzz test 通常都需要跑上多個小時才能發現問題。</p>
+<p>下面會列出大致流成為和，而詳細步驟可以參考<a href="https://google.github.io/oss-fuzz/">官方文件</a>：</p>
+<ol>
+<li>在貢獻之前，要先 sign <a href="https://cla.developers.google.com/about">CLA (Contributor License Agreements)</a> 才行</li>
+<li>接著 clone oss-fuzz，並且在 projects 下加上要放入的 project 資料夾</li>
+<li>資料夾裡面會有三個部份：</li>
+<li>project.yaml：project 的相關 configuration，例如要用什麼 fuzzer、程式語言、有問題要寄信給誰等等</li>
+<li>Dockerfile：編譯 fuzz 測試的環境</li>
+<li>build.sh：如何編譯 fuzz 測試</li>
+<li>
+<p>完成後我們可以在本地端先做測試</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 製作 docker image</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>build_image<span class="w"> </span>your-project
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 編譯 fuzzers</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>build_fuzzers<span class="w"> </span>your-project
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 運行 fuzzer</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>run_fuzzer<span class="w"> </span>your-project<span class="w"> </span>your-fuzzer-name
+</span></code></pre></div>
+</li>
+<li>
+<p>都沒問題後就可以發 PR 到 GitHub 上了</p>
+</li>
+</ol>
 <h2 id="_4">實戰</h2>
 <p>這邊弄了一個範例 GitHub repo <a href="https://github.com/evshary/rust_fuzz_examples">rust_fuzz_examples</a>，幫助我們快速理解這些函式庫的使用。</p>
 <p>這個範例是一個將字串轉為數字的函式，但是留了一個 bug，只要字串是是 "0"，就會導致函式 panic。
 我們分別用不同 fuzz 函式庫來說明。</p>
 <h3 id="cargo-fuzz">cargo-fuzz</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>cargo_fuzz_example
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># 安裝</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-fuzz
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>rustup<span class="w"> </span>toolchain<span class="w"> </span>install<span class="w"> </span>nightly
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># fuzz 測試 parse_port</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>fuzz<span class="w"> </span>run<span class="w"> </span>parse_port
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># 嘗試找出最小造成 bug 的 input</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>fuzz<span class="w"> </span>tmin<span class="w"> </span>parse_port<span class="w"> </span>fuzz/artifacts/parse_port/&lt;crash-file&gt;
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>cargo_fuzz_example
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># 安裝</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-fuzz
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>rustup<span class="w"> </span>toolchain<span class="w"> </span>install<span class="w"> </span>nightly
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># fuzz 測試 parse_port</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>fuzz<span class="w"> </span>run<span class="w"> </span>parse_port
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 嘗試找出最小造成 bug 的 input</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>fuzz<span class="w"> </span>tmin<span class="w"> </span>parse_port<span class="w"> </span>fuzz/artifacts/parse_port/&lt;crash-file&gt;
 </span></code></pre></div>
 <p>可以看到 cargo-fuzz 是在當前 crate 下另外有一個 fuzz 的資料夾，放 fuzz test 相關的程式碼。
 運行的結果，正常沒問題的 input 會放在 corpus 資料夾，會 crash 的 input 就放到 artifacts 資料夾下。</p>
 <p>要特別注意的是 cargo-fuzz 會需要使用 nightly feature，所以執行時要加上 <code>+nightly</code>。</p>
 <p>隨著我們測試的時間拉長，corpus 的數量也就會隨之增加，我們也可以利用這些 corpus 來評估針對 source code 的部份測試覆蓋度（有哪些程式碼有被測試到）</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 重新編譯 binary，涵蓋 coverage instrumentation，這能用來統計所有部份程式走過的路徑</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># 然後他就會重跑 fuzz/corpus/parse_port/* 底下所有 corpus</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># 把統計結果輸出 raw profile，也就是 *.profraw</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 並且 merge 多個 *.profraw 到 coverage.profdata</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>fuzz<span class="w"> </span>coverage<span class="w"> </span>--sanitizer<span class="w"> </span>none<span class="w"> </span>parse_port<span class="w"> </span>fuzz/corpus/parse_port
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># 用 LLVM 的工具比較 parse_port 這個 binary 內的 coverage mapping 和 coverage.profdata 內的計數結果，回推出整體的 coverage 結果</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nv">LLVM_BIN</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>rustc<span class="w"> </span>+nightly<span class="w"> </span>--print<span class="w"> </span>target-libdir<span class="k">)</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">/bin&quot;</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># 產生 summary report</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="s2">&quot;</span><span class="nv">$LLVM_BIN</span><span class="s2">&quot;</span>/llvm-cov<span class="w"> </span>report<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span>target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/parse_port<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span>--instr-profile<span class="w"> </span>fuzz/coverage/parse_port/coverage.profdata
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># 或是用 HTML 顯示</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="s2">&quot;</span><span class="nv">$LLVM_BIN</span><span class="s2">&quot;</span>/llvm-cov<span class="w"> </span>show<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span>target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/parse_port<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span>--instr-profile<span class="w"> </span>fuzz/coverage/parse_port/coverage.profdata<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">  </span>src/lib.rs
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 重新編譯 binary，涵蓋 coverage instrumentation，這能用來統計所有部份程式走過的路徑</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># 然後他就會重跑 fuzz/corpus/parse_port/* 底下所有 corpus</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># 把統計結果輸出 raw profile，也就是 *.profraw</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 並且 merge 多個 *.profraw 到 coverage.profdata</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>fuzz<span class="w"> </span>coverage<span class="w"> </span>--sanitizer<span class="w"> </span>none<span class="w"> </span>parse_port<span class="w"> </span>fuzz/corpus/parse_port
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># 用 LLVM 的工具比較 parse_port 這個 binary 內的 coverage mapping 和 coverage.profdata 內的計數結果，回推出整體的 coverage 結果</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nv">LLVM_BIN</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>rustc<span class="w"> </span>+nightly<span class="w"> </span>--print<span class="w"> </span>target-libdir<span class="k">)</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">/bin&quot;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># 產生 summary report</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="s2">&quot;</span><span class="nv">$LLVM_BIN</span><span class="s2">&quot;</span>/llvm-cov<span class="w"> </span>report<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span>target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/parse_port<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span>--instr-profile<span class="w"> </span>fuzz/coverage/parse_port/coverage.profdata
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1"># 或是用 HTML 顯示</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="s2">&quot;</span><span class="nv">$LLVM_BIN</span><span class="s2">&quot;</span>/llvm-cov<span class="w"> </span>show<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span>target/x86_64-unknown-linux-gnu/coverage/x86_64-unknown-linux-gnu/release/parse_port<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">  </span>--instr-profile<span class="w"> </span>fuzz/coverage/parse_port/coverage.profdata<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">  </span>src/lib.rs
 </span></code></pre></div>
 <h3 id="aflrs">afl.rs</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>afl_rs_example
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># 安裝</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-afl
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>cargo<span class="w"> </span>afl<span class="w"> </span>system-config
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># 編譯 afl 測試的 binary，特別注意這邊我是故意用 afl-harness feature 來隔開，不影響正常程式運作</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>cargo<span class="w"> </span>afl<span class="w"> </span>build<span class="w"> </span>--features<span class="w"> </span>afl-harness<span class="w"> </span>--bin<span class="w"> </span>fuzz_parse_port
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># 用 in/seed.txt 來當作 input 基底來隨機調整，結果會放到 out 資料夾</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>cargo<span class="w"> </span>afl<span class="w"> </span>fuzz<span class="w"> </span>-i<span class="w"> </span><span class="k">in</span><span class="w"> </span>-o<span class="w"> </span>out<span class="w"> </span>target/debug/fuzz_parse_port
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>afl_rs_example
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># 安裝</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-afl
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>cargo<span class="w"> </span>afl<span class="w"> </span>system-config
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># 編譯 afl 測試的 binary，特別注意這邊我是故意用 afl-harness feature 來隔開，不影響正常程式運作</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>cargo<span class="w"> </span>afl<span class="w"> </span>build<span class="w"> </span>--features<span class="w"> </span>afl-harness<span class="w"> </span>--bin<span class="w"> </span>fuzz_parse_port
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># 用 in/seed.txt 來當作 input 基底來隨機調整，結果會放到 out 資料夾</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>cargo<span class="w"> </span>afl<span class="w"> </span>fuzz<span class="w"> </span>-i<span class="w"> </span><span class="k">in</span><span class="w"> </span>-o<span class="w"> </span>out<span class="w"> </span>target/debug/fuzz_parse_port
 </span></code></pre></div>
 <p>測試會造成 crash 的 input 會放在 <code>out/default/crashes</code> 底下。</p>
 <h3 id="honggfuzz-rs">honggfuzz-rs</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>honggfuzz_rs_example
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># 安裝</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>cargo<span class="w"> </span>install<span class="w"> </span>honggfuzz
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># 跑 fuzz test</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>cargo<span class="w"> </span>hfuzz<span class="w"> </span>run<span class="w"> </span>parse_port
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>honggfuzz_rs_example
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># 安裝</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>cargo<span class="w"> </span>install<span class="w"> </span>honggfuzz
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># 跑 fuzz test</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>cargo<span class="w"> </span>hfuzz<span class="w"> </span>run<span class="w"> </span>parse_port
 </span></code></pre></div>
 <p><code>hfuzz_workspace/parse_port/input/seed.txt</code> 要填入一般正常的輸入，然後運行失敗的結果和報告會被放到 <code>hfuzz_workspace/parse_port/</code>。</p>
 <h3 id="libafl">libAFL</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>libafl_example
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># 我們可以用 libAFL 產生出 input，然後再餵給待測函數</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>cargo<span class="w"> </span>run
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>libafl_example
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># 我們可以用 libAFL 產生出 input，然後再餵給待測函數</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>cargo<span class="w"> </span>run
 </span></code></pre></div>
 <p>可以觀察 <code>mutate_seed</code> 函式，libAFL 給我們很大的彈性來看如何產生測試的 input。</p>
 <h3 id="bolero">bolero</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>bolero_example
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># 安裝</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-bolero
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>rustup<span class="w"> </span>toolchain<span class="w"> </span>install<span class="w"> </span>nightly
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># 跑 fuzz test</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>bolero<span class="w"> </span><span class="nb">test</span><span class="w"> </span>parse_port_matches_std
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>bolero_example
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># 安裝</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-bolero
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>rustup<span class="w"> </span>toolchain<span class="w"> </span>install<span class="w"> </span>nightly
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># 跑 fuzz test</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>bolero<span class="w"> </span><span class="nb">test</span><span class="w"> </span>parse_port_matches_std
 </span></code></pre></div>
 <p>可以觀察 <code>parse_port_matches_std</code>，我們可以在 input 這邊多動一些手腳。</p>
 <h3 id="arbitrary">arbitrary</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>arbitrary_example
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># 測試 (我們寫成一般 Rust 測試，一般來說是跟前面的 fuzz framework 搭配</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>cargo<span class="w"> </span><span class="nb">test</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>arbitrary_example
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># 測試 (我們寫成一般 Rust 測試，一般來說是跟前面的 fuzz framework 搭配</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>cargo<span class="w"> </span><span class="nb">test</span>
 </span></code></pre></div>
 <p>我們可以先在要當成輸入的 struct 加上 <code>#[derive(Arbitrary)]</code>，然後再用 <code>arbitrary::Unstructured</code> 把一般的 byte 輸入轉換成 struct。</p>
 <h3 id="proptest">proptest</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>proptest_example
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># 測試 (我們寫成一般 Rust 測試，一般來說是跟前面的 fuzz framework 搭配</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>cargo<span class="w"> </span><span class="nb">test</span><span class="w"> </span>parse_port_matches_std<span class="w"> </span>--<span class="w"> </span>--ignored
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>proptest_example
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># 測試 (我們寫成一般 Rust 測試，一般來說是跟前面的 fuzz framework 搭配</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>cargo<span class="w"> </span><span class="nb">test</span><span class="w"> </span>parse_port_matches_std<span class="w"> </span>--<span class="w"> </span>--ignored
 </span></code></pre></div>
 <p>運行測試發現錯誤時，proptest 會產生最小可複製的測試 case 放在 <code>proptest-regressions/</code> 資料夾下，下次再次執行時，會優先從這個資料夾執行有問題的 case。</p>
 <h2 id="_5">參考連結</h2>
