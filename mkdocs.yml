@@ -72,6 +72,7 @@ nav:
     - 'DDS 介紹': 'dds/introduction.md'
     - 'DDS 核心概念': 'dds/concepts.md'
     - 'DDS QoS': 'dds/qos.md'
+    - 'DDS Discovery': 'dds/discovery.md'
     - 'CycloneDDS': 'dds/cyclonedds.md'
   - 'Zenoh 入門':
     - 'Zenoh 介紹': 'zenoh/introduction.md'
