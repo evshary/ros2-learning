@@ -95,7 +95,32 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
 3. 利用 proptest 來測試 protocol 的 state machine
 4. DST (Deterministic Simulation Testing): 針對複雜的分散式系統進行測試，可以確保發生的問題可以重複覆現
 
-除此之外，Google 有提出 [OSS-Fuzz 平台](https://github.com/google/oss-fuzz)可以幫開源軟體做 fuzz test，這是可以善用的資源。
+## OSS-Fuzz
+
+Google 有提出 [OSS-Fuzz 平台](https://github.com/google/oss-fuzz)可以幫開源軟體做 fuzz test。
+我們只要在該平台設定好怎麼編譯和執行，Google 會自動幫軟體進行 fuzz test，當有發現問題也會回報給我們。
+這樣就不用擔心自己沒有足夠的資源可以來進行 fuzz test，畢竟 fuzz test 通常都需要跑上多個小時才能發現問題。
+
+下面會列出大致流成為和，而詳細步驟可以參考[官方文件](https://google.github.io/oss-fuzz/)：
+
+1. 在貢獻之前，要先 sign [CLA (Contributor License Agreements)](https://cla.developers.google.com/about) 才行
+2. 接著 clone oss-fuzz，並且在 projects 下加上要放入的 project 資料夾
+3. 資料夾裡面會有三個部份：
+   * project.yaml：project 的相關 configuration，例如要用什麼 fuzzer、程式語言、有問題要寄信給誰等等
+   * Dockerfile：編譯 fuzz 測試的環境
+   * build.sh：如何編譯 fuzz 測試
+4. 完成後我們可以在本地端先做測試
+
+    ```bash
+    # 製作 docker image
+    python3 infra/helper.py build_image your-project
+    # 編譯 fuzzers
+    python3 infra/helper.py build_fuzzers your-project
+    # 運行 fuzzer
+    python3 infra/helper.py run_fuzzer your-project your-fuzzer-name
+    ```
+
+5. 都沒問題後就可以發 PR 到 GitHub 上了
 
 ## 實戰
 
