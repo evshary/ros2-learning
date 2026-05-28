@@ -61,13 +61,13 @@ SEDP 本身也是利用 built-in Reader / Writer，有分成下面三類
 
 * SEDPbuiltinPublicationsWriter / SEDPbuiltinPublicationsReader
     * 用來交換彼此 DataWriter 的資訊
-    * 訂閱的 topic name 是 `DCPSPublication`
+    * 訂閱的 topic name 是 `DCPSPublication`，type 是 `PublicationBuiltinTopicData`
 * SEDPbuiltinSubscriptionsWriter / SEDPbuiltinSubscriptionsReader
     * 用來交換彼此 DataReader 的資訊
-    * 訂閱的 topic name 是 `DCPSSubscription`
+    * 訂閱的 topic name 是 `DCPSSubscription`，type 是 `SubscriptionBuiltinTopicData`
 * SEDPbuiltinTopicsWriter / SEDPbuiltinTopicsReader
     * 用來交換彼此 Topic 的資訊，這並非強制，並不是所有實作都會有
-    * 訂閱的 topic name 是 `DCPSTopic`
+    * 訂閱的 topic name 是 `DCPSTopic`，type 是 `TopicBuiltinTopicData`
 
 封包的資訊大概會有
 
