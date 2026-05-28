@@ -5,7 +5,7 @@ keywords:
   - DDS
 ---
 
-`RTPS` 全名是 `Real-Time Publish-Subscribe`，被規範在 OMG 標準中，主要是提供給 DDS 生態系所使用
+`RTPS` 全名是 `Real-Time Publish-Subscribe`，被規範在 OMG 標準中，主要是提供給 DDS 生態系所使用。
 通常我們都會稱之為 DDSI-RTPS，也就是 DDS 的 wire protocol，包含如下資訊：
 
 * message header 長什麼樣子
@@ -28,17 +28,17 @@ RTPS Message
 
 Submessage 是實際的資料或控制單元，有下面幾個種類（並非全部）：
 
-* DATA：writer 傳資料給 reader
+* `DATA`：writer 傳資料給 reader
     * 裡面通常包括 readerId、writerId、writerSeqNum、serializedPayload、inlineQoS(optional) 等等
-* DATA_FRAG：如果 DATA 太大，會切成多個 DATA_FRAG
-* HEARTBEAT：宣告 writer 目前有哪些 sequence numbers
+* `DATA_FRAG`：如果 DATA 太大，會切成多個 DATA_FRAG
+* `HEARTBEAT`：宣告 writer 目前有哪些 sequence numbers
     * 如果 writer 的 HEARTBEAT 紀錄 firstSN=10, lastSN=15，代表已經傳了 10 到 15 的資料，reader 可以自行判斷有無缺資料
-* ACKNACK：reader 回報哪些 sequence numbers 收到了 / 缺了
-* GAP：告訴 reader 某些 sequence numbers 不會再送
-* INFO_TS：設定後續 submessage 的 timestamp
-* INFO_DST：指定後續 submessage 的目的 participant
+* `ACKNACK`：reader 回報哪些 sequence numbers 收到了 / 缺了
+* `GAP`：告訴 reader 某些 sequence numbers 不會再送
+* `INFO_TS`：設定後續 submessage 的 timestamp
+* `INFO_DST`：指定後續 submessage 的目的 participant
     * 它常用於 unicast 或定向傳送場景，讓接收端判斷這個 message 是否是給自己的
-* INFO_SRC：指定後續 submessage 的來源 participant
+* `INFO_SRC`：指定後續 submessage 的來源 participant
 
 一個 RTPS Message 可以包多個 Submessage，而且 Submessage 會依序被解讀。
 所以像是 `INFO_TS`、`INFO_DST`或`INFO_SRC` 類似於上下文設定，會影響後續的 message 解讀。
