@@ -64,3 +64,7 @@ harness = false
 ```
 
 完整程式可以參考 [GitHub](https://github.com/evshary/rust-benchmark/tree/main/criterion-bench)
+
+測試完成後我們可以到 [target/criterion/report/index.html] 來查看報告。
+
+![criterion_report](images/criterion_report.png)
