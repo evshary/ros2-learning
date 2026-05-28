@@ -18,7 +18,7 @@
         <link rel="prev" href="../qos/">
       
       
-        <link rel="next" href="../cyclonedds/">
+        <link rel="next" href="../rtps/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -924,6 +924,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rtps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DDS RTPS
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2072,17 +2095,17 @@ endpoint 是收送資料的通訊端點，也就是 data reader 和 data writer�
 <ul>
 <li>SEDPbuiltinPublicationsWriter / SEDPbuiltinPublicationsReader<ul>
 <li>用來交換彼此 DataWriter 的資訊</li>
-<li>訂閱的 topic name 是 <code>DCPSPublication</code></li>
+<li>訂閱的 topic name 是 <code>DCPSPublication</code>，type 是 <code>PublicationBuiltinTopicData</code></li>
 </ul>
 </li>
 <li>SEDPbuiltinSubscriptionsWriter / SEDPbuiltinSubscriptionsReader<ul>
 <li>用來交換彼此 DataReader 的資訊</li>
-<li>訂閱的 topic name 是 <code>DCPSSubscription</code></li>
+<li>訂閱的 topic name 是 <code>DCPSSubscription</code>，type 是 <code>SubscriptionBuiltinTopicData</code></li>
 </ul>
 </li>
 <li>SEDPbuiltinTopicsWriter / SEDPbuiltinTopicsReader<ul>
 <li>用來交換彼此 Topic 的資訊，這並非強制，並不是所有實作都會有</li>
-<li>訂閱的 topic name 是 <code>DCPSTopic</code></li>
+<li>訂閱的 topic name 是 <code>DCPSTopic</code>，type 是 <code>TopicBuiltinTopicData</code></li>
 </ul>
 </li>
 </ul>

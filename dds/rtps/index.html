@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="AGL 的安裝方法">
+        <meta name="description" content="介紹 RTPS 與 wire protocol 的基本概念">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/agl/installation/">
+        <link rel="canonical" href="https://ros2.tw/dds/rtps/">
       
       
-        <link rel="prev" href="../introduction/">
+        <link rel="prev" href="../discovery/">
       
       
-        <link rel="next" href="../../eclipse-sdv/introduction/">
+        <link rel="next" href="../cyclonedds/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>AGL 安裝 - ROS 2 筆記</title>
+        <title>DDS RTPS 封包格式 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#rtps-message-submessage" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              AGL 安裝
+              DDS RTPS 封包格式
             
           </span>
         </div>
@@ -745,18 +745,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -772,7 +774,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             DDS 入門
@@ -786,7 +788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -809,7 +811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/concepts/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         
   
   
@@ -832,7 +834,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/qos/" class="md-nav__link">
+      <a href="../qos/" class="md-nav__link">
         
   
   
@@ -855,7 +857,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/discovery/" class="md-nav__link">
+      <a href="../discovery/" class="md-nav__link">
         
   
   
@@ -875,10 +877,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../dds/rtps/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    DDS RTPS
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -889,6 +911,42 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rtps-message-submessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      RTPS Message 與 Submessage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      常見傳輸
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -901,7 +959,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/cyclonedds/" class="md-nav__link">
+      <a href="../cyclonedds/" class="md-nav__link">
         
   
   
@@ -1386,20 +1444,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -1415,7 +1471,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             AGL 入門
@@ -1429,7 +1485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../agl/introduction/" class="md-nav__link">
         
   
   
@@ -1449,30 +1505,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    AGL 安裝
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../agl/installation/" class="md-nav__link">
         
   
   
@@ -1483,51 +1519,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      前置安裝
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      編譯
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      運行
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2022,27 +2013,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#rtps-message-submessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      RTPS Message 與 Submessage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      前置安裝
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      編譯
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      運行
+      常見傳輸
     </span>
   </a>
   
@@ -2064,69 +2046,149 @@
 
 
 
-  <h1>AGL 安裝</h1>
+  <h1>DDS RTPS</h1>
 
-<p>這邊紀錄一下 AGL 的編譯以及安裝方法，我們假設使用的是 Ubuntu 系統，然後上面跑 Qemu。
-根據我的實測，可能會需要有 200 GB 的空間才足夠。</p>
-<h2 id="_1">前置安裝</h2>
+<p><code>RTPS</code> 全名是 <code>Real-Time Publish-Subscribe</code>，被規範在 OMG 標準中，主要是提供給 DDS 生態系所使用
+通常我們都會稱之為 DDSI-RTPS，也就是 DDS 的 wire protocol，包含如下資訊：</p>
 <ul>
-<li>先安裝 repo，AGL 常用的抓程式碼工具</li>
+<li>message header 長什麼樣子</li>
+<li>submessage 有哪些種類</li>
+<li>discovery 與 user data 要怎麼封裝和傳送</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>repo
+<p>如果把 DDS 看成概念與 API 層，RTPS 就更接近網路上的實際封包格式。</p>
+<h2 id="rtps-message-submessage">RTPS Message 與 Submessage</h2>
+<p>RTPS 的封包通常可以拆成：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>RTPS Message
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── Header (包含 protocol version、vendor id、GUID prefix)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>└── Submessage 1
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>└── Submessage 2
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>└── Submessage 3
+</span></code></pre></div>
+<p>Submessage 是實際的資料或控制單元，有下面幾個種類（並非全部）：</p>
+<ul>
+<li>DATA：writer 傳資料給 reader<ul>
+<li>裡面通常包括 readerId、writerId、writerSeqNum、serializedPayload、inlineQoS(optional) 等等</li>
+</ul>
+</li>
+<li>DATA_FRAG：如果 DATA 太大，會切成多個 DATA_FRAG</li>
+<li>HEARTBEAT：宣告 writer 目前有哪些 sequence numbers<ul>
+<li>如果 writer 的 HEARTBEAT 紀錄 firstSN=10, lastSN=15，代表已經傳了 10 到 15 的資料，reader 可以自行判斷有無缺資料</li>
+</ul>
+</li>
+<li>ACKNACK：reader 回報哪些 sequence numbers 收到了 / 缺了</li>
+<li>GAP：告訴 reader 某些 sequence numbers 不會再送</li>
+<li>INFO_TS：設定後續 submessage 的 timestamp</li>
+<li>INFO_DST：指定後續 submessage 的目的 participant<ul>
+<li>它常用於 unicast 或定向傳送場景，讓接收端判斷這個 message 是否是給自己的</li>
+</ul>
+</li>
+<li>INFO_SRC：指定後續 submessage 的來源 participant</li>
+</ul>
+<p>一個 RTPS Message 可以包多個 Submessage，而且 Submessage 會依序被解讀。
+所以像是 <code>INFO_TS</code>、<code>INFO_DST</code>或<code>INFO_SRC</code> 類似於上下文設定，會影響後續的 message 解讀。</p>
+<h2 id="_1">常見傳輸</h2>
+<ul>
+<li>Best Effort</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Writer ── DATA(seq=1) ──&gt; Reader
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Writer ── DATA(seq=2) ──&gt; Reader
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Writer ── DATA(seq=3) ──&gt; Reader
 </span></code></pre></div>
 <ul>
-<li>安裝編譯 Yocto 所需要的套件，可參考<a href="https://docs.yoctoproject.org/ref-manual/system-requirements.html#required-packages-for-the-build-host">官網</a></li>
+<li>Reliable</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>chrpath<span class="w"> </span>cpio<span class="w"> </span>debianutils<span class="w"> </span>diffstat<span class="w"> </span>file<span class="w"> </span>gawk<span class="w"> </span>gcc<span class="w"> </span>git<span class="w"> </span>iputils-ping<span class="w"> </span>libacl1<span class="w"> </span>locales<span class="w"> </span>python3<span class="w"> </span>python3-git<span class="w"> </span>python3-jinja2<span class="w"> </span>python3-pexpect<span class="w"> </span>python3-pip<span class="w"> </span>python3-subunit<span class="w"> </span>socat<span class="w"> </span>texinfo<span class="w"> </span>unzip<span class="w"> </span>wget<span class="w"> </span>xz-utils<span class="w"> </span>zstd<span class="w"> </span>liblz4-tool
-</span></code></pre></div>
-<h2 id="_2">編譯</h2>
-<ul>
-<li>先建立編譯環境，可以指定 <code>AGL_TOP</code> 這個環境變數來方便使用</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AGL_TOP</span><span class="o">=</span><span class="nv">$HOME</span>/workspace/agl_ws
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>mkdir<span class="w"> </span><span class="nv">$AGL_TOP</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">cd</span><span class="w"> </span><span class="nv">$AGL_TOP</span>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Writer ── DATA(seq=1) ─────&gt; Reader
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Writer ── DATA(seq=2) ─X    Reader
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Writer ── DATA(seq=3) ─────&gt; Reader
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Writer ── HEARTBEAT(1..3) ─&gt; Reader
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Reader ── ACKNACK(missing 2) -&gt; Writer
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>Writer ── DATA(seq=2) ─────&gt; Reader
 </span></code></pre></div>
 <ul>
-<li>抓取程式碼</li>
+<li>完整從 SPDP、SEDP 到 Data 的流程<ul>
+<li>Reader ID 有可能為 unknown，代表有興趣的 reader 自己接收，通常用在傳送給多個節點的情況</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$AGL_TOP</span>/trout<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$AGL_TOP</span>/trout
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>repo<span class="w"> </span>init<span class="w"> </span>-b<span class="w"> </span>trout<span class="w"> </span>-u<span class="w"> </span>https://gerrit.automotivelinux.org/gerrit/AGL/AGL-repo
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>repo<span class="w"> </span>sync
-</span></code></pre></div>
-<ul>
-<li>接下來我們都會使用 <code>aglsetup.sh</code> 這個 script</li>
+</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 列出所有可能的選項</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">source</span><span class="w"> </span>meta-agl/scripts/aglsetup.sh<span class="w"> </span>-h
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Participant A                                  Participant B
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>==============                                 ==============
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>[1] SPDP: A announces itself
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>SPDPbuiltinParticipantWriter
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>  DATA {
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    writerId = SPDP_PARTICIPANT_WRITER
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    readerId = SPDP_PARTICIPANT_READER
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    payload  = ParticipantBuiltinTopicData(A)
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  }
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>──────────────────────────────────────────────&gt;
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>                                      SPDPbuiltinParticipantReader
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>[2] SPDP: B announces itself
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>SPDPbuiltinParticipantReader
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>&lt;──────────────────────────────────────────────
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>                                      SPDPbuiltinParticipantWriter
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>                                      DATA {
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>                                        writerId = SPDP_PARTICIPANT_WRITER
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>                                        readerId = SPDP_PARTICIPANT_READER
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>                                        payload  = ParticipantBuiltinTopicData(B)
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>                                      }
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>[3] SEDP: A announces its DataWriter
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>SEDPbuiltinPublicationsWriter
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>  DATA {
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>    writerId = SEDP_PUBLICATIONS_WRITER
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>    readerId = SEDP_PUBLICATIONS_READER
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>    payload  = PublicationBuiltinTopicData(A:/chatter writer)
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>  }
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>──────────────────────────────────────────────&gt;
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>                                      SEDPbuiltinPublicationsReader
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>[4] SEDP: B announces its DataReader
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>SEDPbuiltinSubscriptionsReader
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>&lt;──────────────────────────────────────────────
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>                                      SEDPbuiltinSubscriptionsWriter
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>                                      DATA {
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>                                        writerId = SEDP_SUBSCRIPTIONS_WRITER
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>                                        readerId = SEDP_SUBSCRIPTIONS_READER
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>                                        payload  = SubscriptionBuiltinTopicData(B:/chatter reader)
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>                                      }
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>
+</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>
+</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>[5] Local matching on both sides
+</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>
+</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>A learns:
+</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>  B has DataReader /chatter
+</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>
+</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>B learns:
+</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>  A has DataWriter /chatter
+</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>
+</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>Both compare:
+</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a>  topic name
+</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>  type name
+</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a>  QoS compatibility
+</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>  locators
+</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>
+</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>
+</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a>[6] User data starts
+</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>
+</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>A:/chatter user DataWriter
+</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>  DATA {
+</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>    writerId = A:/chatter writer entity id
+</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>    readerId = B:/chatter reader entity id or unknown
+</span><span id="__span-3-73"><a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a>    writerSeqNum = 1
+</span><span id="__span-3-74"><a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>    payload = serialized DDS message
+</span><span id="__span-3-75"><a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a>  }
+</span><span id="__span-3-76"><a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a>──────────────────────────────────────────────&gt;
+</span><span id="__span-3-77"><a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>                                      B:/chatter user DataReader
 </span></code></pre></div>
-<ul>
-<li>編譯，這邊我們嘗試編譯 Qt based IVI demo</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Sample Qt based IVI demo </span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># -m 代表平台，-b 是存放的資料夾，後面要接上要啟動的功能</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nb">source</span><span class="w"> </span>meta-agl/scripts/aglsetup.sh<span class="w"> </span>-f<span class="w"> </span>-m<span class="w"> </span>qemux86-64<span class="w"> </span>-b<span class="w"> </span>qemux86-64<span class="w"> </span>agl-demo<span class="w"> </span>agl-devel
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;# reuse download directories&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$AGL_TOP</span>/site.conf
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;DL_DIR = \&quot;</span><span class="nv">$HOME</span><span class="s2">/downloads/\&quot;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$AGL_TOP</span>/site.conf
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;SSTATE_DIR = \&quot;</span><span class="nv">$AGL_TOP</span><span class="s2">/sstate-cache/\&quot;&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$AGL_TOP</span>/site.conf
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>ln<span class="w"> </span>-sf<span class="w"> </span><span class="nv">$AGL_TOP</span>/site.conf<span class="w"> </span>conf/
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># Build</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="nb">time</span><span class="w"> </span>bitbake<span class="w"> </span>agl-ivi-demo-qt
-</span></code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>在 Ubuntu 24.04 編譯可能會出現如下錯誤
-<code>ERROR: User namespaces are not usable by BitBake, possibly due to AppArmor.</code>
-這個是因為 Ubuntu 引入了 user namespace 的機制，我們可以先暫時關閉
-<code>sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0</code></p>
-</div>
-<h2 id="_3">運行</h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 先 source 環境</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">source</span><span class="w"> </span><span class="nv">$AGL_TOP</span>/trout/qemux86-64/agl-init-build-env
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># 運行 qemu 環境</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>runqemu<span class="w"> </span>tmp/deploy/images/qemux86-64/agl-ivi-demo-qt-qemux86-64.rootfs.qemuboot.conf<span class="w"> </span>kvm<span class="w"> </span>serialstdio<span class="w"> </span>slirp
-</span></code></pre></div>
-<p>這時候會進入 AGL Yocto 的視窗，密碼是 <code>root</code>。</p>
 
 
 
