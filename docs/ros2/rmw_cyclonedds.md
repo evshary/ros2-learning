@@ -74,3 +74,13 @@ iox-roudi -c roudi_config.toml
 ```
 
 相關細節可以參考[官方教學](https://github.com/ros2/rmw_cyclonedds/blob/rolling/shared_memory_support.md)
+
+## 其他
+
+由於隨著時間演進，我們的 message type 也可能會改變，所以為了避免相容性的問題，Open Robotics 有定義兩個規範：
+
+* [REP-2011](https://github.com/ros-infrastructure/rep/pull/358)：如何追蹤系統資料結構相容性的問題
+    * 可以參考 [Discourse](https://discourse.openrobotics.org/t/rfc-rep-2011-evolving-message-types/27006) 的討論和這份[演講](http://download.ros.org/downloads/roscon/2022/Evolving%20Message%20Types,%20and%20Other%20Interfaces,%20Over%20Time.pdf)
+* [REP-2016](https://github.com/ros-infrastructure/rep/pull/381)：透過 hash 的方式得知對方節點的 type 型態
+    * DDS 的實作會利用 User Data 這個 QoS 把 hash 裝在 discovery 的封包中，如果發現對方的 hash 不合，就會跳出 warning
+    * Zenoh 的實作則是直接把 hash 放在 topic 上，直接避免不同 message hash 的流量可以互通
