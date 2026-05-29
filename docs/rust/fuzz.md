@@ -155,6 +155,7 @@ cargo +nightly fuzz tmin parse_port fuzz/artifacts/parse_port/<crash-file>
 # 把統計結果輸出 raw profile，也就是 *.profraw
 # 並且 merge 多個 *.profraw 到 coverage.profdata
 cargo +nightly fuzz coverage --sanitizer none parse_port fuzz/corpus/parse_port
+
 # 用 LLVM 的工具比較 parse_port 這個 binary 內的 coverage mapping 和 coverage.profdata 內的計數結果，回推出整體的 coverage 結果
 LLVM_BIN="$(dirname "$(rustc +nightly --print target-libdir)")/bin"
 # 產生 summary report
@@ -167,6 +168,34 @@ LLVM_BIN="$(dirname "$(rustc +nightly --print target-libdir)")/bin"
   --instr-profile fuzz/coverage/parse_port/coverage.profdata \
   src/lib.rs
 ```
+
+<!-- markdownlint-disable MD046 -->
+??? "運行 log 解說"
+
+    運行的時候只有針對其中 byte 有改變才會有跳新的欄位，例如 REDUCE 之類的。
+    所以使用 arbitrary 時幾乎都沒變化是正常的。
+    下面簡單介紹一下每個 log 欄位意義：
+    
+    * 第一個欄位是執行數量
+    * 第二個欄位是操作，例如 INITED、REDUCE、DONE、pulse (keepalive 確認)
+    * cov 是有被測試到的程式碼區塊，如果不再增加就代表幾乎都測過
+    * ft 代表 feature，代表有趣的行為，越高越好
+    * corp 第一個數字是存下的 copora，第二個數字是總共所佔空間
+    * lim 則是最大長度
+    * exec/s 代表執行速度
+    * rss 是使用的記憶體
+    * L 第一個數字是目前測試的 input 長度，第二個數字是目前測到最大的長度
+    * MS 則是 mutation step
+    
+    ```raw
+    #7353  INITED cov: 2475 ft: 11481 corp: 2155/369Kb exec/s: 0 rss: 228Mb
+    #14580  REDUCE cov: 2475 ft: 11481 corp: 2155/369Kb lim: 4096 exec/s: 0 rss: 286Mb L: 12/4039 MS: 2 CopyPart-EraseBytes-
+    ...
+    #90066  DONE   cov: 2475 ft: 11481 corp: 2155/369Kb lim: 4096 exec/s: 45033 rss: 489Mb
+    Done 90066 runs in 2 second(s)
+    ```
+
+<!-- markdownlint-enable MD046 -->
 
 ### afl.rs
 
