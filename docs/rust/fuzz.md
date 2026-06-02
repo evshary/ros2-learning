@@ -7,11 +7,35 @@ keywords:
 
 fuzz 測試專門用在產生隨機的輸入，來確保程式的結果都會符合我們預期。
 fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入，所以更能夠發現一些預想不到的問題。
+人工很難列舉出所有可能的輸入，fuzzing 能幫助我們去產生各式各樣可能的輸入，探索程式的可能行為空間。
 很多安全漏洞或是 bug 都是透過 fuzz 測試來找出來的。
 
-關於 fuzz 測試，並不是測越久就越好，重點是要看測試的 coverage 有沒有提昇。
-一般來說 fuzz 測試都會搭配編譯器來評估每個 input 有走過哪些程式路徑，走得越多就代表測試越完整，我們的信心度也會比較大。
-好的 fuzz 測試工具會將能夠走新路徑的 input 存起來（稱之為 corpus），並且基於這些 corpus 來進行不同的變化。
+一般來說 fuzz 可以測出如下幾種 bug：
+
+* crash / panic：常見的有 abort、panic、assert 等等
+* sanitizer issue：有如下幾種，一般來說 Rust 比較少這類的問題
+    * ASan：double free、overflow、use-after-free
+    * UBSan：signed overflow、misaligned accesss
+    * LSan：memory leak
+* Oracle：判斷結果是否正確
+    * round-trip：decode 和 encode 行為是否一致
+    * differential：不同的實作是否有同樣的結果
+* Invariant：確定系統規則要成立，例如 seq number 不能往後倒退、不能有重複 ID 等等
+    * 當我們要驗證 protocol 或系統在亂塞入各種 input 是否符合預期時，通常不是把程式內的確認邏輯重新複製一份到 fuzz test 驗證中。而是設定不該被違反的規則，在測試後，依然通樣要遵守。
+
+如何評估一個 fuzz test 是否足夠好呢？
+
+* 足夠完整的測試
+    * 有包含 raw bytes、structured message、protocol state 等等
+    * 除了 crash 外也有 sanitizer、Oracle、Invariant 等等
+* coverage
+    * 一般來說 fuzz 測試都會搭配編譯器來評估每個 input 有走過哪些程式路徑，走得越多就代表測試越完整，我們的信心度也會比較大。
+* corpus 品質
+    * 好的 fuzz 測試工具會將能夠走新路徑的 input 存起來（稱之為 corpus），並且基於這些 corpus 來進行不同的變化。
+    * 如果 corpus 品質高，fuzz tool 可以走遍更多 protocol path
+    * 測試失敗的 crash artifact 也應該存起來，轉成 regression test
+* 定期運行
+    * 整合到 CI 和 OSS-Fuzz
 
 在 Rust 中如果要使用 fuzz 測試，有幾個推薦的函式庫。
 我們將其分成兩大類：
@@ -89,7 +113,7 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
 我們可以分多個階段來引入 fuzz 測試：
 
 1. 最基本的 fuzz 測試
-    * parse input 的時候不應該 crash
+    * parse input 的時候不應該 crash 或有 sanitizer issue
     * round-trip: encode / decode 的結果應該要一樣
 2. 引入 arbitrary，來測試 structured message
 3. 利用 proptest 來測試 protocol 的 state machine
