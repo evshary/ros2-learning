@@ -22,6 +22,7 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
     * differential：不同的實作是否有同樣的結果
 * Invariant：確定系統規則要成立，例如 seq number 不能往後倒退、不能有重複 ID 等等
     * 當我們要驗證 protocol 或系統在亂塞入各種 input 是否符合預期時，通常不是把程式內的確認邏輯重新複製一份到 fuzz test 驗證中。而是設定不該被違反的規則，在測試後，依然通樣要遵守。
+    * 怎麼找出合理且必須要遵守的系統規則是這個測試的真正關鍵，也是最難的地方
 
 如何評估一個 fuzz test 是否足夠好呢？
 
@@ -113,10 +114,19 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
 我們可以分多個階段來引入 fuzz 測試：
 
 1. 最基本的 fuzz 測試
-    * parse input 的時候不應該 crash 或有 sanitizer issue
-    * round-trip: encode / decode 的結果應該要一樣
+    * fuzz input 會是隨意亂數 raw byte
+    * 可以測試
+        * parse input 的時候不應該 crash 或有 sanitizer issue
+        * round-trip: encode / decode 的結果應該要一樣
 2. 引入 arbitrary，來測試 structured message
-3. 利用 proptest 來測試 protocol 的 state machine
+    * fuzz input 會是各式各樣符合格式的輸入
+    * 可以測試
+        * function input 是固定 structure
+        * 讓輸入限定在有意義的範圍，但是這個很看我們怎麼實作 arbitrary，如果太嚴格，永遠都只有合法 message 而已
+3. 引入 proptest 來做規則化測試
+    * proptest 可以用在一般測試中，協助產生各種規則的輸入來測試功能
+    * proptest 也能用來測試 state machine，例如根據某個規則產生不同 action 的順序，然後查看結果
+        * 我們需要定義如果 protocol 在某些順序下，有哪些行為是不被允許。例如收到 final 封包後，程式絕對不能做哪些動作。
 4. DST (Deterministic Simulation Testing): 針對複雜的分散式系統進行測試，可以確保發生的問題可以重複覆現
 
 ## OSS-Fuzz
