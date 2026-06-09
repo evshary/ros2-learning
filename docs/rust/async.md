@@ -31,7 +31,8 @@ future 不會自動執行，需要由 executor 去 poll 才會回答現在是可
 * async 的缺點：
     * 需要 cooperative scheduling，future 內如果沒有主動讓出執行權限可能會造成 starvation
     * 除錯與理解難度較高
-    * 編譯後的狀態機可能較複雜（但通常不是主要瓶頸）
+    * API 設計會被 async 所感染
+    * 編譯後的狀態機可能較複雜，binary 會變大，但 memory 因為少開 thread，使用量不一定會增加
 
 需要注意的是，async 並不等於多執行緒，
 它解決的是 concurrency（並發），而不是 parallelism（平行）。
@@ -39,6 +40,17 @@ future 不會自動執行，需要由 executor 去 poll 才會回答現在是可
 
 一般來說，CPU-bound 的工作適合使用 thread 或 parallelism（例如 thread pool），
 而 I/O-bound 的工作則更適合使用 async，以提升資源利用率。
+
+最後設計的時候也需要注意 cancellation safety，async task 有可能執行到一半會被取消，所以不要預設 task 一定會完成。
+因此，建議避開在持用重要資源或更新狀態的時候，呼叫 await，例如：
+
+```rust
+async fn mytask() {
+    mark_doing();
+    do_something().await; // 可能因為 mytask 被取消，導致沒有呼叫 mark_done()
+    mark_done();
+}
+```
 
 ## syntax
 
