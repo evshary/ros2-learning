@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="ROS 2 如何紀錄以及重放封包">
+        <meta name="description" content="Rust 中 thiserror 和 anyhow 的使用">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/ros2/record/">
+        <link rel="canonical" href="https://ros2.tw/rust/error/">
       
       
-        <link rel="prev" href="../qos/">
+        <link rel="prev" href="../ffi/">
       
-      
-        <link rel="next" href="../tools/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>ROS 2 錄製與重放 - ROS 2 筆記</title>
+        <title>Rust Error - ROS 2 筆記</title>
       
     
     
@@ -88,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#thiserror" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ROS 2 錄製與重放
+              Rust Error
             
           </span>
         </div>
@@ -306,7 +304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../ros2/introduction/" class="md-nav__link">
         
   
   
@@ -329,7 +327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../ros2/installation/" class="md-nav__link">
         
   
   
@@ -356,20 +354,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -385,7 +381,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             ROS 2 實戰
@@ -399,7 +395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../command/" class="md-nav__link">
+      <a href="../../ros2/command/" class="md-nav__link">
         
   
   
@@ -422,7 +418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../communication/" class="md-nav__link">
+      <a href="../../ros2/communication/" class="md-nav__link">
         
   
   
@@ -445,7 +441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../building/" class="md-nav__link">
+      <a href="../../ros2/building/" class="md-nav__link">
         
   
   
@@ -468,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qos/" class="md-nav__link">
+      <a href="../../ros2/qos/" class="md-nav__link">
         
   
   
@@ -488,30 +484,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    ROS 2 錄製與重放
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ros2/record/" class="md-nav__link">
         
   
   
@@ -522,84 +498,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用方式
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ros-bag" class="md-nav__link">
-    <span class="md-ellipsis">
-      ROS bag 格式
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ROS bag 格式">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mcap" class="md-nav__link">
-    <span class="md-ellipsis">
-      MCAP 格式
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mcap-cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      MCAP CLI
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mcap-api" class="md-nav__link">
-    <span class="md-ellipsis">
-      MCAP API
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      參考資料
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -612,7 +510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/" class="md-nav__link">
+      <a href="../../ros2/tools/" class="md-nav__link">
         
   
   
@@ -635,7 +533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tips/" class="md-nav__link">
+      <a href="../../ros2/tips/" class="md-nav__link">
         
   
   
@@ -658,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../navigation/" class="md-nav__link">
+      <a href="../../ros2/navigation/" class="md-nav__link">
         
   
   
@@ -681,7 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sros/" class="md-nav__link">
+      <a href="../../ros2/sros/" class="md-nav__link">
         
   
   
@@ -749,7 +647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_cyclonedds/" class="md-nav__link">
+      <a href="../../ros2/rmw_cyclonedds/" class="md-nav__link">
         
   
   
@@ -772,7 +670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/basic/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/basic/" class="md-nav__link">
         
   
   
@@ -795,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/advanced/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/advanced/" class="md-nav__link">
         
   
   
@@ -818,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/hands_on/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/hands_on/" class="md-nav__link">
         
   
   
@@ -1759,18 +1657,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -1786,7 +1686,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             Rust
@@ -1800,7 +1700,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1823,7 +1723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/why_rust/" class="md-nav__link">
+      <a href="../why_rust/" class="md-nav__link">
         
   
   
@@ -1846,7 +1746,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/ownership/" class="md-nav__link">
+      <a href="../ownership/" class="md-nav__link">
         
   
   
@@ -1869,7 +1769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/module/" class="md-nav__link">
+      <a href="../module/" class="md-nav__link">
         
   
   
@@ -1892,7 +1792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/attribute/" class="md-nav__link">
+      <a href="../attribute/" class="md-nav__link">
         
   
   
@@ -1915,7 +1815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/async/" class="md-nav__link">
+      <a href="../async/" class="md-nav__link">
         
   
   
@@ -1938,7 +1838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/unsafe/" class="md-nav__link">
+      <a href="../unsafe/" class="md-nav__link">
         
   
   
@@ -1961,7 +1861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/trait/" class="md-nav__link">
+      <a href="../trait/" class="md-nav__link">
         
   
   
@@ -1984,7 +1884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/fuzz/" class="md-nav__link">
+      <a href="../fuzz/" class="md-nav__link">
         
   
   
@@ -2007,7 +1907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/benchmark/" class="md-nav__link">
+      <a href="../benchmark/" class="md-nav__link">
         
   
   
@@ -2030,7 +1930,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/ffi/" class="md-nav__link">
+      <a href="../ffi/" class="md-nav__link">
         
   
   
@@ -2050,10 +1950,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../rust/error/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Rust Error
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2064,6 +1984,42 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#thiserror" class="md-nav__link">
+    <span class="md-ellipsis">
+      thiserror
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anyhow" class="md-nav__link">
+    <span class="md-ellipsis">
+      anyhow
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2101,60 +2057,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#thiserror" class="md-nav__link">
     <span class="md-ellipsis">
-      使用方式
+      thiserror
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ros-bag" class="md-nav__link">
+  <a href="#anyhow" class="md-nav__link">
     <span class="md-ellipsis">
-      ROS bag 格式
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ROS bag 格式">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mcap" class="md-nav__link">
-    <span class="md-ellipsis">
-      MCAP 格式
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mcap-cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      MCAP CLI
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mcap-api" class="md-nav__link">
-    <span class="md-ellipsis">
-      MCAP API
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      參考資料
+      anyhow
     </span>
   </a>
   
@@ -2176,213 +2090,91 @@
 
 
 
-  <h1>ROS 2 錄製與重放</h1>
+  <h1>Rust Error</h1>
 
-<p>在機器人開發中，錄製封包的功能可以在很多方面幫助我們。
-舉例來說，如果某個問題的重現很困難，我們可以透過錄製當下發生的封包來更容易復現。
-又或者是說，我們可以錄製實際機器人或是自駕車的感測器資訊，像是相機或是光達，然後讓開發者們可以在沒有實際硬體的情況下開發相對應的模組。</p>
-<p>在網路世界中，我們是使用 Wireshark 來錄製封包。
-然而在機器人領域中，最小的封包單位是一個個 ROS Message，因此需要有其他更適合的工具，也就是這邊要談到的 ROS bag。</p>
-<h2 id="_1">使用方式</h2>
-<p>ROS bag 是 ROS CLI 指令下的其中一個部份，我們可以用 <code>ros2 bag --help</code> 來看到更多指令的用法。</p>
+<p>在 Rust 中有兩個很常被用來處理錯誤訊息的 crate，也很容易被搞混，這邊比較一下用法。</p>
 <ul>
-<li>錄製封包</li>
+<li><code>thiserror</code>: 可以自己定義錯誤類型，通常用在 library API 的設計之中。</li>
+<li><code>anyhow</code>: 要快速簡潔傳達錯誤訊息，不需要細部的錯誤種類，通常用在 application 快速回傳錯誤給上層 caller。</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 錄製所有 topic 的封包</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>--all-topics
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 錄製特定 topic 的封包，例如 mytopic1 和 mytopic2</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>ros2<span class="w"> </span>bag<span class="w"> </span>record<span class="w"> </span>--topics<span class="w"> </span>mytopic1<span class="w"> </span>mytopic2
+<p>也可以兩者同時使用，內部都用 thiserror 定義的 type，但對外則是用 anyhow 加上 context 訊息並向上傳遞。</p>
+<h2 id="thiserror">thiserror</h2>
+<p>我們可以把程式會遇到的各式各樣錯誤用 thiserror 統籌管理，定義屬於我們自己的錯誤格式</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">fs</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span><span class="w"> </span><span class="n">thiserror</span><span class="p">::</span><span class="n">Error</span><span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">// 定義我們自己的錯誤型別。</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">// thiserror 會幫這個 enum 自動實作 std::error::Error。</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="cp">#[derive(Debug, Error)]</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">enum</span><span class="w"> </span><span class="nc">AppError</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="c1">// #[from] 的意思是：</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="c1">// 可以自動把 std::io::Error 轉成 AppError::ReadFile。</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="c1">// 因此 fs::read_to_string(path)? 可以直接使用 ?。</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="cp">#[error(</span><span class="s">&quot;failed to read file: {0}&quot;</span><span class="cp">)]</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="n">ReadFile</span><span class="p">(</span><span class="cp">#[from]</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">io</span><span class="p">::</span><span class="n">Error</span><span class="p">),</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="c1">// 例如檔案內容是 &quot;abc&quot;，parse::&lt;i32&gt;() 就會失敗。</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="c1">// #[from] 讓 ParseIntError 可以自動轉成 AppError::ParseNumber。</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="cp">#[error(</span><span class="s">&quot;failed to parse number: {0}&quot;</span><span class="cp">)]</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="n">ParseNumber</span><span class="p">(</span><span class="cp">#[from]</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">num</span><span class="p">::</span><span class="n">ParseIntError</span><span class="p">),</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">}</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">fn</span><span class="w"> </span><span class="nf">read_number_from_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="kt">i32</span><span class="p">,</span><span class="w"> </span><span class="n">AppError</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="c1">// fs::read_to_string 失敗時會回傳 std::io::Error。</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="c1">// 因為 AppError::ReadFile 有 #[from]，</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="c1">// 所以 ? 會自動把 std::io::Error 轉成 AppError。</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fs</span><span class="p">::</span><span class="n">read_to_string</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="c1">// 如果 parse 轉換失敗，會得到 ParseIntError。</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="c1">// 因為 AppError::ParseNumber 有 #[from]，</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="c1">// 所以 ? 會自動把 ParseIntError 轉成 AppError。</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">content</span><span class="p">.</span><span class="n">trim</span><span class="p">().</span><span class="n">parse</span><span class="p">::</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="p">}</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">read_number_from_file</span><span class="p">(</span><span class="s">&quot;number.txt&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">        </span><span class="nb">Ok</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;number = {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">        </span><span class="nb">Err</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="fm">eprintln!</span><span class="p">(</span><span class="s">&quot;error: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">),</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="p">}</span>
 </span></code></pre></div>
-<ul>
-<li>查看封包資訊：錄完後可以看到類似 <code>rosbag2_2025_10_11-10_38_16</code> 的資料夾，可以查看其內容</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>ros2<span class="w"> </span>bag<span class="w"> </span>info<span class="w"> </span>rosbag2_2025_10_11-10_38_16
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Files:<span class="w">             </span>rosbag2_2025_10_11-10_38_16_0.mcap
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Bag<span class="w"> </span>size:<span class="w">          </span><span class="m">5</span>.3<span class="w"> </span>KiB
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Storage<span class="w"> </span>id:<span class="w">        </span>mcap
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>ROS<span class="w"> </span>Distro:<span class="w">        </span>rolling
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Duration:<span class="w">          </span><span class="m">2</span>.999745724s
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Start:<span class="w">             </span>Oct<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="m">10</span>:38:17.945157770<span class="w"> </span><span class="o">(</span><span class="m">1760150297</span>.945157770<span class="o">)</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>End:<span class="w">               </span>Oct<span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="m">10</span>:38:20.944903494<span class="w"> </span><span class="o">(</span><span class="m">1760150300</span>.944903494<span class="o">)</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Messages:<span class="w">          </span><span class="m">4</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>Topic<span class="w"> </span>information:<span class="w"> </span>Topic:<span class="w"> </span>/chatter<span class="w"> </span><span class="p">|</span><span class="w"> </span>Type:<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="p">|</span><span class="w"> </span>Count:<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>Serialization<span class="w"> </span>Format:<span class="w"> </span>cdr
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>Services:<span class="w">          </span><span class="m">0</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>Service<span class="w"> </span>information:<span class="w"> </span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>Actions:<span class="w">           </span><span class="m">0</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>Action<span class="w"> </span>information:<span class="w"> </span>
+<h2 id="anyhow">anyhow</h2>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span><span class="w"> </span><span class="n">anyhow</span><span class="p">::{</span><span class="n">bail</span><span class="p">,</span><span class="w"> </span><span class="n">Context</span><span class="p">,</span><span class="w"> </span><span class="nb">Result</span><span class="p">};</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">use</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="n">fs</span><span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">// anyhow::Result 可以省略 error 的部份，原本應該是 Result&lt;i32, anyhow::Error&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1">// 注意的是錯誤部份要有 std::error::Error 才能轉換成 anyhow::Error</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">fn</span><span class="w"> </span><span class="nf">read_number_from_file</span><span class="p">(</span><span class="n">path</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="c1">// 如果讀檔失敗，with_context 會在原本錯誤外面加上更多資訊。</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fs</span><span class="p">::</span><span class="n">read_to_string</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="p">.</span><span class="n">with_context</span><span class="p">(</span><span class="o">||</span><span class="w"> </span><span class="fm">format!</span><span class="p">(</span><span class="s">&quot;failed to read file: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">))</span><span class="o">?</span><span class="p">;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="c1">// 如果 parse 失敗，也加上目前讀到的內容，方便 debug。</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">content</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="p">.</span><span class="n">trim</span><span class="p">()</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span><span class="p">.</span><span class="n">parse</span><span class="p">::</span><span class="o">&lt;</span><span class="kt">i32</span><span class="o">&gt;</span><span class="p">()</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="p">.</span><span class="n">with_context</span><span class="p">(</span><span class="o">||</span><span class="w"> </span><span class="fm">format!</span><span class="p">(</span><span class="s">&quot;failed to parse number from content: {:?}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">.</span><span class="n">trim</span><span class="p">()))</span><span class="o">?</span><span class="p">;</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="c1">// bail! 會直接回傳 Err(anyhow::Error)。</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="c1">// 這裡用來處理「不是系統錯誤，但不符合我們程式規則」的情況。</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">        </span><span class="n">bail</span><span class="o">!</span><span class="p">(</span><span class="s">&quot;number must be positive, got {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="p">);</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="nb">Ok</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="p">}</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="c1">// 對於 application 來說，我們不在乎 error type，而是希望把錯誤訊息傳到最上層方便辨認，這時候就適合 anyhow</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_number_from_file</span><span class="p">(</span><span class="s">&quot;number.txt&quot;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;number = {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="p">);</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">    </span><span class="nb">Ok</span><span class="p">(())</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="p">}</span>
 </span></code></pre></div>
-<ul>
-<li>重放封包：會重放當初錄製的內容</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ros2<span class="w"> </span>bag<span class="w"> </span>play<span class="w"> </span>rosbag2_2025_10_11-10_38_16
-</span></code></pre></div>
-<h2 id="ros-bag">ROS bag 格式</h2>
-<p>那麼實際上 ROS bag 是用什麼格式錄製呢？
-最早是使用 SQLite3 的方式，但在後來 <a href="https://foxglove.dev/">Foxglove</a> 這家公司提出的<a href="https://foxglove.dev/blog/introducing-the-mcap-file-format">相對更好的 MCAP 格式</a>。
-MCAP 最大的好處在於有較佳的 throughput、能自行包含 metadata 來描述自我資訊、提供更多的功能(如更好的 compression 等等)。
-最終在 <a href="https://discourse.openrobotics.org/t/psa-default-ros-2-bag-storage-format-is-changing-to-mcap-in-iron/28489">ROS 2 Iron 以後</a>，預設的 ROS bag 格式也改為 MCAP。</p>
-<h3 id="mcap">MCAP 格式</h3>
-<p>根據<a href="https://mcap.dev/spec">官方規格文件</a>，MCAP 封包格式為 <code>&lt;Magic&gt;&lt;Header&gt;&lt;Data section&gt;[&lt;Summary section&gt;][&lt;Summary Offset section&gt;]&lt;Footer&gt;&lt;Magic&gt;</code>。
-Magic 是 <code>0x89, M, C, A, P, 0x30, \r, \n</code>，而剩下部份都是 Records 格式。
-Records 有如下資訊：</p>
-<ul>
-<li>操作碼（Opcode）：一個單一位元組，用於識別記錄的類型（例如：Schema、Channel、Message、Chunk 等）。</li>
-<li>內容長度（Content Length）：一個 uint64 值，指示記錄內容的長度。</li>
-<li>記錄內容（Record Content）：實際的資料。</li>
-</ul>
-<p>下面列出常用到的 Opcode：</p>
-<table>
-<thead>
-<tr>
-<th>Opcode (十六進位)</th>
-<th>記錄名稱 (Record Name)</th>
-<th>功能說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0x01</td>
-<td>Header</td>
-<td>檔案的第一個記錄，包含 MCAP 版本資訊和格式細節</td>
-</tr>
-<tr>
-<td>0x03</td>
-<td>Schema</td>
-<td>儲存訊息類型的結構定義（各個 ROS 訊息的實際定義）</td>
-</tr>
-<tr>
-<td>0x04</td>
-<td>Channel</td>
-<td>定義主題名稱、對應到的 schema ID 和 metadata (ROS 實際 topic 名稱、type 格式 (schema ID) 和紀錄 QoS 的 metadata)</td>
-</tr>
-<tr>
-<td>0x05</td>
-<td>Message</td>
-<td>儲存帶有 timestamp 和 channel ID 的實際訊息</td>
-</tr>
-<tr>
-<td>0x0A</td>
-<td>Metadata</td>
-<td>儲存應用程式定義的 key-value metadata (在 ROS 中會用來紀錄 bag file 基本資訊)</td>
-</tr>
-</tbody>
-</table>
-<p>注意 <code>0x01</code> 到 <code>0x7F</code> 是保留給標準 MCAP 格式的記錄類型。</p>
-<h3 id="mcap-cli">MCAP CLI</h3>
-<p>除了使用 <code>ros2 bag</code> 指令外，我們也可以使用 <a href="https://mcap.dev/guides/cli">MCAP CLI</a> 來觀察 MCAP 的內容。</p>
-<ul>
-<li>查看 MCAP 的基本資訊</li>
-</ul>
-<details>
-  <summary>mcap info *.mcap</summary>
-
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>mcap<span class="w"> </span>info<span class="w"> </span>*.mcap
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>library:<span class="w">   </span>libmcap<span class="w"> </span><span class="m">1</span>.4.0<span class="w">                                               </span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>profile:<span class="w">   </span>ros2<span class="w">                                                        </span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>messages:<span class="w">  </span><span class="m">14</span><span class="w">                                                          </span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>duration:<span class="w">  </span><span class="m">4</span>.911906569s<span class="w">                                                </span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>start:<span class="w">     </span><span class="m">2025</span>-10-08T11:53:47.926364121+08:00<span class="w"> </span><span class="o">(</span><span class="m">1759895627</span>.926364121<span class="o">)</span><span class="w">  </span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>end:<span class="w">       </span><span class="m">2025</span>-10-08T11:53:52.83827069+08:00<span class="w"> </span><span class="o">(</span><span class="m">1759895632</span>.838270690<span class="o">)</span><span class="w">   </span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>compression:
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span>:<span class="w"> </span><span class="o">[</span><span class="m">1</span>/1<span class="w"> </span>chunks<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">5</span>.24<span class="w"> </span>KiB/5.24<span class="w"> </span>KiB<span class="w"> </span><span class="o">(</span><span class="m">0</span>.00%<span class="o">)]</span><span class="w"> </span><span class="o">[</span><span class="m">1</span>.07<span class="w"> </span>KiB/sec<span class="o">]</span><span class="w"> </span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>chunks:
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span>max<span class="w"> </span>uncompressed<span class="w"> </span>size:<span class="w"> </span><span class="m">5</span>.24<span class="w"> </span>KiB
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span>max<span class="w"> </span>compressed<span class="w"> </span>size:<span class="w"> </span><span class="m">5</span>.24<span class="w"> </span>KiB
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span>overlaps:<span class="w"> </span>no
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>channels:
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span>/rosout<span class="w">              </span><span class="m">11</span><span class="w"> </span>msgs<span class="w"> </span><span class="o">(</span><span class="m">2</span>.24<span class="w"> </span>Hz<span class="o">)</span><span class="w">   </span>:<span class="w"> </span>rcl_interfaces/msg/Log<span class="w"> </span><span class="o">[</span>ros2msg<span class="o">]</span><span class="w">                  </span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span>/events/write_split<span class="w">   </span><span class="m">0</span><span class="w"> </span>msgs<span class="w">             </span>:<span class="w"> </span>rosbag2_interfaces/msg/WriteSplitEvent<span class="w"> </span><span class="o">[</span>ros2msg<span class="o">]</span><span class="w">  </span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="o">(</span><span class="m">3</span><span class="o">)</span><span class="w"> </span>/chatter<span class="w">              </span><span class="m">3</span><span class="w"> </span>msgs<span class="w"> </span><span class="o">(</span><span class="m">0</span>.61<span class="w"> </span>Hz<span class="o">)</span><span class="w">   </span>:<span class="w"> </span>std_msgs/msg/String<span class="w"> </span><span class="o">[</span>ros2msg<span class="o">]</span><span class="w">                     </span>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="o">(</span><span class="m">4</span><span class="o">)</span><span class="w"> </span>/parameter_events<span class="w">     </span><span class="m">0</span><span class="w"> </span>msgs<span class="w">             </span>:<span class="w"> </span>rcl_interfaces/msg/ParameterEvent<span class="w"> </span><span class="o">[</span>ros2msg<span class="o">]</span><span class="w">       </span>
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>channels:<span class="w"> </span><span class="m">2</span>
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>attachments:<span class="w"> </span><span class="m">0</span>
-</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>metadata:<span class="w"> </span><span class="m">2</span>
-</span></code></pre></div>
-
-</details>
-
-<ul>
-<li>查看 MCAP 的訊息內容</li>
-</ul>
-<details>
-  <summary>mcap cat *.mcap</summary>
-
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>mcap<span class="w"> </span>cat<span class="w"> </span>*.mcap
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="m">1759895627926364121</span><span class="w"> </span>/rosout<span class="w"> </span><span class="o">[</span>rcl_interfaces/msg/Log<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">75</span><span class="w"> </span><span class="m">224</span><span class="w"> </span><span class="m">229</span><span class="w"> </span><span class="m">104</span><span class="w"> </span><span class="m">155</span><span class="w"> </span><span class="m">107</span><span class="o">]</span>...
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="m">1759895627926390649</span><span class="w"> </span>/rosout<span class="w"> </span><span class="o">[</span>rcl_interfaces/msg/Log<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">75</span><span class="w"> </span><span class="m">224</span><span class="w"> </span><span class="m">229</span><span class="w"> </span><span class="m">104</span><span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="m">236</span><span class="o">]</span>...
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>...
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="m">1759895630838427352</span><span class="w"> </span>/chatter<span class="w"> </span><span class="o">[</span>std_msgs/msg/String<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">72</span><span class="w"> </span><span class="m">101</span><span class="o">]</span>...
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="m">1759895631837926612</span><span class="w"> </span>/rosout<span class="w"> </span><span class="o">[</span>rcl_interfaces/msg/Log<span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">79</span><span class="w"> </span><span class="m">224</span><span class="w"> </span><span class="m">229</span><span class="w"> </span><span class="m">104</span><span class="w"> </span><span class="m">229</span><span class="w"> </span><span class="m">149</span><span class="o">]</span>...
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>...
-</span></code></pre></div>
-
-</details>
-
-<ul>
-<li>查看 MCAP 的 metadata</li>
-</ul>
-<details>
-  <summary>mcap list metadata *.mcap</summary>
-
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>mcap<span class="w"> </span>list<span class="w"> </span>metadata<span class="w"> </span>*.mcap
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>name<span class="w">   </span>offset<span class="w">    </span>length<span class="w">    </span>metadata
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>rosbag2<span class="w">    </span><span class="m">42</span><span class="w">    </span><span class="m">541</span><span class="w">   </span><span class="o">{</span><span class="s2">&quot;serialized_metadata&quot;</span>:<span class="s2">&quot;version: 9\nstorage_identifier: mcap\nduration:\n  nanoseconds: 0\nstarting_time:\n  nanoseconds_since_epoch: 9223372036854775807\nmessage_count: 0\ntopics_with_message_count:\n  []\ncompression_format: \&quot;\&quot;\ncompression_mode: \&quot;\&quot;\nrelative_file_paths:\n  - rosbag2_2025_10_08-11_53_47_0.mcap\nfiles:\n  - path: rosbag2_2025_10_08-11_53_47_0.mcap\n    starting_time:\n      nanoseconds_since_epoch: 9223372036854775807\n    duration:\n      nanoseconds: 0\n    message_count: 0\ncustom_data: ~\nros_distro: rolling&quot;</span><span class="o">}</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>...
-</span></code></pre></div>
-
-</details>
-
-<ul>
-<li>查看 MCAP 的 schemas</li>
-</ul>
-<details>
-  <summary>mcap list schemas *.mcap</summary>
-
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>mcap<span class="w"> </span>list<span class="w"> </span>schemas<span class="w"> </span>*.mcap
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>id<span class="w">    </span>name<span class="w">    </span>encoding<span class="w">    </span>data
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>...
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="m">3</span><span class="w">    </span>std_msgs/msg/String<span class="w">    </span>ros2msg<span class="w">    </span><span class="c1"># This was originally provided as an example message.</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">                                       </span>...
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">                                       </span>string<span class="w"> </span>data
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>...
-</span></code></pre></div>
-
-</details>
-
-<ul>
-<li>查看 MCAP 的 channels</li>
-</ul>
-<details>
-  <summary>mcap list channels *.mcap</summary>
-
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span>mcap<span class="w"> </span>list<span class="w"> </span>channels<span class="w"> </span>*.mcap
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>id<span class="w">    </span>schemaId<span class="w">    </span>topic<span class="w">    </span>messageEncoding<span class="w">    </span>metadata
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>...
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="m">3</span><span class="w">    </span><span class="m">3</span><span class="w">    </span>/chatter<span class="w">    </span>cdr<span class="w">    </span><span class="o">{</span><span class="s2">&quot;offered_qos_profiles&quot;</span>:<span class="s2">&quot;- history: keep_last\n  depth: 7\n  reliability: reliable\n  durability: volatile\n  deadline:\n    sec: 9223372036\n    nsec: 854775807\n  lifespan:\n    sec: 9223372036\n    nsec: 854775807\n  liveliness: automatic\n  liveliness_lease_duration:\n    sec: 9223372036\n    nsec: 854775807\n  avoid_ros_namespace_conventions: false&quot;</span>,<span class="s2">&quot;topic_type_hash&quot;</span>:<span class="s2">&quot;RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18&quot;</span><span class="o">}</span><span class="w"> </span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>...
-</span></code></pre></div>
-
-</details>
-
-<h3 id="mcap-api">MCAP API</h3>
-<p>我們也可以直接寫程式來解析 MCAP 的內容，官方提供<a href="https://mcap.dev/reference">各種程式語言的 API</a>。</p>
-<p>如果是要解析 ROS bag 的格式，那就需要參考 <code>ros2 bag</code> 本身如何寫的：</p>
-<ul>
-<li>官方 ROS bag 如何解析 MCAP<ul>
-<li><a href="https://docs.ros.org/en/rolling/p/rosbag2_storage_mcap/">文件</a></li>
-<li><a href="https://github.com/ros2/rosbag2/blob/rolling/rosbag2_storage_mcap/src/mcap_storage.cpp">程式</a></li>
-</ul>
-</li>
-<li><a href="https://mcap.dev/guides/python/ros2">Python 的範例</a></li>
-</ul>
-<h2 id="_2">參考資料</h2>
-<ul>
-<li>ROSCon talk: MCAP: A Next-Generation File Format for ROS Recording<ul>
-<li><a href="http://download.ros.org/downloads/roscon/2022/MCAP%20A%20Next-Generation%20File%20Format%20for%20ROS%20Recording.pdf">slides</a></li>
-<li><a href="https://vimeo.com/showcase/9954564?video=767149733">video</a></li>
-</ul>
-</li>
-</ul>
 
 
 
