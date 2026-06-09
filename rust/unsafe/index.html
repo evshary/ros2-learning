@@ -2014,6 +2014,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ffi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust FFI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2120,6 +2143,9 @@
 <p>當我們用 unsafe block 把程式碼框起來時，並不代表所有檢查都可以跳過，主要是可以要編譯器省略下面五種檢查：</p>
 <details>
   <summary>解引用原始指標(dereferencing raw pointers)</summary>
+
+這是最常用到的省略檢查，如果使用者沒有做好檢查，可能會有這些問題產生：
+無效的指標、alignment 沒有對齊、沒有遵守 aliasing rule (一寫多讀)、data race (多人同時存取)、lifetime 已經失效等等。
 
 <div class="language-rust highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1">// 建立原始指標是安全的 (Safe)</span>
@@ -2230,10 +2256,13 @@
 </li>
 </ul>
 </li>
+<li>由於 <code>unsafe fn</code> 代表要使用者小心使用前提，如果我們可以藉由一些檢查來避開使用 <code>unsafe fn</code>，那就應該要這麼做<ul>
 <li><code>unsafe fn</code> 是責任語法，意思是是否要用 <code>unsafe fn</code> 完全由開發者決定，編譯器不會介入</li>
-<li>由於 <code>unsafe fn</code> 代表要使用者小心使用前提，如果我們可以藉由一些檢查來避開使用 <code>unsafe fn</code>，那就應該要這麼做</li>
+</ul>
+</li>
 <li>在 <code>unsafe fn</code> 之前應該要有 <code>/// # Safety</code> 的註解說明為何這是 unsafe，以及要滿足何種條件才能使用</li>
 <li>在 unsafe block 之前應該要有 <code>// SAFETY:</code> 的註解來解釋這個區塊為何不安全</li>
+<li>可以用 <a href="https://github.com/rust-lang/miri/">miri</a>、fuzz 等等來測試 <code>unsafe</code> 的行為</li>
 </ul>
 <h3 id="unsafe_3">unsafe 範例</h3>
 <p>假設我們有一個 unsafe 函式如下</p>
