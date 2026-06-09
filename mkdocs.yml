@@ -114,3 +114,4 @@ nav:
     - 'Rust fuzz test': 'rust/fuzz.md'
     - 'Rust benchmark': 'rust/benchmark.md'
     - 'Rust FFI': 'rust/ffi.md'
+    - 'Rust Error': 'rust/error.md'
