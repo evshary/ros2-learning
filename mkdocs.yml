@@ -113,3 +113,4 @@ nav:
     - 'Rust trait': 'rust/trait.md'
     - 'Rust fuzz test': 'rust/fuzz.md'
     - 'Rust benchmark': 'rust/benchmark.md'
+    - 'Rust FFI': 'rust/ffi.md'
