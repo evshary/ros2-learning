@@ -15,6 +15,9 @@ keywords:
 <details>
   <summary>解引用原始指標(dereferencing raw pointers)</summary>
 
+這是最常用到的省略檢查，如果使用者沒有做好檢查，可能會有這些問題產生：
+無效的指標、alignment 沒有對齊、沒有遵守 aliasing rule (一寫多讀)、data race (多人同時存取)、lifetime 已經失效等等。
+
 ```rust
 let mut num = 5;
 // 建立原始指標是安全的 (Safe)
@@ -126,10 +129,11 @@ fn main() {
     * 等同於此函式內部被一個大的 unsafe block 包住，所以可以任意在內部使用 unsafe 語法
         * 不過這個通常不太被建議使用，一般還是要用有限的 unsafe block 包住 unsafe 語法比較好。
         * [`unsafe_op_in_unsafe_fn`](https://doc.rust-lang.org/nightly/edition-guide/rust-2024/unsafe-op-in-unsafe-fn.html) 會在 Edition 2024 預設被啟動，如果沒有符合就會收到編譯器的警告
-* `unsafe fn` 是責任語法，意思是是否要用 `unsafe fn` 完全由開發者決定，編譯器不會介入
 * 由於 `unsafe fn` 代表要使用者小心使用前提，如果我們可以藉由一些檢查來避開使用 `unsafe fn`，那就應該要這麼做
+    * `unsafe fn` 是責任語法，意思是是否要用 `unsafe fn` 完全由開發者決定，編譯器不會介入
 * 在 `unsafe fn` 之前應該要有 `/// # Safety` 的註解說明為何這是 unsafe，以及要滿足何種條件才能使用
 * 在 unsafe block 之前應該要有 `// SAFETY:` 的註解來解釋這個區塊為何不安全
+* 可以用 [miri](https://github.com/rust-lang/miri/)、fuzz 等等來測試 `unsafe` 的行為
 
 ### unsafe 範例
 
