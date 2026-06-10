@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="介紹 Eclipse uProtocol 的功能">
+        <meta name="description" content="ROS 2 常用的環境變數">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/eclipse-sdv/uprotocol/">
+        <link rel="canonical" href="https://ros2.tw/ros2/env/">
       
       
-        <link rel="prev" href="../introduction/">
+        <link rel="prev" href="../qos/">
       
       
-        <link rel="next" href="../../embodied-ai/introduction/">
+        <link rel="next" href="../record/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Eclipse uProtocol - ROS 2 筆記</title>
+        <title>ROS 2 環境變數 - ROS 2 筆記</title>
       
     
     
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Eclipse uProtocol
+              ROS 2 環境變數
             
           </span>
         </div>
@@ -306,7 +306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -329,7 +329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/installation/" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   
@@ -356,18 +356,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -383,7 +385,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             ROS 2 實戰
@@ -397,7 +399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/command/" class="md-nav__link">
+      <a href="../command/" class="md-nav__link">
         
   
   
@@ -420,7 +422,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/communication/" class="md-nav__link">
+      <a href="../communication/" class="md-nav__link">
         
   
   
@@ -443,7 +445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/building/" class="md-nav__link">
+      <a href="../building/" class="md-nav__link">
         
   
   
@@ -466,7 +468,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/qos/" class="md-nav__link">
+      <a href="../qos/" class="md-nav__link">
         
   
   
@@ -486,10 +488,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../ros2/env/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 環境變數
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -500,6 +522,144 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用的環境變數
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常用的環境變數">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ros_domain_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS_DOMAIN_ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros_localhost_only" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS_LOCALHOST_ONLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros_automatic_discovery_range" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS_AUTOMATIC_DISCOVERY_RANGE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros_static_peers" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS_STATIC_PEERS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros_distro" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS_DISTRO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rmw_implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      RMW_IMPLEMENTATION
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log 相關
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Log 相關">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rcutils_logging_severity_threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      RCUTILS_LOGGING_SEVERITY_THRESHOLD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rcutils_console_output_format" class="md-nav__link">
+    <span class="md-ellipsis">
+      RCUTILS_CONSOLE_OUTPUT_FORMAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rcutils_colorized_output" class="md-nav__link">
+    <span class="md-ellipsis">
+      RCUTILS_COLORIZED_OUTPUT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros_log_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS_LOG_DIR
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -512,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/record/" class="md-nav__link">
+      <a href="../record/" class="md-nav__link">
         
   
   
@@ -535,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/tools/" class="md-nav__link">
+      <a href="../tools/" class="md-nav__link">
         
   
   
@@ -558,7 +718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/tips/" class="md-nav__link">
+      <a href="../tips/" class="md-nav__link">
         
   
   
@@ -581,7 +741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/navigation/" class="md-nav__link">
+      <a href="../navigation/" class="md-nav__link">
         
   
   
@@ -604,7 +764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/sros/" class="md-nav__link">
+      <a href="../sros/" class="md-nav__link">
         
   
   
@@ -672,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/rmw_cyclonedds/" class="md-nav__link">
+      <a href="../rmw_cyclonedds/" class="md-nav__link">
         
   
   
@@ -695,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/rmw_zenoh/basic/" class="md-nav__link">
+      <a href="../rmw_zenoh/basic/" class="md-nav__link">
         
   
   
@@ -718,7 +878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/rmw_zenoh/advanced/" class="md-nav__link">
+      <a href="../rmw_zenoh/advanced/" class="md-nav__link">
         
   
   
@@ -741,7 +901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ros2/rmw_zenoh/hands_on/" class="md-nav__link">
+      <a href="../rmw_zenoh/hands_on/" class="md-nav__link">
         
   
   
@@ -1500,20 +1660,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
         
           
           <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
@@ -1529,7 +1687,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             Eclipse SDV
@@ -1543,7 +1701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../eclipse-sdv/introduction/" class="md-nav__link">
         
   
   
@@ -1563,30 +1721,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Eclipse uProtocol 介紹
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../eclipse-sdv/uprotocol/" class="md-nav__link">
         
   
   
@@ -1597,42 +1735,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      架構
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      常用連結
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2084,18 +2186,120 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      架構
+      常用的環境變數
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常用的環境變數">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ros_domain_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS_DOMAIN_ID
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#ros_localhost_only" class="md-nav__link">
     <span class="md-ellipsis">
-      常用連結
+      ROS_LOCALHOST_ONLY
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros_automatic_discovery_range" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS_AUTOMATIC_DISCOVERY_RANGE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros_static_peers" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS_STATIC_PEERS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros_distro" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS_DISTRO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rmw_implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      RMW_IMPLEMENTATION
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log 相關
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Log 相關">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rcutils_logging_severity_threshold" class="md-nav__link">
+    <span class="md-ellipsis">
+      RCUTILS_LOGGING_SEVERITY_THRESHOLD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rcutils_console_output_format" class="md-nav__link">
+    <span class="md-ellipsis">
+      RCUTILS_CONSOLE_OUTPUT_FORMAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rcutils_colorized_output" class="md-nav__link">
+    <span class="md-ellipsis">
+      RCUTILS_COLORIZED_OUTPUT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ros_log_dir" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROS_LOG_DIR
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2115,39 +2319,77 @@
 
 
 
-  <h1>Eclipse uProtocol 介紹</h1>
+  <h1>ROS 2 環境變數</h1>
 
-<p>Eclipse uProtocol 最早是由 GM (General Motors) 所提出，並且貢獻給　Eclipse Foundation，期望可以兼容多種不同協定，例如 MQTT、SOME/IP、Binder 等等，最終成為車用協定的標準。
-不過可惜的是在 2024 年 GM 大裁員後，他們已經放棄經營這塊，目前是由社群自主經營為主。</p>
-<h2 id="_1">架構</h2>
-<p>uProtocol 的目標是提供一致的 API 讓上層軟體呼叫，他們不用在乎底下真實實際協定怎麼運作。
-如果要比喻的話，uProtocol 之於車用，就像是 ROS 之於機器人一樣。
-最終目標是所有開發者都能遵循一樣的 API，讓上層軟體可以重複被使用，而不用換個平台就要重新開發一次。</p>
-<p>目前 uProtocol 支援多種程式語言，不過 Rust 是目前功能最成熟的。
-不同程式語言有 up-xxx 的實作框架，例如 up-rust、up-cpp 等等，
-而底層的實際傳輸的協定就可以用這個框架來指定不同 API 行為應該如何，例如 up-transport-zenoh-rust 等等。</p>
-<p>支援的程式語言</p>
+<p>在 ROS 2 中可以用環境變數來調整 ROS 2 的行為，這邊列出一些常用的變數並說明功能。</p>
+<h2 id="_1">常用的環境變數</h2>
+<h3 id="ros_domain_id"><code>ROS_DOMAIN_ID</code></h3>
+<p>設定 ROS 2 使用的 domain ID，讓不同群組的節點彼此隔離。
+如果大家都在同一個網路下開發時，這個功能非常好用，可以避免彼此的 ROS topic 互相衝突。</p>
+<p>預設值：<code>0</code></p>
+<h3 id="ros_localhost_only"><code>ROS_LOCALHOST_ONLY</code></h3>
+<p>限制節點只使用本機 loopback 介面通訊，避免和區域網路上的其他 ROS 2節點互相發現。</p>
+<p>這個變數可以視為較舊的控制方式。
+現在官方較建議改用 <code>ROS_AUTOMATIC_DISCOVERY_RANGE</code> 和 <code>ROS_STATIC_PEERS</code>，
+因為新作法可以更細緻地控制「只限本機」、「同子網路」或「只連特定 peers」等 discovery 行為。</p>
+<p>預設值：<code>0</code>，也就是不限制 localhost only</p>
+<h3 id="ros_automatic_discovery_range"><code>ROS_AUTOMATIC_DISCOVERY_RANGE</code></h3>
+<p>控制 ROS 2 自動探索其他節點的範圍。</p>
+<p>預設值：<code>SUBNET</code></p>
+<p>可用的值包含：</p>
 <ul>
-<li><a href="https://github.com/eclipse-uprotocol/up-rust">up-rust</a>：Rust 實作</li>
-<li><a href="https://github.com/eclipse-uprotocol/up-python">up-python</a>：Python 實作</li>
-<li><a href="https://github.com/eclipse-uprotocol/up-java">up-java</a>：Java 實作</li>
-<li><a href="https://github.com/eclipse-uprotocol/up-cpp">up-cpp</a>：C++ 實作</li>
+<li><code>SUBNET</code>：預設值，會自動探索同一個子網路中的節點。</li>
+<li><code>LOCALHOST</code>：只探索同一台機器上的節點。</li>
+<li><code>OFF</code>：不自動探索任何其他節點。</li>
+<li><code>SYSTEM_DEFAULT</code>：不額外修改 discovery 設定，交給底層 middleware 自己決定。</li>
 </ul>
-<p>支援的協定有</p>
-<ul>
-<li><a href="https://github.com/eclipse-uprotocol/up-transport-zenoh-rust">up-transport-zenoh-rust</a>：用 Rust 實作的 Zenoh 傳輸</li>
-<li><a href="https://github.com/eclipse-uprotocol/up-transport-mqtt5-rust">up-transport-mqtt5-rust</a>：用 Rust 實作的 MQTT 傳輸</li>
-<li><a href="https://github.com/eclipse-uprotocol/up-transport-iceoryx2-rust">up-transport-iceoryx2-rust</a>：用 Rust 實作的 iceoryx 傳輸</li>
-<li><a href="https://github.com/eclipse-uprotocol/up-transport-vsomeip-rust">up-transport-vsomeip-rust</a>：用 Rust 實作的 SOME/IP 傳輸</li>
-</ul>
-<p>不同 protocol 之間如果需要彼此溝通轉換，就會需要使用 <a href="https://github.com/eclipse-uprotocol/up-streamer-rust">up-streamer-rust</a> 來連接，目前支援 Zenoh、MQTT、SOME/IP 之間的轉換。</p>
-<h2 id="_2">常用連結</h2>
-<ul>
-<li><a href="https://uprotocol.org/">uProtocol 官網</a>：介紹為何需要有 uProtocol</li>
-<li><a href="https://github.com/eclipse-uprotocol">uProtocol GitHub</a>：放置 uProtocol 程式碼的地方</li>
-<li><a href="https://github.com/eclipse-uprotocol/up-spec">up-spec</a>：uProtocol 的規格</li>
-<li><a href="https://sdvworkinggroup.slack.com/archives/C0698TFGVBN">slack channel</a>：在 Eclipse SDV slack 底下有個 uprotocol channel，有任何問題可以在這邊進行討論</li>
-</ul>
+<p>例如如果你只想讓 ROS 2 在本機內互相找到彼此，可以這樣設定：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_AUTOMATIC_DISCOVERY_RANGE</span><span class="o">=</span>LOCALHOST
+</span></code></pre></div>
+<h3 id="ros_static_peers"><code>ROS_STATIC_PEERS</code></h3>
+<p>指定要主動連線的固定 peers 清單，適合搭配 <code>ROS_AUTOMATIC_DISCOVERY_RANGE</code> 一起使用。</p>
+<p>預設值：未設定</p>
+<p>這個變數使用分號 <code>;</code> 分隔多個位址，例如 IP 或主機名稱。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_STATIC_PEERS</span><span class="o">=</span><span class="s1">&#39;192.168.0.10;robot2.local&#39;</span>
+</span></code></pre></div>
+<p>常見用法是把自動探索範圍限制在本機，但仍允許連到少數指定主機：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_AUTOMATIC_DISCOVERY_RANGE</span><span class="o">=</span>LOCALHOST
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_STATIC_PEERS</span><span class="o">=</span><span class="s1">&#39;192.168.0.10;robot2.local&#39;</span>
+</span></code></pre></div>
+<h3 id="ros_distro"><code>ROS_DISTRO</code></h3>
+<p>表示目前 shell 載入的是哪一個 ROS 2 發行版，通常在 <code>source /opt/ros/&lt;distro&gt;/setup.*</code> 後自動設定。</p>
+<p>預設值：沒有固定字串；會跟著你 source 的發行版，例如 <code>jazzy</code>、<code>humble</code></p>
+<h3 id="rmw_implementation"><code>RMW_IMPLEMENTATION</code></h3>
+<p>指定 ROS 2 要使用哪個 RMW middleware 實作，例如 Cyclone DDS 或 Fast DDS。</p>
+<p>預設值：若未設定，使用該 ROS 2 發行版的預設 RMW 實作</p>
+<h2 id="log">Log 相關</h2>
+<h3 id="rcutils_logging_severity_threshold"><code>RCUTILS_LOGGING_SEVERITY_THRESHOLD</code></h3>
+<p>設定要輸出的最低 log level，低於門檻的訊息不會顯示。</p>
+<p>預設值：未設定時通常不額外限制，交由節點或系統原本的 log 設定處理</p>
+<p>例如可以這樣設定：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RCUTILS_LOGGING_SEVERITY_THRESHOLD</span><span class="o">=</span>DEBUG
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RCUTILS_LOGGING_SEVERITY_THRESHOLD</span><span class="o">=</span>INFO
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RCUTILS_LOGGING_SEVERITY_THRESHOLD</span><span class="o">=</span>WARN
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RCUTILS_LOGGING_SEVERITY_THRESHOLD</span><span class="o">=</span>ERROR
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RCUTILS_LOGGING_SEVERITY_THRESHOLD</span><span class="o">=</span>FATAL
+</span></code></pre></div>
+<p>像是設成 <code>WARN</code> 時，通常只會看到 <code>WARN</code>、<code>ERROR</code>、<code>FATAL</code>。</p>
+<h3 id="rcutils_console_output_format"><code>RCUTILS_CONSOLE_OUTPUT_FORMAT</code></h3>
+<p>設定終端機 log 的輸出格式，例如是否顯示時間、logger 名稱與訊息內容。</p>
+<p>預設值：<code>[{severity}] [{time}] [{name}]: {message}</code></p>
+<h3 id="rcutils_colorized_output"><code>RCUTILS_COLORIZED_OUTPUT</code></h3>
+<p>控制 log 是否使用彩色輸出。</p>
+<p>預設值：未設定時自動判斷；若輸出到 TTY，通常會啟用彩色</p>
+<p>例如可以這樣設定：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 關閉色彩</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RCUTILS_COLORIZED_OUTPUT</span><span class="o">=</span><span class="m">0</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># 啟用色彩</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">RCUTILS_COLORIZED_OUTPUT</span><span class="o">=</span><span class="m">1</span>
+</span></code></pre></div>
+<p><code>0</code> 代表強制關閉彩色輸出，<code>1</code> 代表強制開啟彩色輸出。</p>
+<h3 id="ros_log_dir"><code>ROS_LOG_DIR</code></h3>
+<p>指定 ROS 2 寫入 log 檔案的目錄。</p>
+<p>預設值：未設定時使用 <code>$ROS_HOME/.log</code>；若 <code>ROS_HOME</code> 也未設定，通常會落在 <code>~/.ros/.log</code></p>
 
 
 
