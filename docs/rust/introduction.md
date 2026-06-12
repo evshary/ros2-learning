@@ -65,8 +65,89 @@ cargo clippy
 cargo -- -D warnings # 設定哪些等級的 lint 要報錯，預設是 warnings
 # 測試專案
 cargo test
+# 跑 doctests
+cargo test --doc
 # 評測效能
 cargo bench
+```
+
+## 好用 cargo 工具
+
+cargo 本身也可以直接從 crates.io 下載並編譯安裝執行檔工具，安裝的 binary 會放在 `~/.cargo/bin` 下。
+
+```bash
+# 目前有安裝哪些套件
+cargo install --list
+# 安裝套件
+cargo install xxxx
+## 鎖定版本
+cargo install xxxx --version 1.0.1
+## 用 crate 的 Cargo.lock 安裝，避免 dependency 問題
+cargo install xxxx --locked
+# 解安裝套件
+cargo uninstall xxxx
+```
+
+好用指令：
+
+* cargo-binstall：優先找 prebuilt binary 安裝，可以省去編譯時間
+
+```bash
+# 安裝
+cargo install cargo-binstall
+# 使用方式
+cargo binstall cargo-nextest
+```
+
+* cargo-expand：用來看 macro / derive 展開後的 Rust code
+
+```bash
+cargo install cargo-expand
+# 展開所有程式
+cargo expand
+# 只產開 my_module
+cargo expand my_module
+```
+
+* cargo-nextest：next-generation test runner，更好的測試框架，但目前不支援 doctests
+
+```bash
+# 安裝要用 locked
+cargo install --locked cargo-nextest
+# 跑所有測試
+cargo nextest run
+# 跑 my_crate 測試
+cargo nextest run -p my_crate
+# 列出測試
+cargo nextest list
+# 跑 test_name 測項
+cargo nextest run test_name
+```
+
+* cargo-deny：檢查 dependency graph 的工具，包含
+    * advisories：安全漏洞 / RustSec advisories
+    * licenses：license 是否允許
+    * bans：禁用特定 crate / 檢查 duplicate versions
+    * sources：crate 來源是否允許
+
+```bash
+# 安裝要用 locked
+cargo install --locked cargo-deny
+# 初始化設定，會產生 deny.toml
+cargo deny init
+# 跑全部檢查
+cargo deny check
+```
+
+* cargo-cache：管理 Cargo cache 中的東西，也就是 `~/.cargo`
+
+```bash
+# 安裝
+cargo install cargo-cache
+# 看目前 cache 狀況
+cargo cache
+# 移除所有 cache
+cargo cache --remove-dir all
 ```
 
 ## 常用資源
