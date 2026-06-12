@@ -108,6 +108,8 @@ nav:
     - '為什麼選擇 Rust': 'rust/why_rust.md'
     - 'Rust Ownership': 'rust/ownership.md'
     - 'Rust Module': 'rust/module.md'
+    - 'Rust Iterator': 'rust/iterator.md'
+    - 'Rust Error': 'rust/error.md'
     - 'Rust Attribute': 'rust/attribute.md'
     - 'Rust async': 'rust/async.md'
     - 'Rust unsafe': 'rust/unsafe.md'
@@ -115,4 +117,3 @@ nav:
     - 'Rust fuzz test': 'rust/fuzz.md'
     - 'Rust benchmark': 'rust/benchmark.md'
     - 'Rust FFI': 'rust/ffi.md'
-    - 'Rust Error': 'rust/error.md'
