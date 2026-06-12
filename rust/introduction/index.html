@@ -1780,6 +1780,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#cargo" class="md-nav__link">
+    <span class="md-ellipsis">
+      好用 cargo 工具
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       常用資源
@@ -1898,6 +1907,52 @@
   
   <span class="md-ellipsis">
     Rust Module
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iterator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Iterator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Error
     
   </span>
   
@@ -2069,29 +2124,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../error/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust Error
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -2127,6 +2159,15 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       安裝與使用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cargo" class="md-nav__link">
+    <span class="md-ellipsis">
+      好用 cargo 工具
     </span>
   </a>
   
@@ -2244,8 +2285,81 @@ Rust 目前應用的領域有各類系統程式、網路協定設計、區塊鏈
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>cargo<span class="w"> </span>--<span class="w"> </span>-D<span class="w"> </span>warnings<span class="w"> </span><span class="c1"># 設定哪些等級的 lint 要報錯，預設是 warnings</span>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># 測試專案</span>
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>cargo<span class="w"> </span><span class="nb">test</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># 評測效能</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>cargo<span class="w"> </span>bench
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># 跑 doctests</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>cargo<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--doc
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># 評測效能</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>cargo<span class="w"> </span>bench
+</span></code></pre></div>
+<h2 id="cargo">好用 cargo 工具</h2>
+<p>cargo 本身也可以直接從 crates.io 下載並編譯安裝執行檔工具，安裝的 binary 會放在 <code>~/.cargo/bin</code> 下。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 目前有安裝哪些套件</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>cargo<span class="w"> </span>install<span class="w"> </span>--list
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># 安裝套件</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>cargo<span class="w"> </span>install<span class="w"> </span>xxxx
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1">## 鎖定版本</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>cargo<span class="w"> </span>install<span class="w"> </span>xxxx<span class="w"> </span>--version<span class="w"> </span><span class="m">1</span>.0.1
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1">## 用 crate 的 Cargo.lock 安裝，避免 dependency 問題</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>cargo<span class="w"> </span>install<span class="w"> </span>xxxx<span class="w"> </span>--locked
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="c1"># 解安裝套件</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>cargo<span class="w"> </span>uninstall<span class="w"> </span>xxxx
+</span></code></pre></div>
+<p>好用指令：</p>
+<ul>
+<li>cargo-binstall：優先找 prebuilt binary 安裝，可以省去編譯時間</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 安裝</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-binstall
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># 使用方式</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>cargo<span class="w"> </span>binstall<span class="w"> </span>cargo-nextest
+</span></code></pre></div>
+<ul>
+<li>cargo-expand：用來看 macro / derive 展開後的 Rust code</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-expand
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># 展開所有程式</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>cargo<span class="w"> </span>expand
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># 只產開 my_module</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>cargo<span class="w"> </span>expand<span class="w"> </span>my_module
+</span></code></pre></div>
+<ul>
+<li>cargo-nextest：next-generation test runner，更好的測試框架，但目前不支援 doctests</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 安裝要用 locked</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>cargo<span class="w"> </span>install<span class="w"> </span>--locked<span class="w"> </span>cargo-nextest
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># 跑所有測試</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>cargo<span class="w"> </span>nextest<span class="w"> </span>run
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># 跑 my_crate 測試</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>cargo<span class="w"> </span>nextest<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span>my_crate
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># 列出測試</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>cargo<span class="w"> </span>nextest<span class="w"> </span>list
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1"># 跑 test_name 測項</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>cargo<span class="w"> </span>nextest<span class="w"> </span>run<span class="w"> </span>test_name
+</span></code></pre></div>
+<ul>
+<li>cargo-deny：檢查 dependency graph 的工具，包含<ul>
+<li>advisories：安全漏洞 / RustSec advisories</li>
+<li>licenses：license 是否允許</li>
+<li>bans：禁用特定 crate / 檢查 duplicate versions</li>
+<li>sources：crate 來源是否允許</li>
+</ul>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 安裝要用 locked</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>cargo<span class="w"> </span>install<span class="w"> </span>--locked<span class="w"> </span>cargo-deny
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># 初始化設定，會產生 deny.toml</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>cargo<span class="w"> </span>deny<span class="w"> </span>init
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># 跑全部檢查</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>cargo<span class="w"> </span>deny<span class="w"> </span>check
+</span></code></pre></div>
+<ul>
+<li>cargo-cache：管理 Cargo cache 中的東西，也就是 <code>~/.cargo</code></li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># 安裝</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>cargo<span class="w"> </span>install<span class="w"> </span>cargo-cache
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1"># 看目前 cache 狀況</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>cargo<span class="w"> </span>cache
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># 移除所有 cache</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>cargo<span class="w"> </span>cache<span class="w"> </span>--remove-dir<span class="w"> </span>all
 </span></code></pre></div>
 <h2 id="_2">常用資源</h2>
 <p>這邊也列出一些跟 Rust 相關的資源。</p>
