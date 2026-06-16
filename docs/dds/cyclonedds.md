@@ -14,6 +14,7 @@ keywords:
 * [C API](https://cyclonedds.io/docs/cyclonedds/latest/ddsc.html)
 * [C++ API](https://cyclonedds.io/docs/cyclonedds-cxx/latest/)
 * [Python API](https://cyclonedds.io/docs/cyclonedds-python/latest/)
+* [Rust API](https://docs.rs/eclipse-cyclonedds/latest/cyclonedds/)
 
 ## 編譯
 
