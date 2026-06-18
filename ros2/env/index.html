@@ -2379,6 +2379,8 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_AUTOMATIC_DISCOVERY_RANGE</span><span class="o">=</span>LOCALHOST
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_STATIC_PEERS</span><span class="o">=</span><span class="s1">&#39;192.168.0.10;robot2.local&#39;</span>
 </span></code></pre></div>
+<p>值得注意的是如果對方那邊設定為 <code>OFF</code>，就算使用 <code>ROS_STATIC_PEERS</code> 也無法通訊。
+我們可以參考 <a href="https://docs.ros.org/en/rolling/Tutorials/Advanced/Improved-Dynamic-Discovery.html">ROS 官方網站的對應表</a></p>
 <h3 id="ros_distro"><code>ROS_DISTRO</code></h3>
 <p>表示目前 shell 載入的是哪一個 ROS 2 發行版，通常在 <code>source /opt/ros/&lt;distro&gt;/setup.*</code> 後自動設定。</p>
 <p>預設值：沒有固定字串；會跟著你 source 的發行版，例如 <code>jazzy</code>、<code>humble</code></p>

@@ -2552,15 +2552,15 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
 <ol>
 <li>在貢獻之前，要先 sign <a href="https://cla.developers.google.com/about">CLA (Contributor License Agreements)</a> 才行</li>
 <li>接著 clone oss-fuzz，並且在 projects 下加上要放入的 project 資料夾</li>
-<li>資料夾裡面會有三個部份：</li>
-<li>project.yaml：project 的相關 configuration，例如要用什麼 fuzzer、程式語言、有問題要寄信給誰等等</li>
-<li>Dockerfile：編譯 fuzz 測試的環境</li>
+<li>資料夾裡面會有三個部份，可以參考 <a href="https://github.com/google/oss-fuzz/tree/master/projects/zenoh">zenoh</a> 的設定：</li>
+<li>project.yaml：project 的相關 configuration，例如要用什麼 fuzzer、程式語言、有問題要寄信給誰等等，這邊的聯絡信箱必須是跟 Google 綁定的才行</li>
+<li>Dockerfile：編譯 fuzz 測試的環境，記住 clone project 的時候可以加上 <code>--depth 1</code>，減少從 GitHub 下載流量</li>
 <li>build.sh：如何編譯 fuzz 測試</li>
 <li>
 <p>完成後我們可以在本地端先做測試</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 製作 docker image</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>build_image<span class="w"> </span>your-project
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 編譯 fuzzers</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 編譯 fuzzers，編譯結果會放在 build 資料夾下</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>build_fuzzers<span class="w"> </span>your-project
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 運行 fuzzer</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>run_fuzzer<span class="w"> </span>your-project<span class="w"> </span>your-fuzzer-name
@@ -2568,6 +2568,10 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
 </li>
 <li>
 <p>都沒問題後就可以發 PR 到 GitHub 上了</p>
+</li>
+<li>被 merge 並等一段時間之後，用自己綁定的 Google 帳號登入 <a href="https://oss-fuzz.com/">oss-fuzz</a> 就可以看到運行 Fuzz test 的結果了<ul>
+<li>我們也可以在 <code>https://introspector.oss-fuzz.com/project-profile?project=&lt;your_project_name&gt;</code> 上直接看執行結果（例如 <a href="https://introspector.oss-fuzz.com/project-profile?project=zenoh">zenoh</a>），這個不需要權限</li>
+</ul>
 </li>
 </ol>
 <h2 id="_4">實戰</h2>
