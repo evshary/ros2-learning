@@ -8,7 +8,7 @@ keywords:
 Zenoh 的拓樸架構可以說十分彈性，只要能夠連上任意 Zenoh 網路上的節點，就可以與其他節點進行通訊。
 可以參考下面的架構圖：
 
-![Zenoh topology](images/full_topology.png)
+![Zenoh topology](images/topology_anim.gif)
 
 這邊有三種角色
 
