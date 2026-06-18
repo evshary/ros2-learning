@@ -64,6 +64,9 @@ export ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
 export ROS_STATIC_PEERS='192.168.0.10;robot2.local'
 ```
 
+值得注意的是如果對方那邊設定為 `OFF`，就算使用 `ROS_STATIC_PEERS` 也無法通訊。
+我們可以參考 [ROS 官方網站的對應表](https://docs.ros.org/en/rolling/Tutorials/Advanced/Improved-Dynamic-Discovery.html)
+
 ### `ROS_DISTRO`
 
 表示目前 shell 載入的是哪一個 ROS 2 發行版，通常在 `source /opt/ros/<distro>/setup.*` 後自動設定。
