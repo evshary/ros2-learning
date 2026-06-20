@@ -36,6 +36,15 @@ DDS 目前有很多種選擇：
 * OpenSplice DDS：原本是 Prismtech 的主力產品(後來被 ADLINK 買下後又 spin-off 出去成為 ZettaScale)，有分開源版和商業版。
 * FastDDS：Eprosima 的 DDS 開源解決方案，跟 CycloneDDS 一樣被應用在 ROS 2 上。
 * Connext DDS：RTI 這家公司所提出的 DDS，並沒有開源。
-* OpenDDS：Open source 版本的 DDS。
+* OpenDDS：開源社群中知名的 DDS 實作
+
+| DDS | Vendor | Impl. Lang | ROS 2 RMW | Supported API | Shared Memory | License |
+| - | - | - | - | - | - | - |
+| Fast DDS | eProsima | C++ | rmw_fastrtps_cpp | C++, Python | V | open source |
+| Cyclone DDS | ZettaScale | C | rmw_cyclonedds_cpp | C, C++, Python, Rust | V (iceoryx) | open source |
+| RTI Connect DDS | RTI | C/C++ | rmw_connectdds | C, C++, Java, Python, C#, Ada, etc. | V | commercial |
+| GurumDDS | GurumNetworks | C/C++ | rmw_gurumdds_cpp | C/C++ mainly | V | commercial |
+| OpenDDS | OCI | C++ | Not support | C++, Java | V | open source |
+| OpenSplice | ZettaScale | C/C++ | Not support now | C, C++, Java, etc. | V | commercial |
 
 目前個人推薦的是使用 CycloneDDS，輕量且效能高，主要程式是用 C 撰寫而成。
