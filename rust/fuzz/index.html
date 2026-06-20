@@ -2564,13 +2564,16 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>build_fuzzers<span class="w"> </span>your-project
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 運行 fuzzer</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>run_fuzzer<span class="w"> </span>your-project<span class="w"> </span>your-fuzzer-name
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># 如果希望要有 coverage 結果，可以做下面的測試</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>build_fuzzers<span class="w"> </span>--sanitizer<span class="w"> </span>coverage<span class="w"> </span>your-project
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>coverage<span class="w"> </span>--no-corpus-download<span class="w"> </span>your-project
 </span></code></pre></div>
 </li>
 <li>
 <p>都沒問題後就可以發 PR 到 GitHub 上了</p>
 </li>
 <li>被 merge 並等一段時間之後，用自己綁定的 Google 帳號登入 <a href="https://oss-fuzz.com/">oss-fuzz</a> 就可以看到運行 Fuzz test 的結果了<ul>
-<li>我們也可以在 <code>https://introspector.oss-fuzz.com/project-profile?project=&lt;your_project_name&gt;</code> 上直接看執行結果（例如 <a href="https://introspector.oss-fuzz.com/project-profile?project=zenoh">zenoh</a>），這個不需要權限</li>
+<li>我們也可以在 <code>https://introspector.oss-fuzz.com/project-profile?project=&lt;your_project_name&gt;</code> 上直接看執行結果的 log 和圖表（例如 <a href="https://introspector.oss-fuzz.com/project-profile?project=zenoh">zenoh</a>），這個不需要權限</li>
 </ul>
 </li>
 </ol>

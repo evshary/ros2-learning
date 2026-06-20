@@ -2088,8 +2088,77 @@ DDSI 定義了實際的封包應該要長什麼樣子，DCPS 則是定義了 pub
 <li>OpenSplice DDS：原本是 Prismtech 的主力產品(後來被 ADLINK 買下後又 spin-off 出去成為 ZettaScale)，有分開源版和商業版。</li>
 <li>FastDDS：Eprosima 的 DDS 開源解決方案，跟 CycloneDDS 一樣被應用在 ROS 2 上。</li>
 <li>Connext DDS：RTI 這家公司所提出的 DDS，並沒有開源。</li>
-<li>OpenDDS：Open source 版本的 DDS。</li>
+<li>OpenDDS：開源社群中知名的 DDS 實作</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>DDS</th>
+<th>Vendor</th>
+<th>Impl. Lang</th>
+<th>ROS 2 RMW</th>
+<th>Supported API</th>
+<th>Shared Memory</th>
+<th>License</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fast DDS</td>
+<td>eProsima</td>
+<td>C++</td>
+<td>rmw_fastrtps_cpp</td>
+<td>C++, Python</td>
+<td>V</td>
+<td>open source</td>
+</tr>
+<tr>
+<td>Cyclone DDS</td>
+<td>ZettaScale</td>
+<td>C</td>
+<td>rmw_cyclonedds_cpp</td>
+<td>C, C++, Python, Rust</td>
+<td>V (iceoryx)</td>
+<td>open source</td>
+</tr>
+<tr>
+<td>RTI Connect DDS</td>
+<td>RTI</td>
+<td>C/C++</td>
+<td>rmw_connectdds</td>
+<td>C, C++, Java, Python, C#, Ada, etc.</td>
+<td>V</td>
+<td>commercial</td>
+</tr>
+<tr>
+<td>GurumDDS</td>
+<td>GurumNetworks</td>
+<td>C/C++</td>
+<td>rmw_gurumdds_cpp</td>
+<td>C/C++ mainly</td>
+<td>V</td>
+<td>commercial</td>
+</tr>
+<tr>
+<td>OpenDDS</td>
+<td>OCI</td>
+<td>C++</td>
+<td>Not support</td>
+<td>C++, Java</td>
+<td>V</td>
+<td>open source</td>
+</tr>
+<tr>
+<td>OpenSplice</td>
+<td>ZettaScale</td>
+<td>C/C++</td>
+<td>Not support now</td>
+<td>C, C++, Java, etc.</td>
+<td>V</td>
+<td>commercial</td>
+</tr>
+</tbody>
+</table>
 <p>目前個人推薦的是使用 CycloneDDS，輕量且效能高，主要程式是用 C 撰寫而成。</p>
 
 
