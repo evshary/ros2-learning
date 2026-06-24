@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="ROS 2 的安裝方法">
+        <meta name="description" content="簡介模糊測試 (fuzz test) 的基本概念">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/ros2/installation/">
+        <link rel="canonical" href="https://ros2.tw/others/fuzz/">
       
       
-        <link rel="prev" href="../introduction/">
+        <link rel="prev" href="../../rust/ffi/">
       
-      
-        <link rel="next" href="../command/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>ROS 2 安裝 - ROS 2 筆記</title>
+        <title>模糊測試 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#fuzz" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ROS 2 安裝
+              模糊測試
             
           </span>
         </div>
@@ -265,20 +263,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -294,7 +290,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             ROS 2 入門
@@ -308,7 +304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../ros2/introduction/" class="md-nav__link">
         
   
   
@@ -328,30 +324,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    ROS 2 安裝
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ros2/installation/" class="md-nav__link">
         
   
   
@@ -362,42 +338,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      官方安裝方法
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ros-docker" class="md-nav__link">
-    <span class="md-ellipsis">
-      ROS + docker
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -455,7 +395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../command/" class="md-nav__link">
+      <a href="../../ros2/command/" class="md-nav__link">
         
   
   
@@ -478,7 +418,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../communication/" class="md-nav__link">
+      <a href="../../ros2/communication/" class="md-nav__link">
         
   
   
@@ -501,7 +441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../building/" class="md-nav__link">
+      <a href="../../ros2/building/" class="md-nav__link">
         
   
   
@@ -524,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qos/" class="md-nav__link">
+      <a href="../../ros2/qos/" class="md-nav__link">
         
   
   
@@ -547,7 +487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../env/" class="md-nav__link">
+      <a href="../../ros2/env/" class="md-nav__link">
         
   
   
@@ -570,7 +510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../record/" class="md-nav__link">
+      <a href="../../ros2/record/" class="md-nav__link">
         
   
   
@@ -593,7 +533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/" class="md-nav__link">
+      <a href="../../ros2/tools/" class="md-nav__link">
         
   
   
@@ -616,7 +556,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tips/" class="md-nav__link">
+      <a href="../../ros2/tips/" class="md-nav__link">
         
   
   
@@ -639,7 +579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../navigation/" class="md-nav__link">
+      <a href="../../ros2/navigation/" class="md-nav__link">
         
   
   
@@ -662,7 +602,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sros/" class="md-nav__link">
+      <a href="../../ros2/sros/" class="md-nav__link">
         
   
   
@@ -730,7 +670,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_cyclonedds/" class="md-nav__link">
+      <a href="../../ros2/rmw_cyclonedds/" class="md-nav__link">
         
   
   
@@ -753,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/basic/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/basic/" class="md-nav__link">
         
   
   
@@ -776,7 +716,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/advanced/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/advanced/" class="md-nav__link">
         
   
   
@@ -799,7 +739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/hands_on/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/hands_on/" class="md-nav__link">
         
   
   
@@ -2084,18 +2024,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
         
           
           <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
@@ -2111,7 +2053,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_12">
             <span class="md-nav__icon md-icon"></span>
             Others
@@ -2122,10 +2064,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../others/fuzz/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    模糊測試
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2136,6 +2098,75 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fuzz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fuzz 種類
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fuzz 種類">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      如何選擇
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      可以測試的問題種類
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fuzz_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      fuzz 的品質
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oss-fuzz" class="md-nav__link">
+    <span class="md-ellipsis">
+      OSS-Fuzz
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2173,18 +2204,51 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#fuzz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fuzz 種類
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fuzz 種類">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      官方安裝方法
+      如何選擇
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      可以測試的問題種類
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#ros-docker" class="md-nav__link">
+  <a href="#fuzz_1" class="md-nav__link">
     <span class="md-ellipsis">
-      ROS + docker
+      fuzz 的品質
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#oss-fuzz" class="md-nav__link">
+    <span class="md-ellipsis">
+      OSS-Fuzz
     </span>
   </a>
   
@@ -2206,53 +2270,122 @@
 
 
 
-  <h1>ROS 2 安裝</h1>
+  <h1>模糊測試</h1>
 
-<p>ROS 2 的官方主要支援三個主流平台：Linux, Windows, MAC。
-不過由於 Linux 還是比較多人在使用，所以初學還是推薦用 Linux 來學習。</p>
-<p>Linux 的部份目前官方只有原生支援 Ubuntu，建議使用最新版 ROS 2 LTS 搭配對應的 Ubuntu 版本。
-例如目前是 jazzy 搭配 Ubuntu 24.04。</p>
-<h2 id="_1">官方安裝方法</h2>
-<p>ROS 2 的安裝有很多方法，像是使用 apt 安裝 Debian 套件，或從 source code 自行編譯都可以，可以參考 <a href="https://docs.ros.org/en/jazzy/Installation.html">Installing ROS 2 Jazzy Jalisco</a>。</p>
-<p>最一開始還是先用 apt 安裝比較簡單，具體細節請參考 <a href="https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html">Installing ROS 2 via Debian Packages</a>。</p>
+<p>fuzz 測試專門用在產生隨機的輸入，來確保程式的結果都會符合我們預期。
+fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入，所以更能夠發現一些預想不到的問題。
+人工很難列舉出所有可能的輸入，fuzzing 能幫助我們去產生各式各樣可能的輸入，探索程式的可能行為空間。
+很多安全漏洞或是 bug 都是透過 fuzz 測試來找出來的。</p>
+<h2 id="fuzz">Fuzz 種類</h2>
+<p>比較常用的有兩大類：libFuzzer 和 AFL</p>
+<p>libFuzzer 是 fuzz test 很常被使用的技術，是 LLVM toolchain 所提供的 fuzzing runtime library。
+通常用在有原始程式碼的待測目標函式，一起編譯後直接進行測試。
+主要特色有：</p>
 <ul>
-<li>安裝 ROS 2 的 repository</li>
+<li>In-process execution：同個 process 呼叫不同 function，速度很快，但也容易造成 global state 污染</li>
+<li>Coverage-guided：透過 LLVM instrumentation，知道 input 會經過程式走過的路徑 (converage)，並且依此來調整 input</li>
+<li>透過 LLVM 的 sanitizer 來鎖定各種常見的問題，例如 ASan、UBSan 等等</li>
 </ul>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>software-properties-common
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>universe
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl<span class="w"> </span>-y
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_APT_SOURCE_VERSION</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-s<span class="w"> </span>https://api.github.com/repos/ros-infrastructure/ros-apt-source/releases/latest<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;tag_name&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="se">\&quot;</span><span class="w"> </span><span class="s1">&#39;{print $4}&#39;</span><span class="k">)</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>curl<span class="w"> </span>-L<span class="w"> </span>-o<span class="w"> </span>/tmp/ros2-apt-source.deb<span class="w"> </span><span class="s2">&quot;https://github.com/ros-infrastructure/ros-apt-source/releases/download/</span><span class="si">${</span><span class="nv">ROS_APT_SOURCE_VERSION</span><span class="si">}</span><span class="s2">/ros2-apt-source_</span><span class="si">${</span><span class="nv">ROS_APT_SOURCE_VERSION</span><span class="si">}</span><span class="s2">.</span><span class="k">$(</span>.<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">UBUNTU_CODENAME</span><span class="k">:-</span><span class="si">${</span><span class="nv">VERSION_CODENAME</span><span class="si">}}</span><span class="k">)</span><span class="s2">_all.deb&quot;</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>/tmp/ros2-apt-source.deb
-</span></code></pre></div>
+<p>AFL 是另外一種 fuzz test 類型，主要基於外部的 fuzz engine。
+AFL 可以運用在沒有程式碼的二進位檔案直接測試，更加有彈性。
+主要特色是：</p>
 <ul>
-<li>安裝 ROS 的套件 (含開發 library)</li>
+<li>AFL 如果有程式碼，可以在編譯時自行加入 intrumentation 來偵測 coverage。如果沒有的話，則是用 QEMU mode / Frida mode 等等方式動態偵測 coverage</li>
+<li>Fork server：透過 fork 快速複製 process，在確保隔離的情況下，提高執行速度</li>
+<li>外部控制：會有外部的 engine 來控制輸入和執行</li>
 </ul>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-dev-tools<span class="w"> </span>ros-jazzy-desktop
-</span></code></pre></div>
-<h2 id="ros-docker">ROS + docker</h2>
-<p>如果你不是用 Ubuntu 或是 Ubuntu 版本無法跟最新的 ROS 2 搭配起來，可以使用容器 (container) 的方式來運行。
-因為我常常需要跨不同 ROS 2 版本來測試，所以建立了我的容器化開發環境。</p>
+<p>不管是哪種基本上都會有如下特色：</p>
 <ul>
-<li>下載程式</li>
+<li>透過 coverage 來尋找新的可能路徑</li>
+<li>利用 mutation 來變化 input</li>
+<li>收集有價值的 corpus 集合，提供未來測試</li>
+<li>發生問題的時候會嘗試收斂造成問題的最小可能 input</li>
 </ul>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/evshary/ros2_build_env
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>ros2_build_env
-</span></code></pre></div>
+<h3 id="_1">如何選擇</h3>
 <ul>
-<li>進入你想運行的 ROS 版本(第一次跑會需要時間建立容器)</li>
+<li>如果有程式原始碼，最好的方式就是直接用 libFuzzer 或 AFL 加上 harness 來測試，更好得到 coverage<ul>
+<li>可以根據自己使用的程式語言生態，速度和隔離性的平衡來看要用 libFuzzer 或 AFL</li>
 </ul>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">#./containers/&lt;the environment you want&gt;/run_container.sh</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># 假設想要跑 jazzy</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>./containers/ros2-jazzy-gui/run_container.sh
-</span></code></pre></div>
+</li>
+<li>如果只有二進位程式或無法重新編譯，基本上只能選擇 AFL 來做到 binary-only coverage-guided fuzzing。</li>
+<li>如果程式本身無法直接在 userspace 執行（例如 CPU 架構不同、或是要跑在某個 firmware 之上等等），就可以考慮搭配 qemu 或 Renode 來進行 fuzz 測試</li>
+</ul>
+<h2 id="_2">可以測試的問題種類</h2>
+<p>一般來說 fuzz 可以測出如下幾種 bug：</p>
 <ul>
-<li>完成後會進入容器的環境內，你的 shell 前面會有 <code>(ros2-jazzy-gui)</code>，代表是在容器內的 terminal<ul>
-<li>我是把 ros2_build_env 掛載進容器內，所以在這資料夾做的修改都可以在本機端看到</li>
-<li>容器內部我是使用 zsh，所以在 source ROS 2 環境變數時要注意一下</li>
+<li>crash / panic：常見的有 abort、panic、assert 等等</li>
+<li>sanitizer issue：有如下幾種，一般來說 Rust 比較少這類的問題<ul>
+<li>ASan：double free、overflow、use-after-free</li>
+<li>UBSan：signed overflow、misaligned accesss</li>
+<li>LSan：memory leak</li>
+</ul>
+</li>
+<li>Oracle：判斷結果是否正確<ul>
+<li>round-trip：decode 和 encode 行為是否一致</li>
+<li>differential：不同的實作是否有同樣的結果</li>
+</ul>
+</li>
+<li>Invariant：確定系統規則要成立，例如 seq number 不能往後倒退、不能有重複 ID 等等<ul>
+<li>當我們要驗證 protocol 或系統在亂塞入各種 input 是否符合預期時，通常不是把程式內的確認邏輯重新複製一份到 fuzz test 驗證中。而是設定不該被違反的規則，在測試後，依然同樣要遵守。</li>
+<li>怎麼找出合理且必須要遵守的系統規則是這個測試的真正關鍵，也是最難的地方</li>
 </ul>
 </li>
 </ul>
+<h2 id="fuzz_1">fuzz 的品質</h2>
+<ul>
+<li>足夠完整的測試<ul>
+<li>有包含 raw bytes、structured message、protocol state 等等</li>
+<li>除了 crash 外也有 sanitizer、Oracle、Invariant 等等</li>
+</ul>
+</li>
+<li>coverage<ul>
+<li>一般來說 fuzz 測試都會搭配編譯器來評估每個 input 有走過哪些程式路徑，走得越多就代表測試越完整，我們的信心度也會比較大。</li>
+</ul>
+</li>
+<li>corpus 品質<ul>
+<li>好的 fuzz 測試工具會將能夠走新路徑的 input 存起來（稱之為 corpus），並且基於這些 corpus 來進行不同的變化。</li>
+<li>如果 corpus 品質高，fuzz tool 可以走遍更多 protocol path</li>
+<li>測試失敗的 crash artifact 也應該存起來，轉成 regression test</li>
+</ul>
+</li>
+<li>定期運行<ul>
+<li>整合到 CI 和 OSS-Fuzz</li>
+</ul>
+</li>
+</ul>
+<h2 id="oss-fuzz">OSS-Fuzz</h2>
+<p>Google 有提出 <a href="https://github.com/google/oss-fuzz">OSS-Fuzz 平台</a>可以幫開源軟體做 fuzz test。
+我們只要在該平台設定好怎麼編譯和執行，Google 會自動幫軟體進行 fuzz test，當有發現問題也會回報給我們。
+這樣就不用擔心自己沒有足夠的資源可以來進行 fuzz test，畢竟 fuzz test 通常都需要跑上多個小時才能發現問題。</p>
+<p>下面會列出大致流成為和，而詳細步驟可以參考<a href="https://google.github.io/oss-fuzz/">官方文件</a>：</p>
+<ol>
+<li>在貢獻之前，要先 sign <a href="https://cla.developers.google.com/about">CLA (Contributor License Agreements)</a> 才行</li>
+<li>接著 clone oss-fuzz，並且在 projects 下加上要放入的 project 資料夾</li>
+<li>資料夾裡面會有三個部份，可以參考 <a href="https://github.com/google/oss-fuzz/tree/master/projects/zenoh">zenoh</a> 的設定：</li>
+<li>project.yaml：project 的相關 configuration，例如要用什麼 fuzzer、程式語言、有問題要寄信給誰等等，這邊的聯絡信箱必須是跟 Google 綁定的才行</li>
+<li>Dockerfile：編譯 fuzz 測試的環境，記住 clone project 的時候可以加上 <code>--depth 1</code>，減少從 GitHub 下載流量</li>
+<li>build.sh：如何編譯 fuzz 測試</li>
+<li>
+<p>完成後我們可以在本地端先做測試</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 製作 docker image</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>build_image<span class="w"> </span>your-project
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 編譯 fuzzers，編譯結果會放在 build 資料夾下</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>build_fuzzers<span class="w"> </span>your-project
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 運行 fuzzer</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>run_fuzzer<span class="w"> </span>your-project<span class="w"> </span>your-fuzzer-name
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># 如果希望要有 coverage 結果，可以做下面的測試</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>build_fuzzers<span class="w"> </span>--sanitizer<span class="w"> </span>coverage<span class="w"> </span>your-project
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>coverage<span class="w"> </span>--no-corpus-download<span class="w"> </span>your-project
+</span></code></pre></div>
+</li>
+<li>
+<p>都沒問題後就可以發 PR 到 GitHub 上了</p>
+</li>
+<li>被 merge 並等一段時間之後，用自己綁定的 Google 帳號登入 <a href="https://oss-fuzz.com/">oss-fuzz</a> 就可以看到運行 Fuzz test 的結果了<ul>
+<li>我們也可以在 <code>https://introspector.oss-fuzz.com/project-profile?project=&lt;your_project_name&gt;</code> 上直接看執行結果的 log 和圖表（例如 <a href="https://introspector.oss-fuzz.com/project-profile?project=zenoh">zenoh</a>），這個不需要權限</li>
+</ul>
+</li>
+</ol>
 
 
 
