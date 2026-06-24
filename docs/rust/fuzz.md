@@ -5,38 +5,7 @@ keywords:
   - Rust
 ---
 
-fuzz 測試專門用在產生隨機的輸入，來確保程式的結果都會符合我們預期。
-fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入，所以更能夠發現一些預想不到的問題。
-人工很難列舉出所有可能的輸入，fuzzing 能幫助我們去產生各式各樣可能的輸入，探索程式的可能行為空間。
-很多安全漏洞或是 bug 都是透過 fuzz 測試來找出來的。
-
-一般來說 fuzz 可以測出如下幾種 bug：
-
-* crash / panic：常見的有 abort、panic、assert 等等
-* sanitizer issue：有如下幾種，一般來說 Rust 比較少這類的問題
-    * ASan：double free、overflow、use-after-free
-    * UBSan：signed overflow、misaligned accesss
-    * LSan：memory leak
-* Oracle：判斷結果是否正確
-    * round-trip：decode 和 encode 行為是否一致
-    * differential：不同的實作是否有同樣的結果
-* Invariant：確定系統規則要成立，例如 seq number 不能往後倒退、不能有重複 ID 等等
-    * 當我們要驗證 protocol 或系統在亂塞入各種 input 是否符合預期時，通常不是把程式內的確認邏輯重新複製一份到 fuzz test 驗證中。而是設定不該被違反的規則，在測試後，依然通樣要遵守。
-    * 怎麼找出合理且必須要遵守的系統規則是這個測試的真正關鍵，也是最難的地方
-
-如何評估一個 fuzz test 是否足夠好呢？
-
-* 足夠完整的測試
-    * 有包含 raw bytes、structured message、protocol state 等等
-    * 除了 crash 外也有 sanitizer、Oracle、Invariant 等等
-* coverage
-    * 一般來說 fuzz 測試都會搭配編譯器來評估每個 input 有走過哪些程式路徑，走得越多就代表測試越完整，我們的信心度也會比較大。
-* corpus 品質
-    * 好的 fuzz 測試工具會將能夠走新路徑的 input 存起來（稱之為 corpus），並且基於這些 corpus 來進行不同的變化。
-    * 如果 corpus 品質高，fuzz tool 可以走遍更多 protocol path
-    * 測試失敗的 crash artifact 也應該存起來，轉成 regression test
-* 定期運行
-    * 整合到 CI 和 OSS-Fuzz
+這邊的介紹會以 Rust 為主，關於 fuzz test 的通用性介紹可以參考[模糊測試](../others/fuzz.md)的介紹。
 
 在 Rust 中如果要使用 fuzz 測試，有幾個推薦的函式庫。
 我們將其分成兩大類：
@@ -55,41 +24,11 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
     * Rust 社群最熱門的選擇，一般來說會推薦優先使用
     * 只有單一 process，速度非常快
     * 但也因此缺乏 process 隔離，狀態可能會被污染
-
-<!-- markdownlint-disable MD046 -->
-??? "libFuzzer 補充"
-
-    libFuzzer 是 fuzz test 很常被使用的技術，是 LLVM toolchain 所提供的 fuzzing runtime library。
-    最主要的優勢有：
-    
-    * Coverage-guided：透過 LLVM instrumentation，知道 input 會經過程式走過的路徑 (converage)，並且依此來調整 input
-    * Mutation：可以用各種技術來變化 input
-    * Corpus：會收集目前有價值的 input 集合
-    * In-process execution：同個 process 呼叫不同 function，速度很快，但也容易造成 global state 污染
-    * Minimization：發生 crash 的時候，會自動找出造成 crash 的最小 input
-
-<!-- markdownlint-enable MD046 -->
-
 * [afl.rs](https://github.com/rust-fuzz/afl.rs)
     * 提供一層 Rust wrapper 來使用 AFL (American Fuzzy Lop)，是外部的 fuzz engine
     * mutation（變換 input）的能力很強
     * 使用 fork process 的方式測試，隔離很好
     * 但速度也相較更慢
-
-<!-- markdownlint-disable MD046 -->
-??? "AFL 補充"
-
-    AFL 是另一種 fuzz test 的類型，主要是基於外部的 fuzz engine。
-    主要的特色有：
-    
-    * Coverage-guided：有自己的 instrumentation 技術，可以用在 clang 或 gcc 等不同編譯器
-    * Mutation：可以用各種技術來變化 input
-    * Corpus：會收集目前有價值的 input 集合
-    * Fork server：透過 fork 快速複製 process，在確保隔離的情況下，提高執行速度
-    * 外部控制：會有外部的 engine 來控制輸入和執行
-
-<!-- markdownlint-enable MD046 -->
-
 * [honggfuzz-rs](https://github.com/rust-fuzz/honggfuzz-rs)
     * 提供一層 Rust wrapper 來使用 Google 所開發的 Honggfuzz，是外部的 fuzz engine
     * 有整合 debugger、sanitizer (ASan/UBSan)，方便進行分析
@@ -128,38 +67,6 @@ fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入
     * proptest 也能用來測試 state machine，例如根據某個規則產生不同 action 的順序，然後查看結果
         * 我們需要定義如果 protocol 在某些順序下，有哪些行為是不被允許。例如收到 final 封包後，程式絕對不能做哪些動作。
 4. DST (Deterministic Simulation Testing): 針對複雜的分散式系統進行測試，可以確保發生的問題可以重複覆現
-
-## OSS-Fuzz
-
-Google 有提出 [OSS-Fuzz 平台](https://github.com/google/oss-fuzz)可以幫開源軟體做 fuzz test。
-我們只要在該平台設定好怎麼編譯和執行，Google 會自動幫軟體進行 fuzz test，當有發現問題也會回報給我們。
-這樣就不用擔心自己沒有足夠的資源可以來進行 fuzz test，畢竟 fuzz test 通常都需要跑上多個小時才能發現問題。
-
-下面會列出大致流成為和，而詳細步驟可以參考[官方文件](https://google.github.io/oss-fuzz/)：
-
-1. 在貢獻之前，要先 sign [CLA (Contributor License Agreements)](https://cla.developers.google.com/about) 才行
-2. 接著 clone oss-fuzz，並且在 projects 下加上要放入的 project 資料夾
-3. 資料夾裡面會有三個部份，可以參考 [zenoh](https://github.com/google/oss-fuzz/tree/master/projects/zenoh) 的設定：
-   * project.yaml：project 的相關 configuration，例如要用什麼 fuzzer、程式語言、有問題要寄信給誰等等，這邊的聯絡信箱必須是跟 Google 綁定的才行
-   * Dockerfile：編譯 fuzz 測試的環境，記住 clone project 的時候可以加上 `--depth 1`，減少從 GitHub 下載流量
-   * build.sh：如何編譯 fuzz 測試
-4. 完成後我們可以在本地端先做測試
-
-    ```bash
-    # 製作 docker image
-    python3 infra/helper.py build_image your-project
-    # 編譯 fuzzers，編譯結果會放在 build 資料夾下
-    python3 infra/helper.py build_fuzzers your-project
-    # 運行 fuzzer
-    python3 infra/helper.py run_fuzzer your-project your-fuzzer-name
-    # 如果希望要有 coverage 結果，可以做下面的測試
-    python3 infra/helper.py build_fuzzers --sanitizer coverage your-project
-    python3 infra/helper.py coverage --no-corpus-download your-project
-    ```
-
-5. 都沒問題後就可以發 PR 到 GitHub 上了
-6. 被 merge 並等一段時間之後，用自己綁定的 Google 帳號登入 [oss-fuzz](https://oss-fuzz.com/) 就可以看到運行 Fuzz test 的結果了
-    * 我們也可以在 `https://introspector.oss-fuzz.com/project-profile?project=<your_project_name>` 上直接看執行結果的 log 和圖表（例如 [zenoh](https://introspector.oss-fuzz.com/project-profile?project=zenoh)），這個不需要權限
 
 ## 實戰
 
