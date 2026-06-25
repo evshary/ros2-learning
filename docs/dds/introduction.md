@@ -42,7 +42,7 @@ DDS 目前有很多種選擇：
 | - | - | - | - | - | - | - |
 | Fast DDS | eProsima | C++ | rmw_fastrtps_cpp | C++, Python | V | open source |
 | Cyclone DDS | ZettaScale | C | rmw_cyclonedds_cpp | C, C++, Python, Rust | V (iceoryx) | open source |
-| RTI Connect DDS | RTI | C/C++ | rmw_connectdds | C, C++, Java, Python, C#, Ada, etc. | V | commercial |
+| RTI Connext DDS | RTI | C/C++ | rmw_connextdds | C, C++, Java, Python, C#, Ada, etc. | V | commercial |
 | GurumDDS | GurumNetworks | C/C++ | rmw_gurumdds_cpp | C/C++ mainly | V | commercial |
 | OpenDDS | OCI | C++ | Not support | C++, Java | V | open source |
 | OpenSplice | ZettaScale | C/C++ | Not support now | C, C++, Java, etc. | V | commercial |

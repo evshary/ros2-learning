@@ -1,0 +1,9 @@
+^http://127\.0\.0\.1(:[0-9]+)?/
+^http://localhost(:[0-9]+)?/
+^https://app\.slack\.com/
+^https://www\.mdpi\.com/
+^https://www\.researchgate\.net/
+^https://www\.linkedin\.com/
+^https://zhuanlan\.zhihu\.com/
+^https://beatai\.org/
+^https://www\.svlsimulator\.com/

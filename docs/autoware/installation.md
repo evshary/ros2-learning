@@ -60,4 +60,4 @@ ros2 launch autoware_launch planning_simulator.launch.xml map_path:=$HOME/autowa
 
 ![展示如何運行 Autoware planning simulation](./images/autoware_operation.gif)
 
-* planning simulation 是 Autoware 中最簡單測試導航功能模擬器，詳細可以參考[官方的操作教學](https://autowarefoundation.github.io/autoware-documentation/main/tutorials/ad-hoc-simulation/planning-simulation/#lane-driving-scenario)
+* planning simulation 是 Autoware 中最簡單測試導航功能模擬器，詳細可以參考[官方的操作教學](https://autowarefoundation.github.io/autoware-documentation/main/demos/planning-sim/lane-driving/)

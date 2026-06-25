@@ -9,7 +9,7 @@ keywords:
 
 ROS 2 通訊層使用 DDS 的一大原因就是 DDS 有支援 QoS (Quality of Service)。
 QoS 能夠指定通訊相關的設定，像是資料傳輸的可靠性、是否要保留歷史資料等等。
-然而 DDS 所支援的 QoS 實在太多了，從官方規範就有 20 幾種，因此 ROS 2 只選擇跟機器人比較相關的其中六種出來：
+然而 DDS 所支援的 QoS 實在太多了，從官方規範就有 20 幾種，因此 ROS 2 只選擇跟機器人比較相關的其中幾種出來：
 
 | QoS         | 功能 |
 | ----------- | ---- |
@@ -41,7 +41,7 @@ Publisher 和 Subscriber 要能夠通訊，兩者的 QoS 必須要先 compatible
 由於定義上 Reliable > Best Effort，所以如果 Publisher 是 Best Effort，Subscriber 是 Reliable，兩者就會跳出 incompatible QoS 的警告，並且無法通訊。
 
 看到這邊一定會有個問題：要怎麼知道哪些設定是高，哪些設定是低？
-除了靠直覺外 (Reliable 比起 Best Effort 來說要求更高)，可以查詢 [ROS 2 的 QoS Design Compatibility](https://index.ros.org/doc/ros2/Concepts/About-Quality-of-Service-Settings/#qos-compatibilities)，或是直接去查詢 DDS 的說明，[OpenSplice DDS 的文件](http://download.prismtech.com/docs/Vortex/apis/ospl/isocpp2/html/a02530.html)就有詳細敘述。
+除了靠直覺外 (Reliable 比起 Best Effort 來說要求更高)，可以查詢 [ROS 2 的 QoS Design Compatibility](https://docs.ros.org/en/rolling/Concepts/Intermediate/About-Quality-of-Service-Settings.html#qos-compatibilities)，或是直接去查詢 DDS 的說明，[RTI DDS 的文件](https://community.rti.com/static/documentation/connext-dds/current/doc/manuals/connext_dds_professional/qos_reference/qos_reference/BasicQoS.htm)就有詳細敘述。
 
 ## 實際範例
 
