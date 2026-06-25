@@ -9,8 +9,8 @@ keywords:
 
 目前 Autoware 適用的模擬器有這幾種
 
-* [AWSIM](https://tier4.github.io/AWSIM/GettingStarted/QuickStartDemo/)
-    * Tier4 提出的模擬器，基於 Unity 的架構
+* [AWSIM](https://autowarefoundation.github.io/AWSIM/)
+    * Tier4 提出的模擬器，基於 Unity 的架構，後後來轉到 Autoware Foundation 底下
     * 目前 Autoware 官方最主要使用的模擬器
 * [MORAI](https://www.morai.ai/)
     * MORAI Inc. 這家韓國公司所提出，有提供 trial license，但非 open source
@@ -83,4 +83,4 @@ Carla 支援 ROS 和 Autoware
 
 * Carla 官方的 Autoware Bridge 只有支援 `Autoware.AI` / `Autoware.Auto`
     * 可參考[程式碼](https://github.com/carla-simulator/ros-bridge/tree/master/carla_ad_agent)和[使用教學](https://carla.readthedocs.io/projects/ros-bridge/en/latest/carla_ad_demo/)
-* Autoware 社群[支援列表](https://autowarefoundation.github.io/autoware-documentation/main/tutorials/ad-hoc-simulation/digital-twin-simulation/carla-tutorial/)
+* Autoware 社群[支援列表](https://autowarefoundation.github.io/autoware-documentation/main/demos/digital-twin-demos/carla-tutorial/)

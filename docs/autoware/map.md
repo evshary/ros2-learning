@@ -22,8 +22,6 @@ keywords:
 * 關聯層：物理元素關聯到虛擬規則，如車道、區域、交通規則
 * 拓樸層：物理元素如何彼此連接
 
-其他細節可參考[面向自動駕駛的高精度地圖框架解析和實戰](https://ppfocus.com/0/di1e5d759.html)
-
 常用資源：
 
 * OSM 地圖 tag：OSM 地圖上面的各個 tag 涵義，可參考[這邊](https://github.com/fzi-forschungszentrum-informatik/Lanelet2/blob/master/lanelet2_core/doc/LinestringTagging.md)
@@ -33,7 +31,7 @@ keywords:
 我們需要有一個專門的檔案來描述如何把全球投影座標轉換成 local 的座標
 
 Autoware 支援三種投影格式
-https://github.com/autowarefoundation/autoware.universe/blob/main/map/autoware_map_projection_loader/README.md
+https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/components/map/#5-map-specification
 
 * MGRS（Military Grid Reference System）
     * NATO 專用
@@ -55,11 +53,11 @@ Autoware 有用到兩種地圖：
 
 ## 建立地圖
 
-可以參考 [Autoware 的教學](https://autowarefoundation.github.io/autoware-documentation/main/how-to-guides/integrating-autoware/creating-maps/)
+可以參考 [Autoware 的教學](https://autowarefoundation.github.io/autoware-documentation/main/tutorials/integrating-autoware/creating-maps/)
 
 ### PCD
 
-如果是現實環境，需要用 [SLAM 的技術](https://autowarefoundation.github.io/autoware-documentation/main/how-to-guides/integrating-autoware/creating-maps/open-source-slam/)來建地圖
+如果是現實環境，需要用 [SLAM 的技術](https://autowarefoundation.github.io/autoware-documentation/main/tutorials/integrating-autoware/creating-maps/open-source-slam/)來建地圖
 
 如果是 Carla，這邊有些[相對應的套件](https://carla.readthedocs.io/projects/ros-bridge/en/latest/pcl_recorder/)可以使用
 

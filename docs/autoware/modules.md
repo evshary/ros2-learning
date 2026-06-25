@@ -29,4 +29,4 @@ keywords:
 
 ## Node diagram
 
-上面畢竟是比較粗略的劃分，如果想要更細緻了解 Autoware 中 ROS topic 和 node 的關係，可以參考官方畫的 [node diagram](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture/node-diagram/)，這個對 debug 和開發非常有幫助。
+上面畢竟是比較粗略的劃分，如果想要更細緻了解 Autoware 中 ROS topic 和 node 的關係，可以參考官方畫的 [node diagram](https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/node-diagram/)，這個對 debug 和開發非常有幫助。

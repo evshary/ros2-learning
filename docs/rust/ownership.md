@@ -117,8 +117,6 @@ fn main() {
 
 ## Rc + RefCell 共同使用
 
-參考 [Rust 語言聖經: Cell & RefCell](https://course.rs/advance/smart-pointer/cell-refcell.html)
-
 | Rust 規則 | Wrapper 帶來的改變 |
 | - | - |
 | 每個資料只能有一個擁有者 | Rc/Arc 可以讓資料有多個擁有者 |

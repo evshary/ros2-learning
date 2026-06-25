@@ -189,7 +189,7 @@ trait Future {
 * Asynchronous Programming in Rust: 官方文件
     * [英文](https://rust-lang.github.io/async-book/)
     * [中文](https://huangjj27.github.io/async-book/)
-    * [Rust语言圣经 - Rust 异步编程](https://course.rs/async-rust/intro.html): 含官方文件和 tokio 教學，但改寫得比較容易懂
+    * [Rust语言圣经 - Rust 异步编程](https://beatai.org/rust-course/advance/async/intro): 含官方文件和 tokio 教學，但改寫得比較容易懂
 * tokio
     * [Tokio - Async in depth](https://tokio.rs/tokio/tutorial/async)
     * [Rust入门秘籍 - tokio简介](https://rust-book.junmajinlong.com/ch100/00.html)
@@ -204,5 +204,4 @@ trait Future {
     * [Rust Async 5. 最后一个例子](https://mp.weixin.qq.com/s?__biz=MzIxODY5Mzc4Mg==&mid=2247485328&idx=1&sn=87e20836cdb8de10d2de8e5db0fde598&chksm=97e7ee69a090677f262035e3ab1882c9d8bf4c7259d7f5fcc56fcb3fc8b7f6069d631c71f14a&scene=178&cur_album_id=2364704891711045633#rd)
     * [Hello Rust async/await](http://liubin.org/blog/2021/03/25/hello-rust-async/)
 * Pin 和 Unpin
-    * [Rust语言圣经 - 定海神针 Pin 和 Unpin](https://course.rs/advance/async/pin-unpin.html)
     * [Rust 的 Pin 与 Unpin](https://folyd.com/blog/rust-pin-unpin/): 這個講的比較清楚
