@@ -1,6 +1,7 @@
 name: Deploy gh-pages
 
 on:
+  pull_request:
   push:
     branches:
       - main
@@ -15,10 +16,28 @@ jobs:
           config: '.markdownlint.yaml'
           globs: '**/*.md'
 
-  build:
+  link_check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - name: Check Markdown links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose
+            --no-progress
+            --exclude-mail
+            --root-dir .
+            './**/*.md'
+          fail: true
+          jobSummary: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -37,6 +56,7 @@ jobs:
           just build
 
       - name: Deploy
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
