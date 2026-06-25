@@ -2371,7 +2371,6 @@
 <li>關聯層：物理元素關聯到虛擬規則，如車道、區域、交通規則</li>
 <li>拓樸層：物理元素如何彼此連接</li>
 </ul>
-<p>其他細節可參考<a href="https://ppfocus.com/0/di1e5d759.html">面向自動駕駛的高精度地圖框架解析和實戰</a></p>
 <p>常用資源：</p>
 <ul>
 <li>OSM 地圖 tag：OSM 地圖上面的各個 tag 涵義，可參考<a href="https://github.com/fzi-forschungszentrum-informatik/Lanelet2/blob/master/lanelet2_core/doc/LinestringTagging.md">這邊</a></li>
@@ -2379,7 +2378,7 @@
 <h3 id="_2">地圖投影格式</h3>
 <p>我們需要有一個專門的檔案來描述如何把全球投影座標轉換成 local 的座標</p>
 <p>Autoware 支援三種投影格式
-<a href="https://github.com/autowarefoundation/autoware.universe/blob/main/map/autoware_map_projection_loader/README.md">https://github.com/autowarefoundation/autoware.universe/blob/main/map/autoware_map_projection_loader/README.md</a></p>
+<a href="https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/components/map/#5-map-specification">https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/components/map/#5-map-specification</a></p>
 <ul>
 <li>MGRS（Military Grid Reference System）<ul>
 <li>NATO 專用</li>
@@ -2407,9 +2406,9 @@
 </li>
 </ul>
 <h2 id="_3">建立地圖</h2>
-<p>可以參考 <a href="https://autowarefoundation.github.io/autoware-documentation/main/how-to-guides/integrating-autoware/creating-maps/">Autoware 的教學</a></p>
+<p>可以參考 <a href="https://autowarefoundation.github.io/autoware-documentation/main/tutorials/integrating-autoware/creating-maps/">Autoware 的教學</a></p>
 <h3 id="pcd">PCD</h3>
-<p>如果是現實環境，需要用 <a href="https://autowarefoundation.github.io/autoware-documentation/main/how-to-guides/integrating-autoware/creating-maps/open-source-slam/">SLAM 的技術</a>來建地圖</p>
+<p>如果是現實環境，需要用 <a href="https://autowarefoundation.github.io/autoware-documentation/main/tutorials/integrating-autoware/creating-maps/open-source-slam/">SLAM 的技術</a>來建地圖</p>
 <p>如果是 Carla，這邊有些<a href="https://carla.readthedocs.io/projects/ros-bridge/en/latest/pcl_recorder/">相對應的套件</a>可以使用</p>
 <h3 id="vector-map">Vector Map</h3>
 <ul>
