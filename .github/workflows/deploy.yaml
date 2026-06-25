@@ -26,7 +26,6 @@ jobs:
           args: >-
             --verbose
             --no-progress
-            --exclude-mail
             --root-dir .
             './**/*.md'
           fail: true
