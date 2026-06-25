@@ -27,6 +27,10 @@ jobs:
             --verbose
             --no-progress
             --root-dir .
+            --max-retries 5
+            --retry-wait-time 2
+            --host-concurrency 3
+            --host-request-interval 500ms
             './**/*.md'
           fail: true
           jobSummary: true
