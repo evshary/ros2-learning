@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="介紹推薦的 ROS 2 工具，包含 PlotJuggler">
+        <meta name="description" content="介紹 FastDDS 的使用方法">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/ros2/tools/">
+        <link rel="canonical" href="https://ros2.tw/dds/fastdds/">
       
       
-        <link rel="prev" href="../record/">
+        <link rel="prev" href="../cyclonedds/">
       
       
-        <link rel="next" href="../tips/">
+        <link rel="next" href="../../zenoh/introduction/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>ROS 2 好用工具 - ROS 2 筆記</title>
+        <title>FastDDS - ROS 2 筆記</title>
       
     
     
@@ -87,11 +87,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#plotjuggler" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -124,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ROS 2 好用工具
+              FastDDS
             
           </span>
         </div>
@@ -306,7 +301,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../ros2/introduction/" class="md-nav__link">
         
   
   
@@ -329,7 +324,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../ros2/installation/" class="md-nav__link">
         
   
   
@@ -356,20 +351,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -385,7 +378,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             ROS 2 實戰
@@ -399,7 +392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../command/" class="md-nav__link">
+      <a href="../../ros2/command/" class="md-nav__link">
         
   
   
@@ -422,7 +415,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../communication/" class="md-nav__link">
+      <a href="../../ros2/communication/" class="md-nav__link">
         
   
   
@@ -445,7 +438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../building/" class="md-nav__link">
+      <a href="../../ros2/building/" class="md-nav__link">
         
   
   
@@ -468,7 +461,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qos/" class="md-nav__link">
+      <a href="../../ros2/qos/" class="md-nav__link">
         
   
   
@@ -491,7 +484,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../env/" class="md-nav__link">
+      <a href="../../ros2/env/" class="md-nav__link">
         
   
   
@@ -514,7 +507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../record/" class="md-nav__link">
+      <a href="../../ros2/record/" class="md-nav__link">
         
   
   
@@ -534,30 +527,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    ROS 2 好用工具
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ros2/tools/" class="md-nav__link">
         
   
   
@@ -568,51 +541,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#plotjuggler" class="md-nav__link">
-    <span class="md-ellipsis">
-      PlotJuggler
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#domain_bridge" class="md-nav__link">
-    <span class="md-ellipsis">
-      domain_bridge
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      效能評測
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -625,7 +553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tips/" class="md-nav__link">
+      <a href="../../ros2/tips/" class="md-nav__link">
         
   
   
@@ -648,7 +576,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../navigation/" class="md-nav__link">
+      <a href="../../ros2/navigation/" class="md-nav__link">
         
   
   
@@ -671,7 +599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sros/" class="md-nav__link">
+      <a href="../../ros2/sros/" class="md-nav__link">
         
   
   
@@ -739,7 +667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_cyclonedds/" class="md-nav__link">
+      <a href="../../ros2/rmw_cyclonedds/" class="md-nav__link">
         
   
   
@@ -762,7 +690,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/basic/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/basic/" class="md-nav__link">
         
   
   
@@ -785,7 +713,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/advanced/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/advanced/" class="md-nav__link">
         
   
   
@@ -808,7 +736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rmw_zenoh/hands_on/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/hands_on/" class="md-nav__link">
         
   
   
@@ -835,18 +763,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -862,7 +792,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             DDS 入門
@@ -876,7 +806,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -899,7 +829,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/concepts/" class="md-nav__link">
+      <a href="../concepts/" class="md-nav__link">
         
   
   
@@ -922,7 +852,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/qos/" class="md-nav__link">
+      <a href="../qos/" class="md-nav__link">
         
   
   
@@ -945,7 +875,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/discovery/" class="md-nav__link">
+      <a href="../discovery/" class="md-nav__link">
         
   
   
@@ -968,7 +898,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/rtps/" class="md-nav__link">
+      <a href="../rtps/" class="md-nav__link">
         
   
   
@@ -991,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dds/cyclonedds/" class="md-nav__link">
+      <a href="../cyclonedds/" class="md-nav__link">
         
   
   
@@ -1011,10 +941,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../dds/fastdds/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1025,6 +962,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -2198,41 +2136,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#plotjuggler" class="md-nav__link">
-    <span class="md-ellipsis">
-      PlotJuggler
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#domain_bridge" class="md-nav__link">
-    <span class="md-ellipsis">
-      domain_bridge
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      效能評測
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -2247,56 +2150,12 @@
 
 
 
-  <h1>ROS 2 好用工具</h1>
+  <h1>FastDDS</h1>
 
-<h2 id="plotjuggler">PlotJuggler</h2>
-<p>PlotJuggler 可以用 GUI 的方式顯示 topic 數值隨時間的變化，他是開源的工具，程式碼可以在 <a href="https://github.com/facontidavide/PlotJuggler">GitHub</a> 找到。
-如果有比較不同數值(只能是數值)之間隨時間的變化趨勢，可以用這個工具來觀察。</p>
-<ul>
-<li>使用方式</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 安裝</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-<span class="nv">$ROS_DISTRO</span>-plotjuggler-ros
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 使用</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>ros2<span class="w"> </span>run<span class="w"> </span>plotjuggler<span class="w"> </span>plotjuggler
-</span></code></pre></div>
-<p>在使用上基本上就是 UI 的拖拉而已，可以建議大家跑個 turtlesim 來觀察。
-不過有個小地方要特別注意，如果你想要在 X 軸和 Y 軸各放上不同 topic 數值，記得拖拉時按著右鍵，這樣才能在不同軸放不同數值。</p>
-<h2 id="domain_bridge">domain_bridge</h2>
-<p>我們知道 ROS 支援 ROS_DOMAIN_ID 來避免不同環境的 ROS 流量互相影響。
-然而有時候會希望可以某些在不同 Domain ID 的 topic 可以溝通，這時候就可以使用 <a href="https://github.com/ros2/domain_bridge/tree/main">domain_bridge</a>。
-細節設計可以參考<a href="https://github.com/ros2/domain_bridge/blob/main/doc/design.md">官方文件</a>，
-你也可以到 <code>/opt/ros/$ROS_DISTRO/share/domain_bridge/examples/</code> 參考範例設定檔。</p>
-<ul>
-<li>安裝</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-<span class="nv">$ROS_DISTRO</span>-domain-bridge
-</span></code></pre></div>
-<ul>
-<li>創一個簡單設定檔 <code>example_bridge_config.yaml</code></li>
-</ul>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my_bridge</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">from_domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">to_domain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">topics</span><span class="p">:</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">chatter</span><span class="p">:</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">std_msgs/msg/String</span>
-</span></code></pre></div>
-<ul>
-<li>使用</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">2</span><span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">ROS_DOMAIN_ID</span><span class="o">=</span><span class="m">3</span><span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>listener
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>ros2<span class="w"> </span>run<span class="w"> </span>domain_bridge<span class="w"> </span>domain_bridge<span class="w"> </span>example_bridge_config.yaml
-</span></code></pre></div>
-<h2 id="_1">效能評測</h2>
-<p>有時我們也會想要評測自己的 ROS 2 程式效能，主要是延遲 (latency) 的部份。
-下面有幾套工具可以參考：</p>
-<ul>
-<li><a href="https://gitlab.com/ApexAI/performance_test/-/tree/master/performance_test">performance_test</a>: 這是 Apex AI 出的效能評測工具，比較特別的是除了 ROS，他也可以評測一些 native protocol，如 FastDDS 和 CycloneDDS 的效能。</li>
-<li><a href="https://github.com/irobot-ros/ros2-performance">ros2-performance</a>: 這是 iRobot 所提供的效能評測工具，最特別的點是他可以自建網路拓樸，更真實地模擬各個點的效能。他們也提供了如何建立測試環境的方法 <a href="https://github.com/irobot-ros/ros2-benchmark-container">ros2-benchmark-container</a>。</li>
-<li><a href="https://github.com/evshary/ros2-perf">ros2-perf</a>: 我專門開發用來做 ROS 2 效能簡單評測的工具，可以測 throughput、latency 等等，可以設定暖機時間、QoS、封包大小、發佈頻率等設定，更重要的是可以輕易畫出圖表觀察評測結果。</li>
-</ul>
+<p>FastDDS 是 eProsima 這家公司所提出的 DDS 實作，過去叫做 FastRTPS 後來改名為 FastDDS。
+目前也是 ROS 2 default 的 middleware。</p>
+<p>FastDDS 為了解決 discovery 問題有提出了自有的 Discovery 的技術。</p>
+<p>他們公司也有提出一些在 WIFI 下運行 DDS 的技巧，可以參考 <a href="https://fast-dds.docs.eprosima.com/en/latest/fastdds/use_cases/wifi/wifi.html">Fast DDS over WIFI</a>。</p>
 
 
 
