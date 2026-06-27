@@ -13,7 +13,7 @@ keywords:
 在網路世界中，我們是使用 Wireshark 來錄製封包。
 然而在機器人領域中，最小的封包單位是一個個 ROS Message，因此需要有其他更適合的工具，也就是這邊要談到的 ROS bag。
 
-## 使用方式
+## 基本使用方式
 
 ROS bag 是 ROS CLI 指令下的其中一個部份，我們可以用 `ros2 bag --help` 來看到更多指令的用法。
 
@@ -49,6 +49,28 @@ Action information:
 
 ```bash
 ros2 bag play rosbag2_2025_10_11-10_38_16
+```
+
+## 特殊用法
+
+* 切分 bag 檔：如果 bag 檔案太大，希望錄製的時候切割的話，ros2 bag 也有提供類似功能
+
+```bash
+# 依據 size 來切分，100 KB 為一包
+ros2 bag record -a -b 100000
+# 依據時間來切分，9000 秒切一包
+ros2 bag record -a -d 9000
+```
+
+* 如果切割了 bag file，可能在重放的時候 QoS 為 transient-local 的訊息就會沒有讀取到，這時我們可以強迫所有切割檔案都有該 transient-local 的 topic
+
+```bash
+# 確保每個 bagfile 都有 /map 和 /tf_static 的 topic
+ros2 bag record -a --repeat-transient-local /map /tf_static
+# 可以進一步設定，要求 /tf_static 必須保留最後五筆資料
+ros2 bag record -a --repeat-transient-local /tf_static=5 /map
+# 也可以要求保留所有的 transient-local 訊息
+ros2 bag record -a --repeat-all-transient-local
 ```
 
 ## ROS bag 格式
