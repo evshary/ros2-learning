@@ -76,6 +76,7 @@ nav:
     - 'DDS Discovery': 'dds/discovery.md'
     - 'DDS RTPS': 'dds/rtps.md'
     - 'CycloneDDS': 'dds/cyclonedds.md'
+    - 'FastDDS': 'dds/fastdds.md'
   - 'Zenoh 入門':
     - 'Zenoh 介紹': 'zenoh/introduction.md'
     - 'Zenoh 模式': 'zenoh/mode.md'
