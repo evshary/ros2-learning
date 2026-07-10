@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="介紹 DDS 的 entity 是如何做到彼此發現的">
+        <meta name="description" content="使用 Miri 檢查 Rust 程式中的未定義行為">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/dds/discovery/">
+        <link rel="canonical" href="https://ros2.tw/rust/miri/">
       
       
-        <link rel="prev" href="../qos/">
+        <link rel="prev" href="../ffi/">
       
       
-        <link rel="next" href="../rtps/">
+        <link rel="next" href="../../others/fuzz/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>DDS Discovery 機制 - ROS 2 筆記</title>
+        <title>Rust Miri - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#spdp" class="md-skip">
+        <a href="#miri" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              DDS Discovery 機制
+              Rust Miri
             
           </span>
         </div>
@@ -768,20 +768,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -797,7 +795,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             DDS 入門
@@ -811,7 +809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../dds/introduction/" class="md-nav__link">
         
   
   
@@ -834,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../concepts/" class="md-nav__link">
+      <a href="../../dds/concepts/" class="md-nav__link">
         
   
   
@@ -857,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qos/" class="md-nav__link">
+      <a href="../../dds/qos/" class="md-nav__link">
         
   
   
@@ -877,30 +875,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    DDS Discovery
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../dds/discovery/" class="md-nav__link">
         
   
   
@@ -911,42 +889,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#spdp" class="md-nav__link">
-    <span class="md-ellipsis">
-      SPDP
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sedp" class="md-nav__link">
-    <span class="md-ellipsis">
-      SEDP
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -959,7 +901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rtps/" class="md-nav__link">
+      <a href="../../dds/rtps/" class="md-nav__link">
         
   
   
@@ -982,7 +924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cyclonedds/" class="md-nav__link">
+      <a href="../../dds/cyclonedds/" class="md-nav__link">
         
   
   
@@ -1005,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fastdds/" class="md-nav__link">
+      <a href="../../dds/fastdds/" class="md-nav__link">
         
   
   
@@ -1763,18 +1705,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -1790,7 +1734,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             Rust
@@ -1804,7 +1748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1827,7 +1771,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/why_rust/" class="md-nav__link">
+      <a href="../why_rust/" class="md-nav__link">
         
   
   
@@ -1850,7 +1794,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/ownership/" class="md-nav__link">
+      <a href="../ownership/" class="md-nav__link">
         
   
   
@@ -1873,7 +1817,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/module/" class="md-nav__link">
+      <a href="../module/" class="md-nav__link">
         
   
   
@@ -1896,7 +1840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/iterator/" class="md-nav__link">
+      <a href="../iterator/" class="md-nav__link">
         
   
   
@@ -1919,7 +1863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/error/" class="md-nav__link">
+      <a href="../error/" class="md-nav__link">
         
   
   
@@ -1942,7 +1886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/attribute/" class="md-nav__link">
+      <a href="../attribute/" class="md-nav__link">
         
   
   
@@ -1965,7 +1909,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/async/" class="md-nav__link">
+      <a href="../async/" class="md-nav__link">
         
   
   
@@ -1988,7 +1932,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/unsafe/" class="md-nav__link">
+      <a href="../unsafe/" class="md-nav__link">
         
   
   
@@ -2011,7 +1955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/trait/" class="md-nav__link">
+      <a href="../trait/" class="md-nav__link">
         
   
   
@@ -2034,7 +1978,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/fuzz/" class="md-nav__link">
+      <a href="../fuzz/" class="md-nav__link">
         
   
   
@@ -2057,7 +2001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/benchmark/" class="md-nav__link">
+      <a href="../benchmark/" class="md-nav__link">
         
   
   
@@ -2080,7 +2024,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rust/ffi/" class="md-nav__link">
+      <a href="../ffi/" class="md-nav__link">
         
   
   
@@ -2100,10 +2044,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../rust/miri/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Rust Miri
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2114,6 +2078,51 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#miri" class="md-nav__link">
+    <span class="md-ellipsis">
+      安裝 Miri
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      最簡單的範例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      限制
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2219,18 +2228,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#spdp" class="md-nav__link">
+  <a href="#miri" class="md-nav__link">
     <span class="md-ellipsis">
-      SPDP
+      安裝 Miri
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sedp" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      SEDP
+      最簡單的範例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      限制
     </span>
   </a>
   
@@ -2252,87 +2270,49 @@
 
 
 
-  <h1>DDS Discovery</h1>
+  <h1>Rust Miri</h1>
 
-<p>DDS 是去中心化的系統，和其他協定最大的不同在於它能夠做到彼此發現，而不需要有一個中央的伺服器來事先註冊。
-當節點加入網路以後，會透過 discovery 來找到其他的節點 (participant)，然後再建立實際的資料流。</p>
-<p>我們可以把 discovery 分成兩個部份：</p>
-<ul>
-<li><code>SPDP</code>：用來尋找網路上有哪些 participant</li>
-<li><code>SEDP</code>：用來發現 participant 底下有哪些 endpoint (reader / writer)</li>
-</ul>
-<h2 id="spdp">SPDP</h2>
-<p>SPDP 全名是 <code>Simple Participant Discovery Protocol</code>，目標是讓同個 DDS domain 的 Participant 彼此知道對方存在。</p>
-<p>SPDP 本身也是利用 RTPS 的 Reader / Writer 機制來完成。
-每個 participant 會有兩個 built-in endpoints。</p>
-<ul>
-<li><code>SPDPbuiltinParticipantWriter</code>：用來對外宣告自己存在，entity ID 是 <code>ENTITYID_SPDP_BUILTIN_PARTICIPANT_WRITER</code></li>
-<li><code>SPDPbuiltinParticipantReader</code>：用來接收別人的宣告，entity ID 是 <code>ENTITYID_SPDP_BUILTIN_PARTICIPANT_READER</code></li>
-</ul>
-<p>兩者會透過 <code>DCPSParticipant</code> 這個固定的 topic 名稱來交換資訊，其 type 為 <code>ParticipantBuiltinTopicData</code>。</p>
-<p>這個宣告的封包是透過 multicast 來發送，因此不需要有對方的 IP。
-封包內部包含如下資訊</p>
-<ul>
-<li>Participant GUID / GUID Prefix</li>
-<li>Domain ID 相關資訊</li>
-<li>Vendor ID：哪些的 DDS</li>
-<li>Protocol version</li>
-<li>可用的 locator，例如 IP address / UDP port</li>
-<li>內建 endpoint 資訊</li>
-<li>lease duration：如果一段時間都沒收到更新，就會認為這個 participant 已經離線，並移除相關資訊。</li>
-</ul>
-<p>大概的流程如下圖：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Participant A                              Participant B
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>     │                                           │
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>     │  SPDP announcement: &quot;A is here&quot;           │
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>     ├──────────────────────────────────────────&gt;│
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>     │                                           │
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>     │  SPDP announcement: &quot;B is here&quot;           │
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>     │&lt;──────────────────────────────────────────┤
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>     │                                           │
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>     │       Participant discovery complete      │
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>     │                                           │
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>     │  接著才開始 SEDP endpoint discovery         │
+<p>Miri 是 Rust 的未定義行為（Undefined Behavior，UB）檢查工具，特別適合用來測試 <code>unsafe</code> 程式碼。
+例如越界指標存取、使用已釋放的記憶體，以及違反指標別名規則等問題，可能通過編譯甚至看似正常執行，但 Miri 可以協助找出它們。</p>
+<p>Miri 的原理是使用直譯器執行 Rust 的中介表示（MIR），並在執行過程中檢查每一次記憶體操作是否符合 Rust 的規則。
+因此它不是形式驗證，也不能保證找出所有問題：只有實際執行到的程式路徑才會被檢查。</p>
+<h2 id="miri">安裝 Miri</h2>
+<p>Miri 需要 Rust nightly toolchain。使用 <code>rustup</code> 安裝 nightly、Miri 與建立 Miri sysroot 所需的 Rust 原始碼：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>rustup<span class="w"> </span>toolchain<span class="w"> </span>install<span class="w"> </span>nightly
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>rustup<span class="w"> </span>component<span class="w"> </span>add<span class="w"> </span>miri<span class="w"> </span>rust-src<span class="w"> </span>--toolchain<span class="w"> </span>nightly
 </span></code></pre></div>
-<h2 id="sedp">SEDP</h2>
-<p>SEDP 全名是 <code>Simple Endpoint Discovery Protocol</code>，讓 participant 彼此可以交換底下有哪些 endpoint。
-endpoint 是收送資料的通訊端點，也就是 data reader 和 data writer。</p>
-<p>SEDP 本身也是利用 built-in Reader / Writer，有分成下面三類</p>
-<ul>
-<li>SEDPbuiltinPublicationsWriter / SEDPbuiltinPublicationsReader<ul>
-<li>用來交換彼此 DataWriter 的資訊</li>
-<li>訂閱的 topic name 是 <code>DCPSPublication</code>，type 是 <code>PublicationBuiltinTopicData</code></li>
-</ul>
-</li>
-<li>SEDPbuiltinSubscriptionsWriter / SEDPbuiltinSubscriptionsReader<ul>
-<li>用來交換彼此 DataReader 的資訊</li>
-<li>訂閱的 topic name 是 <code>DCPSSubscription</code>，type 是 <code>SubscriptionBuiltinTopicData</code></li>
-</ul>
-</li>
-<li>SEDPbuiltinTopicsWriter / SEDPbuiltinTopicsReader<ul>
-<li>用來交換彼此 Topic 的資訊，這並非強制，並不是所有實作都會有</li>
-<li>訂閱的 topic name 是 <code>DCPSTopic</code>，type 是 <code>TopicBuiltinTopicData</code></li>
-</ul>
-</li>
-</ul>
-<p>封包的資訊大概會有</p>
-<ul>
-<li>DataWriter / DataReader 的 GUID</li>
-<li>Topic name</li>
-<li>Type name</li>
-<li>QoS 相關資訊</li>
-<li>Locator，也就是這個 endpoint 的資料要往哪裡送 / 從哪裡收</li>
-<li>Endpoint kind，例如 writer 或 reader</li>
-</ul>
-<p>假設 A 有個 writer，B 有個 reader，雙方用 /chatter 這個 topic 溝通，SEDP 的流程大概如下：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Participant A                                    Participant B
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  Publication Writer ── A 的 DataWriter 資訊 ──&gt; Publication Reader
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  Subscription Reader &lt;─ B 的 DataReader 資訊 ── Subscription Writer
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  A:/chatter DataWriter  &lt;──── matched ────&gt;  B:/chatter DataReader
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  A:/chatter DataWriter  ───── data ───────&gt;  B:/chatter DataReader
+<p>確認安裝成功：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>miri<span class="w"> </span>--version
 </span></code></pre></div>
-<p>Writer 和 Reader 得知對方的資訊以後，就就會在本地比較對方 topic / type / QoS 和自己的有沒有 match，有了才會進行進一步通訊。</p>
+<h2 id="_1">最簡單的範例</h2>
+<p>先建立一個專案：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cargo<span class="w"> </span>new<span class="w"> </span>miri-example
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">cd</span><span class="w"> </span>miri-example
+</span></code></pre></div>
+<p>將 <code>src/main.rs</code> 改成：</p>
+<div class="language-rust highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">];</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">pointer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numbers</span><span class="p">.</span><span class="n">as_ptr</span><span class="p">();</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">pointer</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>陣列只有三個元素，所以合法索引是 0 到 2。程式卻使用 <code>pointer.add(3)</code> 讀取陣列外的記憶體，這是未定義行為。</p>
+<p>執行 Miri：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>miri<span class="w"> </span>run
+</span></code></pre></div>
+<p>Miri 會停止程式並指出問題所在，錯誤訊息類似：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>error: Undefined Behavior: constructing invalid value of type &amp;i32:
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>encountered a dangling reference (going beyond the bounds of its allocation)
+</span></code></pre></div>
+<p>這個錯誤代表 Miri 成功抓到問題。將 <code>pointer.add(3)</code> 改成 <code>pointer.add(2)</code> 後再次執行，程式會正常輸出 <code>30</code>。</p>
+<p>如果要檢查專案中的測試，可以改用：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>cargo<span class="w"> </span>+nightly<span class="w"> </span>miri<span class="w"> </span><span class="nb">test</span>
+</span></code></pre></div>
+<h2 id="_2">限制</h2>
+<p>Miri 執行速度比一般程式慢，並且不支援所有作業系統或 FFI 操作，因此適合用來執行範圍較小、專門測試 <code>unsafe</code> 程式碼的測試案例。</p>
 
 
 
