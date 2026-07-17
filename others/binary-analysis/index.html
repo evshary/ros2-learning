@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Autoware 的地圖格式">
+        <meta name="description" content="介紹分析 binary 與 firmware image 的常用工具及基本流程">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/autoware/map/">
+        <link rel="canonical" href="https://ros2.tw/others/binary-analysis/">
       
       
-        <link rel="prev" href="../modules/">
+        <link rel="prev" href="../../rust/miri/">
       
       
-        <link rel="next" href="../simulation/">
+        <link rel="next" href="../fuzz/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Autoware 地圖 - ROS 2 筆記</title>
+        <title>Binary 分析 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#elf" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Autoware 地圖
+              Binary 分析
             
           </span>
         </div>
@@ -1249,20 +1249,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1278,7 +1276,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Autoware 入門
@@ -1292,7 +1290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../autoware/introduction/" class="md-nav__link">
         
   
   
@@ -1315,7 +1313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../autoware/installation/" class="md-nav__link">
         
   
   
@@ -1338,7 +1336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/" class="md-nav__link">
+      <a href="../../autoware/modules/" class="md-nav__link">
         
   
   
@@ -1358,30 +1356,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Autoware 地圖
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../autoware/map/" class="md-nav__link">
         
   
   
@@ -1392,117 +1370,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      常見的自駕車地圖
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#lanelet2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Lanelet2
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Lanelet2">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      地圖投影格式
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#autoware" class="md-nav__link">
-    <span class="md-ellipsis">
-      Autoware
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      建立地圖
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="建立地圖">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pcd" class="md-nav__link">
-    <span class="md-ellipsis">
-      PCD
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vector-map" class="md-nav__link">
-    <span class="md-ellipsis">
-      Vector Map
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      地圖轉換
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code-study" class="md-nav__link">
-    <span class="md-ellipsis">
-      Code Study
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1515,7 +1382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../simulation/" class="md-nav__link">
+      <a href="../../autoware/simulation/" class="md-nav__link">
         
   
   
@@ -1538,7 +1405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../../autoware/api/" class="md-nav__link">
         
   
   
@@ -2205,18 +2072,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
         
           
           <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
@@ -2232,7 +2101,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_12">
             <span class="md-nav__icon md-icon"></span>
             Others
@@ -2243,10 +2112,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../others/binary-analysis/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Binary 分析
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2257,6 +2146,51 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#elf" class="md-nav__link">
+    <span class="md-ellipsis">
+      ELF 架構
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用工具
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本分析流程
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2269,7 +2203,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../others/fuzz/" class="md-nav__link">
+      <a href="../fuzz/" class="md-nav__link">
         
   
   
@@ -2317,93 +2251,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#elf" class="md-nav__link">
+    <span class="md-ellipsis">
+      ELF 架構
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      常見的自駕車地圖
+      常用工具
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#lanelet2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Lanelet2
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Lanelet2">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      地圖投影格式
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#autoware" class="md-nav__link">
-    <span class="md-ellipsis">
-      Autoware
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      建立地圖
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="建立地圖">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pcd" class="md-nav__link">
-    <span class="md-ellipsis">
-      PCD
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vector-map" class="md-nav__link">
-    <span class="md-ellipsis">
-      Vector Map
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      地圖轉換
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#code-study" class="md-nav__link">
-    <span class="md-ellipsis">
-      Code Study
+      基本分析流程
     </span>
   </a>
   
@@ -2425,108 +2293,109 @@
 
 
 
-  <h1>Autoware 地圖</h1>
+  <h1>Binary 分析</h1>
 
-<h2 id="_1">常見的自駕車地圖</h2>
+<p>Binary 分析是在沒有原始碼，或需要確認編譯結果時，從執行檔、函式庫或 firmware image 中取得資訊的方法。
+分析時通常會先辨識檔案格式與 CPU 架構，再逐步查看檔案結構、symbols、字串及組合語言；若需要理解較複雜的程式邏輯，才使用反編譯或逆向工程工具。</p>
+<h2 id="elf">ELF 架構</h2>
+<p>ELF (Executable and Linkable Format) 是 Linux 與其他 Unix-like 系統常見的 binary 檔案格式，可以用來表示執行檔、object file、shared library 與 core dump。</p>
+<p><img alt="ELF 檔案架構" src="../images/typical_elf.jpg" /></p>
+<p>圖片來源：<a href="https://blog.mygraphql.com/zh/notes/low-tec/elf/elf-format/">ELF Format</a></p>
+<p>ELF 大致由以下幾個部分組成：</p>
 <ul>
-<li>OpenDRIVE：副檔名為 <code>.xodr</code>，內容為 XML 的格式 (Carla / Apollo 使用)</li>
-<li>Lanelet2: 副檔名為 <code>.osm</code>，Lanelet2 是基於 OpenStreetMap 的擴充，也是 XML 的格式 (Autoware 使用)</li>
+<li>ELF header：位於檔案開頭，記錄 CPU 架構、位元數、endian、entry point，以及其他表格的位置。</li>
+<li>Program header table：說明程式執行時哪些資料要載入記憶體，以及各 segment 的權限與位址。</li>
+<li>Sections：依用途保存程式內容，例如 <code>.text</code> 存放程式碼、<code>.data</code> 存放已初始化資料、<code>.bss</code> 代表未初始化資料，<code>.rodata</code> 則存放唯讀資料。</li>
+<li>Section header table：描述檔案中的 sections，主要供 linker 與分析工具使用。</li>
 </ul>
-<h2 id="lanelet2">Lanelet2</h2>
-<p><a href="https://github.com/fzi-forschungszentrum-informatik/Lanelet2">Lanelet2</a> 是專門為自動駕駛設計的地圖框架，使用 OSM 格式，Autoware 是使用這個</p>
-<p>分為三層：</p>
-<ul>
-<li>物理層：包含能具體觀測的元素，如道路、停車格等等</li>
-<li>關聯層：物理元素關聯到虛擬規則，如車道、區域、交通規則</li>
-<li>拓樸層：物理元素如何彼此連接</li>
-</ul>
-<p>常用資源：</p>
-<ul>
-<li>OSM 地圖 tag：OSM 地圖上面的各個 tag 涵義，可參考<a href="https://github.com/fzi-forschungszentrum-informatik/Lanelet2/blob/master/lanelet2_core/doc/LinestringTagging.md">這邊</a></li>
-</ul>
-<h3 id="_2">地圖投影格式</h3>
-<p>我們需要有一個專門的檔案來描述如何把全球投影座標轉換成 local 的座標</p>
-<p>Autoware 支援三種投影格式
-<a href="https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/components/map/#5-map-specification">https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/components/map/#5-map-specification</a></p>
-<ul>
-<li>MGRS（Military Grid Reference System）<ul>
-<li>NATO 專用</li>
-<li>把全球地圖切成多個方格，在每個方格用數字定位</li>
-</ul>
-</li>
-<li>Local Cartesian UTM<ul>
-<li>切成較小的平面並設立原點，方便定位</li>
-</ul>
-</li>
-<li>Transverse Mercator (UTM)<ul>
-<li>把地球座標投影到圓柱上面來定位</li>
-</ul>
-</li>
-</ul>
-<h2 id="autoware">Autoware</h2>
-<p>Autoware 有用到兩種地圖：</p>
-<ul>
-<li>點雲地圖 (<a href="https://docs.web.auto/en/user-manuals/vector-map-builder/introduction#pcd">PCD 格式</a>， <code>.pcd</code> 結尾): 來自 Lidar</li>
-<li>向量地圖 (<a href="https://docs.web.auto/en/user-manuals/vector-map-builder/introduction#what-is-lanelet2">OSM 格式</a>，<code>.osm</code> 結尾): 提供道路相關的訊息，又稱為 Vector Map<ul>
-<li>路線: 如車道如何連接，能否變道...</li>
-<li>物體形狀: 車道、紅綠燈、斑馬線、停車格...</li>
-<li>交通規則: 紅綠燈、停止線、限速、車道方向...</li>
-</ul>
-</li>
-</ul>
-<h2 id="_3">建立地圖</h2>
-<p>可以參考 <a href="https://autowarefoundation.github.io/autoware-documentation/main/tutorials/integrating-autoware/creating-maps/">Autoware 的教學</a></p>
-<h3 id="pcd">PCD</h3>
-<p>如果是現實環境，需要用 <a href="https://autowarefoundation.github.io/autoware-documentation/main/tutorials/integrating-autoware/creating-maps/open-source-slam/">SLAM 的技術</a>來建地圖</p>
-<p>如果是 Carla，這邊有些<a href="https://carla.readthedocs.io/projects/ros-bridge/en/latest/pcl_recorder/">相對應的套件</a>可以使用</p>
-<h3 id="vector-map">Vector Map</h3>
-<ul>
-<li><a href="https://tools.tier4.jp/vector_map_builder_ll2/">Vector Map Builder</a>： TierIV 出的地圖編輯器，可以吃 pcd 並且在上面創造出 Lanelet2，不過需要註冊帳號才能用，可參考<a href="https://docs.web.auto/en/user-manuals/vector-map-builder/introduction">教學</a></li>
-<li><a href="https://github.com/fzi-forschungszentrum-informatik/Lanelet2/blob/master/lanelet2_maps/README.md">JOSM</a>：可以用來編輯 Lanelet2 地圖</li>
-</ul>
-<h2 id="_4">地圖轉換</h2>
-<p>常見的 map 是 OpenDrive 格式 (xodr)，像是 Carla 的預設地圖就是 xodr，如果要能讓 Autoware 使用，就需要轉換成 OpenStreetMap 格式 (osm)</p>
-<p>我在整合 Carla 和 Autoware 的時候就有遇到地圖轉換的問題，下面找了許多解法，雖然很多都無法正常使用</p>
-<ul>
-<li>xodr 轉 osm (但是是 trial 版本，且無法順利運作): <a href="https://github.com/carla-simulator/carla-autoware/issues/117">https://github.com/carla-simulator/carla-autoware/issues/117</a></li>
-<li><a href="https://github.com/tiev-tongji/xodr-OSM-Converter">xodr-OSM-Converter</a>: xodr 轉 osm 的工具，但我嘗試後轉換的地圖並無法使用</li>
-<li><a href="https://github.com/wenlong-dev/opendrive2lanelets-converter">opendrive2lanelets-converter</a>: opendrive 轉 lanelets，但我轉換後發現格式還是有問題</li>
-<li>Carla 提供已經轉好的 Autoware Map，但有點過時: <a href="https://bitbucket.org/carla-simulator/autoware-contents/src/master/">https://bitbucket.org/carla-simulator/autoware-contents/src/master/</a></li>
-<li>後來找到別人提供的轉好地圖： <a href="https://github.com/hatem-darweesh/op_agent/tree/ros2/autoware-contents/maps/vector_maps/lanelet2">https://github.com/hatem-darweesh/op_agent/tree/ros2/autoware-contents/maps/vector_maps/lanelet2</a></li>
-</ul>
-<h2 id="code-study">Code Study</h2>
-<p>注意這邊以 galactic 版本為主，新版可能有改動</p>
-<p>理論上只要有 pcd 和 osm 就可以跑 map_loader</p>
-<p>Autoware 會去讀 <code>map_path</code> 這個 argument 的值，然後從底下找出 pcd 和 osm 兩個檔案</p>
-<p><code>map.launch.py</code> 會跑如下幾個 Node</p>
-<ul>
-<li>map_loader 中的 <strong>map_hash_generator</strong><ul>
-<li>publisher <code>/api/autoware/get/map/info/hash</code>: 會把 lanelet 的內容和 pcd 的路徑 hash 起來並發佈出去</li>
-<li>service <code>/api/autoware/get/map/lanelet/xml</code>: 當 client 來詢問時，提供 lanelet 的內容</li>
-</ul>
-</li>
-<li>Composable:<ul>
-<li>map_loader 中的 plugin <strong>Lanelet2MapLoaderNode</strong>: 讀取 Lanelet2 格式<ul>
-<li>publish <code>vector_map</code>: 讀 lanlet2 的檔案，並將其轉成 binary，用 transient_local</li>
-</ul>
-</li>
-<li>map_loader 中的 plugin <strong>Lanelet2MapVisualizationNode</strong>: 在 RViz 畫圖<ul>
-<li>subscribe <code>vector_map</code>，然後 publish <code>vector_map_marker</code> 給 RViz</li>
-</ul>
-</li>
-<li>map_loader 中的 plugin <strong>PointCloudMapLoaderNode</strong>: 讀取 PCD 格式<ul>
-<li>publish <code>PointCloud2</code> 的 msg 到 <code>pointcloud_map</code></li>
-<li>service <code>/map/get_partial_pointcloud_map</code> 可以提供 client 部份的 PCD  map</li>
-<li><strong>問題</strong>：<code>map.launch.py</code> 中的 LINE 88 remap，似乎沒用到 <code>service/get_differential_pcd_map</code>，懷疑是忘記刪掉</li>
-</ul>
-</li>
-<li>map_loader 中的 plugin <strong>VectorMapTFGeneratorNode</strong>: 接收 pointcloud 資訊後進行座標轉換<ul>
-<li>subscriber <code>vector_map</code>，然後發布 TF 轉換 (map_frame &lt;=&gt; viewer_frame)</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p>Sections 是從 linking 與靜態分析的角度分類檔案內容；segments 則是從程式執行的角度，描述資料如何被載入記憶體。一個 segment 可以包含多個 sections。</p>
+<h2 id="_1">常用工具</h2>
+<table>
+<thead>
+<tr>
+<th>目的</th>
+<th>建議工具</th>
+<th>簡單說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>確認檔案與 CPU 架構</td>
+<td><code>file</code></td>
+<td>辨識檔案格式、位元數、endian 與 CPU 架構，適合作為分析的第一步。</td>
+</tr>
+<tr>
+<td>查看 ELF 結構</td>
+<td><code>readelf</code></td>
+<td>查看 ELF header、sections、segments、symbols 與 dynamic linking 資訊。</td>
+</tr>
+<tr>
+<td>快速反組譯</td>
+<td><code>objdump</code></td>
+<td>將 machine code 反組譯為組合語言，也能查看 section 與 symbol 資訊。</td>
+</tr>
+<tr>
+<td>查看 symbols</td>
+<td><code>nm</code></td>
+<td>列出 binary 或 library 中的 symbols，用來尋找函式與 global variables。</td>
+</tr>
+<tr>
+<td>搜尋字串</td>
+<td><code>strings</code></td>
+<td>找出可顯示的文字，例如錯誤訊息、路徑、網址或版本資訊。</td>
+</tr>
+<tr>
+<td>拆解 firmware image</td>
+<td>Binwalk</td>
+<td>辨識並擷取 firmware 中的檔案系統、壓縮檔及內嵌資料。</td>
+</tr>
+<tr>
+<td>深入分析與 decompile</td>
+<td>Ghidra</td>
+<td>提供圖形化的 disassembly、decompiler、cross-reference 與控制流程分析。</td>
+</tr>
+<tr>
+<td>自動化 disassembly</td>
+<td>Capstone</td>
+<td>可嵌入程式或腳本的 disassembly framework，適合批次與自動化分析。</td>
+</tr>
+<tr>
+<td>命令列逆向分析</td>
+<td>radare2 / Rizin</td>
+<td>提供命令列介面的 disassembly、debug、搜尋與程式流程分析功能。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">基本分析流程</h2>
+<p>拿到未知 binary 時，可以依照下列順序開始分析：</p>
+<ol>
+<li>使用 <code>file</code> 確認檔案格式、CPU 架構、位元數與 endian。</li>
+<li>如果是 ELF，使用 <code>readelf</code> 查看 headers、sections 與 dynamic dependencies。</li>
+<li>使用 <code>nm</code> 與 <code>strings</code> 尋找可辨識的函式名稱、錯誤訊息及其他線索。</li>
+<li>使用 <code>objdump</code> 快速查看重要函式的組合語言。</li>
+<li>若檔案是 firmware image，先使用 Binwalk 尋找並擷取內嵌內容。</li>
+<li>需要追蹤控制流程或還原程式邏輯時，再使用 Ghidra、radare2 或 Rizin 深入分析。</li>
+<li>需要批次處理大量 binary 時，可以使用 Capstone 撰寫自動化分析工具。</li>
+</ol>
+<p>以下是一組常見的基本指令：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 辨識檔案格式與 CPU 架構</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>file<span class="w"> </span>program
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 查看 ELF header、sections 與 program headers</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>readelf<span class="w"> </span>-h<span class="w"> </span>program
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>readelf<span class="w"> </span>-S<span class="w"> </span>program
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>readelf<span class="w"> </span>-l<span class="w"> </span>program
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># 查看 dynamic dependencies 與 symbols</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>readelf<span class="w"> </span>-d<span class="w"> </span>program
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>nm<span class="w"> </span>-C<span class="w"> </span>program
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># 搜尋字串與反組譯</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>strings<span class="w"> </span>-a<span class="w"> </span>program
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>objdump<span class="w"> </span>-d<span class="w"> </span>program
+</span></code></pre></div>
+<p>如果 binary 已經被 stripped，許多 symbol 名稱會消失，但仍可以透過字串、imported functions、cross-references 與控制流程推測程式行為。
+分析不可信的 binary 時，應避免直接在主機上執行，建議使用隔離的虛擬機、container 或 sandbox，並先確認檔案來源與 hash。</p>
 
 
 
