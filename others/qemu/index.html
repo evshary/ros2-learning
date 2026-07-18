@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="簡介模糊測試 (fuzz test) 的基本概念">
+        <meta name="description" content="介紹 QEMU user mode 與 system mode 的差異及基本使用方式">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/others/fuzz/">
+        <link rel="canonical" href="https://ros2.tw/others/qemu/">
       
       
-        <link rel="prev" href="../binary-analysis/">
+        <link rel="prev" href="../fuzz/">
       
-      
-        <link rel="next" href="../qemu/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>模糊測試 - ROS 2 筆記</title>
+        <title>QEMU - ROS 2 筆記</title>
       
     
     
@@ -88,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fuzz" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              模糊測試
+              QEMU
             
           </span>
         </div>
@@ -2135,6 +2133,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../fuzz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    模糊測試
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -2150,7 +2171,7 @@
   
   
   <span class="md-ellipsis">
-    模糊測試
+    QEMU
     
   </span>
   
@@ -2163,7 +2184,7 @@
   
   
   <span class="md-ellipsis">
-    模糊測試
+    QEMU
     
   </span>
   
@@ -2184,19 +2205,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#fuzz" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Fuzz 種類
+      執行架構
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Fuzz 種類">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-mode-system-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      User mode 與 system mode 比較
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      User mode 實作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      System mode 實作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System mode 實作">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#alpine-linux-kernel-rootfs" class="md-nav__link">
     <span class="md-ellipsis">
-      如何選擇工具
+      下載 Alpine Linux kernel 與 rootfs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alpine-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      啟動 Alpine Linux
     </span>
   </a>
   
@@ -2210,60 +2267,9 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      可以測試的問題種類
+      加速方式
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fuzz_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      fuzz 的品質
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#oss-fuzz" class="md-nav__link">
-    <span class="md-ellipsis">
-      OSS-Fuzz
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      實作範例
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="實作範例">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#libfuzzer" class="md-nav__link">
-    <span class="md-ellipsis">
-      libFuzzer 範例
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#afl-source-instrumentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      AFL++ source instrumentation 範例
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2271,29 +2277,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../qemu/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    QEMU
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -2331,19 +2314,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#fuzz" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Fuzz 種類
+      執行架構
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Fuzz 種類">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-mode-system-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      User mode 與 system mode 比較
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      User mode 實作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#system-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      System mode 實作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System mode 實作">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#alpine-linux-kernel-rootfs" class="md-nav__link">
     <span class="md-ellipsis">
-      如何選擇工具
+      下載 Alpine Linux kernel 與 rootfs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alpine-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      啟動 Alpine Linux
     </span>
   </a>
   
@@ -2357,60 +2376,9 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      可以測試的問題種類
+      加速方式
     </span>
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fuzz_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      fuzz 的品質
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#oss-fuzz" class="md-nav__link">
-    <span class="md-ellipsis">
-      OSS-Fuzz
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      實作範例
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="實作範例">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#libfuzzer" class="md-nav__link">
-    <span class="md-ellipsis">
-      libFuzzer 範例
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#afl-source-instrumentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      AFL++ source instrumentation 範例
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2430,269 +2398,186 @@
 
 
 
-  <h1>模糊測試</h1>
+  <h1>QEMU</h1>
 
-<p>fuzz 測試專門用在產生隨機的輸入，來確保程式的結果都會符合我們預期。
-fuzz 測試和一般測試的不同在於，我們不會預先知道他的輸入，所以更能夠發現一些預想不到的問題。
-人工很難列舉出所有可能的輸入，fuzzing 能幫助我們去產生各式各樣可能的輸入，探索程式的可能行為空間。
-很多安全漏洞或是 bug 都是透過 fuzz 測試來找出來的。</p>
-<h2 id="fuzz">Fuzz 種類</h2>
-<p>比較常用的有兩大類：libFuzzer 和 AFL</p>
-<p>libFuzzer 是 fuzz test 很常被使用的技術，是 LLVM toolchain 所提供的 fuzzing runtime library。
-通常用在有原始程式碼的待測目標函式，一起編譯後直接進行測試。
-主要特色有：</p>
-<ul>
-<li>In-process execution：同個 process 呼叫不同 function，速度很快，但也容易造成 global state 污染</li>
-<li>Coverage-guided：透過 LLVM instrumentation，知道 input 會經過程式走過的路徑 (coverage)，並且依此來調整 input</li>
-<li>透過 LLVM 的 sanitizer 來鎖定各種常見的問題，例如 ASan、UBSan 等等</li>
-</ul>
-<p>AFL 是另外一種 fuzz test 類型，主要基於外部的 fuzz engine。
-AFL 可以運用在沒有程式碼的二進位檔案直接測試，更加有彈性。
-主要特色是：</p>
-<ul>
-<li>AFL 如果有程式碼，可以在編譯時自行加入 instrumentation 來偵測 coverage。如果沒有的話，則可以使用 QEMU mode 動態偵測 coverage</li>
-<li>Fork server：透過 fork 快速複製 process，在確保隔離的情況下，提高執行速度</li>
-<li>外部控制：會有外部的 engine 來控制輸入和執行</li>
-</ul>
-<p>不管是哪種基本上都會有如下特色：</p>
-<ul>
-<li>透過 coverage 來尋找新的可能路徑</li>
-<li>利用 mutation 來變化 input</li>
-<li>收集有價值的 corpus 集合，提供未來測試</li>
-<li>發生問題的時候會嘗試收斂造成問題的最小可能 input</li>
-</ul>
-<h3 id="_1">如何選擇工具</h3>
-<p>選擇 fuzzing 工具時，要先確認是否有原始碼、目標是 userspace 程式還是完整 firmware、CPU 架構是否與測試主機相同，以及是否依賴特定周邊設備。</p>
-<ul>
-<li>如果有 source code，應優先使用 libFuzzer 或 AFL++ 搭配 harness。libFuzzer 適合直接測試單一函式或 library；AFL++ 透過外部 process 控制目標，在執行隔離上較有彈性。</li>
-<li>如果只有 binary，可以使用 AFL++ QEMU mode。</li>
-<li>如果要測試 raw image 中的單一 parser 或函式，可以使用 Unicorn 或 Fuzzware。</li>
-<li>如果需要執行完整 firmware，可以使用 QEMU system mode 或 Renode 模擬 CPU、記憶體與周邊設備。</li>
-<li>如果目標依賴無法模擬的硬體，才考慮直接在真實硬體上測試。</li>
-</ul>
-<p>下表除了整理各類目標的建議工具，也列出 coverage 的來源。
-Fuzzer 會利用 coverage 判斷 input 是否讓程式走到新路徑，並決定是否將它保留到 corpus 中。</p>
+<p>QEMU 是一個開源的 machine emulator 與 virtualizer，可以在不同 CPU 架構之間執行程式，也可以模擬一台完整的電腦。
+例如，我們可以在 x86-64 Linux 上執行 ARM64 Linux 程式，或啟動包含 ARM64 CPU、記憶體與虛擬周邊設備的完整系統。</p>
+<p>QEMU 最常見的兩種使用模式是 user mode 與 system mode。選擇時的關鍵在於：我們只需要執行某個程式，還是需要一個包含 kernel 與周邊設備的完整系統。</p>
+<h2 id="_1">執行架構</h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph UserMode[QEMU user mode]
+        App1[Guest architecture application]
+        QemuUser[QEMU instruction translation&lt;br/&gt;and syscall translation]
+        HostKernel1[Host Linux kernel]
+        HostHardware1[Host hardware]
+        App1 --&gt; QemuUser --&gt; HostKernel1 --&gt; HostHardware1
+    end
+
+    subgraph SystemMode[QEMU system mode]
+        App2[Guest application]
+        GuestKernel[Guest kernel]
+        QemuSystem[QEMU CPU, memory&lt;br/&gt;and device emulation]
+        HostKernel2[Host operating system]
+        HostHardware2[Host hardware]
+        App2 --&gt; GuestKernel --&gt; QemuSystem --&gt; HostKernel2 --&gt; HostHardware2
+    end</code></pre>
+<p>User mode 只翻譯 guest 程式的 CPU 指令，程式發出 system call 時，QEMU 會將它轉換後交給 host Linux kernel 處理。
+System mode 則會提供虛擬 CPU、記憶體與周邊設備，guest kernel 會像在真實機器上一樣管理這些資源。</p>
+<h2 id="user-mode-system-mode">User mode 與 system mode 比較</h2>
 <table>
 <thead>
 <tr>
-<th>測試目標</th>
-<th>建議方法</th>
-<th>Coverage 來源</th>
+<th>項目</th>
+<th>User mode</th>
+<th>System mode</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Linux ELF，有 source code</td>
-<td>Compiler instrumentation</td>
-<td>編譯時插入 coverage 計數邏輯</td>
+<td>模擬範圍</td>
+<td>單一 Linux userspace 程式</td>
+<td>完整機器與作業系統</td>
 </tr>
 <tr>
-<td>Linux ELF，只有 binary</td>
-<td>AFL++ QEMU mode</td>
-<td>QEMU 動態翻譯時收集 basic block 資訊</td>
+<td>Guest kernel</td>
+<td>不需要，使用 host kernel</td>
+<td>需要自行提供</td>
 </tr>
 <tr>
-<td>ARM Embedded Linux ELF</td>
-<td>AFL++ QEMU mode</td>
-<td>QEMU user mode 執行目標架構程式並收集 coverage</td>
+<td>周邊設備</td>
+<td>不模擬</td>
+<td>可模擬 disk、network、serial port 等設備</td>
 </tr>
 <tr>
-<td>Raw image，只測單一 parser 或函式</td>
-<td>Unicorn / Fuzzware</td>
-<td>透過 emulator 的 basic-block hook 記錄執行路徑</td>
+<td>啟動速度</td>
+<td>快，直接執行目標程式</td>
+<td>慢，需要完成 boot process</td>
 </tr>
 <tr>
-<td>Raw image，測試完整 firmware</td>
-<td>QEMU system mode / Renode</td>
-<td>由系統 emulator 記錄 CPU 執行過的路徑</td>
+<td>環境準備</td>
+<td>目標程式與所需 libraries</td>
+<td>Kernel、root filesystem 與虛擬硬體設定</td>
 </tr>
 <tr>
-<td>無法模擬的 firmware</td>
-<td>真實硬體</td>
-<td>ETM、SWD 或自訂 instrumentation</td>
+<td>隔離性</td>
+<td>程式仍共用 host kernel</td>
+<td>Guest 有獨立 kernel</td>
+</tr>
+<tr>
+<td>常見用途</td>
+<td>交叉架構測試、binary analysis、fuzzing</td>
+<td>OS 開發、driver 測試、firmware 與 embedded system 模擬</td>
+</tr>
+<tr>
+<td>常用指令</td>
+<td><code>qemu-aarch64</code>、<code>qemu-arm</code>、<code>qemu-riscv64</code></td>
+<td><code>qemu-system-aarch64</code>、<code>qemu-system-arm</code>、<code>qemu-system-x86_64</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="_2">可以測試的問題種類</h2>
-<p>一般來說 fuzz 可以測出如下幾種 bug：</p>
+<p>如果只是要測試不同 CPU 架構的 Linux command-line 程式，user mode 通常比較簡單。
+當目標依賴特定 kernel、driver、啟動流程或周邊設備時，才需要使用 system mode。</p>
+<h2 id="user-mode">User mode 實作</h2>
+<p>以 x86-64 Ubuntu host 執行 ARM64 Linux 程式為例，先安裝 QEMU user mode 與 ARM64 cross compiler：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>qemu-user<span class="w"> </span>gcc-aarch64-linux-gnu
+</span></code></pre></div>
+<p>建立一個簡單的 C 程式，並將檔案存為 <code>hello.c</code>：</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">puts</span><span class="p">(</span><span class="s">&quot;Hello from ARM64&quot;</span><span class="p">);</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>使用 ARM64 cross compiler 產生 statically linked ELF，再交給 <code>qemu-aarch64</code> 執行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>aarch64-linux-gnu-gcc<span class="w"> </span>-static<span class="w"> </span>hello.c<span class="w"> </span>-o<span class="w"> </span>hello-aarch64
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>file<span class="w"> </span>hello-aarch64
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>qemu-aarch64<span class="w"> </span>./hello-aarch64
+</span></code></pre></div>
+<p>執行結果如下：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Hello from ARM64
+</span></code></pre></div>
+<p>Static linking 會將所需 library 放入 binary，因此 QEMU 不需要另外尋找 ARM64 shared libraries。
+如果要執行 dynamically linked binary，可以用 <code>-L</code> 指定目標架構的 library root：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>aarch64-linux-gnu-gcc<span class="w"> </span>hello.c<span class="w"> </span>-o<span class="w"> </span>hello-aarch64-dynamic
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>qemu-aarch64<span class="w"> </span>-L<span class="w"> </span>/usr/aarch64-linux-gnu<span class="w"> </span>./hello-aarch64-dynamic
+</span></code></pre></div>
+<p>QEMU user mode 也可以透過 <code>-strace</code> 顯示 guest 程式發出的 system calls，適合用來理解程式行為或追查執行問題：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>qemu-aarch64<span class="w"> </span>-strace<span class="w"> </span>./hello-aarch64
+</span></code></pre></div>
+<h2 id="system-mode">System mode 實作</h2>
+<p>System mode 需要準備與目標架構相容的 kernel 與 root filesystem。先安裝 ARM system emulator：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>qemu-system-arm
+</span></code></pre></div>
+<p>QEMU 可以模擬多種 machine，下列指令可以查看 ARM64 支援的 machine 與 CPU：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>qemu-system-aarch64<span class="w"> </span>-machine<span class="w"> </span><span class="nb">help</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>qemu-system-aarch64<span class="w"> </span>-cpu<span class="w"> </span><span class="nb">help</span>
+</span></code></pre></div>
+<p><code>virt</code> 是 QEMU 提供的通用 ARM virtual platform，適合啟動 Linux，不對應某一塊真實開發板。</p>
+<h3 id="alpine-linux-kernel-rootfs">下載 Alpine Linux kernel 與 rootfs</h3>
+<p>這裡使用 Alpine Linux 官方提供的 ARM64 netboot files：</p>
 <ul>
-<li>crash / panic：常見的有 abort、panic、assert 等等</li>
-<li>sanitizer issue：有如下幾種，一般來說 Rust 比較少這類的問題<ul>
-<li>ASan：double free、overflow、use-after-free</li>
-<li>UBSan：signed overflow、misaligned accesss</li>
-<li>LSan：memory leak</li>
+<li><code>vmlinuz-virt</code>：適用於 virtual machine 的 ARM64 Linux kernel。</li>
+<li><code>initramfs-virt</code>：開機初期使用的 root filesystem，包含建立系統環境所需的 init scripts 與基本工具。</li>
 </ul>
-</li>
-<li>Oracle：判斷結果是否正確<ul>
-<li>round-trip：decode 和 encode 行為是否一致</li>
-<li>differential：不同的實作是否有同樣的結果</li>
-</ul>
-</li>
-<li>Invariant：確定系統規則要成立，例如 seq number 不能往後倒退、不能有重複 ID 等等<ul>
-<li>當我們要驗證 protocol 或系統在亂塞入各種 input 是否符合預期時，通常不是把程式內的確認邏輯重新複製一份到 fuzz test 驗證中。而是設定不該被違反的規則，在測試後，依然同樣要遵守。</li>
-<li>怎麼找出合理且必須要遵守的系統規則是這個測試的真正關鍵，也是最難的地方</li>
-</ul>
-</li>
-</ul>
-<h2 id="fuzz_1">fuzz 的品質</h2>
+<p>下列 URL 使用 <code>latest-stable</code>，可以自動取得最新的 stable release：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mkdir<span class="w"> </span>qemu-alpine
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">cd</span><span class="w"> </span>qemu-alpine
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>curl<span class="w"> </span>--fail<span class="w"> </span>--location<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span>--output<span class="w"> </span>vmlinuz-virt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span>https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/aarch64/netboot/vmlinuz-virt
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>curl<span class="w"> </span>--fail<span class="w"> </span>--location<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span>--output<span class="w"> </span>initramfs-virt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span>https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/aarch64/netboot/initramfs-virt
+</span></code></pre></div>
+<p>如果需要可重現的開發環境，應將 URL 中的 <code>latest-stable</code> 改為固定版本，避免 kernel 與 userspace 在新版本發布後改變。</p>
+<h3 id="alpine-linux">啟動 Alpine Linux</h3>
+<p>Alpine netboot initramfs 會使用 DHCP 取得 IP，再從官方 repository 下載基礎套件與 <code>modloop-virt</code>。因此 QEMU 需要提供虛擬網路卡與 user-mode network backend：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>qemu-system-aarch64<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>-machine<span class="w"> </span>virt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span>-cpu<span class="w"> </span>cortex-a57<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span>-m<span class="w"> </span><span class="m">1024</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span>-nographic<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span>-kernel<span class="w"> </span>vmlinuz-virt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span>-initrd<span class="w"> </span>initramfs-virt<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span>-append<span class="w"> </span><span class="s2">&quot;console=ttyAMA0 ip=dhcp alpine_repo=https://dl-cdn.alpinelinux.org/alpine/latest-stable/main modloop=https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/aarch64/netboot/modloop-virt&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span>-netdev<span class="w"> </span>user,id<span class="o">=</span>net0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">  </span>-device<span class="w"> </span>virtio-net-pci,netdev<span class="o">=</span>net0
+</span></code></pre></div>
+<p>第一次啟動時需要等待套件與 kernel modules 下載完成。看到下列訊息就代表已經成功進入 Alpine Linux：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Welcome to Alpine Linux
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Kernel 6.x.x-virt on aarch64 (/dev/ttyAMA0)
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>localhost login:
+</span></code></pre></div>
+<p>輸入帳號 <code>root</code> 即可登入，預設不需要密碼。登入後可以確認 guest 的 CPU 架構與 kernel：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>uname<span class="w"> </span>-m
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>uname<span class="w"> </span>-a
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>cat<span class="w"> </span>/etc/alpine-release
+</span></code></pre></div>
+<p>這個範例的 rootfs 建立在 RAM 中，適合快速練習 QEMU system mode，但重新啟動後不會保留修改。如果需要 persistent storage，可以另外建立 virtual disk，再在 guest 中使用 <code>setup-alpine</code> 安裝系統。</p>
+<p>主要參數的用途如下：</p>
 <ul>
-<li>足夠完整的測試<ul>
-<li>有包含 raw bytes、structured message、protocol state 等等</li>
-<li>除了 crash 外也有 sanitizer、Oracle、Invariant 等等</li>
+<li><code>-machine virt</code>：使用 QEMU ARM virtual platform。</li>
+<li><code>-cpu cortex-a57</code>：選擇要模擬的 CPU model。</li>
+<li><code>-m 1024</code>：分配 1024 MiB guest memory。</li>
+<li><code>-nographic</code>：不開啟圖形視窗，將 serial console 連接到當前 terminal。</li>
+<li><code>-kernel</code>：直接載入 Linux kernel image。</li>
+<li><code>-initrd</code>：載入開機初期使用的 initramfs。</li>
+<li><code>-append</code>：傳遞 kernel command line，設定 serial console、DHCP、package repository 與 kernel module image。</li>
+<li><code>-netdev</code> 與 <code>-device</code>：建立 user-mode network backend 與 virtio network device。</li>
 </ul>
-</li>
-<li>coverage<ul>
-<li>一般來說 fuzz 測試都會搭配編譯器來評估每個 input 有走過哪些程式路徑，走得越多就代表測試越完整，我們的信心度也會比較大。</li>
-</ul>
-</li>
-<li>corpus 品質<ul>
-<li>好的 fuzz 測試工具會將能夠走新路徑的 input 存起來（稱之為 corpus），並且基於這些 corpus 來進行不同的變化。</li>
-<li>如果 corpus 品質高，fuzz tool 可以走遍更多 protocol path</li>
-<li>測試失敗的 crash artifact 也應該存起來，轉成 regression test</li>
-</ul>
-</li>
-<li>定期運行<ul>
-<li>整合到 CI 和 OSS-Fuzz</li>
-</ul>
-</li>
-</ul>
-<h2 id="oss-fuzz">OSS-Fuzz</h2>
-<p>Google 有提出 <a href="https://github.com/google/oss-fuzz">OSS-Fuzz 平台</a>可以幫開源軟體做 fuzz test。
-我們只要在該平台設定好怎麼編譯和執行，Google 會自動幫軟體進行 fuzz test，當有發現問題也會回報給我們。
-這樣就不用擔心自己沒有足夠的資源可以來進行 fuzz test，畢竟 fuzz test 通常都需要跑上多個小時才能發現問題。</p>
-<p>下面會列出大致流成為和，而詳細步驟可以參考<a href="https://google.github.io/oss-fuzz/">官方文件</a>：</p>
-<ol>
-<li>在貢獻之前，要先 sign <a href="https://cla.developers.google.com/about">CLA (Contributor License Agreements)</a> 才行</li>
-<li>接著 clone oss-fuzz，並且在 projects 下加上要放入的 project 資料夾</li>
-<li>資料夾裡面會有三個部份，可以參考 <a href="https://github.com/google/oss-fuzz/tree/master/projects/zenoh">zenoh</a> 的設定：</li>
-<li>project.yaml：project 的相關 configuration，例如要用什麼 fuzzer、程式語言、有問題要寄信給誰等等，這邊的聯絡信箱必須是跟 Google 綁定的才行</li>
-<li>Dockerfile：編譯 fuzz 測試的環境，記住 clone project 的時候可以加上 <code>--depth 1</code>，減少從 GitHub 下載流量</li>
-<li>build.sh：如何編譯 fuzz 測試</li>
-<li>
-<p>完成後我們可以在本地端先做測試</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 製作 docker image</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>build_image<span class="w"> </span>your-project
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 編譯 fuzzers，編譯結果會放在 build 資料夾下</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>build_fuzzers<span class="w"> </span>your-project
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 運行 fuzzer</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>run_fuzzer<span class="w"> </span>your-project<span class="w"> </span>your-fuzzer-name
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># 如果希望要有 coverage 結果，可以做下面的測試</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>build_fuzzers<span class="w"> </span>--sanitizer<span class="w"> </span>coverage<span class="w"> </span>your-project
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>python3<span class="w"> </span>infra/helper.py<span class="w"> </span>coverage<span class="w"> </span>--no-corpus-download<span class="w"> </span>your-project
+<p>在 <code>-nographic</code> 模式中，可以按 <code>Ctrl-A</code> 後再按 <code>X</code> 結束 QEMU。</p>
+<h2 id="_2">加速方式</h2>
+<p>QEMU 可以透過 dynamic binary translation 模擬不同的 CPU 架構，但速度通常比直接執行慢。
+如果 guest 與 host 使用相同 CPU 架構，Linux 上可以搭配 KVM，讓大部分 guest instructions 直接由真實 CPU 執行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>qemu-system-x86_64<span class="w"> </span>-enable-kvm<span class="w"> </span>...
 </span></code></pre></div>
-</li>
-<li>
-<p>都沒問題後就可以發 PR 到 GitHub 上了</p>
-</li>
-<li>被 merge 並等一段時間之後，用自己綁定的 Google 帳號登入 <a href="https://oss-fuzz.com/">oss-fuzz</a> 就可以看到運行 Fuzz test 的結果了<ul>
-<li>我們也可以在 <code>https://introspector.oss-fuzz.com/project-profile?project=&lt;your_project_name&gt;</code> 上直接看執行結果的 log 和圖表（例如 <a href="https://introspector.oss-fuzz.com/project-profile?project=zenoh">zenoh</a>），這個不需要權限</li>
-</ul>
-</li>
-</ol>
-<h2 id="_3">實作範例</h2>
-<p>以下使用 <a href="https://github.com/evshary/binary-fuzzing-labs">binary-fuzzing-labs</a> 中的範例，實際操作 libFuzzer 與 AFL++ source instrumentation。範例以 Ubuntu 為基礎，先安裝所需工具並 clone repository：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>clang<span class="w"> </span>make<span class="w"> </span>afl++<span class="w"> </span>build-essential<span class="w"> </span>llvm
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/evshary/binary-fuzzing-labs.git
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">cd</span><span class="w"> </span>binary-fuzzing-labs
-</span></code></pre></div>
-<p>Fuzzer 預設會持續執行，測試過程中可以按 <code>Ctrl-C</code> 停止。</p>
-<h3 id="libfuzzer">libFuzzer 範例</h3>
-<p>這個範例將 fuzz target 與 libFuzzer 編譯到同一個 process 中。libFuzzer 會不斷產生 input，並直接呼叫 <code>LLVMFuzzerTestOneInput</code> 測試目標函式。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span><span class="m">02</span>-libfuzzer
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># make build 實際執行下列編譯指令：</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># clang -std=c11 -Wall -Wextra -Wpedantic -O1 -g \</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1">#   -fsanitize=fuzzer,address,undefined fuzz_target.c -o fuzzer</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>make<span class="w"> </span>build
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="c1"># make fuzz 會建立輸出目錄，再執行：</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># ./fuzzer corpus -artifact_prefix=artifacts/</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>make<span class="w"> </span>fuzz
-</span></code></pre></div>
-<!-- markdownlint-disable MD046 -->
-<details class="example">
-<summary>展開查看 libFuzzer 執行結果</summary>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>INFO: Running with entropic power schedule (0xFF, 100).
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>INFO: A corpus is not provided, starting from an empty corpus
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>#2      INITED cov: 2 ft: 2 corp: 1/1b
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>#411    NEW    cov: 5 ft: 5 corp: 2/8b
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>#555    NEW    cov: 7 ft: 7 corp: 3/15b
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>...
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>ERROR: libFuzzer: deadly signal
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>SUMMARY: libFuzzer: deadly signal
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>Test unit written to artifacts/crash-&lt;hash&gt;
-</span></code></pre></div>
-</details>
-<!-- markdownlint-enable MD046 -->
-
-<p>這個範例不需要準備 seed，libFuzzer 會從空 input 開始建立 corpus。執行時可以從輸出觀察幾個重要欄位：</p>
-<ul>
-<li><code>cov</code>：目前觸及的 coverage。</li>
-<li><code>corp</code>：保留在 corpus 中的 input 數量與總大小。</li>
-<li><code>exec/s</code>：每秒執行的測試次數。</li>
-<li><code>NEW</code>：這個 input 找到了新路徑，已被加入 corpus。</li>
-</ul>
-<p>當 libFuzzer 找到隱藏的 <code>LIBFUZZ</code> 條件後，會觸發 crash，並將輸入存在 <code>artifacts/crash-*</code>。可以用下列指令重現問題：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># make reproduce 會取得第一個 crash artifact，實際執行類似：</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># ./fuzzer artifacts/crash-&lt;hash&gt; -runs=1</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>make<span class="w"> </span>reproduce
-</span></code></pre></div>
-<p>這個 target 同時啟用 AddressSanitizer 與 UndefinedBehaviorSanitizer，有助於找出 memory safety 與 undefined behavior 問題。</p>
-<h3 id="afl-source-instrumentation">AFL++ source instrumentation 範例</h3>
-<p>這個範例使用 <code>afl-clang-fast</code> 在編譯時插入 coverage 邏輯。與 libFuzzer 直接呼叫函式不同，這裡的 target 是獨立 process，會從檔案讀取 input。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>../03-source-instrumentation
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># 確認 AFL++ compiler wrapper 可以使用</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>afl-clang-fast<span class="w"> </span>--version
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># make build 實際執行下列編譯指令：</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># afl-clang-fast -std=c11 -Wall -Wextra -Wpedantic -O1 -g target.c -o target</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>make<span class="w"> </span>build
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># make fuzz 會建立非空 seed，再執行：</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1"># afl-fuzz -i input -o out -- ./target @@</span>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>make<span class="w"> </span>fuzz
-</span></code></pre></div>
-<!-- markdownlint-disable MD046 -->
-<details class="example">
-<summary>展開查看 AFL++ 執行結果</summary>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>afl-fuzz++4.09c
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>[+] Loaded a total of 1 seeds.
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>[+] All right - fork server is up.
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>[*] Target map size: 24
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>[*] Entering queue cycle 1.
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>...
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Statistics: 7 new corpus items found, 45.83% coverage achieved,
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>0 crashes saved, 0 timeouts saved
-</span></code></pre></div>
-</details>
-<!-- markdownlint-enable MD046 -->
-
-<p><code>make fuzz</code> 會自動建立一個非空的 seed，並將它放在 <code>input/</code>。AFL++ 會透過 <code>@@</code> 將每次產生的 input 檔案路徑傳給 target，測試結果則會放在 <code>out/default/</code>：</p>
-<ul>
-<li><code>queue/</code>：能夠觸及新路徑、被保留的 corpus。</li>
-<li><code>crashes/</code>：能夠造成 target crash 的 input。</li>
-<li><code>hangs/</code>：執行時間超過限制的 input。</li>
-</ul>
-<p>如果 AFL++ 在練習環境中因 core dump handler 或 CPU frequency scaling 設定而拒絕執行，可以在短時間的學習測試中使用：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 實際執行的 afl-fuzz 指令與上方相同，只是額外設定環境變數</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nv">AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">AFL_SKIP_CPUFREQ</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>make<span class="w"> </span>fuzz
-</span></code></pre></div>
-<p>這些環境變數會略過部分系統檢查，不應直接用在長時間的 fuzzing campaign。正式測試時，應依 <code>afl-fuzz</code> 的提示調整系統設定。</p>
-<p>範例已經提供可以觸發 <code>FUZZBUG!</code> 條件的 regression input，可用來確認 crash 能夠穩定重現：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># make reproduce 實際會將 regression input 傳給 target：</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># ./target &#39;regression/FUZZBUG!&#39;</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>make<span class="w"> </span>reproduce
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># make build-sanitized 實際執行：</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1"># afl-clang-fast -std=c11 -Wall -Wextra -Wpedantic -O1 -g \</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1">#   -fsanitize=address,undefined -fno-omit-frame-pointer \</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1">#   target.c -o target-sanitized</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>make<span class="w"> </span>build-sanitized
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>./target-sanitized<span class="w"> </span><span class="s1">&#39;regression/FUZZBUG!&#39;</span>
-</span></code></pre></div>
+<p>KVM 是 virtualization，主要用在 guest 與 host CPU 架構相同的情況；當兩者架構不同時，仍然需要 QEMU 進行 instruction translation。</p>
 
 
 
