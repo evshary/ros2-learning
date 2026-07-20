@@ -15,8 +15,10 @@
         <link rel="canonical" href="https://ros2.tw/others/qemu/">
       
       
-        <link rel="prev" href="../fuzz/">
+        <link rel="prev" href="../binary-analysis/">
       
+      
+        <link rel="next" href="../fuzz/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -2133,29 +2135,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../fuzz/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    模糊測試
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -2277,6 +2256,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fuzz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    模糊測試
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2406,6 +2408,7 @@
 <h2 id="_1">執行架構</h2>
 <pre class="mermaid"><code>flowchart TB
     subgraph UserMode[QEMU user mode]
+        direction TB
         App1[Guest architecture application]
         QemuUser[QEMU instruction translation&lt;br/&gt;and syscall translation]
         HostKernel1[Host Linux kernel]
@@ -2414,6 +2417,7 @@
     end
 
     subgraph SystemMode[QEMU system mode]
+        direction TB
         App2[Guest application]
         GuestKernel[Guest kernel]
         QemuSystem[QEMU CPU, memory&lt;br/&gt;and device emulation]
