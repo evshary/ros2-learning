@@ -121,5 +121,5 @@ nav:
     - 'Rust Miri': 'rust/miri.md'
   - 'Others':
     - 'Binary 分析': 'others/binary-analysis.md'
-    - '模糊測試': 'others/fuzz.md'
     - 'QEMU': 'others/qemu.md'
+    - '模糊測試': 'others/fuzz.md'
