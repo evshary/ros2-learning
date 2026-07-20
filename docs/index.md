@@ -20,6 +20,6 @@ ROS 在自動化領域越來越被廣泛使用，從最早的輪型機器人(AMR
 * :fontawesome-brands-github: [GitHub](https://github.com/evshary)
 * :fontawesome-brands-linkedin: [LinkedIn](https://www.linkedin.com/in/evshary)
 
-關於所有內容如未特別註明，皆採用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/">創用 CC 姓名標示-非商業性-相同方式分享 3.0 台灣 授權條款</a>
+關於所有內容如未特別註明，皆採用<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/tw/">創用 CC 姓名標示-非商業性-相同方式分享 3.0 台灣 授權條款</a>
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/tw/88x31.png" /></a>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/tw/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://licensebuttons.net/l/by-nc-sa/3.0/tw/88x31.png" /></a>

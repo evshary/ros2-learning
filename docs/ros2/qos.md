@@ -45,11 +45,11 @@ Publisher 和 Subscriber 要能夠通訊，兩者的 QoS 必須要先 compatible
 
 ## 實際範例
 
-我放了一些範例在[GitHub](https://github.com/evshary/ROS2_cheatsheet/tree/master/10.QoS)上，可以當作參考。
+我放了一些範例在[GitHub](https://github.com/evshary/ROS2_cheatsheet/tree/main/10.QoS)上，可以當作參考。
 
 ### C++
 
-C++ 的 QoS API 可以參考 [rclcpp::QoS Class Reference](http://docs.ros2.org/latest/api/rclcpp/classrclcpp_1_1QoS.html)
+C++ 的 QoS API 可以參考 [rclcpp::QoS Class Reference](https://docs.ros2.org/latest/api/rclcpp/classrclcpp_1_1QoS.html)
 
 基本上作法是先 init QoS，然後在 create publisher / subscriber 的時候把 QoS 帶入即可。
 
@@ -121,7 +121,7 @@ auto subscription_ = this->create_subscription<std_msgs::msg::String>("topic", q
 
 ### Python
 
-Python 的 QoS API 可以參考 [rclpy Quality of Service](http://docs.ros2.org/latest/api/rclpy/api/qos.html)
+Python 的 QoS API 可以參考 [rclpy Quality of Service](https://docs.ros2.org/latest/api/rclpy/api/qos.html)
 
 ## 官方建議設定
 

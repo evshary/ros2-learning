@@ -9,7 +9,7 @@ keywords:
 
 ## PlotJuggler
 
-PlotJuggler 可以用 GUI 的方式顯示 topic 數值隨時間的變化，他是開源的工具，程式碼可以在 [GitHub](https://github.com/facontidavide/PlotJuggler) 找到。
+PlotJuggler 可以用 GUI 的方式顯示 topic 數值隨時間的變化，他是開源的工具，程式碼可以在 [GitHub](https://github.com/PlotJuggler/PlotJuggler) 找到。
 如果有比較不同數值(只能是數值)之間隨時間的變化趨勢，可以用這個工具來觀察。
 
 * 使用方式

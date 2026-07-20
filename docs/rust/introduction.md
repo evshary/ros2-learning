@@ -182,4 +182,4 @@ cargo cache --remove-dir all
 
 ### Low-Level Concurrency
 
-* [Rust Atomics and Locks: Low-Level Concurrency in Practice](https://marabos.nl/atomics/): 講解 Rust 底層的 concurrency 如何運作
+* [Rust Atomics and Locks: Low-Level Concurrency in Practice](https://mara.nl/atomics/): 講解 Rust 底層的 concurrency 如何運作
