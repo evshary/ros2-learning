@@ -74,7 +74,7 @@ VLA 目前最知名的專案有 Google 的 [RT-2](https://deepmind.google/blog/r
     * [ICRA (IEEE International Conference on Robotics and Automation)](https://ieee-icra.org)：機器人領域最早也最權威的研討會，討論各種理論與演算法的創新
     * IROS (IEEE/RSJ International Conference on Intelligent Robots and Systems)：由 IEEE RAS 與 日本機器人學會 (RSJ) 共同主辦，更強調實際的應用。
 * 自駕車重要研討會
-    * [IEEE IV (Intelligent Vehicles Symposium)](http://ieee-iv.org/)：專注於自動駕駛系統的技術實現與測試。
+    * [IEEE IV (Intelligent Vehicles Symposium)](https://ieee-iv.org/)：專注於自動駕駛系統的技術實現與測試。
     * CVPR (Conference on Computer Vision and Pattern Recognition)：電腦視覺第一大會，強調如何落地應用
     * ICCV (International Conference on Computer Vision)：兩年一次(基數年)，偏向學術底層理論
     * ECCV (European Conference on Computer Vision)：兩年一次(偶數年)，有強烈歐洲色彩
