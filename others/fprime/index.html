@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Autoware 的各個系統模組架構">
+        <meta name="description" content="正體中文 ROS 2 相關教學文件，包含 DDS、Zenoh 及 Autoware 等內容">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/autoware/modules/">
+        <link rel="canonical" href="https://ros2.tw/others/fprime/">
       
       
-        <link rel="prev" href="../installation/">
+        <link rel="prev" href="../fuzz/">
       
-      
-        <link rel="next" href="../map/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>Autoware 模組 - ROS 2 筆記</title>
+        <title>F´（F Prime） - ROS 2 筆記</title>
       
     
     
@@ -88,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#node-diagram" class="md-skip">
+        <a href="#f-f-prime" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Autoware 模組
+              F´（F Prime）
             
           </span>
         </div>
@@ -1249,20 +1247,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1278,7 +1274,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Autoware 入門
@@ -1292,7 +1288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../autoware/introduction/" class="md-nav__link">
         
   
   
@@ -1315,7 +1311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../autoware/installation/" class="md-nav__link">
         
   
   
@@ -1335,30 +1331,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Autoware 模組
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../autoware/modules/" class="md-nav__link">
         
   
   
@@ -1369,33 +1345,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#node-diagram" class="md-nav__link">
-    <span class="md-ellipsis">
-      Node diagram
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1408,7 +1357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../map/" class="md-nav__link">
+      <a href="../../autoware/map/" class="md-nav__link">
         
   
   
@@ -1431,7 +1380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../simulation/" class="md-nav__link">
+      <a href="../../autoware/simulation/" class="md-nav__link">
         
   
   
@@ -1454,7 +1403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../../autoware/api/" class="md-nav__link">
         
   
   
@@ -2121,18 +2070,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
         
           
           <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
@@ -2148,7 +2099,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_12">
             <span class="md-nav__icon md-icon"></span>
             Others
@@ -2162,7 +2113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../others/binary-analysis/" class="md-nav__link">
+      <a href="../binary-analysis/" class="md-nav__link">
         
   
   
@@ -2185,7 +2136,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../others/qemu/" class="md-nav__link">
+      <a href="../qemu/" class="md-nav__link">
         
   
   
@@ -2208,7 +2159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../others/fuzz/" class="md-nav__link">
+      <a href="../fuzz/" class="md-nav__link">
         
   
   
@@ -2228,10 +2179,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../others/fprime/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    F´（F Prime）
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2242,6 +2215,35 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用資源
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2271,6 +2273,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2279,9 +2283,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#node-diagram" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Node diagram
+      常用資源
     </span>
   </a>
   
@@ -2303,52 +2307,26 @@
 
 
 
-  <h1>Autoware 模組</h1>
-
-<p>在 Autoware 中可以拆成如下這些 module</p>
+<h1 id="f-f-prime">F´（F Prime）</h1>
+<p>F´（讀作 F Prime）是由 NASA 噴射推進實驗室（JPL）開發的開源飛行軟體與嵌入式系統框架，主要使用 C++。它最初為太空任務設計，也適合用於 CubeSat、SmallSat、儀器及其他需要可靠軟體架構的嵌入式系統。</p>
+<p>F´ 採用元件化架構，透過定義清楚的介面連接各個元件，並提供執行緒、訊息佇列、作業系統抽象層、遙測、命令處理及事件記錄等常用功能。開發者也能使用 FPP（F Prime Prime）描述元件與系統拓樸，再自動產生部分 C++ 程式碼，減少重複工作。</p>
+<h2 id="_1">常用資源</h2>
 <ul>
-<li>Sensing:<ul>
-<li>包含了 sensor 的 ROS driver，以及一些初步 prepocessor 的 ROS node</li>
+<li><a href="https://fprime.jpl.nasa.gov/">F´ 官方網站</a>：功能介紹、最新消息與專案入口。</li>
+<li><a href="https://fprime.jpl.nasa.gov/latest/docs/">F´ 官方文件</a>：教學、使用手冊、操作指南與 API 參考資料。</li>
+<li><a href="https://fprime.jpl.nasa.gov/latest/docs/getting-started/installing-fprime/">安裝指南</a>：開發環境需求及安裝步驟。</li>
+<li><a href="https://github.com/nasa/fprime">F´ GitHub</a>：原始碼、版本發布與問題追蹤。</li>
+<li><a href="https://github.com/nasa/fprime/discussions">F´ GitHub Discussions</a>：使用問題與社群討論。</li>
+<li><a href="https://nasa.github.io/fpp/">FPP 文件</a>：FPP 建模語言的介紹與使用指南。</li>
+<li><a href="https://fprime.jpl.nasa.gov/cheatsheet.pdf">F Prime cheatsheet</a>：F Prime 的小抄，說明一些基本概念。</li>
 </ul>
-</li>
-<li>Localization:<ul>
-<li>會使用 Sensing 的資料來判斷自己的所在位置，這是很重要的模組，不管是 Perception, Planning, Control 都會使用 Localization 的資料近一步判斷</li>
-</ul>
-</li>
-<li>Map Data<ul>
-<li>地圖資訊，Localization(對照自己在哪裡)、Perception(知道紅綠燈位置)、Planning(在地圖畫路徑並判斷交通規則)，都會用到這個</li>
-</ul>
-</li>
-<li>Perception<ul>
-<li>包含物件辨識、紅綠燈辨識等等</li>
-</ul>
-</li>
-<li>Planning<ul>
-<li>根據定位位置，和 Perception 所偵測到的物件規劃出適合的路線</li>
-</ul>
-</li>
-<li>Control<ul>
-<li>根據 Planning 的規劃路徑來實際控制車子的移動</li>
-</ul>
-</li>
-<li>Vehicle Interface<ul>
-<li>Autoware 和汽車 DbW 連接的界面，通常會隨汽車不同而調整</li>
-</ul>
-</li>
-</ul>
-<p><img alt="Autoware Architecture" src="../images/autoware_architecture.avif" />
-圖片來源：<a href="https://github.com/autowarefoundation/autoware">https://github.com/autowarefoundation/autoware</a></p>
-<h2 id="node-diagram">Node diagram</h2>
-<p>上面畢竟是比較粗略的劃分，如果想要更細緻了解 Autoware 中 ROS topic 和 node 的關係，可以參考官方畫的 <a href="https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/node-diagram/">node diagram</a>，這個對 debug 和開發非常有幫助。</p>
+<p>初次接觸時，建議先完成官方文件中的 HelloWorld 教學，再進一步了解元件、連接埠、拓樸及 Ground Data System（GDS）。</p>
 
 
 
 
 
 
-
-  
-  
 
 
 
