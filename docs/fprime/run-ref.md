@@ -31,9 +31,20 @@ fprime-util generate
 fprime-util build
 ```
 
-`fprime-util generate` 通常只需在第一次建置，或刪除 build artifacts 後重新執行。修改 component 或 topology 後，一般只需再次執行 `fprime-util build`。
+`fprime-util generate` 通常只需在第一次建置，或刪除 build cache 後重新執行。修改 component 或 topology 後，一般只需再次執行 `fprime-util build`。
 
-F´ 底層使用 CMake 作為建置系統。`fprime-util generate` 是對 CMake configure 階段的包裝，會讀取 `CMakeLists.txt`、FPP 模型與 toolchain 設定，在 `build-artifacts/` 中產生 CMake cache 和建置檔案，但不會真正編譯程式。接著執行 `fprime-util build`，才會透過 CMake 呼叫實際的編譯工具，完成程式碼產生、編譯與連結。
+F´ 底層使用 CMake 作為建置系統。`fprime-util generate` 是對 CMake configure 階段的包裝，會讀取 `CMakeLists.txt`、FPP 模型與 toolchain 設定，但不會真正編譯程式。接著執行 `fprime-util build`，才會透過 CMake 呼叫實際的編譯工具，完成程式碼產生、編譯與連結。
+
+完成兩個指令後，`TestDeploymentsProject` 中主要會出現以下資料夾：
+
+```text
+TestDeploymentsProject/
+├── build-fprime-automatic-native/  # generate 建立的 CMake cache 與建置檔案
+└── build-artifacts/                # build 輸出的執行檔、dictionary 等成品
+    └── <platform>/
+```
+
+`<platform>` 會依使用的作業系統或 toolchain 而不同，例如原生 Linux 建置通常是 `Linux`。FPP 自動產生的 C++ 程式碼與編譯過程中的中間檔案主要位於 build cache；Ref 執行檔與 GDS 使用的 topology dictionary 則可在 `build-artifacts/` 下找到。
 
 ## 清除建置結果
 
