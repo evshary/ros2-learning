@@ -104,6 +104,9 @@ nav:
   - 'Embodied AI':
     - 'Embodied AI 介紹': 'embodied-ai/introduction.md'
     - 'NVIDIA GPU 安裝': 'embodied-ai/gpu.md'
+  - 'F´（F Prime）':
+    - 'F´ 介紹': 'fprime/introduction.md'
+    - '執行 Ref Deployment': 'fprime/run-ref.md'
   - 'Rust':
     - 'Rust 介紹': 'rust/introduction.md'
     - '為什麼選擇 Rust': 'rust/why_rust.md'
@@ -123,4 +126,3 @@ nav:
     - 'Binary 分析': 'others/binary-analysis.md'
     - 'QEMU': 'others/qemu.md'
     - '模糊測試': 'others/fuzz.md'
-    - 'F´（F Prime）': 'others/fprime.md'
