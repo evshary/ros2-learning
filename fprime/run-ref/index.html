@@ -1856,6 +1856,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#-no-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 --no-app 分開啟動
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2415,6 +2424,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#-no-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用 --no-app 分開啟動
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2437,33 +2455,39 @@
 <h2 id="_1">準備環境</h2>
 <p>先下載 F´，並建立 Python virtual environment：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/nasa/fprime.git
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>fprime
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>fprime/TestDeploymentsProject
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>fprime-venv
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">source</span><span class="w"> </span>fprime-venv/bin/activate
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>../requirements.txt
 </span></code></pre></div>
-<p>每次開啟新的 terminal，都需要回到 F´ 根目錄並重新啟用 virtual environment：</p>
+<p>每次開啟新的 terminal，都需要回到 <code>TestDeploymentsProject</code> 並重新啟用 virtual environment：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">source</span><span class="w"> </span>fprime-venv/bin/activate
 </span></code></pre></div>
 <h2 id="ref">編譯 Ref</h2>
-<p>進入 Ref deployment，產生建置環境並編譯：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>TestDeploymentsProject/Ref
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>fprime-util<span class="w"> </span>generate
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>fprime-util<span class="w"> </span>build
+<p>在 <code>TestDeploymentsProject</code> 目錄產生建置環境並編譯：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>fprime-util<span class="w"> </span>generate
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>fprime-util<span class="w"> </span>build
 </span></code></pre></div>
-<p><code>fprime-util generate</code> 通常只需在第一次建置，或刪除 build artifacts 後重新執行。修改 component 或 topology 後，一般只需再次執行 <code>fprime-util build</code>。</p>
-<p>F´ 底層使用 CMake 作為建置系統。<code>fprime-util generate</code> 是對 CMake configure 階段的包裝，會讀取 <code>CMakeLists.txt</code>、FPP 模型與 toolchain 設定，在 <code>build-artifacts/</code> 中產生 CMake cache 和建置檔案，但不會真正編譯程式。接著執行 <code>fprime-util build</code>，才會透過 CMake 呼叫實際的編譯工具，完成程式碼產生、編譯與連結。</p>
+<p><code>fprime-util generate</code> 通常只需在第一次建置，或刪除 build cache 後重新執行。修改 component 或 topology 後，一般只需再次執行 <code>fprime-util build</code>。</p>
+<p>F´ 底層使用 CMake 作為建置系統。<code>fprime-util generate</code> 是對 CMake configure 階段的包裝，會讀取 <code>CMakeLists.txt</code>、FPP 模型與 toolchain 設定，但不會真正編譯程式。接著執行 <code>fprime-util build</code>，才會透過 CMake 呼叫實際的編譯工具，完成程式碼產生、編譯與連結。</p>
+<p>完成兩個指令後，<code>TestDeploymentsProject</code> 中主要會出現以下資料夾：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>TestDeploymentsProject/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── build-fprime-automatic-native/  # generate 建立的 CMake cache 與建置檔案
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>└── build-artifacts/                # build 輸出的執行檔、dictionary 等成品
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    └── &lt;platform&gt;/
+</span></code></pre></div>
+<p><code>&lt;platform&gt;</code> 會依使用的作業系統或 toolchain 而不同，例如原生 Linux 建置通常是 <code>Linux</code>。FPP 自動產生的 C++ 程式碼與編譯過程中的中間檔案主要位於 build cache；Ref 執行檔與 GDS 使用的 topology dictionary 則可在 <code>build-artifacts/</code> 下找到。</p>
 <h2 id="_2">清除建置結果</h2>
 <p>若要清除 project 的 CMake cache、編譯結果及其他建置產物，可以執行：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>fprime-util<span class="w"> </span>purge
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>fprime-util<span class="w"> </span>purge
 </span></code></pre></div>
 <p>這個指令不會刪除 component、FPP 模型或 C++ 原始碼。清除後需要重新產生建置環境並編譯：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>fprime-util<span class="w"> </span>generate
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>fprime-util<span class="w"> </span>build
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>fprime-util<span class="w"> </span>generate
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>fprime-util<span class="w"> </span>build
 </span></code></pre></div>
 <h2 id="gds-ref">啟動 GDS 與 Ref</h2>
-<p>在 Ref 目錄中執行：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>fprime-gds
+<p>在 <code>TestDeploymentsProject</code> 目錄中執行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>fprime-gds
 </span></code></pre></div>
 <p>GDS 會自動找到 Ref 的 dictionary、啟動 Ref 執行檔，並開啟瀏覽器。若瀏覽器沒有自動開啟，可前往 <a href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a>。</p>
 <p>畫面右上角顯示綠色連線圖示後，可以在下列頁面觀察或操作 Ref：</p>
@@ -2474,7 +2498,20 @@
 <li><strong>Logs</strong>：檢查 GDS 與 Ref 的執行紀錄。</li>
 </ul>
 <p>按下 <code>Ctrl+C</code> 即可停止 GDS 與 Ref。</p>
-<p>更多資訊可參考 <a href="https://fprime.jpl.nasa.gov/latest/Ref/">F´ Ref 官方文件</a>與 <a href="https://fprime.jpl.nasa.gov/latest/docs/user-manual/overview/gds-introduction/">GDS 使用說明</a>。</p>
+<h2 id="-no-app">使用 <code>--no-app</code> 分開啟動</h2>
+<p>預設執行 <code>fprime-gds</code> 時，GDS 會自動啟動 Ref。若要自行控制 Ref 的啟動參數、搭配 debugger，或連接另一台裝置上的 deployment，可以加上 <code>--no-app</code>，只啟動 GDS：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>fprime/TestDeploymentsProject
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">source</span><span class="w"> </span>fprime-venv/bin/activate
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>fprime-gds<span class="w"> </span>--no-app
+</span></code></pre></div>
+<p>GDS 啟動後會在預設的 TCP port <code>50000</code> 等待 Ref 連線。接著開啟另一個 terminal，啟用相同的 virtual environment，再手動執行 Ref：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>fprime/TestDeploymentsProject
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">source</span><span class="w"> </span>fprime-venv/bin/activate
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>./build-artifacts/Linux/Ref/bin/Ref<span class="w"> </span>-a<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>-p<span class="w"> </span><span class="m">50000</span>
+</span></code></pre></div>
+<p><code>-a</code> 指定 GDS 位址，<code>-p</code> 指定通訊埠。macOS 或其他 toolchain 的 platform 目錄名稱可能不是 <code>Linux</code>，請將路徑中的 <code>Linux</code> 換成 <code>build-artifacts/</code> 下實際產生的目錄名稱。</p>
+<p>停止時，分別在 Ref 與 GDS 所在的 terminal 按下 <code>Ctrl+C</code>。</p>
+<p>更多資訊可參考 <a href="https://github.com/nasa/fprime/tree/devel/TestDeploymentsProject/Ref">TestDeploymentsProject/Ref README</a>、<a href="https://fprime.jpl.nasa.gov/latest/Ref/">F´ Ref 官方文件</a>與 <a href="https://fprime.jpl.nasa.gov/latest/docs/user-manual/overview/gds-introduction/">GDS 使用說明</a>。</p>
 
 
 
