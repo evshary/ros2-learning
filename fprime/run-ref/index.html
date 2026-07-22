@@ -12,11 +12,13 @@
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/others/fprime/">
+        <link rel="canonical" href="https://ros2.tw/fprime/run-ref/">
       
       
-        <link rel="prev" href="../fuzz/">
+        <link rel="prev" href="../introduction/">
       
+      
+        <link rel="next" href="../../rust/introduction/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -24,7 +26,7 @@
     
     
       
-        <title>F´（F Prime） - ROS 2 筆記</title>
+        <title>執行 Ref Deployment - ROS 2 筆記</title>
       
     
     
@@ -86,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#f-f-prime" class="md-skip">
+        <a href="#f-ref-deployment" class="md-skip">
           Skip to content
         </a>
       
@@ -122,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              F´（F Prime）
+              執行 Ref Deployment
             
           </span>
         </div>
@@ -1703,6 +1705,177 @@
       
   
   
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    F´（F Prime）
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            F´（F Prime）
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    F´ 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    執行 Ref Deployment
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    執行 Ref Deployment
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      準備環境
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ref" class="md-nav__link">
+    <span class="md-ellipsis">
+      編譯 Ref
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      清除建置結果
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gds-ref" class="md-nav__link">
+    <span class="md-ellipsis">
+      啟動 GDS 與 Ref
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
   
   
     
@@ -1714,10 +1887,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
         
           
-          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
             
   
   
@@ -1730,8 +1903,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_11">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
             <span class="md-nav__icon md-icon"></span>
             Rust
           </label>
@@ -2070,23 +2243,21 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
         
           
-          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
             
   
   
@@ -2099,8 +2270,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_12">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
             <span class="md-nav__icon md-icon"></span>
             Others
           </label>
@@ -2113,7 +2284,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../binary-analysis/" class="md-nav__link">
+      <a href="../../others/binary-analysis/" class="md-nav__link">
         
   
   
@@ -2136,7 +2307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qemu/" class="md-nav__link">
+      <a href="../../others/qemu/" class="md-nav__link">
         
   
   
@@ -2159,7 +2330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fuzz/" class="md-nav__link">
+      <a href="../../others/fuzz/" class="md-nav__link">
         
   
   
@@ -2170,80 +2341,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    F´（F Prime）
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    F´（F Prime）
-    
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      常用資源
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2285,7 +2382,34 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      常用資源
+      準備環境
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ref" class="md-nav__link">
+    <span class="md-ellipsis">
+      編譯 Ref
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      清除建置結果
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gds-ref" class="md-nav__link">
+    <span class="md-ellipsis">
+      啟動 GDS 與 Ref
     </span>
   </a>
   
@@ -2307,20 +2431,50 @@
 
 
 
-<h1 id="f-f-prime">F´（F Prime）</h1>
-<p>F´（讀作 F Prime）是由 NASA 噴射推進實驗室（JPL）開發的開源飛行軟體與嵌入式系統框架，主要使用 C++。它最初為太空任務設計，也適合用於 CubeSat、SmallSat、儀器及其他需要可靠軟體架構的嵌入式系統。</p>
-<p>F´ 採用元件化架構，透過定義清楚的介面連接各個元件，並提供執行緒、訊息佇列、作業系統抽象層、遙測、命令處理及事件記錄等常用功能。開發者也能使用 FPP（F Prime Prime）描述元件與系統拓樸，再自動產生部分 C++ 程式碼，減少重複工作。</p>
-<h2 id="_1">常用資源</h2>
+<h1 id="f-ref-deployment">執行 F´ Ref Deployment</h1>
+<p><code>TestDeploymentsProject/Ref</code> 是 F´ 原始碼中的參考 deployment，可在 Linux 或 macOS 上執行。它包含完整的 component、topology、Command and Data Handling，以及與 Ground Data System（GDS）通訊所需的功能，適合用來確認開發環境是否正常。</p>
+<p>以下步驟以 F´ 原始碼的開發版本為例。</p>
+<h2 id="_1">準備環境</h2>
+<p>先下載 F´，並建立 Python virtual environment：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/nasa/fprime.git
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>fprime
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>fprime-venv
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">source</span><span class="w"> </span>fprime-venv/bin/activate
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span></code></pre></div>
+<p>每次開啟新的 terminal，都需要回到 F´ 根目錄並重新啟用 virtual environment：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">source</span><span class="w"> </span>fprime-venv/bin/activate
+</span></code></pre></div>
+<h2 id="ref">編譯 Ref</h2>
+<p>進入 Ref deployment，產生建置環境並編譯：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>TestDeploymentsProject/Ref
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>fprime-util<span class="w"> </span>generate
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>fprime-util<span class="w"> </span>build
+</span></code></pre></div>
+<p><code>fprime-util generate</code> 通常只需在第一次建置，或刪除 build artifacts 後重新執行。修改 component 或 topology 後，一般只需再次執行 <code>fprime-util build</code>。</p>
+<p>F´ 底層使用 CMake 作為建置系統。<code>fprime-util generate</code> 是對 CMake configure 階段的包裝，會讀取 <code>CMakeLists.txt</code>、FPP 模型與 toolchain 設定，在 <code>build-artifacts/</code> 中產生 CMake cache 和建置檔案，但不會真正編譯程式。接著執行 <code>fprime-util build</code>，才會透過 CMake 呼叫實際的編譯工具，完成程式碼產生、編譯與連結。</p>
+<h2 id="_2">清除建置結果</h2>
+<p>若要清除 project 的 CMake cache、編譯結果及其他建置產物，可以執行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>fprime-util<span class="w"> </span>purge
+</span></code></pre></div>
+<p>這個指令不會刪除 component、FPP 模型或 C++ 原始碼。清除後需要重新產生建置環境並編譯：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>fprime-util<span class="w"> </span>generate
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>fprime-util<span class="w"> </span>build
+</span></code></pre></div>
+<h2 id="gds-ref">啟動 GDS 與 Ref</h2>
+<p>在 Ref 目錄中執行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>fprime-gds
+</span></code></pre></div>
+<p>GDS 會自動找到 Ref 的 dictionary、啟動 Ref 執行檔，並開啟瀏覽器。若瀏覽器沒有自動開啟，可前往 <a href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a>。</p>
+<p>畫面右上角顯示綠色連線圖示後，可以在下列頁面觀察或操作 Ref：</p>
 <ul>
-<li><a href="https://fprime.jpl.nasa.gov/">F´ 官方網站</a>：功能介紹、最新消息與專案入口。</li>
-<li><a href="https://fprime.jpl.nasa.gov/latest/docs/">F´ 官方文件</a>：教學、使用手冊、操作指南與 API 參考資料。</li>
-<li><a href="https://fprime.jpl.nasa.gov/latest/docs/getting-started/installing-fprime/">安裝指南</a>：開發環境需求及安裝步驟。</li>
-<li><a href="https://github.com/nasa/fprime">F´ GitHub</a>：原始碼、版本發布與問題追蹤。</li>
-<li><a href="https://github.com/nasa/fprime/discussions">F´ GitHub Discussions</a>：使用問題與社群討論。</li>
-<li><a href="https://nasa.github.io/fpp/">FPP 文件</a>：FPP 建模語言的介紹與使用指南。</li>
-<li><a href="https://fprime.jpl.nasa.gov/cheatsheet.pdf">F Prime cheatsheet</a>：F Prime 的小抄，說明一些基本概念。</li>
+<li><strong>Commanding</strong>：傳送 command，例如 command dispatcher 的 <code>CMD_NO_OP</code>。</li>
+<li><strong>Channels</strong>：查看 telemetry channel。</li>
+<li><strong>Events</strong>：查看 Ref 產生的 event。</li>
+<li><strong>Logs</strong>：檢查 GDS 與 Ref 的執行紀錄。</li>
 </ul>
-<p>初次接觸時，建議先完成官方文件中的 HelloWorld 教學，再進一步了解元件、連接埠、拓樸及 Ground Data System（GDS）。</p>
+<p>按下 <code>Ctrl+C</code> 即可停止 GDS 與 Ref。</p>
+<p>更多資訊可參考 <a href="https://fprime.jpl.nasa.gov/latest/Ref/">F´ Ref 官方文件</a>與 <a href="https://fprime.jpl.nasa.gov/latest/docs/user-manual/overview/gds-introduction/">GDS 使用說明</a>。</p>
 
 
 

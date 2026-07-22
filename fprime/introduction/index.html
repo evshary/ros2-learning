@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="介紹 Zenoh 的 key expression 相關規則">
+        <meta name="description" content="正體中文 ROS 2 相關教學文件，包含 DDS、Zenoh 及 Autoware 等內容">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/zenoh/keyexpr/">
+        <link rel="canonical" href="https://ros2.tw/fprime/introduction/">
       
       
-        <link rel="prev" href="../mode/">
+        <link rel="prev" href="../../embodied-ai/gpu/">
       
       
-        <link rel="next" href="../shared_memory/">
+        <link rel="next" href="../run-ref/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Zenoh key - ROS 2 筆記</title>
+        <title>F´ 介紹 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#key-expression" class="md-skip">
+        <a href="#f-f-prime" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Zenoh key
+              F´ 介紹
             
           </span>
         </div>
@@ -974,20 +974,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1003,7 +1001,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Zenoh 入門
@@ -1017,7 +1015,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../zenoh/introduction/" class="md-nav__link">
         
   
   
@@ -1040,7 +1038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mode/" class="md-nav__link">
+      <a href="../../zenoh/mode/" class="md-nav__link">
         
   
   
@@ -1060,30 +1058,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Zenoh key
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../zenoh/keyexpr/" class="md-nav__link">
         
   
   
@@ -1094,51 +1072,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#key-expression" class="md-nav__link">
-    <span class="md-ellipsis">
-      key expression
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#selector" class="md-nav__link">
-    <span class="md-ellipsis">
-      Selector
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      參考連結
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1151,7 +1084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../shared_memory/" class="md-nav__link">
+      <a href="../../zenoh/shared_memory/" class="md-nav__link">
         
   
   
@@ -1174,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../debug/" class="md-nav__link">
+      <a href="../../zenoh/debug/" class="md-nav__link">
         
   
   
@@ -1197,7 +1130,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../protocol/" class="md-nav__link">
+      <a href="../../zenoh/protocol/" class="md-nav__link">
         
   
   
@@ -1220,7 +1153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../format/" class="md-nav__link">
+      <a href="../../zenoh/format/" class="md-nav__link">
         
   
   
@@ -1243,7 +1176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../zenoh_bridge_ros2/" class="md-nav__link">
+      <a href="../../zenoh/zenoh_bridge_ros2/" class="md-nav__link">
         
   
   
@@ -1266,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cpp/" class="md-nav__link">
+      <a href="../../zenoh/cpp/" class="md-nav__link">
         
   
   
@@ -1289,7 +1222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pico/" class="md-nav__link">
+      <a href="../../zenoh/pico/" class="md-nav__link">
         
   
   
@@ -1772,18 +1705,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -1799,7 +1734,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             F´（F Prime）
@@ -1810,10 +1745,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../fprime/introduction/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    F´ 介紹
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1824,6 +1781,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nasa-f" class="md-nav__link">
+    <span class="md-ellipsis">
+      為何 NASA 要開源 F´
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#component" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component 的種類
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f" class="md-nav__link">
+    <span class="md-ellipsis">
+      F´ 如何運行
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      整體架構
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      F´ 如何傳遞資料
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用資源
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1836,7 +1867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fprime/run-ref/" class="md-nav__link">
+      <a href="../run-ref/" class="md-nav__link">
         
   
   
@@ -2357,6 +2388,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2365,18 +2398,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#key-expression" class="md-nav__link">
+  <a href="#nasa-f" class="md-nav__link">
     <span class="md-ellipsis">
-      key expression
+      為何 NASA 要開源 F´
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#selector" class="md-nav__link">
+  <a href="#component" class="md-nav__link">
     <span class="md-ellipsis">
-      Selector
+      Component 的種類
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f" class="md-nav__link">
+    <span class="md-ellipsis">
+      F´ 如何運行
     </span>
   </a>
   
@@ -2385,7 +2427,25 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      參考連結
+      整體架構
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#f_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      F´ 如何傳遞資料
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用資源
     </span>
   </a>
   
@@ -2407,71 +2467,85 @@
 
 
 
-  <h1>Zenoh key</h1>
-
-<p>Zenoh 對上層使用者來說就是提供 key/value 的配對。
-使用者不需要知道對方位置，只需要對 key 做操作即可彼此通訊。
-在其他 protocol 中，通常會稱之為 topic，但因為在 Zenoh 中還有其他的特性，所以我們稱之為 key。</p>
-<p>一個典型的例子是 <code>organizationA/building8/room275/sensor3/temperature</code>，代表著機構 A 的第 8 棟建築下房間 275 的 3 號 sensor 的溫度。</p>
-<p>我們可以看出 key 有兩個主要的特性：</p>
-<ol>
-<li>階層關係：Zenoh 可以利用 <code>/</code> 來把一個 key 分成多個 chunk，這樣在比較兩個 key 的時候可以有效降低計算量。</li>
-<li>key expression：我們可以利用一些特殊字符來涵蓋多個 key，就如同 regular expression 一樣。</li>
-</ol>
-<p>因此 key 中有些規則必須要遵守：</p>
+<h1 id="f-f-prime">F´（F Prime）介紹</h1>
+<p>F´（讀作 F Prime）是由 NASA 噴射推進實驗室（JPL）開發的開源飛行軟體與嵌入式系統框架，主要使用 C++。它最初為太空任務設計，也適合用於 CubeSat、SmallSat、太空機器人（如直升機、機械臂）、儀器及其他需要可靠軟體架構的嵌入式系統。</p>
+<p>F´ 採用元件化架構，透過定義清楚的介面連接各個元件，並提供執行緒、訊息佇列、作業系統抽象層、遙測、命令處理及事件記錄等常用功能。
+開發者也能使用 FPP（F Prime Prime）描述元件與系統拓樸，再自動產生部分 C++ 程式碼，減少重複工作。
+F´ 的價值在於提供一套專為太空任務設計的框架，避免開發者每次都要從頭設計與實作常見功能。</p>
+<h2 id="nasa-f">為何 NASA 要開源 F´</h2>
+<p>F´ 開源的原因包括：</p>
 <ul>
-<li>開頭結尾不能是 <code>/</code>，且在 key 內部也不能連續出現，例如 <code>//</code></li>
-<li>key 必須是非空的 UTF-8 字元</li>
-<li>key 內部不能用到一些保留字元，如 <code>*</code>, <code>$</code>, <code>?</code>, <code>#</code>，這些會在 key expression 中使用到</li>
+<li>降低大學或小型太空任務的開發門檻。</li>
+<li>讓政府機構、學校、企業與國際組織共同使用、檢視及改進框架。</li>
+<li>透過社群貢獻支援更多硬體平台與使用情境。</li>
+<li>讓學術單位能將實際的飛行軟體框架用於教學，培養相關人才。</li>
 </ul>
-<h2 id="key-expression">key expression</h2>
-<p>Key expression 最大的用途在於，我們可以用他來對多個 key 進行存取，他主要的設計來自於 <a href="https://github.com/eclipse-zenoh/roadmap/blob/main/rfcs/ALL/Key%20Expressions.md">Key Expression Language</a>。</p>
-<p>主要特性有：</p>
+<h2 id="component">Component 的種類</h2>
+<p>F´ component 依執行方式分為三種：</p>
 <ul>
-<li><code>*</code> 只能單獨出現在 chunk 中，代表著可以對應到任意的字元，例如 <code>organizationA/building8/room275/*/temperature</code> 就包含了 room275 底下任何 sensor 的 temperature。</li>
-<li><code>$*</code> 一樣可以對應到任意字元，但是可以和其他字元一起出現在 chunk 之中，例如 <code>organizationA/building8/room275/sensor$*/temperature</code> 就是取得 sensor1, sensor2 等等感測器的溫度。</li>
-<li><code>**</code> 可以對應到 0 到多個 chunk，例如 <code>organizationA/**/temperature</code> 可以取得所有機構 A 下的所有溫度資訊。</li>
+<li><strong>Passive component</strong>：沒有自己的執行緒與訊息佇列，由呼叫端的執行緒直接執行。</li>
+<li><strong>Queued component</strong>：有訊息佇列但沒有自己的執行緒，必須由其他 component 觸發才會處理佇列中的工作。</li>
+<li><strong>Active component</strong>：有自己的執行緒與訊息佇列，可以獨立處理非同步工作。</li>
 </ul>
-<p>為了避免冗於設計，也就是多種 key expression 對應到相同意思，有些規則必須要遵守：</p>
+<p>Component 也可以依職責分成 application、manager、driver 與 service。Application 實作任務邏輯，manager 管理裝置或子系統，driver 操作底層硬體，而 service 提供命令分派、遙測、事件記錄等可重複使用的功能。這些是架構上的職責分類；每個 component 本身仍會選擇 passive、queued 或 active 其中一種執行方式。</p>
+<h2 id="f">F´ 如何運行</h2>
+<p>一個 F´ deployment 會將選用的 framework、service、driver 與自訂 component 組合起來，最後編譯及連結成一個目標程式。開發時，它可以是在 Linux 或 macOS 上直接啟動的執行檔；部署到硬體時，則可以成為在 Linux、VxWorks、FreeRTOS、Zephyr 等作業系統上運行的程式，或是不依賴作業系統的 bare-metal 韌體映像檔。</p>
+<p>因此 F´ 不像 ROS 2 一樣預設由許多可在執行期間動態發現的 process 與 node 組成。一般情況下，一個 deployment 內的 component 會被編譯進同一個程式，其實例和連接關係也在 topology 中預先定義。如果系統包含多個處理器，則可以在不同處理器上運行不同的 deployment，再透過通訊鏈路連接。</p>
+<h2 id="_1">整體架構</h2>
+<pre class="mermaid"><code>flowchart TB
+    subgraph D1[Deployment A：執行檔或韌體]
+        C1[Component A&lt;br/&gt;（Typed output ports）]
+        C2[Component B&lt;br/&gt;（Typed input port）]
+        HUB1[Hub component&lt;br/&gt;（Serialized input port）]
+        C4[Component D&lt;br/&gt;（Typed input / output ports&lt;br/&gt;e.g. Command / Telemetry / Event）]
+        CDH[F´ Command and Data Handling]
+        FRAME[Framer / Deframer]
+        COM[Communication adapter]
+
+        C1 --&gt;|Typed port call| C2
+        C1 --&gt;|Port call 序列化| HUB1
+        C4 &lt;--&gt;|Typed port calls| CDH
+        CDH &lt;--&gt;|F Prime packet| FRAME
+        FRAME &lt;--&gt;|Frame| COM
+    end
+
+    COM &lt;--&gt;|TCP、UART 或 Radio| GDS[Ground Data System]
+
+    subgraph D2[Deployment B：另一個處理器]
+        HUB2[Hub component&lt;br/&gt;（Serialized output port）]
+        C3[Component C&lt;br/&gt;（Typed input port）]
+
+        HUB2 --&gt;|反序列化為 Typed port call| C3
+    end
+
+    HUB1 --&gt;|Serialized data&lt;br/&gt;跨處理器傳輸| HUB2</code></pre>
+<p>圖中的 Deployment A 與 Deployment B 是彼此獨立的目標程式。大部分 component 通訊發生在同一個 deployment 內；跨處理器或連接地面系統時，通常需要進一步序列化與封包化。
+圖中的 F´ Command and Data Handling 將命令分派、遙測與事件處理等標準 component 收合成一個區塊，雙向箭頭則分別代表 command 上行，以及 telemetry、event 與 command response 下行。</p>
+<h2 id="f_1">F´ 如何傳遞資料</h2>
+<p>F´ 依資料傳遞的範圍提供不同層次的介面：</p>
 <ul>
-<li>只允許一個 <code>**</code>，不能有 <code>**/**</code></li>
-<li>只允許 <code>*/**</code>，不能有 <code>**/*</code></li>
-<li>只允許單一 <code>$*</code>，不能有 <code>$*$*</code></li>
-<li>在一個 chunk 中，不能單獨存在 <code>$*</code>，只能用 <code>*</code> 替換</li>
+<li><strong>Typed port</strong>：component 之間最常用的介面。Port 會明確定義參數型別，output port 只能連接相容的 input port，因此編譯時就能檢查介面是否正確。在同一個 deployment 中，這類通訊通常會成為程式內的函式呼叫或訊息佇列操作。</li>
+<li><strong>Serialized port</strong>：將 typed port 的參數序列化成通用的位元組 buffer，讓中間的轉送元件不需要知道實際資料型別。它常用於通用路由、資料儲存，或透過 hub 將 port call 傳到另一個處理器；接收端可再將 buffer 反序列化回原本的 typed port 參數。</li>
+<li><strong>F Prime packet</strong>：用於 deployment 與 Ground Data System（GDS）之間的 uplink 與 downlink，例如 command、telemetry、event 及 file data。Packet 會帶有識別資料種類的 descriptor，再由 framing 元件包成可傳輸的 frame，最後經由 TCP、UART 或無線電等通訊介面送出。F´ 也能改用 CCSDS 或任務自訂的封包與 framing 格式。</li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>少用 <code>$*</code>，因為效能較差，盡量多用 <code>*</code> 替換。例如 <code>robot/12</code> 和 <code>robot/18</code> 的設計就比 <code>robot12</code> 和 <code>robot12</code> 好，因為我們可以用 <code>robot/*</code> 來取得所有的 robot，而不是用效能較差的 <code>robot$*</code></p>
-</div>
-<h2 id="selector">Selector</h2>
-<p><a href="https://github.com/eclipse-zenoh/roadmap/blob/main/rfcs/ALL/Selectors/README.md">Selector</a>基本上就是 key expression 加上 parameters。
-這個只能使用在 Query 上，主要目的是提供 Query 更多可以判斷的參數。
-使用方式跟 HTTP URL 如何帶入 GET 參數很類似，在 key expression 後方加上 <code>?</code>，就可以放入多個 key/value 的配對了，中間一樣用 <code>;</code> 來做區隔。</p>
-<p>舉例來說，下面的 Selector 可以區分為 Key Expression 和 parameters 兩個部份</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>path/**/something?arg1=val1;arg2=value%202
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>^               ^ ^                      ^
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>|Key Expression-| |----- parameters -----|
-</span></code></pre></div>
-<p>在程式內部可以得到</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  key_expr: &quot;path/**/something&quot;,
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  parameters: {arg1: &quot;val1&quot;, arg2: &quot;value 2&quot;}
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>}
-</span></code></pre></div>
-<h2 id="_1">參考連結</h2>
+<p>簡單來說，typed port 負責程式內 component 之間的強型別互動；serialized port 讓 port call 可以通過不理解具體型別的轉送元件或跨越處理器邊界；F Prime packet 則負責與地面系統交換任務資料。</p>
+<h2 id="_2">常用資源</h2>
 <ul>
-<li><a href="https://zenoh.io/docs/manual/abstractions/">Zenoh Abstraction</a>：這邊有提供完整的 key, key expression, selector 的說明</li>
-<li><a href="https://github.com/eclipse-zenoh/roadmap/tree/main/rfcs/">Zenoh RFC</a>：如果要有明確的規格，可以參考 RFC</li>
+<li><a href="https://fprime.jpl.nasa.gov/">F´ 官方網站</a>：功能介紹、最新消息與專案入口。</li>
+<li><a href="https://fprime.jpl.nasa.gov/latest/docs/">F´ 官方文件</a>：教學、使用手冊、操作指南與 API 參考資料。</li>
+<li><a href="https://fprime.jpl.nasa.gov/latest/docs/getting-started/installing-fprime/">安裝指南</a>：開發環境需求及安裝步驟。</li>
+<li><a href="https://github.com/nasa/fprime">F´ GitHub</a>：原始碼、版本發布與問題追蹤。</li>
+<li><a href="https://github.com/nasa/fprime/discussions">F´ GitHub Discussions</a>：使用問題與社群討論。</li>
+<li><a href="https://nasa.github.io/fpp/">FPP 文件</a>：FPP 建模語言的介紹與使用指南。</li>
+<li><a href="https://fprime.jpl.nasa.gov/cheatsheet.pdf">F Prime cheatsheet</a>：F Prime 的小抄，說明一些基本概念。</li>
 </ul>
+<p>初次接觸時，建議先完成官方文件中的 HelloWorld 教學，再進一步了解元件、連接埠、拓樸及 Ground Data System（GDS）。</p>
 
 
 
 
 
 
-
-  
-  
 
 
 
