@@ -6,34 +6,34 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="rmw_zenoh 的進階功能如何使用，包含設定檔、debug、嵌入式等等">
+        <meta name="description" content="正體中文 ROS 2 相關教學文件，包含 DDS、Zenoh 及 Autoware 等內容">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/ros2/rmw_zenoh/advanced/">
+        <link rel="canonical" href="https://ros2.tw/fprime/hello-world/">
       
       
-        <link rel="prev" href="../basic/">
+        <link rel="prev" href="../introduction/">
       
       
-        <link rel="next" href="../hands_on/">
+        <link rel="next" href="../run-ref/">
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
-        <title>rmw_zenoh 進階介紹 - ROS 2 筆記</title>
+        <title>執行 HelloWorld - ROS 2 筆記</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.2a3383ac.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -52,7 +52,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#f-helloworld" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="ROS 2 筆記" class="md-header__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
+    <a href="../.." title="ROS 2 筆記" class="md-header__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              rmw_zenoh 進階介紹
+              執行 HelloWorld
             
           </span>
         </div>
@@ -228,7 +228,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="ROS 2 筆記" class="md-nav__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
+    <a href="../.." title="ROS 2 筆記" class="md-nav__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -246,7 +246,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -306,7 +306,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../introduction/" class="md-nav__link">
+      <a href="../../ros2/introduction/" class="md-nav__link">
         
   
   
@@ -329,7 +329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/" class="md-nav__link">
+      <a href="../../ros2/installation/" class="md-nav__link">
         
   
   
@@ -397,7 +397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../command/" class="md-nav__link">
+      <a href="../../ros2/command/" class="md-nav__link">
         
   
   
@@ -420,7 +420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../communication/" class="md-nav__link">
+      <a href="../../ros2/communication/" class="md-nav__link">
         
   
   
@@ -443,7 +443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../building/" class="md-nav__link">
+      <a href="../../ros2/building/" class="md-nav__link">
         
   
   
@@ -466,7 +466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../qos/" class="md-nav__link">
+      <a href="../../ros2/qos/" class="md-nav__link">
         
   
   
@@ -489,7 +489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../env/" class="md-nav__link">
+      <a href="../../ros2/env/" class="md-nav__link">
         
   
   
@@ -512,7 +512,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../record/" class="md-nav__link">
+      <a href="../../ros2/record/" class="md-nav__link">
         
   
   
@@ -535,7 +535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tools/" class="md-nav__link">
+      <a href="../../ros2/tools/" class="md-nav__link">
         
   
   
@@ -558,7 +558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tips/" class="md-nav__link">
+      <a href="../../ros2/tips/" class="md-nav__link">
         
   
   
@@ -581,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../navigation/" class="md-nav__link">
+      <a href="../../ros2/navigation/" class="md-nav__link">
         
   
   
@@ -604,7 +604,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../sros/" class="md-nav__link">
+      <a href="../../ros2/sros/" class="md-nav__link">
         
   
   
@@ -631,20 +631,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -660,7 +658,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             ROS 2 通訊層
@@ -674,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../rmw_cyclonedds/" class="md-nav__link">
+      <a href="../../ros2/rmw_cyclonedds/" class="md-nav__link">
         
   
   
@@ -697,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../basic/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/basic/" class="md-nav__link">
         
   
   
@@ -717,30 +715,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    rmw_zenoh 進階介紹
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ros2/rmw_zenoh/advanced/" class="md-nav__link">
         
   
   
@@ -751,111 +729,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      設定檔內容
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      跨機連接
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#debug" class="md-nav__link">
-    <span class="md-ellipsis">
-      Debug
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pico-rosrmw_zenoh" class="md-nav__link">
-    <span class="md-ellipsis">
-      Pico-ROS：rmw_zenoh 的嵌入式版本
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rmw_zenoh" class="md-nav__link">
-    <span class="md-ellipsis">
-      rmw_zenoh 設計
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="rmw_zenoh 設計">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#topic-key-expression" class="md-nav__link">
-    <span class="md-ellipsis">
-      topic 和 key expression 對應
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#graph-cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      Graph Cache 設計
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#attachment" class="md-nav__link">
-    <span class="md-ellipsis">
-      attachment
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#zenoh-rmw_zenoh" class="md-nav__link">
-    <span class="md-ellipsis">
-      Zenoh 和 rmw_zenoh 溝通的相關函式庫
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -868,7 +741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../hands_on/" class="md-nav__link">
+      <a href="../../ros2/rmw_zenoh/hands_on/" class="md-nav__link">
         
   
   
@@ -936,7 +809,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../dds/introduction/" class="md-nav__link">
+      <a href="../../dds/introduction/" class="md-nav__link">
         
   
   
@@ -959,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../dds/concepts/" class="md-nav__link">
+      <a href="../../dds/concepts/" class="md-nav__link">
         
   
   
@@ -982,7 +855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../dds/qos/" class="md-nav__link">
+      <a href="../../dds/qos/" class="md-nav__link">
         
   
   
@@ -1005,7 +878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../dds/discovery/" class="md-nav__link">
+      <a href="../../dds/discovery/" class="md-nav__link">
         
   
   
@@ -1028,7 +901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../dds/rtps/" class="md-nav__link">
+      <a href="../../dds/rtps/" class="md-nav__link">
         
   
   
@@ -1051,7 +924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../dds/cyclonedds/" class="md-nav__link">
+      <a href="../../dds/cyclonedds/" class="md-nav__link">
         
   
   
@@ -1074,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../dds/fastdds/" class="md-nav__link">
+      <a href="../../dds/fastdds/" class="md-nav__link">
         
   
   
@@ -1142,7 +1015,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../zenoh/introduction/" class="md-nav__link">
+      <a href="../../zenoh/introduction/" class="md-nav__link">
         
   
   
@@ -1165,7 +1038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../zenoh/mode/" class="md-nav__link">
+      <a href="../../zenoh/mode/" class="md-nav__link">
         
   
   
@@ -1188,7 +1061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../zenoh/keyexpr/" class="md-nav__link">
+      <a href="../../zenoh/keyexpr/" class="md-nav__link">
         
   
   
@@ -1211,7 +1084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../zenoh/shared_memory/" class="md-nav__link">
+      <a href="../../zenoh/shared_memory/" class="md-nav__link">
         
   
   
@@ -1234,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../zenoh/debug/" class="md-nav__link">
+      <a href="../../zenoh/debug/" class="md-nav__link">
         
   
   
@@ -1257,7 +1130,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../zenoh/protocol/" class="md-nav__link">
+      <a href="../../zenoh/protocol/" class="md-nav__link">
         
   
   
@@ -1280,7 +1153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../zenoh/format/" class="md-nav__link">
+      <a href="../../zenoh/format/" class="md-nav__link">
         
   
   
@@ -1303,7 +1176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../zenoh/zenoh_bridge_ros2/" class="md-nav__link">
+      <a href="../../zenoh/zenoh_bridge_ros2/" class="md-nav__link">
         
   
   
@@ -1326,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../zenoh/cpp/" class="md-nav__link">
+      <a href="../../zenoh/cpp/" class="md-nav__link">
         
   
   
@@ -1349,7 +1222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../zenoh/pico/" class="md-nav__link">
+      <a href="../../zenoh/pico/" class="md-nav__link">
         
   
   
@@ -1417,7 +1290,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autoware/introduction/" class="md-nav__link">
+      <a href="../../autoware/introduction/" class="md-nav__link">
         
   
   
@@ -1440,7 +1313,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autoware/installation/" class="md-nav__link">
+      <a href="../../autoware/installation/" class="md-nav__link">
         
   
   
@@ -1463,7 +1336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autoware/modules/" class="md-nav__link">
+      <a href="../../autoware/modules/" class="md-nav__link">
         
   
   
@@ -1486,7 +1359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autoware/map/" class="md-nav__link">
+      <a href="../../autoware/map/" class="md-nav__link">
         
   
   
@@ -1509,7 +1382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autoware/simulation/" class="md-nav__link">
+      <a href="../../autoware/simulation/" class="md-nav__link">
         
   
   
@@ -1532,7 +1405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../autoware/api/" class="md-nav__link">
+      <a href="../../autoware/api/" class="md-nav__link">
         
   
   
@@ -1600,7 +1473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../agl/introduction/" class="md-nav__link">
+      <a href="../../agl/introduction/" class="md-nav__link">
         
   
   
@@ -1623,7 +1496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../agl/installation/" class="md-nav__link">
+      <a href="../../agl/installation/" class="md-nav__link">
         
   
   
@@ -1691,7 +1564,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../eclipse-sdv/introduction/" class="md-nav__link">
+      <a href="../../eclipse-sdv/introduction/" class="md-nav__link">
         
   
   
@@ -1714,7 +1587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../eclipse-sdv/uprotocol/" class="md-nav__link">
+      <a href="../../eclipse-sdv/uprotocol/" class="md-nav__link">
         
   
   
@@ -1782,7 +1655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../embodied-ai/introduction/" class="md-nav__link">
+      <a href="../../embodied-ai/introduction/" class="md-nav__link">
         
   
   
@@ -1805,7 +1678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../embodied-ai/gpu/" class="md-nav__link">
+      <a href="../../embodied-ai/gpu/" class="md-nav__link">
         
   
   
@@ -1832,18 +1705,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -1859,7 +1734,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             F´（F Prime）
@@ -1873,7 +1748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../fprime/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1893,10 +1768,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../fprime/hello-world/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    執行 HelloWorld
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1907,6 +1804,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      下載範例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      準備環境
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helloworld" class="md-nav__link">
+    <span class="md-ellipsis">
+      編譯 HelloWorld
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helloworld_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      啟動 HelloWorld
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      繪製 Topology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      重要檔案
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1919,7 +1890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../fprime/run-ref/" class="md-nav__link">
+      <a href="../run-ref/" class="md-nav__link">
         
   
   
@@ -1987,7 +1958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/introduction/" class="md-nav__link">
+      <a href="../../rust/introduction/" class="md-nav__link">
         
   
   
@@ -2010,7 +1981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/why_rust/" class="md-nav__link">
+      <a href="../../rust/why_rust/" class="md-nav__link">
         
   
   
@@ -2033,7 +2004,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/ownership/" class="md-nav__link">
+      <a href="../../rust/ownership/" class="md-nav__link">
         
   
   
@@ -2056,7 +2027,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/module/" class="md-nav__link">
+      <a href="../../rust/module/" class="md-nav__link">
         
   
   
@@ -2079,7 +2050,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/iterator/" class="md-nav__link">
+      <a href="../../rust/iterator/" class="md-nav__link">
         
   
   
@@ -2102,7 +2073,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/error/" class="md-nav__link">
+      <a href="../../rust/error/" class="md-nav__link">
         
   
   
@@ -2125,7 +2096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/attribute/" class="md-nav__link">
+      <a href="../../rust/attribute/" class="md-nav__link">
         
   
   
@@ -2148,7 +2119,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/async/" class="md-nav__link">
+      <a href="../../rust/async/" class="md-nav__link">
         
   
   
@@ -2171,7 +2142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/unsafe/" class="md-nav__link">
+      <a href="../../rust/unsafe/" class="md-nav__link">
         
   
   
@@ -2194,7 +2165,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/trait/" class="md-nav__link">
+      <a href="../../rust/trait/" class="md-nav__link">
         
   
   
@@ -2217,7 +2188,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/fuzz/" class="md-nav__link">
+      <a href="../../rust/fuzz/" class="md-nav__link">
         
   
   
@@ -2240,7 +2211,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/benchmark/" class="md-nav__link">
+      <a href="../../rust/benchmark/" class="md-nav__link">
         
   
   
@@ -2263,7 +2234,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/ffi/" class="md-nav__link">
+      <a href="../../rust/ffi/" class="md-nav__link">
         
   
   
@@ -2286,7 +2257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../rust/miri/" class="md-nav__link">
+      <a href="../../rust/miri/" class="md-nav__link">
         
   
   
@@ -2354,7 +2325,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../others/binary-analysis/" class="md-nav__link">
+      <a href="../../others/binary-analysis/" class="md-nav__link">
         
   
   
@@ -2377,7 +2348,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../others/qemu/" class="md-nav__link">
+      <a href="../../others/qemu/" class="md-nav__link">
         
   
   
@@ -2400,7 +2371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../others/fuzz/" class="md-nav__link">
+      <a href="../../others/fuzz/" class="md-nav__link">
         
   
   
@@ -2440,6 +2411,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2450,7 +2423,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      設定檔內容
+      下載範例
     </span>
   </a>
   
@@ -2459,76 +2432,43 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      跨機連接
+      準備環境
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#debug" class="md-nav__link">
+  <a href="#helloworld" class="md-nav__link">
     <span class="md-ellipsis">
-      Debug
+      編譯 HelloWorld
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pico-rosrmw_zenoh" class="md-nav__link">
+  <a href="#helloworld_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Pico-ROS：rmw_zenoh 的嵌入式版本
+      啟動 HelloWorld
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#rmw_zenoh" class="md-nav__link">
+  <a href="#topology" class="md-nav__link">
     <span class="md-ellipsis">
-      rmw_zenoh 設計
+      繪製 Topology
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="rmw_zenoh 設計">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#topic-key-expression" class="md-nav__link">
-    <span class="md-ellipsis">
-      topic 和 key expression 對應
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#graph-cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      Graph Cache 設計
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#attachment" class="md-nav__link">
-    <span class="md-ellipsis">
-      attachment
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#zenoh-rmw_zenoh" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      Zenoh 和 rmw_zenoh 溝通的相關函式庫
+      重要檔案
     </span>
   </a>
   
@@ -2550,219 +2490,105 @@
 
 
 
-  <h1>rmw_zenoh 進階介紹</h1>
-
-<p>前面介紹完 rmw_zenoh 基本概念之後，接下來就是一些比較進階的概念了。</p>
-<h2 id="_1">設定檔內容</h2>
-<p>首先最重要的是設定的部份 (Configuration)。
-Zenoh 有兩種設定檔： Router 和 Session。
-Router 代表的是給 Zenoh Router 使用的設定，而 Session 則是給一般 ROS Node 使用。</p>
-<p>設定方式也非常簡單，分別使用 <code>ZENOH_ROUTER_CONFIG_URI</code> 和 <code>ZENOH_SESSION_CONFIG_URI</code> 這兩個環境變數即可。</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 給 Zenoh Router 使用</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ZENOH_ROUTER_CONFIG_URI</span><span class="o">=</span><span class="nv">$HOME</span>/MY_ZENOH_ROUTER_CONFIG.json5
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 給 ROS Node 使用</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ZENOH_SESSION_CONFIG_URI</span><span class="o">=</span><span class="nv">$HOME</span>/MY_ZENOH_SESSION_CONFIG.json5
-</span></code></pre></div>
-<p>他們預設的設定值，可以參考 rmw_zenoh_cpp 的 GitHub Repository。
-複製一份，然後調整自己需要的樣子即可。</p>
+<h1 id="f-helloworld">執行 F´ HelloWorld</h1>
+<p>HelloWorld 用最小的範例介紹 F´ 的基本開發流程，讓初學者理解 component、FPP、topology 與 deployment 之間的關係，並實際體驗 command 從 GDS 傳入後，component 如何回傳 event 及更新 telemetry。</p>
+<p>F´ 官方的 HelloWorld 範例包含一個 <code>HiComponent</code>，用來示範 command、event 與 telemetry：</p>
 <ul>
-<li><a href="https://github.com/ros2/rmw_zenoh/blob/rolling/rmw_zenoh_cpp/config/DEFAULT_RMW_ZENOH_ROUTER_CONFIG.json5">DEFAULT_RMW_ZENOH_ROUTER_CONFIG.json5</a></li>
-<li><a href="https://github.com/ros2/rmw_zenoh/blob/rolling/rmw_zenoh_cpp/config/DEFAULT_RMW_ZENOH_SESSION_CONFIG.json5">DEFAULT_RMW_ZENOH_SESSION_CONFIG.json5</a></li>
+<li><code>SAY_HI</code> command：由 Ground Data System（GDS）傳送一段文字給 component。</li>
+<li><code>SayHiEvent</code> event：component 收到 command 後，將文字以 event 送回 GDS。</li>
+<li><code>GreetingCount</code> telemetry：記錄 <code>SAY_HI</code> command 被執行的次數。</li>
 </ul>
-<p>當然，這樣的使用方式也是有點麻煩。
-rmw_zenoh 也提供了 override 的覆蓋單純部份 config 方式，也就是利用 <code>ZENOH_CONFIG_OVERRIDE</code> 環境變數。
-下面舉幾個例子：</p>
-<ul>
-<li>要求 Zenoh Router 連線到指定的 IP</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ZENOH_CONFIG_OVERRIDE</span><span class="o">=</span><span class="s1">&#39;connect/endpoints=[&quot;tcp/192.168.0.3:7447&quot;, &quot;tcp/192.168.0.4:7447&quot;]&#39;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ros2<span class="w"> </span>run<span class="w"> </span>rmw_zenoh_cpp<span class="w"> </span>rmw_zenohd
+<p>以下步驟使用官方已完成的範例專案，適合快速確認開發環境及 GDS 是否能正常運作。</p>
+<h2 id="_1">下載範例</h2>
+<p>範例使用 Git submodule 引用 F´ framework，因此 clone 時需要加上 <code>--recurse-submodules</code>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>--recurse-submodules<span class="w"> </span>https://github.com/fprime-community/fprime-tutorial-hello-world.git
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>fprime-tutorial-hello-world
 </span></code></pre></div>
-<ul>
-<li>讓節點可以不用 Zenoh Router 彼此發現</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ZENOH_CONFIG_OVERRIDE</span><span class="o">=</span><span class="s1">&#39;scouting/multicast/enabled=true&#39;</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker
+<p>若 clone 時沒有下載 submodule，可以另外執行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
 </span></code></pre></div>
-<p>如此一來，當使用者單純只是想修改設定檔中某個欄位而已，就不需要把整個設定檔都複製下來調整，只需要調整環境變數就好。</p>
-<h2 id="_2">跨機連接</h2>
-<p>對機器人使用情境來說，最常使用的是從我們的筆電遠端控制機器人，代表著 rmw_zenoh 要跑在兩個不同機器上面。
-然而預設 rmw_zenoh 限制流量只會在同台機器內，那這時候我們該怎麼設定呢？</p>
-<p>這邊有兩個方法：</p>
+<h2 id="_2">準備環境</h2>
+<p>建立 Python virtual environment，並安裝範例指定的 F´ 工具：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>fprime-venv
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">source</span><span class="w"> </span>fprime-venv/bin/activate
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span></code></pre></div>
+<p>每次開啟新的 terminal，都需要回到專案目錄並重新執行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">source</span><span class="w"> </span>fprime-venv/bin/activate
+</span></code></pre></div>
+<h2 id="helloworld">編譯 HelloWorld</h2>
+<p>在專案根目錄產生 CMake build cache，接著編譯 component 與 deployment：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>fprime-util<span class="w"> </span>generate
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>fprime-util<span class="w"> </span>build
+</span></code></pre></div>
+<p><code>generate</code> 完成後會建立 <code>build-fprime-automatic-native/</code>，<code>build</code> 則會將執行檔與 GDS dictionary 等成品放入 <code>build-artifacts/</code>。</p>
+<h2 id="helloworld_1">啟動 HelloWorld</h2>
+<p>進入 <code>FirstDeployment</code> 並啟動 GDS：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>HiNamespace/FirstDeployment
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>fprime-gds
+</span></code></pre></div>
+<p><code>fprime-gds</code> 會自動尋找 dictionary、啟動 <code>FirstDeployment</code> 執行檔並開啟瀏覽器。若瀏覽器沒有自動開啟，可前往 <a href="http://127.0.0.1:5000/">http://127.0.0.1:5000/</a>。</p>
+<p>畫面右上角顯示綠色連線圖示後，可以測試 HelloWorld：</p>
 <ol>
-<li>
-<p>兩台電腦都運行 Zenoh Router，然後讓兩者相連</p>
-<ul>
-<li>適用情境：兩台機器內部都有跑大量的 ROS application，只有部份流量需要兩者彼此互通</li>
-<li>
-<p>設定方式：假設其中一台電腦 IP 是 192.168.1.1，我們可以在另一台電腦修改 Zenoh Router 的設定檔</p>
-<ul>
-<li>設定檔：</li>
-</ul>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="err">co</span><span class="kc">nne</span><span class="err">c</span><span class="kc">t</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="err">e</span><span class="kc">n</span><span class="err">dpoi</span><span class="kc">nts</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tcp/192.168.1.1:7447&quot;</span><span class="p">],</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="p">},</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
-</span></code></pre></div>
-<ul>
-<li><code>ZENOH_CONFIG_OVERRIDE</code>:</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ZENOH_CONFIG_OVERRIDE</span><span class="o">=</span><span class="s1">&#39;connect/endpoints=[&quot;tcp/192.168.1.1:7447&quot;]&#39;</span>
-</span></code></pre></div>
-</li>
-</ul>
-</li>
-<li>
-<p>一台電腦運行 client 模式，然後連接到另一台電腦的 Zenoh Router</p>
-<ul>
-<li>適用情境：基本上所有 ROS 流量都要彼此互通，例如，另一台電腦只有跑單一 ROS application，像是 RViz</li>
-<li>
-<p>設定方式：假設跑 Zenoh Router 的電腦 IP 是 192.168.1.1，我們在另一台電腦修改 Session 的設定檔</p>
-<ul>
-<li>設定檔：</li>
-</ul>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="err">mode</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;client&quot;</span><span class="p">,</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="err">...</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="err">co</span><span class="kc">nne</span><span class="err">c</span><span class="kc">t</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="err">e</span><span class="kc">n</span><span class="err">dpoi</span><span class="kc">nts</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;tcp/192.168.1.1:7447&quot;</span><span class="p">],</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="p">},</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">}</span>
-</span></code></pre></div>
-<ul>
-<li><code>ZENOH_CONFIG_OVERRIDE</code>:</li>
-</ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ZENOH_CONFIG_OVERRIDE</span><span class="o">=</span><span class="s1">&#39;mode=&quot;client&quot;;connect/endpoints=[&quot;tcp/192.168.1.1:7447&quot;]&#39;</span>
-</span></code></pre></div>
-</li>
-</ul>
-</li>
+<li>開啟 <strong>Commanding</strong> 頁面。</li>
+<li>選擇 <code>HiNamespace.hiCmpntInstance.SAY_HI</code>。</li>
+<li>輸入一段 greeting 並送出 command。</li>
+<li>在 <strong>Events</strong> 頁面確認 <code>SayHiEvent</code> 及剛才輸入的文字。</li>
+<li>在 <strong>Channels</strong> 頁面確認 <code>GreetingCount</code> 已增加。</li>
 </ol>
-<h2 id="debug">Debug</h2>
-<p>Zenoh 本身是用 Rust 寫成，而 Rust 可以使用 <code>RUST_LOG</code> 來控制 log level 的顯示，也就是可以決定 log 的細節程度，例如 info、debug 等等。
-因此如果使用上遇到問題懷疑是 Zenoh 本身的問題，可以打開 log 來觀察哪邊出錯。</p>
-<ul>
-<li><code>export RUST_LOG=zenoh=info</code>：觀察最基礎的 Zenoh 資訊，包含初始化以及連接哪些節點。</li>
-<li><code>export RUST_LOG=zenoh=debug</code>：顯示所有的 Zenoh debug 資訊，這些資訊相當豐富，但也會讓人眼花撩亂。</li>
-<li><code>export RUST_LOG=zenoh=info,zenoh_transport=debug</code>：顯示最基本的 Zenoh 資訊，但是針對連線部份則是呈現更細緻的 debug 資訊。</li>
-</ul>
-<p><code>RUST_LOG</code> 在 Zenoh Router 或是一般的 ROS Node 都是可以使用的。</p>
-<h2 id="pico-rosrmw_zenoh">Pico-ROS：rmw_zenoh 的嵌入式版本</h2>
-<p>在之前的 ROS 2 中，要跑 ROS 在嵌入式系統需要用到 <a href="https://micro.ros.org/">micro-ROS</a>，然而這個只能用在 FastDDS 上。
-在 rmw_zenoh 中，則有相對應的替代品 <a href="https://github.com/Pico-ROS/Pico-ROS-software">Pico-ROS</a>，主要是基於 Zenoh 的嵌入式版本 <a href="https://github.com/eclipse-zenoh/zenoh-pico">zenoh-pico</a>，直接與 rmw_zenoh 相連。</p>
-<h2 id="rmw_zenoh">rmw_zenoh 設計</h2>
-<p>這邊主要的介紹是提供給對 rmw_zenoh 如何實作有興趣的人參考。</p>
-<h3 id="topic-key-expression">topic 和 key expression 對應</h3>
-<p>我們知道 Zenoh 是用 key expression 來串連不同資料流，而 ROS 2 則是 topic 的概念。
-那麼他們兩者是怎麼對應的呢？
-我們這邊可以參考 rmw_zenoh 的<a href="https://github.com/ros2/rmw_zenoh/blob/rolling/docs/design.md#topic-and-service-name-mapping-to-zenoh-key-expressions">設計細節</a>。</p>
-<p>為了避免 ROS 2 topic 在 Zenoh 的實作上會遇到彼此相衝的問題，任何的 ROS 2 topic 都會轉為如下形式：</p>
-<p><code>&lt;domain_id&gt;/&lt;fully_qualified_name&gt;/&lt;type_name&gt;/&lt;type_hash&gt;</code></p>
-<ul>
-<li><code>domain_id</code>：也就是大家熟知的 ROS_DOMAIN_ID 的值</li>
-<li><code>fully_qualified_name</code>：符合 <a href="https://design.ros2.org/articles/topic_and_service_names.html#fully-qualified-names">ROS 2 topic/service 規範</a>的名稱</li>
-<li><code>type_name</code>：ROS 2 topic 的 message type</li>
-<li><code>type_hash</code>：message type 的雜湊值，這是後來 ROS 2 為了避免 topic message type 進版時彼此還是可以相互通訊索引入的，相關定義參考 <a href="https://github.com/ros-infrastructure/rep/pull/381/files">REP-2016</a></li>
-</ul>
-<p>讓我們舉些實際例子：</p>
-<ul>
-<li>假設有個 ROS 2 topic <code>chatter</code>，是 String 格式，且 <code>ROS_DOMAIN_ID</code> 為 0：</li>
-</ul>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>0/chatter/std_msgs::msg::dds_::String_/RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18
+<p>完成後，在執行 GDS 的 terminal 按下 <code>Ctrl+C</code> 即可停止 GDS 與 deployment。</p>
+<p>完整的建立過程可參考 <a href="https://fprime.jpl.nasa.gov/latest/tutorials-hello-world/docs/hello-world/">F´ Hello World Tutorial</a>，範例原始碼位於 <a href="https://github.com/fprime-community/fprime-tutorial-hello-world">fprime-tutorial-hello-world</a>。</p>
+<h2 id="topology">繪製 Topology</h2>
+<p>F´ 提供 topology visualizer，可以將 <code>topology.fpp</code> 中的 component instance 與 port connection 顯示成關係圖。完成 <code>fprime-util generate</code> 後，進入 deployment 的 <code>Top/</code> 目錄執行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>HiNamespace/FirstDeployment/Top
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>fprime-util<span class="w"> </span>visualize
+</span></code></pre></div>
+<p>指令會啟動網頁版 visualizer。<code>topology.fpp</code> 中每個 <code>connections</code> 區塊會顯示為不同的圖，可以透過頁面上的選單切換，查看各 component instance 之間的 port 連線。</p>
+<h2 id="_3">重要檔案</h2>
+<p>HelloWorld 專案中較重要的檔案如下：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>fprime-tutorial-hello-world/
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>├── CMakeLists.txt
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>├── settings.ini
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>├── requirements.txt
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>├── lib/fprime/
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>└── HiNamespace/
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    ├── Components/HiComponent/
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    │   ├── HiComponent.fpp
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    │   ├── HiComponent.hpp
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    │   ├── HiComponent.cpp
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    │   └── CMakeLists.txt
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    └── FirstDeployment/
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>        ├── Main.cpp
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>        ├── fprime-gds.yml
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>        └── Top/
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>            ├── instances.fpp
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>            ├── topology.fpp
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>            ├── FirstDeploymentTopology.cpp
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>            └── FirstDeploymentPackets.fppi
 </span></code></pre></div>
 <ul>
-<li>如果加上 namespace <code>/robot1</code>，<code>ROS_DOMAIN_ID</code> 變成 2：</li>
+<li><code>CMakeLists.txt</code>：整個 project 的 CMake 入口，載入 F´ build system 並加入專案中的原始碼目錄。</li>
+<li><code>settings.ini</code>：設定 project 使用的 F´ framework、library 位置與預設 toolchain 等建置選項。</li>
+<li><code>requirements.txt</code>：記錄相容版本的 <code>fprime-util</code>、FPP 與 GDS 等 Python 工具。</li>
+<li><code>lib/fprime/</code>：以 Git submodule 引用的 F´ framework 原始碼。</li>
+<li><code>HiComponent.fpp</code>：component 的模型，定義 component 類型、command、event、telemetry 與 port，是產生 C++ 介面的主要來源。</li>
+<li><code>HiComponent.hpp</code>：component 的 C++ class 宣告及內部狀態，例如 <code>GreetingCount</code> 使用的計數變數。</li>
+<li><code>HiComponent.cpp</code>：component 的行為實作，包括 <code>SAY_HI</code> command handler，以及送出 event 和更新 telemetry 的程式碼。</li>
+<li><code>HiComponent/CMakeLists.txt</code>：將 FPP 模型與 C++ 實作註冊到 F´ build system。</li>
+<li><code>FirstDeployment/Main.cpp</code>：deployment 執行檔的進入點，負責啟動與停止 topology。</li>
+<li><code>FirstDeployment/fprime-gds.yml</code>：GDS 啟動這個 deployment 時使用的設定。</li>
+<li><code>Top/instances.fpp</code>：定義 component instance 的型別、base ID、queue、stack 與 thread priority 等屬性。</li>
+<li><code>Top/topology.fpp</code>：決定 deployment 包含哪些 component instance，以及它們的 port 如何連接。</li>
+<li><code>Top/FirstDeploymentTopology.cpp</code>：放置 topology 初始化時需要的額外 C++ 設定。</li>
+<li><code>Top/FirstDeploymentPackets.fppi</code>：定義要週期性下傳的 telemetry packet 及其 channel。</li>
 </ul>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>2/robot1/chatter/std_msgs::msg::dds_::String_/RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18
-</span></code></pre></div>
-<h3 id="graph-cache">Graph Cache 設計</h3>
-<p>當我們使用 <code>ros2 topic</code> 或是 <code>ros2 node</code> 等指令時，我們需要有個方法知道當前 ROS 環境下的 topic 和 node 狀態。
-而這個就是 Graph Cache 的功能，它可以幫助 ROS 系統知道所有當下拓樸的狀態。
-在 Zenoh 中，我們可以利用 liveliness 這個機制來偵測各種 topic 和 node 的變化。
-liveliness 和一般的 key expression 很類似，主要差別就是用來確保當某個節點消失時，其他節點也都還是可以發現。
-當 <code>rmw_zenoh_cpp</code> 初始化 ROS context 的時候會會透過 liveliness 來取得整個系統狀態，而都有任何節離開或進入 ROS 系統，都會用 liveliness的的機制更新 Graph Cache。</p>
-<ul>
-<li>node 名稱如何對應到 Zenoh liveliness 的名稱</li>
-</ul>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>@ros2_lv/&lt;domain_id&gt;/&lt;session_id&gt;/&lt;node_id&gt;/&lt;node_id&gt;/&lt;entity_kind&gt;/&lt;mangled_enclave&gt;/&lt;mangled_namespace&gt;/&lt;node_name&gt;
-</span></code></pre></div>
-<ul>
-<li>topic 名稱如何對應到 Zenoh liveliness 的名稱</li>
-</ul>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>@ros2_lv/&lt;domain_id&gt;/&lt;session_id&gt;/&lt;node_id&gt;/&lt;entity_id&gt;/&lt;entity_kind&gt;/&lt;mangled_enclave&gt;/&lt;mangled_namespace&gt;/&lt;node_name&gt;/&lt;mangled_qualified_name&gt;/&lt;type_name&gt;/&lt;type_hash&gt;/&lt;qos&gt;
-</span></code></pre></div>
-<p>說明一下每個欄位的細節：</p>
-<ul>
-<li><code>&lt;domain_id&gt;</code>：對應到實際的 <code>ROS_DOMAIN_ID</code></li>
-<li><code>&lt;session_id&gt;</code>：Zenoh 的 session ID，每個 ROS context 都會對應到一個專門的 session ID</li>
-<li><code>&lt;node_id&gt;</code>：這個 session 下的每個 node 都有獨一無二的 ID</li>
-<li><code>&lt;entity_id&gt;</code>：在這個 node 下，每個 entity，包含 publisher、subscriber、service 等等都有獨一無二的 ID，如果是 node 自己，就填跟 <code>&lt;node_id&gt;</code> 一樣</li>
-<li><code>&lt;entity_kind&gt;</code>：這個 entity 的類型，可以是如下欄位<ul>
-<li><code>NN</code>： node</li>
-<li><code>MP</code>： message publisher</li>
-<li><code>MS</code>： message subscriber</li>
-<li><code>SS</code>： service server</li>
-<li><code>SC</code>： service client</li>
-</ul>
-</li>
-<li><code>&lt;mangled_enclave&gt;</code>：SROS enclave 名稱，如果沒有就填 <code>%</code></li>
-<li><code>&lt;mangled_namespace&gt;</code>： namespace 名稱，如果沒有就填 <code>%</code></li>
-<li><code>&lt;node_name&gt;</code>： node 名稱</li>
-<li><code>&lt;mangled_qualified_name&gt;</code>：(node 不用填) topic 或是 service 的名稱</li>
-<li><code>&lt;type_name&gt;</code>：(node 不用填) ROS 2 topic 的 message type</li>
-<li><code>&lt;type_hash&gt;</code>：(node 不用填) message type 的雜湊值，這是後來 ROS 2 為了避免 topic message type 進版時彼此還是可以相互通訊索引入的，相關定義參考 <a href="https://github.com/ros-infrastructure/rep/pull/381/files">REP-2016</a></li>
-<li><code>&lt;qos&gt;</code>：(node 不用填) 會從 ROS 2 的 QoS 屬性轉換過來，中間用 <code>:</code> 分隔，實際轉換方式可以參考 <a href="https://github.com/ros2/rmw_zenoh/blob/cf09e854c9df17e0eb7e80ce4ab00e1b122a64e0/rmw_zenoh_cpp/src/detail/liveliness_utils.cpp#L239">qos_to_keyexpr</a><ul>
-<li>第一個欄位是 Reliability，沒有填代表 reliable，2 代表 best_effort</li>
-<li>第二個欄位是 Durability，沒填是 volatile，1 代表 transient_local</li>
-<li>第三個欄位是 History，用 <code>,</code> 分隔，前半部份沒填是 keep_last，2 代表 keep_all，後半部份代表 History depth 的數字，例如 <code>,7</code> 代表 keep_last 且 depth 為 7</li>
-<li>第四個欄位是 Deadline，用 <code>,</code> 分隔，前半部是 second，後半部是 nanosecond</li>
-<li>第五個欄位是 Lifespan，用 <code>,</code> 分隔，前半部是 second，後半部是 nanosecond</li>
-<li>第六個欄位是 Liveliness，用 <code>,</code> 分隔成三部份，第一部份沒填代表 automatic，2 代表 manual_by_topic，第二和第三部份則分別代表 second 和 nanosecond</li>
-</ul>
-</li>
-</ul>
-<p>舉實際例子</p>
-<ul>
-<li>假設某個 Node 的 Domain ID 是 2，且 node 名稱是 listener，會宣告如下 liveliness</li>
-</ul>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>@ros2_lv/2/aac3178e146ba6f1fc6e6a4085e77f21/0/0/NN/%/%/listener
-</span></code></pre></div>
-<ul>
-<li>假設某個 topic 的 Domain ID 是 2，隸屬於 talker 這個 node，名稱為 chatter，且類型是 String</li>
-</ul>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>@ros2_lv/2/8b20917502ee955ac4476e0266340d5c/0/10/MP/%/%/talker/%chatter/std_msgs::msg::dds_::String_/RIHS01_df668c740482bbd48fb39d76a70dfd4bd59db1288021743503259e948f6b1a18/::,7:,:,:,,
-</span></code></pre></div>
-<p>更詳細資訊可以參考<a href="https://github.com/ros2/rmw_zenoh/blob/rolling/docs/design.md#graph-cache">官方設計文件</a>。</p>
-<h3 id="attachment">attachment</h3>
-<p>除了我們想要傳送的最主要的訊息以外，rmw_zenoh 本身也會攜帶其他的資訊，例如序列、發布時間等等。
-這些資訊會使用 Zenoh 的 attachment 機制來傳送，這樣就不會影響主要訊息的格式。
-這些資訊有什麼呢？</p>
-<ul>
-<li>8 bytes 的序號 (sequence number)，type 是 int64 且為 little-endian</li>
-<li>8 bytes 的時間戳 (tim的時間戳)，type 是 int64 且為 little-endian，代表的是從 UNIX EPOCH 開始到現在的 ns</li>
-<li>1 byte 的 GID 長度 (目前固定為 16)</li>
-<li>16 bytes 的 GID，type 是 int8</li>
-</ul>
-<p>基本上只要發送訊息就一定需要 attachment，所以不管是 publisher、client、service 都會用到。
-值得注意的是 service 在回覆 client 的 request 時，sequence number 必須要跟 request 一致。</p>
-<h2 id="zenoh-rmw_zenoh">Zenoh 和 rmw_zenoh 溝通的相關函式庫</h2>
-<p>如果你不想使用 ROS 2 的套件，但你又想要能夠用純 Zenoh 跟 ROS 2 的軟體通訊，這邊有不少範例可以參考：</p>
-<ul>
-<li><a href="https://github.com/ZettaScaleLabs/zenoh-ros-examples">zenoh-ros-examples</a>：純 Zenoh C++ 程式，可以直接跟 rmw_zenoh / zenoh-bridge-ros2dds 溝通</li>
-<li><a href="https://github.com/ZettaScaleLabs/rmw-zenoh-mcap-writer">rmw-zenoh-mcap-writer</a>：可以錄製運行 ROS 2 rmw_zenoh 的訊息，和 ros2 bag 可以互通</li>
-<li><a href="https://github.com/evshary/zenoh-ros-type">zenoh-ros-type</a>：rmw_zenoh 和 Zenoh 最大的差異在於訊息格式的封裝，這個 Rust crate 收集大部份常見的訊息格式</li>
-<li><a href="https://github.com/evshary/zenoh-ros-type-python">zenoh-ros-type-python</a>：同上，但是為 Python 版本</li>
-</ul>
+<p>建置過程會根據 FPP 模型產生檔名帶有 <code>Ac</code> 的 C++ 檔案。這些是 build artifact，應修改 <code>.fpp</code> 模型後重新產生，不要直接編輯 generated code。</p>
 
 
 
 
 
 
-
-  
-  
 
 
 
@@ -2807,10 +2633,10 @@ liveliness 和一般的 key expression 很類似，主要差別就是用來確�
     
     
       
-      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>
