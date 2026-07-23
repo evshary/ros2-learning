@@ -76,6 +76,25 @@ F´ 依資料傳遞的範圍提供不同層次的介面：
 
 簡單來說，typed port 負責程式內 component 之間的強型別互動；serialized port 讓 port call 可以通過不理解具體型別的轉送元件或跨越處理器邊界；F Prime packet 則負責與地面系統交換任務資料。
 
+## 與 ROS 2 比較
+
+ROS 2 與 F´ 都採用元件化設計，但解決問題的重點不同。
+ROS 2 著重分散式機器人應用、執行期間的彈性與豐富的演算法生態；F´ 則著重可預先分析的 flight software 架構，以及命令、遙測、事件和檔案傳輸等任務基礎設施。
+
+| 面向 | ROS 2 | F´ |
+| --- | --- | --- |
+| 系統組成 | 主要在 runtime 組合 node | 主要在 build time 組合 deployment |
+| 連線方式 | 依名稱、型別、QoS 與 discovery 建立連線 | 在 topology 中明確指定 component instance 與 port connection |
+| Process 模型 | 多個 process 很常見，也支援 component composition | 一個 deployment 編譯成單一程式很常見，也可使用多個 deployment |
+| Node/component 與 thread | Callback 通常由 executor 排程，可使用不同 executor 與 callback group | Active component 明確擁有 task；queued 與 passive component 使用其他 task 執行 |
+| 動態加入元件 | 可在 runtime 啟動 node 並由 discovery 加入系統 | 通常要修改 topology，重新 generate、build 及部署 |
+| 資料流掌握 | Runtime graph 較動態，可透過工具觀察當下連線 | Topology 大多靜態，設計與實際連線較容易對照 |
+| 資源分析 | Middleware、executor 與 QoS 帶來較多動態因素 | Task、queue、stack 與 priority 等設定較顯式 |
+| 故障隔離 | 多 process 架構可利用 process 邊界隔離故障 | 同一 deployment 內的 component 通常共享 process，嚴重故障可能影響整體 |
+| 生態與演算法 | 感測器、導航、感知、控制與模擬套件豐富 | 主要提供 flight software framework 與任務基礎設施 |
+
+這些是常見架構的比較，不是硬性限制。例如 ROS 2 可以把多個 component 組合進同一個 process，F´ 也可以讓多個 deployment 分別運行在不同處理器上。實際差異仍取決於系統的部署方式與設計選擇。
+
 ## 常用資源
 
 * [F´ 官方網站](https://fprime.jpl.nasa.gov/)：功能介紹、最新消息與專案入口。
