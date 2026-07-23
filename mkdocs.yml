@@ -107,6 +107,7 @@ nav:
   - 'F´（F Prime）':
     - 'F´ 介紹': 'fprime/introduction.md'
     - '執行 HelloWorld': 'fprime/hello-world.md'
+    - 'FPP 基本介紹': 'fprime/fpp.md'
     - '執行 Ref Deployment': 'fprime/run-ref.md'
   - 'Rust':
     - 'Rust 介紹': 'rust/introduction.md'

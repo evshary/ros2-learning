@@ -128,3 +128,5 @@ fprime-tutorial-hello-world/
 * `Top/FirstDeploymentPackets.fppi`：定義要週期性下傳的 telemetry packet 及其 channel。
 
 建置過程會根據 FPP 模型產生檔名帶有 `Ac` 的 C++ 檔案。這些是 build artifact，應修改 `.fpp` 模型後重新產生，不要直接編輯 generated code。
+
+FPP 中的 component、instance、topology，以及 command、event、telemetry、parameter 和 port，可參考獨立的 [FPP 基本介紹](fpp.md)。
