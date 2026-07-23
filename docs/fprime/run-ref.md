@@ -1,6 +1,8 @@
 # 執行 F´ Ref Deployment
 
-`TestDeploymentsProject/Ref` 是 F´ 原始碼中的參考 deployment，可在 Linux 或 macOS 上執行。它包含完整的 component、topology、Command and Data Handling，以及與 Ground Data System（GDS）通訊所需的功能，適合用來確認開發環境是否正常。
+`TestDeploymentsProject/Ref` 是 F´ 原始碼中功能完整的參考 deployment，包含標準 component、subtopology、Command and Data Handling、通訊、檔案與 data product 等功能。它可以直接編譯成在 Linux 上運行的本機程式，不需要嵌入式開發板或交叉編譯環境，因此適合用來確認 F´ 開發環境是否正常，以及觀察各項 framework 功能如何整合。
+
+相較之下，[HelloWorld](hello-world.md) 使用最小範例帶領初學者理解如何開發 component 並整合 topology；Ref 則是已經組裝完成的完整系統，重點在於展示與驗證 F´ 提供的標準功能，而不是示範從零開發一個 component。
 
 以下步驟以 F´ 原始碼的開發版本為例。
 
