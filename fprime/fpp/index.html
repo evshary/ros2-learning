@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Zenoh 基礎概念介紹、各種相關資源">
+        <meta name="description" content="正體中文 ROS 2 相關教學文件，包含 DDS、Zenoh 及 Autoware 等內容">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/zenoh/introduction/">
+        <link rel="canonical" href="https://ros2.tw/fprime/fpp/">
       
       
-        <link rel="prev" href="../../dds/fastdds/">
+        <link rel="prev" href="../hello-world/">
       
       
-        <link rel="next" href="../mode/">
+        <link rel="next" href="../run-ref/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Zenoh 介紹 - ROS 2 筆記</title>
+        <title>FPP 基本介紹 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#fpp" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Zenoh 介紹
+              FPP 基本介紹
             
           </span>
         </div>
@@ -974,20 +974,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1003,7 +1001,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Zenoh 入門
@@ -1014,30 +1012,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Zenoh 介紹
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../zenoh/introduction/" class="md-nav__link">
         
   
   
@@ -1048,33 +1026,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      有用連結
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1087,7 +1038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mode/" class="md-nav__link">
+      <a href="../../zenoh/mode/" class="md-nav__link">
         
   
   
@@ -1110,7 +1061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../keyexpr/" class="md-nav__link">
+      <a href="../../zenoh/keyexpr/" class="md-nav__link">
         
   
   
@@ -1133,7 +1084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../shared_memory/" class="md-nav__link">
+      <a href="../../zenoh/shared_memory/" class="md-nav__link">
         
   
   
@@ -1156,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../debug/" class="md-nav__link">
+      <a href="../../zenoh/debug/" class="md-nav__link">
         
   
   
@@ -1179,7 +1130,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../protocol/" class="md-nav__link">
+      <a href="../../zenoh/protocol/" class="md-nav__link">
         
   
   
@@ -1202,7 +1153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../format/" class="md-nav__link">
+      <a href="../../zenoh/format/" class="md-nav__link">
         
   
   
@@ -1225,7 +1176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../zenoh_bridge_ros2/" class="md-nav__link">
+      <a href="../../zenoh/zenoh_bridge_ros2/" class="md-nav__link">
         
   
   
@@ -1248,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cpp/" class="md-nav__link">
+      <a href="../../zenoh/cpp/" class="md-nav__link">
         
   
   
@@ -1271,7 +1222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pico/" class="md-nav__link">
+      <a href="../../zenoh/pico/" class="md-nav__link">
         
   
   
@@ -1822,18 +1773,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
         
           
           <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
@@ -1849,7 +1802,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_12">
             <span class="md-nav__icon md-icon"></span>
             F´（F Prime）
@@ -1863,7 +1816,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fprime/introduction/" class="md-nav__link">
+      <a href="../introduction/" class="md-nav__link">
         
   
   
@@ -1886,7 +1839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fprime/hello-world/" class="md-nav__link">
+      <a href="../hello-world/" class="md-nav__link">
         
   
   
@@ -1906,10 +1859,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../fprime/fpp/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    FPP 基本介紹
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1920,6 +1895,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#component" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他常見內容
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fpp-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      FPP 與產生的 C++ 程式碼
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helloworld" class="md-nav__link">
+    <span class="md-ellipsis">
+      HelloWorld 中的對應
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1932,7 +1981,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fprime/run-ref/" class="md-nav__link">
+      <a href="../run-ref/" class="md-nav__link">
         
   
   
@@ -2453,6 +2502,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2461,9 +2512,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#component" class="md-nav__link">
+    <span class="md-ellipsis">
+      Component
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#topology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Topology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      有用連結
+      其他常見內容
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fpp-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      FPP 與產生的 C++ 程式碼
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#helloworld" class="md-nav__link">
+    <span class="md-ellipsis">
+      HelloWorld 中的對應
     </span>
   </a>
   
@@ -2485,70 +2581,112 @@
 
 
 
-  <h1>Zenoh 介紹</h1>
-
-<p>Zenoh 是 <a href="https://www.zettascale.tech/">ZettaScale</a> 所開發出的開源通訊軟體，目前和 CycloneDDS 一樣託管於 <a href="https://projects.eclipse.org/projects/iot.zenoh">Eclipse Foundation 底下</a>。</p>
-<p>Zenoh 和 DDS 類似，是一個通訊層的 middleware，可以幫助開發者更容易的交換資訊。
-由於 ZettaScale 內部有許多當初設計 DDS 的研究人員，很清楚 DDS 本身的限制，為了避開這些問題，才特別設計新的協定。</p>
-<p>具體 DDS 有哪些問題呢？</p>
+<h1 id="fpp">FPP 基本介紹</h1>
+<p>FPP（F Prime Prime）是用來描述 F´ 軟體架構的建模語言。它負責說明「系統有哪些東西，以及它們如何連接」，實際的處理邏輯則主要寫在 C++。</p>
+<p>為了方便理解，可以把 FPP 模型大致分成三個層次：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Component 定義
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── Command
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── Event
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── Telemetry
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── Parameter
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>└── Input / output port
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                    │
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                    ▼
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>Instance 定義
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>建立 component 的具體物件
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                    │
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                    ▼
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>Topology 定義
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>選擇 instance 並連接它們的 port
+</span></code></pre></div>
+<p>Enum、struct、array 和 port type 等共用定義可以放在 component 外，再由 component 的介面引用。</p>
+<h2 id="component">Component</h2>
+<p>Component 將一組相關介面與行為收在一起。例如相機 component 可以提供拍照 command、影像輸出 port、溫度 telemetry，以及錯誤 event。</p>
+<p>FPP 負責定義 component 的外部介面，並產生對應的 C++ 介面與資料格式；C++ 的 <code>.hpp</code> 與 <code>.cpp</code> 則實作收到 command 或 port call 之後要做什麼。依執行方式，component 可分為 passive、queued 和 active。</p>
+<p>Component 中常見的介面如下：</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>簡單說明</th>
+<th>常見用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command</td>
+<td>要求 component 執行一個動作</td>
+<td>開啟裝置、改變模式、執行計算</td>
+</tr>
+<tr>
+<td>Event</td>
+<td>記錄某個時間點發生的事情</td>
+<td>啟動完成、收到命令、偵測到錯誤</td>
+</tr>
+<tr>
+<td>Telemetry</td>
+<td>回報系統目前或一段時間內的數值</td>
+<td>溫度、電壓、計數器、目前模式</td>
+</tr>
+<tr>
+<td>Parameter</td>
+<td>可讀取或修改的設定值</td>
+<td>取樣頻率、門檻值、校正參數</td>
+</tr>
+<tr>
+<td>Port</td>
+<td>Component 之間呼叫與傳遞資料的介面</td>
+<td>傳送感測資料、要求其他 component 工作</td>
+</tr>
+</tbody>
+</table>
 <ul>
-<li>DDS 並不能支援跨網域的傳輸，只能在 LAN</li>
-<li>DDS 強烈依賴 multicast，無法在沒有 multicast 的環境執行，例如 4G 或 5G</li>
-<li>DDS 一開始並非為了無線網路設計，所以不限制流量的話，他的 discovery 的機制會讓無線網路癱瘓</li>
-<li>DDS 實作很複雜，通常無法跑在嵌入式系統上</li>
+<li><strong>Command</strong>：從外部要求 component 執行動作，可以帶參數。例如要求相機使用指定曝光時間拍照。命令通常由 GDS 或系統內的 sequencer 送出，再由 command dispatcher 分派到目標 component。</li>
+<li><strong>Event</strong>：表示「某件事情發生了」，通常包含時間、嚴重程度和補充資料。例如 component 啟動完成、命令執行失敗或感測值超出範圍，適合用來閱讀操作紀錄與診斷問題。</li>
+<li><strong>Telemetry</strong>：Component 回報的狀態或量測值，例如目前溫度、已處理的命令數量或電源狀態。Event 強調發生了一件事，telemetry 則強調一個可以持續更新及觀察的值。</li>
+<li><strong>Parameter</strong>：Component 運行時使用的設定值，例如溫度警告門檻或控制器增益。它可以有預設值，也能透過命令更新；F´ 的 parameter service 可以集中保存及載入這些設定。</li>
+<li><strong>Port</strong>：Component 之間的介面。FPP 可以先在 component 外定義可重複使用的 port type，再在 component 內宣告 input port 或 output port。Output port 發出呼叫，input port 接收呼叫，只有型別相容的 port 才能連接。Typed port 會明確定義參數型別；serialized port 則使用通用的位元組資料，適合讓不知道實際型別的 component 轉送資料。實際連線由 topology 決定。</li>
 </ul>
-<p>Zenoh 則是另起爐灶，在保留 DDS 去中心化和高效能的同時，也結合了中心化通訊的機制。</p>
-<h2 id="_1">有用連結</h2>
-<p>Zenoh 的 <a href="https://github.com/eclipse-zenoh">GitHub namepace</a> 裡面底下有很多 project，下面列出幾個常用的</p>
+<h2 id="instance">Instance</h2>
+<p>Component 只是型別，instance 才是 deployment 中實際使用的物件。例如先定義一種 <code>Camera</code> component，再建立 <code>frontCamera</code> 和 <code>rearCamera</code> 兩個 instance。</p>
+<p>每個 instance 有自己的名稱和狀態，也可以設定 base ID。Active component 的 instance 還能設定 priority、queue size 和 stack size 等執行參數。</p>
+<h2 id="topology">Topology</h2>
+<p>Topology 描述一個 deployment 的完整組成：</p>
 <ul>
-<li><a href="https://github.com/eclipse-zenoh/zenoh">zenoh</a>：zenoh 本身的主程式</li>
-<li><a href="https://spec.zenoh.io/">zenoh-spec</a>：Zenoh 的正式協定規格</li>
-<li><a href="https://github.com/eclipse-zenoh/roadmap">Zenoh Roadmap</a>：Zenoh 部份的規格定義放在這邊</li>
-<li>Zenoh 各種程式語言 API 的 repository<ul>
-<li>Rust: <a href="https://github.com/eclipse-zenoh/zenoh">zenoh</a><ul>
-<li><a href="https://docs.rs/zenoh/latest/zenoh/">基本 Zenoh API</a></li>
-<li><a href="https://docs.rs/zenoh-ext/latest/zenoh_ext/">進階 Zenoh API</a></li>
+<li>包含哪些 component instance。</li>
+<li>哪個 output port 連到哪個 input port。</li>
+<li>Command、event、telemetry、排程和通訊資料如何在系統中流動。</li>
 </ul>
-</li>
-<li>C: <a href="https://github.com/eclipse-zenoh/zenoh-c">zenoh-c</a></li>
-<li>C++: <a href="https://github.com/eclipse-zenoh/zenoh-cpp">zenoh-cpp</a></li>
-<li>Python: <a href="https://github.com/eclipse-zenoh/zenoh-python">zenoh-python</a></li>
-<li>Kotlin: <a href="https://github.com/eclipse-zenoh/zenoh-kotlin">zenoh-kotlin</a></li>
-<li>Java: <a href="https://github.com/eclipse-zenoh/zenoh-java">zenoh-java</a></li>
-<li>Typescript: <a href="https://github.com/eclipse-zenoh/zenoh-ts">zenoh-ts</a></li>
+<p>因此 topology 很像系統的接線圖。Component 定義「插座的形狀」，instance 是實際設備，而 topology 決定要使用哪些設備，以及如何把它們接起來。</p>
+<h2 id="_1">其他常見內容</h2>
+<p>除了上述核心項目，FPP 也能定義：</p>
+<ul>
+<li><strong>基本資料型別</strong>：整數、浮點數、布林值和字串。</li>
+<li><strong>Enum</strong>：一組有名稱的固定選項，例如系統模式。</li>
+<li><strong>Struct</strong>：將多個欄位組成一筆資料。</li>
+<li><strong>Array</strong>：固定長度、相同型別的一組資料。</li>
+<li><strong>Constant</strong>：模型中重複使用的固定值。</li>
+<li><strong>Module</strong>：將名稱與定義分組，避免不同模組使用相同名稱時發生衝突。</li>
+<li><strong>Packet set</strong>：指定 telemetry channel 如何組成週期性下傳的 packet。</li>
 </ul>
-</li>
-<li>嵌入式版本<ul>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-pico">zenoh-pico</a>：用 C 語言寫成，有較低的 footprint</li>
-<li><a href="https://github.com/ZettaScaleLabs/zenoh-nostd">zenoh-nostd</a>：用純 Rust 寫成，且不需要用到標準函式庫，所以可以用在嵌入式系統</li>
+<p>大型專案也常使用 <code>.fppi</code> 檔案保存可重複引用的 FPP 片段，再由 <code>.fpp</code> 檔案匯入。</p>
+<h2 id="fpp-c">FPP 與產生的 C++ 程式碼</h2>
+<p>執行 <code>fprime-util generate</code> 和 <code>fprime-util build</code> 時，F´ 會檢查 FPP 模型，並產生 component base class、port class、資料型別、topology 連線程式碼及 GDS dictionary 等內容。</p>
+<p>這些產生的檔案通常帶有 <code>Ac</code>，代表 autocoded。不要直接修改它們；應修改 <code>.fpp</code> 後重新建置。開發者撰寫的 <code>.hpp</code> 與 <code>.cpp</code> 主要負責實作 component 的實際行為。</p>
+<h2 id="helloworld">HelloWorld 中的對應</h2>
+<p>在 <a href="../hello-world/">HelloWorld</a> 範例中：</p>
+<ul>
+<li><code>HiComponent.fpp</code> 定義 <code>SAY_HI</code> command、<code>SayHiEvent</code> event 和 <code>GreetingCount</code> telemetry。</li>
+<li><code>Top/instances.fpp</code> 建立 <code>hiCmpntInstance</code>。</li>
+<li><code>Top/topology.fpp</code> 將它加入 <code>FirstDeployment</code>，並連接其他 F´ component。</li>
 </ul>
-</li>
-<li>Plugin：Zenoh 支援多種 plugin，可以嵌入在 Zenoh 程式之中，將 Zenoh 的訊息轉成其他的 protocol<ul>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-dds">zenoh-plugin-dds</a>：結合 zenoh 和 DDS，將兩者的資料互相轉換</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds">zenoh-plugin-ros2dds</a>：雖然也是跟 DDS 相連，但是這特別限定是用在 ROS 2 的情境下</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-mqtt">zenoh-plugin-mqtt</a>：將 MQTT 和 Zenoh 的訊息互相轉換</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-webserver">zenoh-plugin-webserver</a>：可以用 Web URL 來取得 Zenoh 的資料</li>
-</ul>
-</li>
-<li>Backend：Zenoh 也支援多種 backend，可以將收到的訊息儲存在特定 Database 之中<ul>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-backend-influxdb">zenoh-backend-influxdb</a>：將資料儲存在 InfluxDB 中，支援 V1 和 V2</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-backend-filesystem">zenoh-backend-filesystem</a>：將資料儲存在檔案系統之中</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-backend-rocksdb">zenoh-backend-rocksdb</a>：將資料儲存在 RocksDB 之中</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-backend-s3">zenoh-backend-s3</a>：將資料儲存在 S3 資料庫之中</li>
-</ul>
-</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-dissector">zenoh-dissector</a>：Zenoh 的 wireshark plugin，可以用來解析 Zenoh 的封包</li>
-</ul>
-<p>如果你想了解更多使用 Zenoh 的 project，可以參考 <a href="https://github.com/kydos/awesome-zenoh">awesome-zenoh</a>。</p>
+<p>簡單來說，修改 component 能做什麼時看 component FPP；建立具體物件時看 instance；理解整個系統有哪些元件及如何連接時看 topology。</p>
 
 
 
 
 
 
-
-  
-  
 
 
 

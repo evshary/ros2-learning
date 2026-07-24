@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Zenoh 基礎概念介紹、各種相關資源">
+        <meta name="description" content="正體中文 ROS 2 相關教學文件，包含 DDS、Zenoh 及 Autoware 等內容">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/zenoh/introduction/">
+        <link rel="canonical" href="https://ros2.tw/px4/introduction/">
       
       
-        <link rel="prev" href="../../dds/fastdds/">
+        <link rel="prev" href="../../autoware/api/">
       
       
-        <link rel="next" href="../mode/">
+        <link rel="next" href="../../agl/introduction/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Zenoh 介紹 - ROS 2 筆記</title>
+        <title>PX4 介紹 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#px4" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Zenoh 介紹
+              PX4 介紹
             
           </span>
         </div>
@@ -974,20 +974,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1003,7 +1001,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Zenoh 入門
@@ -1014,30 +1012,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Zenoh 介紹
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../zenoh/introduction/" class="md-nav__link">
         
   
   
@@ -1048,33 +1026,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      有用連結
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1087,7 +1038,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mode/" class="md-nav__link">
+      <a href="../../zenoh/mode/" class="md-nav__link">
         
   
   
@@ -1110,7 +1061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../keyexpr/" class="md-nav__link">
+      <a href="../../zenoh/keyexpr/" class="md-nav__link">
         
   
   
@@ -1133,7 +1084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../shared_memory/" class="md-nav__link">
+      <a href="../../zenoh/shared_memory/" class="md-nav__link">
         
   
   
@@ -1156,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../debug/" class="md-nav__link">
+      <a href="../../zenoh/debug/" class="md-nav__link">
         
   
   
@@ -1179,7 +1130,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../protocol/" class="md-nav__link">
+      <a href="../../zenoh/protocol/" class="md-nav__link">
         
   
   
@@ -1202,7 +1153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../format/" class="md-nav__link">
+      <a href="../../zenoh/format/" class="md-nav__link">
         
   
   
@@ -1225,7 +1176,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../zenoh_bridge_ros2/" class="md-nav__link">
+      <a href="../../zenoh/zenoh_bridge_ros2/" class="md-nav__link">
         
   
   
@@ -1248,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cpp/" class="md-nav__link">
+      <a href="../../zenoh/cpp/" class="md-nav__link">
         
   
   
@@ -1271,7 +1222,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pico/" class="md-nav__link">
+      <a href="../../zenoh/pico/" class="md-nav__link">
         
   
   
@@ -1481,18 +1432,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
@@ -1508,7 +1461,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             PX4
@@ -1519,10 +1472,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../px4/introduction/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    PX4 介紹
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1533,6 +1508,71 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#px4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      PX4 軟體架構
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#px4-ros-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      PX4 如何與 ROS 2 搭配
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      各部分的責任
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他連接方式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用資源
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2453,6 +2493,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -2461,9 +2503,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#px4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      PX4 軟體架構
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#px4-ros-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      PX4 如何與 ROS 2 搭配
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      有用連結
+      各部分的責任
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他連接方式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用資源
     </span>
   </a>
   
@@ -2485,70 +2563,185 @@
 
 
 
-  <h1>Zenoh 介紹</h1>
-
-<p>Zenoh 是 <a href="https://www.zettascale.tech/">ZettaScale</a> 所開發出的開源通訊軟體，目前和 CycloneDDS 一樣託管於 <a href="https://projects.eclipse.org/projects/iot.zenoh">Eclipse Foundation 底下</a>。</p>
-<p>Zenoh 和 DDS 類似，是一個通訊層的 middleware，可以幫助開發者更容易的交換資訊。
-由於 ZettaScale 內部有許多當初設計 DDS 的研究人員，很清楚 DDS 本身的限制，為了避開這些問題，才特別設計新的協定。</p>
-<p>具體 DDS 有哪些問題呢？</p>
+<h1 id="px4">PX4 介紹</h1>
+<p>PX4 是一套開源的 autopilot 軟體，主要負責無人機的即時飛行控制。
+從作業系統的角度來看，PX4 可以視為一個由多個 module 組成的飛控應用程式。
+它可以運行在 Pixhawk 等 flight controller 上，大多使用 NuttX RTOS 系統，
+開發與模擬時，也能以 SITL（Software in the Loop）方式在 Linux 或 macOS 電腦中模擬執行。</p>
+<p>PX4 適合處理感測器讀取、狀態估測、姿態與位置控制、飛行模式、安全檢查及馬達輸出。
+影像辨識、路徑規劃或其他需要較多運算資源的功能，則通常放在 companion computer 上由 ROS 2 執行。</p>
+<h2 id="px4_1">PX4 軟體架構</h2>
+<p>PX4 大致分成 flight stack 與 middleware。
+Flight stack 包含導航、狀態估測與控制演算法；middleware 則提供 device driver、參數、記錄、對外通訊，以及模組之間使用的 uORB message bus。</p>
+<p>uORB 使用 publish/subscribe 通訊方式，但它主要是 PX4 程式內部的訊息匯流排，不是網路通訊協定。
+Module 通常透過同一個系統中的共享記憶體交換資料；如果要將資料傳到其他電腦，仍需經過 uXRCE-DDS、MAVLink 等通訊模組。</p>
 <ul>
-<li>DDS 並不能支援跨網域的傳輸，只能在 LAN</li>
-<li>DDS 強烈依賴 multicast，無法在沒有 multicast 的環境執行，例如 4G 或 5G</li>
-<li>DDS 一開始並非為了無線網路設計，所以不限制流量的話，他的 discovery 的機制會讓無線網路癱瘓</li>
-<li>DDS 實作很複雜，通常無法跑在嵌入式系統上</li>
+<li>Publisher 將資料發布到一個具名 topic，例如 IMU 資料。</li>
+<li>Subscriber 訂閱感興趣的 topic，在資料更新時讀取內容。</li>
+<li>Publisher 和 subscriber 不需要直接認識彼此，因此可以獨立開發及替換。</li>
 </ul>
-<p>Zenoh 則是另起爐灶，在保留 DDS 去中心化和高效能的同時，也結合了中心化通訊的機制。</p>
-<h2 id="_1">有用連結</h2>
-<p>Zenoh 的 <a href="https://github.com/eclipse-zenoh">GitHub namepace</a> 裡面底下有很多 project，下面列出幾個常用的</p>
+<pre class="mermaid"><code>flowchart TB
+    SENSOR[感測器&lt;br/&gt;IMU、GPS、Barometer、Camera]
+
+    subgraph FC[Flight Controller：PX4]
+        DRIVER[Device drivers]
+        UORB[uORB&lt;br/&gt;Publish / Subscribe message bus]
+
+        subgraph STACK[Flight stack]
+            EST[Estimator&lt;br/&gt;估算姿態與位置]
+            NAV[Commander / Navigator&lt;br/&gt;模式、安全檢查與任務]
+            CTRL[Controllers&lt;br/&gt;位置、速度與姿態控制]
+            ALLOC[Control allocation&lt;br/&gt;分配馬達與舵面輸出]
+        end
+
+        COMMS[Communication modules&lt;br/&gt;MAVLink、uXRCE-DDS]
+
+        DRIVER --&gt; UORB
+        UORB --&gt; EST
+        EST --&gt; UORB
+        UORB --&gt; NAV
+        NAV --&gt; UORB
+        UORB --&gt; CTRL
+        CTRL --&gt; UORB
+        UORB --&gt; ALLOC
+        COMMS &lt;--&gt; UORB
+    end
+
+    SENSOR --&gt; DRIVER
+    ALLOC --&gt; ACT[Actuators&lt;br/&gt;Motor、Servo]
+    COMMS &lt;--&gt; EXT[外部系統&lt;br/&gt;QGroundControl、ROS 2]</code></pre>
+<p>PX4 的 module 不會彼此直接綁死，而是透過 uORB 發布與訂閱訊息。
+例如 driver 發布 IMU 資料，estimator 計算姿態，controller 再根據目標值與估測結果產生控制輸出。
+這種方式讓各個 module 可以分開開發或替換。</p>
+<h2 id="px4-ros-2">PX4 如何與 ROS 2 搭配</h2>
+<p>最常見的設計是讓 PX4 運行在 flight controller，負責需要即時性與安全性的底層飛行控制；ROS 2 運行在 companion computer，負責感知、規劃和高階任務。</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph FC[Flight Controller]
+        PX4MOD[PX4 modules]
+        UORB[uORB topics]
+        CLIENT[uxrce_dds_client]
+        MAVLINK[PX4 mavlink module]
+
+        PX4MOD &lt;--&gt; UORB
+        UORB &lt;--&gt; CLIENT
+        UORB &lt;--&gt; MAVLINK
+    end
+
+    XRCE_LINK[Serial / UDP / TCP&lt;br/&gt;XRCE-DDS]
+    MAV_LINK[Serial / UDP&lt;br/&gt;MAVLink protocol]
+
+    subgraph CC[Companion Computer]
+        AGENT[Micro XRCE-DDS Agent]
+        DDS[DDS data space]
+        MSGS[px4_msgs&lt;br/&gt;ROS 2 message definitions]
+        MAVROS[MAVROS&lt;br/&gt;MAVLink ↔ ROS 2]
+
+        subgraph ROS[ROS 2]
+            SENSE[Perception node]
+            PLAN[Planning node]
+            OFFBOARD[Offboard control node]
+        end
+
+        AGENT &lt;--&gt; DDS
+        DDS &lt;--&gt; SENSE
+        DDS &lt;--&gt; PLAN
+        DDS &lt;--&gt; OFFBOARD
+        MSGS -.提供型別.-&gt; ROS
+        MAVROS &lt;--&gt; ROS
+    end
+
+    CLIENT &lt;--&gt; XRCE_LINK
+    XRCE_LINK &lt;--&gt; AGENT
+    MAVLINK &lt;--&gt; MAV_LINK
+    MAV_LINK &lt;--&gt; MAVROS
+    MAV_LINK &lt;--&gt; GCS[QGroundControl / MAVSDK]
+
+    SENSE --&gt; PLAN
+    PLAN --&gt; OFFBOARD
+    OFFBOARD --&gt;|/fmu/in/*&lt;br/&gt;Setpoint、Command| DDS
+    DDS --&gt;|/fmu/out/*&lt;br/&gt;Status、Odometry、Sensor data| SENSE</code></pre>
+<p>資料傳遞流程如下：</p>
+<ol>
+<li>PX4 module 在 flight controller 內發布或訂閱 uORB topic。</li>
+<li>PX4 內的 <code>uxrce_dds_client</code> 將指定的 uORB topic 轉換成 DDS 資料。</li>
+<li>Client 透過 serial、UDP 或 TCP 連接 companion computer 上的 Micro XRCE-DDS Agent。</li>
+<li>Agent 將資料放入 DDS data space，ROS 2 node 就能使用一般的 publisher 和 subscriber 收發資料。</li>
+<li>PX4 發出的 ROS 2 topic 通常位於 <code>/fmu/out/</code>，ROS 2 要送給 PX4 的 topic 通常位於 <code>/fmu/in/</code>。</li>
+</ol>
+<p>例如 ROS 2 可以訂閱 vehicle odometry，完成路徑規劃後發布 position setpoint；PX4 接收 setpoint，再由自己的 estimator、controller 和安全機制完成實際飛行控制。</p>
+<p>圖中也畫出另一條 MAVLink 路徑。
+PX4 的 <code>mavlink</code> module 會在 uORB message 與 MAVLink message 之間轉換，再透過 serial 或 UDP 傳送：</p>
 <ul>
-<li><a href="https://github.com/eclipse-zenoh/zenoh">zenoh</a>：zenoh 本身的主程式</li>
-<li><a href="https://spec.zenoh.io/">zenoh-spec</a>：Zenoh 的正式協定規格</li>
-<li><a href="https://github.com/eclipse-zenoh/roadmap">Zenoh Roadmap</a>：Zenoh 部份的規格定義放在這邊</li>
-<li>Zenoh 各種程式語言 API 的 repository<ul>
-<li>Rust: <a href="https://github.com/eclipse-zenoh/zenoh">zenoh</a><ul>
-<li><a href="https://docs.rs/zenoh/latest/zenoh/">基本 Zenoh API</a></li>
-<li><a href="https://docs.rs/zenoh-ext/latest/zenoh_ext/">進階 Zenoh API</a></li>
+<li><strong>QGroundControl</strong> 和 <strong>MAVSDK</strong> 可以直接使用 MAVLink 與 PX4 通訊。</li>
+<li><strong>MAVROS</strong> 是 MAVLink 與 ROS 2 之間的 bridge，會將 MAVLink message 轉換成 ROS 2 topic、service 和 parameter。</li>
 </ul>
-</li>
-<li>C: <a href="https://github.com/eclipse-zenoh/zenoh-c">zenoh-c</a></li>
-<li>C++: <a href="https://github.com/eclipse-zenoh/zenoh-cpp">zenoh-cpp</a></li>
-<li>Python: <a href="https://github.com/eclipse-zenoh/zenoh-python">zenoh-python</a></li>
-<li>Kotlin: <a href="https://github.com/eclipse-zenoh/zenoh-kotlin">zenoh-kotlin</a></li>
-<li>Java: <a href="https://github.com/eclipse-zenoh/zenoh-java">zenoh-java</a></li>
-<li>Typescript: <a href="https://github.com/eclipse-zenoh/zenoh-ts">zenoh-ts</a></li>
+<p>因此 ROS 2 有兩種常見連接方式。
+uXRCE-DDS 讓 ROS 2 直接使用由 uORB 定義產生的 <code>px4_msgs</code>；MAVROS 則使用較通用的 MAVLink message 與 ROS API。
+兩條路徑可以同時存在，例如 ROS 2 使用 uXRCE-DDS，而 QGroundControl 同時使用 MAVLink 監控飛行器。</p>
+<h2 id="_1">各部分的責任</h2>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>建議負責的功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PX4 flight controller</td>
+<td>感測器、狀態估測、姿態與位置控制、飛行模式、failsafe、馬達輸出</td>
+</tr>
+<tr>
+<td>ROS 2 companion computer</td>
+<td>相機與 LiDAR 處理、定位、避障、路徑規劃、任務邏輯</td>
+</tr>
+<tr>
+<td>uXRCE-DDS Client</td>
+<td>在 PX4 上將指定的 uORB topic 與 DDS 資料互相轉換</td>
+</tr>
+<tr>
+<td>Micro XRCE-DDS Agent</td>
+<td>代理資源有限的 PX4 client 加入 DDS network</td>
+</tr>
+<tr>
+<td><code>px4_msgs</code></td>
+<td>提供 ROS 2 理解 PX4 topic 所需的 message 與 service 型別</td>
+</tr>
+<tr>
+<td>PX4 <code>mavlink</code> module</td>
+<td>在 uORB message 與 MAVLink message 之間轉換</td>
+</tr>
+<tr>
+<td>MAVROS</td>
+<td>在 MAVLink 與 ROS 2 API 之間轉換</td>
+</tr>
+<tr>
+<td>QGroundControl</td>
+<td>設定參數、校正、任務規劃、飛行監控及操作</td>
+</tr>
+</tbody>
+</table>
+<p>ROS 2 不應直接取代 PX4 的高速姿態控制迴路。較常見的做法是由 ROS 2 提供位置、速度、姿態或軌跡 setpoint，再讓 PX4 負責穩定控制與安全檢查。如此即使 companion computer 的高階程式發生問題，PX4 仍能執行既有的 failsafe。</p>
+<h2 id="_2">其他連接方式</h2>
+<p>uXRCE-DDS 是 PX4 與 ROS 2 常見且成熟的整合方式。
+PX4 也支援使用 Zenoh 將 uORB message 暴露給 ROS 2；另一種選擇是使用 MAVROS，透過 MAVLink 連接 PX4。
+選擇時可依現有系統、PX4 版本、網路環境及需要使用的 API 決定。</p>
+<h2 id="_3">常用資源</h2>
+<ul>
+<li><a href="https://docs.px4.io/main/en/">PX4 官方文件</a>：安裝、設定、飛行與開發文件。</li>
+<li><a href="https://docs.px4.io/main/en/concept/architecture">PX4 Architectural Overview</a>：PX4 flight stack、middleware 與執行模型。</li>
+<li><a href="https://docs.px4.io/main/en/ros/ros2_comm.html">PX4 ROS 2 User Guide</a>：ROS 2 環境、通訊與範例。</li>
+<li><a href="https://docs.px4.io/main/en/middleware/uxrce_dds">uXRCE-DDS Bridge</a>：Client、Agent、topic 與 QoS 設定。</li>
+<li><a href="https://docs.px4.io/main/en/middleware/uorb">uORB Messaging</a>：PX4 內部 publish/subscribe 通訊。</li>
+<li><a href="https://github.com/PX4/PX4-Autopilot">PX4-Autopilot</a>：PX4 firmware 原始碼。</li>
+<li><a href="https://github.com/PX4/px4_msgs">px4_msgs</a>：PX4 對應的 ROS 2 message 與 service definitions。</li>
 </ul>
-</li>
-<li>嵌入式版本<ul>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-pico">zenoh-pico</a>：用 C 語言寫成，有較低的 footprint</li>
-<li><a href="https://github.com/ZettaScaleLabs/zenoh-nostd">zenoh-nostd</a>：用純 Rust 寫成，且不需要用到標準函式庫，所以可以用在嵌入式系統</li>
-</ul>
-</li>
-<li>Plugin：Zenoh 支援多種 plugin，可以嵌入在 Zenoh 程式之中，將 Zenoh 的訊息轉成其他的 protocol<ul>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-dds">zenoh-plugin-dds</a>：結合 zenoh 和 DDS，將兩者的資料互相轉換</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-ros2dds">zenoh-plugin-ros2dds</a>：雖然也是跟 DDS 相連，但是這特別限定是用在 ROS 2 的情境下</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-mqtt">zenoh-plugin-mqtt</a>：將 MQTT 和 Zenoh 的訊息互相轉換</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-plugin-webserver">zenoh-plugin-webserver</a>：可以用 Web URL 來取得 Zenoh 的資料</li>
-</ul>
-</li>
-<li>Backend：Zenoh 也支援多種 backend，可以將收到的訊息儲存在特定 Database 之中<ul>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-backend-influxdb">zenoh-backend-influxdb</a>：將資料儲存在 InfluxDB 中，支援 V1 和 V2</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-backend-filesystem">zenoh-backend-filesystem</a>：將資料儲存在檔案系統之中</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-backend-rocksdb">zenoh-backend-rocksdb</a>：將資料儲存在 RocksDB 之中</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-backend-s3">zenoh-backend-s3</a>：將資料儲存在 S3 資料庫之中</li>
-</ul>
-</li>
-<li><a href="https://github.com/eclipse-zenoh/zenoh-dissector">zenoh-dissector</a>：Zenoh 的 wireshark plugin，可以用來解析 Zenoh 的封包</li>
-</ul>
-<p>如果你想了解更多使用 Zenoh 的 project，可以參考 <a href="https://github.com/kydos/awesome-zenoh">awesome-zenoh</a>。</p>
 
 
 
 
 
 
-
-  
-  
 
 
 
