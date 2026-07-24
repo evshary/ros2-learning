@@ -95,6 +95,8 @@ nav:
     - 'Autoware 地圖': 'autoware/map.md'
     - 'Autoware 模擬': 'autoware/simulation.md'
     - 'Autoware API': 'autoware/api.md'
+  - 'PX4':
+    - 'PX4 介紹': 'px4/introduction.md'
   - 'AGL 入門':
     - 'AGL 介紹': 'agl/introduction.md'
     - 'AGL 安裝': 'agl/installation.md'
