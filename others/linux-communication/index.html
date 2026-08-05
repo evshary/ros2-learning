@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Rust 模組概念">
+        <meta name="description" content="簡介 Linux process 間以及 userspace 與 kernel 間的通訊機制">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/rust/module/">
+        <link rel="canonical" href="https://ros2.tw/others/linux-communication/">
       
       
-        <link rel="prev" href="../ownership/">
+        <link rel="prev" href="../fuzz/">
       
-      
-        <link rel="next" href="../iterator/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>Rust Module - ROS 2 筆記</title>
+        <title>Linux 通訊機制 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#workspace" class="md-skip">
+        <a href="#process" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rust Module
+              Linux 通訊機制
             
           </span>
         </div>
@@ -1910,20 +1908,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
         
           
           <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
@@ -1939,7 +1935,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_13">
             <span class="md-nav__icon md-icon"></span>
             Rust
@@ -1953,7 +1949,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../rust/introduction/" class="md-nav__link">
         
   
   
@@ -1976,7 +1972,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../why_rust/" class="md-nav__link">
+      <a href="../../rust/why_rust/" class="md-nav__link">
         
   
   
@@ -1999,12 +1995,381 @@
   
   
     <li class="md-nav__item">
-      <a href="../ownership/" class="md-nav__link">
+      <a href="../../rust/ownership/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     Rust Ownership
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/module/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Module
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/iterator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Iterator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/attribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Attribute
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/async/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust async
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/unsafe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust unsafe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/trait/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust trait
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/fuzz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust fuzz test
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/benchmark/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust benchmark
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/ffi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust FFI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/miri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Miri
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../binary-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Binary 分析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qemu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QEMU
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fuzz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    模糊測試
     
   </span>
   
@@ -2034,7 +2399,7 @@
   
   
   <span class="md-ellipsis">
-    Rust Module
+    Linux 通訊機制
     
   </span>
   
@@ -2047,7 +2412,7 @@
   
   
   <span class="md-ellipsis">
-    Rust Module
+    Linux 通訊機制
     
   </span>
   
@@ -2068,68 +2433,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#workspace" class="md-nav__link">
+  <a href="#process" class="md-nav__link">
     <span class="md-ellipsis">
-      workspace
+      Process 間通訊
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#package-crate" class="md-nav__link">
+  <a href="#userspace-kernel" class="md-nav__link">
     <span class="md-ellipsis">
-      package &amp;&amp; crate
+      Userspace 與 Kernel 通訊
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="package &amp;&amp; crate">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#library" class="md-nav__link">
-    <span class="md-ellipsis">
-      引用外部 library
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mod" class="md-nav__link">
-    <span class="md-ellipsis">
-      mod
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="mod">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      可見性
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-mod" class="md-nav__link">
-    <span class="md-ellipsis">
-      use &amp; mod 差異
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2137,373 +2454,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../iterator/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust Iterator
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../error/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust Error
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../attribute/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust Attribute
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../async/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust async
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../unsafe/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust unsafe
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../trait/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust trait
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../fuzz/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust fuzz test
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../benchmark/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust benchmark
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ffi/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust FFI
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../miri/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust Miri
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
-        
-          
-          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Others
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_14">
-            <span class="md-nav__icon md-icon"></span>
-            Others
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../others/binary-analysis/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Binary 分析
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../others/qemu/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    QEMU
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../others/fuzz/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    模糊測試
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../others/linux-communication/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Linux 通訊機制
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -2541,68 +2491,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#workspace" class="md-nav__link">
+  <a href="#process" class="md-nav__link">
     <span class="md-ellipsis">
-      workspace
+      Process 間通訊
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#package-crate" class="md-nav__link">
+  <a href="#userspace-kernel" class="md-nav__link">
     <span class="md-ellipsis">
-      package &amp;&amp; crate
+      Userspace 與 Kernel 通訊
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="package &amp;&amp; crate">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#library" class="md-nav__link">
-    <span class="md-ellipsis">
-      引用外部 library
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mod" class="md-nav__link">
-    <span class="md-ellipsis">
-      mod
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="mod">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      可見性
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-mod" class="md-nav__link">
-    <span class="md-ellipsis">
-      use &amp; mod 差異
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -2622,99 +2524,145 @@
 
 
 
-  <h1>Rust Module</h1>
+  <h1>Linux 通訊機制</h1>
 
-<p>Rust 的 project 架構有很多名詞，不過從大到小，大概如下： workspace &gt; package &gt; crate &gt; mod</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>. &lt;------------------------------ workspace
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── Cargo.lock
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── Cargo.toml --- [workspace]
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│                  members = [&quot;pakcageA&quot;, &quot;packageB&quot;]
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── packageA
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   └...
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── packageB &lt;------------------- package
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    ├ Cargo.toml
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    ├ tests/    (test)
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    ├ benches/  (benchmark)
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    ├ examples/ (exmple)
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    └ src/      (source code)
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>      ├── lib.rs &lt;--------------- crate (includes mod)
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>      ├── main.rs &lt;-------------- crate (includes mod)
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>      └── bin/
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>          ├── bin1.rs &lt;---------- crate (includes mod)
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>          └── bin2.rs &lt;---------- crate (includes mod)
-</span></code></pre></div>
-<h2 id="workspace">workspace</h2>
-<p>workspace 是多個 packages 的集合，有兩種類型</p>
-<ol>
-<li>root package: 最外層(根目錄)是一個 package，底下包含了其他 package</li>
-<li>virtual manifest: 最外層(根目錄)不是 package，在 workspace 底下的所有 package 都在單獨目錄中</li>
-</ol>
-<p>workspace 的特性為</p>
-<ol>
-<li>所有 package 共用同個 Cargo.lock，位於根目錄下，確保大家使用相同版本的 dependency</li>
-<li>所有 package 的輸出都會集中在根目錄下的 target 資料夾</li>
-<li>只有根目錄下的 Cargo.toml 的 <code>[patch]</code>, <code>[replace]</code>, <code>[profile.*]</code> 才有效用，其他 package 的則是會被忽略</li>
-</ol>
-<h2 id="package-crate">package &amp;&amp; crate</h2>
-<p>很多時候我們不一定需要 workspace，這時候最大的單位就是一個 package</p>
-<p>一個 package 可以包括多個 binary crates，和最多一個 library crates</p>
-<h3 id="library">引用外部 library</h3>
-<p>在 <code>Cargo.toml</code> 的 <code>[dependencies]</code> 下放入 library，crate 即可直接用 use。</p>
-<div class="language-toml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">[dependencies]</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">futures</span><span class="o">=</span><span class="s2">&quot;0.3.12&quot;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">zenoh</span><span class="o">=</span><span class="p">{</span><span class="n">git</span><span class="p">=</span><span class="s2">&quot;url&quot;</span><span class="p">}</span>
-</span></code></pre></div>
-<h2 id="mod">mod</h2>
-<p>一個 crate 中可以多個 mod，也可以視為是 namespace</p>
-<p>舉個例子，假設我們在同個 crate 中有 2 個 mod，要呼叫對方的 function 有兩個方法：絕對路徑和相對路徑</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">mod</span><span class="w"> </span><span class="nn">a</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">mod</span><span class="w"> </span><span class="nn">a1</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">a2</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">}</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">mod</span><span class="w"> </span><span class="nn">b</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">test</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="c1">// absolute</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="n">create</span><span class="p">::</span><span class="n">a</span><span class="p">::</span><span class="n">a1</span><span class="p">::</span><span class="n">a2</span><span class="p">();</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="c1">// relative</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="k">super</span><span class="p">::</span><span class="n">a</span><span class="p">::</span><span class="n">a1</span><span class="p">::</span><span class="n">a2</span><span class="p">();</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="p">}</span>
-</span></code></pre></div>
-<h3 id="_1">可見性</h3>
-<p>另外，也要注意在 mod 中需要加上 pub 才能讓其他人 access，這也就是可見性的設定，有如下幾種</p>
+<p>Linux 系統中的通訊不只發生在 process 之間，也包含 userspace application 與 kernel 之間的資料交換。
+兩者面對的問題與適合的介面並不相同：</p>
 <ul>
-<li><code>pub</code>: 可見性沒限制</li>
-<li><code>pub(crate)</code>: 當前 crate 可見</li>
-<li><code>pub(self)</code>: 當前 mod 可見</li>
-<li><code>pub(super)</code>: 在父 mod 可見</li>
-<li><code>pub(in &lt;path&gt;)</code>: 在某路徑的 mod 可見，例如 <code>pub(in crate::a)</code></li>
+<li>Process 間通訊（Inter-Process Communication，IPC）讓各自擁有獨立記憶體空間的 process 交換資料、傳遞事件或協調工作。</li>
+<li>Userspace 與 kernel 通訊則讓 application 取得系統狀態、控制 device driver，或接收 kernel 產生的事件。</li>
 </ul>
-<h3 id="use-mod">use &amp; mod 差異</h3>
-<p>在程式中，我們可以看到常常會有 <code>use xxx</code> 和 <code>mod xxx</code> 的出現，兩者差異如下：</p>
-<ul>
-<li>use: 用來縮寫，可以不用寫那麼長的路徑</li>
-<li>mod: 兩種用法<ul>
-<li>區分 namespace</li>
-<li>引入其他的檔案</li>
-</ul>
-</li>
-</ul>
-<p>舉例來說，假設有兩個檔案，兩者可以這樣使用</p>
-<p>file.rs</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">pub</span><span class="w"> </span><span class="k">mod</span><span class="w"> </span><span class="nn">module</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">func1</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">}</span>
-</span></code></pre></div>
-<p>lib.rs</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">mod</span><span class="w"> </span><span class="nn">file</span><span class="p">;</span><span class="w">  </span><span class="c1">// &lt;--- 尋找當前目錄的 file.rs 或是 file 資料夾底下的 mod.rs</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">pub</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="k">crate</span><span class="p">::</span><span class="n">file</span><span class="p">::</span><span class="n">module</span><span class="p">;</span><span class="w"> </span><span class="c1">// &lt;--- 縮寫</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">test</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="c1">// 原來應該要寫成 crate::file::module::func1()</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">module</span><span class="p">::</span><span class="n">func1</span><span class="p">();</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
-</span></code></pre></div>
+<p>選擇通訊機制時，需要考量通訊對象、資料量、訊息邊界、效能、同步方式、權限，以及介面是否需要維持穩定的 ABI。</p>
+<h2 id="process">Process 間通訊</h2>
+<p>IPC 機制在通訊範圍、資料模型與使用複雜度上各有差異。</p>
+<p>Pipe/FIFO 適合簡單資料流，Socket 適合通用雙向通訊，Message Queue 適合獨立訊息，Shared Memory 適合大量低延遲資料，D-Bus 適合高階系統服務，而 Netlink 主要用於 userspace 與 kernel 溝通。</p>
+<table>
+<thead>
+<tr>
+<th>IPC 機制</th>
+<th>通訊範圍／方式</th>
+<th>資料與通訊模型</th>
+<th>優點</th>
+<th>缺點</th>
+<th>簡單範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pipe</strong></td>
+<td>本機；通常是有親緣關係的 process</td>
+<td>單向 byte stream</td>
+<td>簡單、輕量；適合串接程式</td>
+<td>通常只能單向；沒有訊息邊界；通常需要 parent-child 關係</td>
+<td><code>ps aux \| grep nginx</code></td>
+</tr>
+<tr>
+<td><strong>FIFO</strong><br>(Named Pipe)</td>
+<td>本機；透過 filesystem path 連接</td>
+<td>單向 byte stream</td>
+<td>無親緣關係也能使用；操作方式類似檔案</td>
+<td>雙向需要兩個 FIFO；不適合複雜的多 client 架構；需管理 path</td>
+<td><code>mkfifo /tmp/my_fifo</code></td>
+</tr>
+<tr>
+<td><strong>Socket</strong></td>
+<td>Unix socket 用於本機；TCP/UDP 可跨主機</td>
+<td>通常雙向；支援 stream、datagram 等模式</td>
+<td>彈性高；支援多 client；可用於本機或網路</td>
+<td>API 與連線管理較複雜；stream 模式需自行處理訊息邊界</td>
+<td>Docker 使用 <code>/var/run/docker.sock</code></td>
+</tr>
+<tr>
+<td><strong>Message Queue</strong></td>
+<td>本機；透過 queue name 或 ID</td>
+<td>Producer-consumer；保留訊息邊界</td>
+<td>天然的訊息佇列；可阻塞等待；部分實作支援訊息優先權</td>
+<td>訊息大小和 queue 容量有限；不適合傳送大量資料</td>
+<td><code>mq_send()</code> / <code>mq_receive()</code> 傳送工作指令</td>
+</tr>
+<tr>
+<td><strong>Shared Memory</strong><br>(SHM)</td>
+<td>本機；多個 process 映射相同 memory pages</td>
+<td>直接共享自訂資料結構</td>
+<td>Throughput 高、延遲低；適合大量資料；減少資料複製</td>
+<td>必須自行處理同步、資料格式和生命週期；容易發生 race condition</td>
+<td><code>shm_open()</code> + <code>mmap()</code> 共享影像 buffer</td>
+</tr>
+<tr>
+<td><strong>D-Bus</strong></td>
+<td>本機；應用程式透過 system/session bus 找到 service</td>
+<td>高階 message；支援 method、reply、signal</td>
+<td>支援 service discovery、權限與結構化介面；適合系統服務</td>
+<td>額外抽象與處理成本；不適合高頻率或大型資料</td>
+<td>呼叫 NetworkManager 查詢網路狀態</td>
+</tr>
+</tbody>
+</table>
+<h2 id="userspace-kernel">Userspace 與 Kernel 通訊</h2>
+<p>Userspace application 無法直接存取 kernel memory 或硬體，必須透過 system call 和 kernel 提供的介面進行操作。
+簡單的狀態與屬性通常透過虛擬檔案系統呈現；device driver 常使用 device file；需要結構化雙向通訊或非同步事件時，則可使用 Netlink。</p>
+<table>
+<thead>
+<tr>
+<th>介面／機制</th>
+<th>主要用途</th>
+<th>通訊方式</th>
+<th>優點</th>
+<th>缺點</th>
+<th>簡單範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>read()</code> / <code>write()</code> / <code>ioctl()</code></strong></td>
+<td>Userspace 操作 device driver</td>
+<td>透過 <code>/dev</code> device file；<code>read/write</code> 傳資料，<code>ioctl</code> 傳控制命令</td>
+<td>標準且直接；適合 driver 資料與控制操作；可支援阻塞 I/O</td>
+<td>需要設計 userspace/kernel ABI；<code>ioctl</code> 過多時介面較難維護</td>
+<td>對 <code>/dev/video0</code> 讀取影像，或用 <code>ioctl()</code> 設定裝置</td>
+</tr>
+<tr>
+<td><strong>procfs</strong></td>
+<td>提供 process 與系統執行狀態</td>
+<td>透過 <code>/proc</code> 虛擬檔案，以 <code>read/write</code> 存取</td>
+<td>容易用 shell 和一般工具查看；適合文字資訊</td>
+<td>不適合高頻或大量資料；部分格式主要供人閱讀</td>
+<td><code>cat /proc/meminfo</code></td>
+</tr>
+<tr>
+<td><strong>sysfs</strong></td>
+<td>顯示與設定 device、driver、bus 和 kernel object 屬性</td>
+<td>透過 <code>/sys</code> 虛擬檔案，通常一個檔案代表一個屬性</td>
+<td>結構清楚；適合裝置屬性與簡單設定；容易 script 化</td>
+<td>不適合複雜 command 或大型資料；通常限制為簡單文字值</td>
+<td><code>cat /sys/class/net/eth0/operstate</code></td>
+</tr>
+<tr>
+<td><strong>debugfs</strong></td>
+<td>Kernel 和 driver 開發除錯</td>
+<td>透過 <code>/sys/kernel/debug</code> 暴露自訂資訊或控制項目</td>
+<td>彈性高；容易加入診斷與測試介面</td>
+<td>通常沒有穩定 ABI 保證；不適合作為正式產品介面</td>
+<td>查看 <code>/sys/kernel/debug/tracing/</code></td>
+</tr>
+<tr>
+<td><strong>Netlink</strong></td>
+<td>Userspace 與 kernel subsystem 交換結構化命令與事件</td>
+<td>使用 <code>AF_NETLINK</code> socket；支援 request-response 和 multicast</td>
+<td>雙向、結構化、可擴充；支援 kernel 主動發送事件</td>
+<td>Message protocol 較複雜；開發成本高於虛擬檔案</td>
+<td><code>ip addr</code> 透過 Netlink 查詢網路介面</td>
+</tr>
+<tr>
+<td><strong>uevent + udev</strong></td>
+<td>處理 device 新增、移除與狀態改變</td>
+<td>Kernel 發送 uevent；userspace 的 <code>systemd-udevd</code> 接收並套用規則</td>
+<td>適合 device lifecycle；可自動建立裝置節點、權限及 symlink</td>
+<td>用途集中在 device model；udev 規則複雜時較難除錯</td>
+<td>插入 USB 後建立 <code>/dev/sdb</code></td>
+</tr>
+</tbody>
+</table>
 
 
 
