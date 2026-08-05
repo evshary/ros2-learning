@@ -130,3 +130,4 @@ nav:
     - 'Binary 分析': 'others/binary-analysis.md'
     - 'QEMU': 'others/qemu.md'
     - '模糊測試': 'others/fuzz.md'
+    - 'Linux 通訊機制': 'others/linux-communication.md'
