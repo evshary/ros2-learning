@@ -6,19 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="控制 Autoware 的 API">
+        <meta name="description" content="簡介 Ubuntu snap 封裝系統">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/autoware/api/">
+        <link rel="canonical" href="https://ros2.tw/others/snap/">
       
       
-        <link rel="prev" href="../simulation/">
+        <link rel="prev" href="../linux-communication/">
       
-      
-        <link rel="next" href="../../px4/introduction/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>Autoware API - ROS 2 筆記</title>
+        <title>snap 機制 - ROS 2 筆記</title>
       
     
     
@@ -87,6 +85,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -119,7 +122,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Autoware API
+              snap 機制
             
           </span>
         </div>
@@ -1244,20 +1247,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
         
           
           <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
@@ -1273,7 +1274,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             Autoware 入門
@@ -1287,7 +1288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../autoware/introduction/" class="md-nav__link">
         
   
   
@@ -1310,7 +1311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../../autoware/installation/" class="md-nav__link">
         
   
   
@@ -1333,7 +1334,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modules/" class="md-nav__link">
+      <a href="../../autoware/modules/" class="md-nav__link">
         
   
   
@@ -1356,7 +1357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../map/" class="md-nav__link">
+      <a href="../../autoware/map/" class="md-nav__link">
         
   
   
@@ -1379,7 +1380,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../simulation/" class="md-nav__link">
+      <a href="../../autoware/simulation/" class="md-nav__link">
         
   
   
@@ -1399,17 +1400,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../autoware/api/" class="md-nav__link">
         
   
   
@@ -1420,7 +1414,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -2282,18 +2275,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" checked>
         
           
           <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
@@ -2309,7 +2304,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_14">
             <span class="md-nav__icon md-icon"></span>
             Others
@@ -2323,7 +2318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../others/binary-analysis/" class="md-nav__link">
+      <a href="../binary-analysis/" class="md-nav__link">
         
   
   
@@ -2346,7 +2341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../others/qemu/" class="md-nav__link">
+      <a href="../qemu/" class="md-nav__link">
         
   
   
@@ -2369,7 +2364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../others/fuzz/" class="md-nav__link">
+      <a href="../fuzz/" class="md-nav__link">
         
   
   
@@ -2392,7 +2387,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../others/linux-communication/" class="md-nav__link">
+      <a href="../linux-communication/" class="md-nav__link">
         
   
   
@@ -2412,10 +2407,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../others/snap/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Snap 機制
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2426,6 +2441,69 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      與其他工具的差異
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Snap 格式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snap_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      啟動 snap 流程
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      確保安全性的方法
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2456,6 +2534,59 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      與其他工具的差異
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Snap 格式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      常用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snap_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      啟動 snap 流程
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      確保安全性的方法
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2470,37 +2601,139 @@
 
 
 
-  <h1>Autoware API</h1>
+  <h1>Snap 機制</h1>
 
-<p>Autoware 本身有提供一些 API 給外部使用者使用，這些 API 基本上都是 ROS 2 topic 的形式。
-相關資料可以參考<a href="https://autowarefoundation.github.io/autoware-documentation/main/design/autoware-architecture-v1/interfaces/#architecture">官方文件</a></p>
-<p>這邊會列上一些常用的 API：</p>
+<p>Snap 是 Canonical 推出的 Linux 軟體封裝、安裝與更新系統。
+每個 .snap 套件包含應用程式及大部分相依檔案，並透過 sandbox 限制程式能存取的系統資源。</p>
+<p>常用到的工具有</p>
 <ul>
-<li>控制車子的操作模式 (Operation Mode)</li>
+<li>snap: 使用者操作的 CLI</li>
+<li>snapd: 負責安裝、更新、掛載及安全政策的 daemon</li>
+<li>Snap Store: 軟體套件來源</li>
+<li>Snapcraft: 開發者製作 Snap 的工具</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 讓車子停下</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/api/operation_mode/change_to_stop<span class="w"> </span>autoware_adapi_v1_msgs/srv/ChangeOperationMode
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 讓車子回復到導航模式</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/api/operation_mode/change_to_autonomous<span class="w"> </span>autoware_adapi_v1_msgs/srv/ChangeOperationMode
-</span></code></pre></div>
+<h2 id="_1">與其他工具的差異</h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>主要定位</th>
+<th>相依套件</th>
+<th>Sandbox</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deb／apt</td>
+<td>Ubuntu 原生系統套件</td>
+<td>通常共用系統函式庫</td>
+<td>預設沒有</td>
+</tr>
+<tr>
+<td>snap</td>
+<td>跨發行版的應用程式、CLI、服務及 IoT 套件</td>
+<td>內含或使用 base snap</td>
+<td>有</td>
+</tr>
+<tr>
+<td>flatpak</td>
+<td>跨發行版的桌面應用程式</td>
+<td>使用共用 runtime</td>
+<td>有</td>
+</tr>
+<tr>
+<td>AppImage</td>
+<td>下載後直接執行的單一檔案</td>
+<td>通常包含在檔案內</td>
+<td>預設沒有</td>
+</tr>
+<tr>
+<td>homebrew</td>
+<td>安裝 CLI、開發工具及函式庫</td>
+<td>由 Homebrew 管理</td>
+<td>沒有</td>
+</tr>
+</tbody>
+</table>
+<p>簡單定位</p>
 <ul>
-<li>追蹤車子當下位置</li>
+<li>系統、driver、底層函式庫：APT</li>
+<li>桌面應用程式：snap 或 flatpak</li>
+<li>單檔直接執行：AppImage</li>
+<li>CLI／開發工具：apt、snap 或 homebrew</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 會提供當下經緯度以及 map 上的位置</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/api/vehicle/kinematics
-</span></code></pre></div>
+<h2 id="snap">Snap 格式</h2>
+<p><code>.snap</code> 是一個唯讀、壓縮的 SquashFS 檔案系統映像。</p>
+<p>內容大致包括：</p>
 <ul>
-<li>路線相關</li>
+<li>執行檔</li>
+<li>函式庫</li>
+<li>資源及設定檔</li>
+<li>meta/snap.yaml<ul>
+<li>Snap 名稱及版本</li>
+<li>執行入口</li>
+<li>Base snap</li>
+<li>Apps 和 services</li>
+<li>Plugs 和 slots</li>
+<li>Confinement 模式<ul>
+<li>strict: 正常執行 sandbox 限制</li>
+<li>devmode: 記錄違規，主要供開發除錯</li>
+<li>classic: 接近傳統應用程式，能廣泛存取主機</li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 取得當下的路線，如果為空，代表沒有設定任何路線</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/api/routing/route
-</span></code></pre></div>
+</li>
+</ul>
+</li>
+</ul>
+<p>安裝後通常掛載於 <code>/snap/&lt;name&gt;/&lt;revision&gt;/</code></p>
+<p>資料部份則分成兩個</p>
 <ul>
-<li>rviz 相關</li>
+<li>使用者資料: <code>~/snap/&lt;name&gt;/</code></li>
+<li>系統或 service 資料: <code>/var/snap/&lt;name&gt;/</code></li>
 </ul>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 取得 rviz 給的初始化位置</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>ros2<span class="w"> </span>topic<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>/initialpose
-</span></code></pre></div>
+<h2 id="_2">常用</h2>
+<p>基本術語</p>
+<ul>
+<li>App: Snap 提供的程式或 service</li>
+<li>Base: 提供基本執行環境，例如 core24</li>
+<li>Interface: 一類系統資源及其安全政策，例如 home、network</li>
+<li>Plug: 資源需求端</li>
+<li>Slot: 資源提供端</li>
+<li>Connection: plug 與 slot 的實際連接</li>
+<li>Confinement: snap 的隔離等級</li>
+<li>Version: 應用程式自己的版本</li>
+<li>Revision: Snap Store 對每次上傳產生的編號</li>
+<li>Channel: 更新通道，例如 stable、beta、edge</li>
+</ul>
+<p>最常用指令</p>
+<ul>
+<li><code>snap find &lt;name&gt;</code>: 在 Snap Store 搜尋套件</li>
+<li><code>sudo snap install &lt;name&gt;</code>: 從 Snap Store 下載並安裝套件</li>
+<li><code>snap list</code>: 列出目前已安裝的 Snap</li>
+<li><code>sudo snap refresh</code>: 更新所有已安裝的 Snap</li>
+<li><code>sudo snap remove &lt;name&gt;</code>: 移除指定 Snap；預設可能保留資料 snapshot</li>
+<li><code>snap connections &lt;name&gt;</code>: 查看指定 Snap 的 plugs、slots 及目前連接狀態</li>
+</ul>
+<h2 id="snap_1">啟動 snap 流程</h2>
+<ul>
+<li><code>snapd</code>: 主要負責事前的安裝更新</li>
+<li>使用者執行程式</li>
+<li><code>/snap/bin/&lt;app&gt;</code></li>
+<li><code>snap run</code>: 讀取 metadata，準備啟動</li>
+<li><code>snap-confine</code>: 建立 sandbox、mount namespace，套用安全政策</li>
+<li><code>snap-exec</code>: 找到實際 command，最後執行應用程式</li>
+<li>真正的應用程式</li>
+</ul>
+<h2 id="_3">確保安全性的方法</h2>
+<ul>
+<li>SquashFS: 應用程式本體唯讀、不可修改</li>
+<li>Mount namespace: 控制程式看到的檔案系統</li>
+<li>AppArmor: 限制可存取的檔案、socket、D-Bus 等資源</li>
+<li>Seccomp: 限制可使用的 system calls</li>
+<li>Capabilities: 限制 process 的系統特權</li>
+<li>cgroup／udev: 管理 service 及硬體裝置存取</li>
+<li>UNIX permissions: UID、GID、檔案權限仍然有效</li>
+<li>Interfaces: 以 plug／slot 開放必要資源</li>
+</ul>
 
 
 
