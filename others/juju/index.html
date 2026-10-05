@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Rust 屬性系統">
+        <meta name="description" content="使用 Juju 在本機 LXD 建立 controller 並部署應用程式">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/rust/attribute/">
+        <link rel="canonical" href="https://ros2.tw/others/juju/">
       
       
-        <link rel="prev" href="../error/">
+        <link rel="prev" href="../binary-analysis/">
       
       
-        <link rel="next" href="../async/">
+        <link rel="next" href="../qemu/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Rust Attribute - ROS 2 筆記</title>
+        <title>Juju 入門 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#juju-controllermodelcharm-bundle" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rust Attribute
+              Juju 入門
             
           </span>
         </div>
@@ -1910,20 +1910,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
         
           
           <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
@@ -1939,7 +1937,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_13">
             <span class="md-nav__icon md-icon"></span>
             Rust
@@ -1953,7 +1951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../introduction/" class="md-nav__link">
+      <a href="../../rust/introduction/" class="md-nav__link">
         
   
   
@@ -1976,7 +1974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../why_rust/" class="md-nav__link">
+      <a href="../../rust/why_rust/" class="md-nav__link">
         
   
   
@@ -1999,7 +1997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ownership/" class="md-nav__link">
+      <a href="../../rust/ownership/" class="md-nav__link">
         
   
   
@@ -2022,7 +2020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../module/" class="md-nav__link">
+      <a href="../../rust/module/" class="md-nav__link">
         
   
   
@@ -2045,7 +2043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../iterator/" class="md-nav__link">
+      <a href="../../rust/iterator/" class="md-nav__link">
         
   
   
@@ -2068,12 +2066,266 @@
   
   
     <li class="md-nav__item">
-      <a href="../error/" class="md-nav__link">
+      <a href="../../rust/error/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     Rust Error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/attribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Attribute
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/async/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust async
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/unsafe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust unsafe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/trait/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust trait
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/fuzz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust fuzz test
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/benchmark/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust benchmark
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/ffi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust FFI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/miri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Miri
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../binary-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Binary 分析
     
   </span>
   
@@ -2103,7 +2355,7 @@
   
   
   <span class="md-ellipsis">
-    Rust Attribute
+    Juju 入門
     
   </span>
   
@@ -2116,7 +2368,7 @@
   
   
   <span class="md-ellipsis">
-    Rust Attribute
+    Juju 入門
     
   </span>
   
@@ -2137,60 +2389,72 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#juju-controllermodelcharm-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Juju 的架構：Controller、Model、Charm 與 Bundle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#charmhub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Charmhub 是什麼
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      分類
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="分類">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      編譯器內建 attribute
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lint-attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      lint attribute
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#macro-attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      macro attribute
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cratemod-level-attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      crate/mod level attribute
+      安裝與前置需求
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#feature" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      feature
+      建立環境並部署
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定 Nginx
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      用 Bundle 部署兩個應用程式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      清除資源
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      參考資料
     </span>
   </a>
   
@@ -2212,259 +2476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../async/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust async
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../unsafe/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust unsafe
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../trait/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust trait
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../fuzz/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust fuzz test
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../benchmark/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust benchmark
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ffi/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust FFI
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../miri/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Rust Miri
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
-        
-          
-          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Others
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_14">
-            <span class="md-nav__icon md-icon"></span>
-            Others
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../others/binary-analysis/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Binary 分析
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../others/juju/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Juju 入門
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../others/qemu/" class="md-nav__link">
+      <a href="../qemu/" class="md-nav__link">
         
   
   
@@ -2487,7 +2499,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../others/fuzz/" class="md-nav__link">
+      <a href="../fuzz/" class="md-nav__link">
         
   
   
@@ -2510,7 +2522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../others/linux-communication/" class="md-nav__link">
+      <a href="../linux-communication/" class="md-nav__link">
         
   
   
@@ -2533,7 +2545,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../others/snap/" class="md-nav__link">
+      <a href="../snap/" class="md-nav__link">
         
   
   
@@ -2581,60 +2593,72 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#juju-controllermodelcharm-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Juju 的架構：Controller、Model、Charm 與 Bundle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#charmhub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Charmhub 是什麼
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      分類
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="分類">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      編譯器內建 attribute
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#lint-attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      lint attribute
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#macro-attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      macro attribute
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cratemod-level-attribute" class="md-nav__link">
-    <span class="md-ellipsis">
-      crate/mod level attribute
+      安裝與前置需求
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#feature" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      feature
+      建立環境並部署
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定 Nginx
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      用 Bundle 部署兩個應用程式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      清除資源
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      參考資料
     </span>
   </a>
   
@@ -2656,151 +2680,119 @@
 
 
 
-  <h1>Rust Attribute</h1>
+  <h1>Juju 入門</h1>
 
-<p>在看 Rust 的程式的時候會常常看到 <code>#[]</code>，這個是 Rust 的屬性系統 (attribute)。
-他的功能在於提供給編譯器或其他工具在編譯時的一些額外資訊，例如改變編譯行為、code 生成、lint、macro 展開等等。</p>
-<p>下面是最基本的語法</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// 單純 attribute，例如 #[test]</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#[attribute]</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// 帶入 key、value，例如 #[cfg(feature = &quot;foo&quot;)]</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cp">#[attribute(key = </span><span class="s">&quot;value&quot;</span><span class="cp">)]</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">// 帶入其他參數，例如 #[allow(dead_code)]</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="cp">#[attribute(arg1, arg2)]</span>
-</span></code></pre></div>
-<h2 id="_1">分類</h2>
-<p>一般來說有下面這幾個分類</p>
-<h3 id="attribute">編譯器內建 attribute</h3>
-<p>調整 compiler 的行為，例如 cfg、inline、repr、derive 等等</p>
-<ul>
-<li>條件編譯：決定某個程式是否存在</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">#[cfg(feature = </span><span class="s">&quot;foo&quot;</span><span class="cp">)]</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">#[cfg(target_os = </span><span class="s">&quot;linux&quot;</span><span class="cp">)]</span>
+<p>Juju 是 Canonical 的服務編排工具，透過 charm 管理雲端或本機環境中的應用程式。它將部署、設定、擴縮及應用程式之間的整合描述成模型，並由 Juju 持續協調實際環境與模型狀態。這讓相同的操作方式可以用在不同的 cloud，而不必每次都手動登入機器設定服務。</p>
+<h2 id="juju-controllermodelcharm-bundle">Juju 的架構：Controller、Model、Charm 與 Bundle</h2>
+<p>Juju 的資源關係可以簡化成：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Cloud
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>└── Controller
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    └── Model
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        ├── Application（例如 nginx）
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        │   ├── Unit（nginx/0）
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        │   └── Unit（nginx/1）
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        └── 其他 applications 與它們的 units
 </span></code></pre></div>
 <ul>
-<li>derive：產生實作</li>
+<li><strong>Controller</strong>：Juju 的管理服務，接收 CLI 操作、保存部署狀態，並協調 cloud 上的資源。通常一個 controller 可以管理多個 models。</li>
+<li><strong>Model</strong>：一個獨立的操作與部署範圍，包含 applications、units、設定及彼此的關係。可用不同 model 隔離開發、測試與正式環境。</li>
+<li><strong>Application</strong>：model 中受管理的服務，例如部署後名為 <code>nginx</code> 的 Nginx 服務。它不是單一程序；應用程式可以有一個或多個 units。</li>
+<li><strong>Unit</strong>：application 的一個執行個體，例如 <code>nginx/0</code>。在 LXD 或一般 machine cloud 上通常對應一台機器或容器；在 Kubernetes cloud 上則通常對應一個 pod。</li>
+<li><strong>Charm</strong>：描述如何安裝、設定及維護某類 application 的操作程式。<code>juju deploy nginx</code> 會用 Nginx charm 建立名為 <code>nginx</code> 的 application；charm 負責「如何管理這個應用程式」。</li>
+<li><strong>Bundle</strong>：可重複使用的部署描述，列出一個或多個 applications 使用的 charms、設定及彼此的 relations。它描述「要一起部署什麼」，讓整個應用程式組合能以一次部署重建。Bundle 不是整個 cloud 或 model 的完整備份。</li>
 </ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">#[derive(Debug, Clone, PartialEq)]</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">struct</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="p">,</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
+<h2 id="charmhub">Charmhub 是什麼</h2>
+<p><a href="https://charmhub.io/">Charmhub</a> 是 charms 與 bundles 的線上目錄及發布平台。部署 <code>nginx</code> 時，Juju 會從 Charmhub 取得對應的 Nginx charm；Charmhub 頁面也提供 charm 支援的平台、版本及可設定選項。Charmhub 提供的是管理應用程式所需的 charm，不是實際執行 Nginx 的環境。</p>
+<h2 id="_1">安裝與前置需求</h2>
+<p>安裝 Juju CLI：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>juju<span class="w"> </span>--classic
 </span></code></pre></div>
-<ul>
-<li>編譯優化 / 行為控制</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#[inline]</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="cp">#[inline(always)]</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="cp">#[inline(never)]</span>
+<p>本範例需要已安裝並初始化的 LXD。先確認 Juju 能看到本機 LXD cloud：</p>
+<p>如果 LXD container 無法連外，且主機的 <code>FORWARD</code> policy 是 <code>DROP</code>，可暫時允許封包轉送：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-P<span class="w"> </span>FORWARD<span class="w"> </span>ACCEPT
 </span></code></pre></div>
-<ul>
-<li>測試相關</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">#[test]</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">fn</span><span class="w"> </span><span class="nf">test_add</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">}</span>
+<p>這會影響主機上的所有轉送流量，不只 LXD；只建議在個人開發機使用。單獨執行此指令不保證重開機後仍保留設定。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>juju<span class="w"> </span>version
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>juju<span class="w"> </span>clouds
+</span></code></pre></div>
+<p>在 cloud 清單中確認有 <code>localhost</code>，且類型為 <code>lxd</code>。若沒有，請先安裝並設定 LXD，再重新檢查。</p>
+<h2 id="_2">建立環境並部署</h2>
+<p>建立 controller，再新增一個 model：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 新增 controllers</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>juju<span class="w"> </span>bootstrap<span class="w"> </span>localhost<span class="w"> </span>juju-tutorial-controller
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># 查看 controllers</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>juju<span class="w"> </span>controllers
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="cp">#[test]</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="cp">#[ignore = </span><span class="s">&quot;requires network access&quot;</span><span class="cp">]</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">fn</span><span class="w"> </span><span class="nf">test_api</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># 新增 model</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>juju<span class="w"> </span>add-model<span class="w"> </span>tutorial
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># 查看新的 model</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>juju<span class="w"> </span>status
 </span></code></pre></div>
+<p><code>juju switch</code> 只會改變 CLI 後續指令的目標，不會搬移或修改部署。<code>controller</code> 是 controller 名稱，不是特殊關鍵字；可以只選 controller，或用 <code>controller:model</code> 明確選擇 model：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>juju<span class="w"> </span>switch<span class="w"> </span>juju-tutorial-controller
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>juju<span class="w"> </span>switch<span class="w"> </span>juju-tutorial-controller:tutorial
+</span></code></pre></div>
+<p>部署 Charmhub 上的 Nginx charm，並查看部署狀態：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>juju<span class="w"> </span>deploy<span class="w"> </span>nginx<span class="w"> </span>--base<span class="w"> </span>ubuntu@22.04
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># 可能需要一點時間才會完成</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>juju<span class="w"> </span>status<span class="w"> </span>--watch<span class="w"> </span>2s
+</span></code></pre></div>
+<p><code>juju status</code> 會顯示 model、應用程式及 unit 狀態。部署完成所需時間依本機資源與網路而異；再次執行 <code>juju status</code> 可查看最新狀態。</p>
+<p>等 <code>juju status</code> 顯示 <code>nginx/0</code> 已就緒後，可以 SSH 進入該 unit 所在的 machine 或 container：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>juju<span class="w"> </span>ssh<span class="w"> </span>nginx/0
+</span></code></pre></div>
+<p>輸入 <code>exit</code> 可離開 SSH session。</p>
+<h2 id="nginx">設定 Nginx</h2>
+<p>每個 charm 只接受它所定義的設定選項。Nginx charm 提供 <code>port</code> 選項，可以在部署後變更服務的監聽 port：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>juju<span class="w"> </span>config<span class="w"> </span>nginx
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>juju<span class="w"> </span>config<span class="w"> </span>nginx<span class="w"> </span><span class="nv">port</span><span class="o">=</span><span class="m">5000</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>juju<span class="w"> </span>config<span class="w"> </span>nginx<span class="w"> </span>port
+</span></code></pre></div>
+<p>第一個指令列出目前設定，第二個把 Nginx 的監聽 port 改為 <code>5000</code>，最後一個查看該選項的值。也可以在部署時設定：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>juju<span class="w"> </span>deploy<span class="w"> </span>nginx<span class="w"> </span>--base<span class="w"> </span>ubuntu@22.04<span class="w"> </span>--config<span class="w"> </span><span class="nv">port</span><span class="o">=</span><span class="m">5000</span>
+</span></code></pre></div>
+<p>這些是 charm 公開的設定，不代表可以直接傳入任意 <code>nginx.conf</code> 指令。完整選項與預設值請查看 <a href="https://charmhub.io/nginx/configurations">Nginx charm 的設定頁面</a>。</p>
+<h2 id="bundle">用 Bundle 部署兩個應用程式</h2>
+<p>以下 bundle 會一起部署 Charmed MySQL 和 Self-Signed Certificates，並建立兩者的 TLS certificates relation。Juju 會按照 relation 協調兩個 charms，讓 MySQL 取得憑證；若分別部署，還要另外建立這個 relation。</p>
+<p>將以下內容存成 <code>mysql-tls-bundle.yaml</code>：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">default-base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu@22.04</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">applications</span><span class="p">:</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">mysql</span><span class="p">:</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">charm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.0/stable</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="nt">num_units</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span><span class="nt">certificates</span><span class="p">:</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="nt">charm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">self-signed-certificates</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1/stable</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">    </span><span class="nt">num_units</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="nt">relations</span><span class="p">:</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql:certificates</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certificates:certificates</span>
+</span></code></pre></div>
+<p>建立 model，再用一個指令部署 bundle 裡的兩個 applications 和它們的 relation：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>juju<span class="w"> </span>add-model<span class="w"> </span>tutorial-tls
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>juju<span class="w"> </span>deploy<span class="w"> </span>./mysql-tls-bundle.yaml<span class="w"> </span>--model<span class="w"> </span>tutorial-tls
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>juju<span class="w"> </span>status<span class="w"> </span>--model<span class="w"> </span>tutorial-tls<span class="w"> </span>--relations
+</span></code></pre></div>
+<p><code>juju status --relations</code> 可查看 relation 是否建立。MySQL 比 Nginx 範例耗用更多資源；不需要時可移除整個 model。</p>
+<h2 id="_3">清除資源</h2>
+<p>不再需要範例時，移除 model 及其中的應用程式：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>juju<span class="w"> </span>destroy-model<span class="w"> </span>tutorial-tls<span class="w"> </span>--destroy-storage
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>juju<span class="w"> </span>destroy-model<span class="w"> </span>tutorial
+</span></code></pre></div>
+<p>這個指令會要求確認。Controller 會保留，可供其他 model 使用；若要移除 controller，請先確認其中沒有要保留的 model，再執行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>juju<span class="w"> </span>destroy-controller<span class="w"> </span>juju-tutorial-controller<span class="w"> </span>--destroy-all-models<span class="w"> </span>--force
+</span></code></pre></div>
+<h2 id="_4">參考資料</h2>
 <ul>
-<li>repr：記憶體布局控制</li>
+<li><a href="https://canonical.com/juju/docs/juju-cli/3.6/tutorial/">Juju 3.6 Tutorial</a></li>
+<li><a href="https://canonical-juju-1.readthedocs-hosted.com/3.6/explanation/juju-architecture/">Juju architecture</a></li>
+<li><a href="https://canonical-juju-1.readthedocs-hosted.com/3.6/howto/manage-applications/#configure-an-application">Configure an application</a></li>
+<li><a href="https://canonical-juju-1.readthedocs-hosted.com/3.6/reference/bundle/">Juju bundle reference</a></li>
+<li><a href="https://charmhub.io/mysql">Charmed MySQL on Charmhub</a></li>
+<li><a href="https://charmhub.io/self-signed-certificates">Self-Signed Certificates on Charmhub</a></li>
+<li><a href="https://canonical.com/juju/docs/juju-cli/3.6/reference/juju-cli/">Juju CLI reference</a></li>
 </ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cp">#[repr(C)]</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">struct</span><span class="w"> </span><span class="nc">MyStruct</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">a</span><span class="p">:</span><span class="w"> </span><span class="kt">u8</span><span class="p">,</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="n">b</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="p">,</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
-</span></code></pre></div>
-<ul>
-<li>doc：產生文件，<code>///</code> 就是 <code>doc</code> 的語法糖</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cp">#[doc = </span><span class="s">&quot;This is a function&quot;</span><span class="cp">]</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1">// 等同於</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="sd">/// This is a function</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span></code></pre></div>
-<ul>
-<li>feature： 把某些 nightly 的功能啟動</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cp">#![feature(async_fn_in_trait)]</span>
-</span></code></pre></div>
-<h3 id="lint-attribute">lint attribute</h3>
-<p>lint / warning 控制，決定哪些要跳出 warning</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cp">#[allow(dead_code)]</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="cp">#[deny(unused_variables)]</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="cp">#[warn(missing_docs)]</span>
-</span></code></pre></div>
-<h3 id="macro-attribute">macro attribute</h3>
-<p>也可以用 attribute 來展開 macro</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="cp">#[macro_use]</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">extern</span><span class="w"> </span><span class="k">crate</span><span class="w"> </span><span class="n">foo</span><span class="p">;</span>
-</span></code></pre></div>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="cp">#[tokio::main]</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span></code></pre></div>
-<h2 id="cratemod-level-attribute">crate/mod level attribute</h2>
-<p>如果我們想要讓某個 attribute 附在整個 scope 上，那就需要使用 <code>#![...]</code></p>
-<ul>
-<li>crate level</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="cp">#![no_std]</span>
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="cp">#![feature(async_fn_in_trait)]</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span></code></pre></div>
-<ul>
-<li>mod level</li>
-</ul>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">mod</span><span class="w"> </span><span class="nn">foo</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="cp">#![allow(unused)]</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">bar</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">}</span>
-</span></code></pre></div>
-<h2 id="feature">feature</h2>
-<p>feature 是其中一個最常用到的 attribute，用來決定編譯時期哪些功能要被啟動</p>
-<p>在 <code>Cargo.toml</code> 中加上 <code>[features]</code></p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">[</span><span class="n">features</span><span class="p">]</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">default</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;feature_a&quot;</span><span class="p">]</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">feature_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">feature_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
-</span></code></pre></div>
-<p>程式中就可以用 <code>#[cfg(feature = "xxx")]</code></p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="cp">#[cfg(feature = </span><span class="s">&quot;feature_a&quot;</span><span class="cp">)]</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;feature_a enabled&quot;</span><span class="p">);</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="p">}</span>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="cp">#[cfg(not(feature = </span><span class="s">&quot;feature_a&quot;</span><span class="cp">))]</span>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="k">fn</span><span class="w"> </span><span class="nf">foo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;feature_a disabled&quot;</span><span class="p">);</span>
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="p">}</span>
-</span></code></pre></div>
-<p>編譯時期可以決定要開哪個 feature</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># 開 feature_a</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>cargo<span class="w"> </span>build<span class="w"> </span>--features<span class="w"> </span>feature_a
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c1"># 開 feature_a 和 feature_b</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>cargo<span class="w"> </span>build<span class="w"> </span>--features<span class="w"> </span><span class="s2">&quot;feature_a feature_b&quot;</span>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1"># 不要開任何 feature (default的)</span>
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>cargo<span class="w"> </span>build<span class="w"> </span>--no-default-features
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1"># 不要開任何 default feature，然後再開 feature_b</span>
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>cargo<span class="w"> </span>build<span class="w"> </span>--no-default-features<span class="w"> </span>--features<span class="w"> </span>feature_b
-</span></code></pre></div>
-<p>還有其他進階使用方法，例如條件整理</p>
-<div class="language-rust highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1">// 有 foo</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="cp">#[cfg(feature = </span><span class="s">&quot;foo&quot;</span><span class="cp">)]</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="c1">// 沒有 foo</span>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="cp">#[cfg(not(feature = </span><span class="s">&quot;foo&quot;</span><span class="cp">))]</span>
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1">// 需要有 a 和 b</span>
-</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="cp">#[cfg(all(feature = </span><span class="s">&quot;a&quot;</span><span class="cp">, feature = </span><span class="s">&quot;b&quot;</span><span class="cp">))]</span>
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1">// a 和 b 任一成立即可</span>
-</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="cp">#[cfg(any(feature = </span><span class="s">&quot;a&quot;</span><span class="cp">, feature = </span><span class="s">&quot;b&quot;</span><span class="cp">))]</span>
-</span></code></pre></div>
 
 
 
