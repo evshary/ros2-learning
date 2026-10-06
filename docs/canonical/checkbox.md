@@ -20,7 +20,9 @@ Checkbox 是 Ubuntu 的系統與硬體測試工具。
 | Test plan（測試計畫） | 將相關 jobs 組成一個可選取、可執行的測試流程，也可指定順序及相依關係。 | 互動介面中的 `Checkbox Base Tutorial Test Plan` 是一個 test plan。 |
 | Launcher（啟動設定） | 以 INI 設定一次測試執行方式，例如選用哪個 test plan、篩選哪些 jobs、採用哪種介面及輸出報告方式；它不定義測試本身。 | 可用 launcher 預先設定某個 plan 與報告格式。 |
 
-簡單來說，provider 收納 jobs 和 test plans；test plan 組織要執行的 jobs；launcher 則設定 Checkbox 如何執行這個 plan。
+簡單來說，provider 收納 jobs 和 test plans。
+Test plan 組織要執行的 jobs。
+Launcher 則設定 Checkbox 如何執行這個 plan。
 
 ## 安裝
 
@@ -51,7 +53,8 @@ checkbox.checkbox-cli
 1. 按 `f` 開啟篩選，輸入 `Tutorial`。
 2. 選取 `Checkbox Base Tutorial Test Plan`，按 `Space`，再按 `Enter`。
 3. 檢視要執行的測試工作；可按 `Space` 調整選取，然後按 `t` 開始。
-4. 遇到手動測試工作時，閱讀步驟並依實際狀況回報結果。所有工作結束後，在 `Select jobs to re-run` 畫面按 `f`（Finish）結束測試階段（session）。
+4. 遇到手動測試工作時，閱讀步驟並依實際狀況回報結果。
+5. 所有工作結束後，在 `Select jobs to re-run` 畫面按 `f`（Finish）結束測試階段（session）。
 
 這個教學計畫包含刻意失敗或異常終止（crash）的範例，也會詢問人工測試結果；這些項目是用來示範 Checkbox 的操作流程。
 
@@ -115,17 +118,22 @@ command: glxinfo -B && glxgears
 各欄位的用途如下：
 
 * `id`：此 job 在 provider 內的唯一識別名稱。
-* `plugin`：指定 job 類型。`user-interact-verify` 會執行指令，再讓使用者檢查結果並回報通過或失敗。
+* `plugin`：指定 job 類型。
+  `user-interact-verify` 會執行指令，再讓使用者檢查結果並回報通過或失敗。
 * `category_id`：指定分類，讓 Checkbox 將此工作放在圖形測試類別中顯示。
 * `imports`：匯入 Checkbox 內建 `com.canonical.certification` provider 的 `executable` 資源；沒有這行時，Checkbox 會在目前 provider 中尋找該資源。
-* `requires`：執行前的條件。只有 `executable` 資源確認系統有 `glxgears` 執行檔時，job 才會執行。
+* `requires`：設定 job 的執行前提條件。
+  只有 `executable` 資源確認系統有 `glxgears` 執行檔時，job 才會執行。
 * `_summary`：在 Checkbox 介面和結果摘要中顯示的簡短名稱。
 * `_purpose`：說明這項測試的目的。
 * `_steps`：提供測試者操作步驟。
 * `_verification`：測試完成後提供判定結果的問題。
-* `command`：實際執行的 shell 指令。`&&` 表示只有 `glxinfo -B` 成功後才會啟動 `glxgears`；動畫視窗需由測試者關閉。
+* `command`：實際執行的 shell 指令。
+  `&&` 表示只有 `glxinfo -B` 成功後才會啟動 `glxgears`。
+  動畫視窗需由測試者關閉。
 
-測試者應檢查 `glxinfo` 顯示的 renderer 是否為預期的 GPU，而不是 `llvmpipe` 等軟體 renderer。不要設定固定 FPS 門檻，因為不同系統的效能差異很大。
+測試者應檢查 `glxinfo` 顯示的 renderer 是否為預期的 GPU，而不是 `llvmpipe` 等軟體 renderer。
+不要設定固定 FPS 門檻，因為不同系統的效能差異很大。
 
 ### 驗證並執行
 
@@ -142,7 +150,7 @@ checkbox-cli run 2026.example.org::glxgears_acceleration
 執行時，確認 `glxinfo` 顯示預期的硬體 renderer，而不是 `llvmpipe` 等軟體 renderer。
 齒輪視窗會持續執行；按 Esc 關閉後，再依 Checkbox 提示確認測試結果。
 
-值得注意的是我們只要跑一次 `python3 manage.py develop` 就好，下次跑 Python 環境 activate `. checkbox_venv/bin/activate` 的時候就會自動仔入這個 test job。
+值得注意的是我們只要跑一次 `python3 manage.py develop` 就好，下次跑 Python 環境 activate `. checkbox_venv/bin/activate` 的時候就會自動載入這個 test job。
 
 ## Agent 安全注意事項
 
