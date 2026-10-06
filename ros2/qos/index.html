@@ -2480,6 +2480,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../canonical/gpg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GPG 金鑰管理入門
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2803,7 +2826,7 @@ QoS 能夠指定通訊相關的設定，像是資料傳輸的可靠性、是否�
 </table>
 <p>由於定義上 Reliable &gt; Best Effort，所以如果 Publisher 是 Best Effort，Subscriber 是 Reliable，兩者就會跳出 incompatible QoS 的警告，並且無法通訊。</p>
 <p>看到這邊一定會有個問題：要怎麼知道哪些設定是高，哪些設定是低？
-除了靠直覺外 (Reliable 比起 Best Effort 來說要求更高)，可以查詢 <a href="https://docs.ros.org/en/rolling/Concepts/Intermediate/About-Quality-of-Service-Settings.html#qos-compatibilities">ROS 2 的 QoS Design Compatibility</a>，或是直接去查詢 DDS 的說明，<a href="https://community.rti.com/static/documentation/connext-dds/current/doc/manuals/connext_dds_professional/qos_reference/qos_reference/BasicQoS.htm">RTI DDS 的文件</a>就有詳細敘述。</p>
+除了靠直覺外 (Reliable 比起 Best Effort 來說要求更高)，可以查詢 <a href="https://docs.ros.org/en/rolling/ROS-Framework/interfaces/topics/About-Quality-of-Service-Settings.html#qos-compatibilities">ROS 2 的 QoS Design Compatibility</a>，或是直接去查詢 DDS 的說明，<a href="https://community.rti.com/static/documentation/connext-dds/current/doc/manuals/connext_dds_professional/qos_reference/qos_reference/BasicQoS.htm">RTI DDS 的文件</a>就有詳細敘述。</p>
 <h2 id="_1">實際範例</h2>
 <p>我放了一些範例在<a href="https://github.com/evshary/ROS2_cheatsheet/tree/main/10.QoS">GitHub</a>上，可以當作參考。</p>
 <h3 id="c">C++</h3>
@@ -2875,7 +2898,7 @@ QoS 能夠指定通訊相關的設定，像是資料傳輸的可靠性、是否�
 過去 sensor data 的歷史資料也不重要，所以 durability 的部分用 volatile 即可。</p>
 <h2 id="reference">Reference</h2>
 <ul>
-<li><a href="https://docs.ros.org/en/rolling/Concepts/Intermediate/About-Quality-of-Service-Settings.html">ROS 2 wiki about QoS</a></li>
+<li><a href="https://docs.ros.org/en/rolling/ROS-Framework/interfaces/topics/About-Quality-of-Service-Settings.html">ROS 2 QoS documentation</a></li>
 <li><a href="https://design.ros2.org/articles/qos.html">ROS 2 對 QoS 的設計理念</a></li>
 <li><a href="https://design.ros2.org/articles/qos_deadline_liveliness_lifespan.html">ROS 2 對 deadline, liveliness, lifespan 的使用</a></li>
 </ul>

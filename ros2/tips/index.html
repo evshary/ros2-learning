@@ -2429,6 +2429,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../canonical/gpg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GPG 金鑰管理入門
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2626,7 +2649,7 @@
 
 <h2 id="topic-remapping">Topic Remapping</h2>
 <p>有時候我們會希望把某些程式內的 node 或 topic 改個名稱，但又不希望還要重新編譯，這時候可以使用 remapping 的技巧。
-這邊是<a href="https://docs.ros.org/en/rolling/How-To-Guides/Node-arguments.html#name-remapping">官方相關的教學</a></p>
+這邊是<a href="https://docs.ros.org/en/rolling/Developer-Tools/Introspection-and-analysis/Node-arguments.html#name-remapping">官方相關的教學</a></p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 更改 topic 的名稱</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ros2<span class="w"> </span>run<span class="w"> </span>demo_nodes_cpp<span class="w"> </span>talker<span class="w"> </span>--ros-args<span class="w"> </span>-r<span class="w"> </span>chatter:<span class="o">=</span>my_topic
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 更改 node 的名稱</span>
