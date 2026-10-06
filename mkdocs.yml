@@ -126,11 +126,12 @@ nav:
     - 'Rust benchmark': 'rust/benchmark.md'
     - 'Rust FFI': 'rust/ffi.md'
     - 'Rust Miri': 'rust/miri.md'
+  - 'Canonical':
+    - 'Snap 機制': 'canonical/snap.md'
+    - 'Checkbox 入門': 'canonical/checkbox.md'
+    - 'Juju 入門': 'canonical/juju.md'
   - 'Others':
     - 'Binary 分析': 'others/binary-analysis.md'
-    - 'Checkbox 入門': 'others/checkbox.md'
-    - 'Juju 入門': 'others/juju.md'
     - 'QEMU': 'others/qemu.md'
     - '模糊測試': 'others/fuzz.md'
     - 'Linux 通訊機制': 'others/linux-communication.md'
-    - 'Snap 機制': 'others/snap.md'
