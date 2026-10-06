@@ -127,6 +127,7 @@ nav:
     - 'Rust FFI': 'rust/ffi.md'
     - 'Rust Miri': 'rust/miri.md'
   - 'Canonical':
+    - '常用網站': 'canonical/resources.md'
     - 'Snap 機制': 'canonical/snap.md'
     - 'Checkbox 入門': 'canonical/checkbox.md'
     - 'Juju 入門': 'canonical/juju.md'
