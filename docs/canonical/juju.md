@@ -168,9 +168,9 @@ juju destroy-controller juju-tutorial-controller --destroy-all-models --force
 ## 參考資料
 
 * [Juju 3.6 Tutorial](https://canonical.com/juju/docs/juju-cli/3.6/tutorial/)
-* [Juju architecture](https://canonical-juju-1.readthedocs-hosted.com/3.6/explanation/juju-architecture/)
-* [Configure an application](https://canonical-juju-1.readthedocs-hosted.com/3.6/howto/manage-applications/#configure-an-application)
-* [Juju bundle reference](https://canonical-juju-1.readthedocs-hosted.com/3.6/reference/bundle/)
+* [Juju architecture](https://canonical.com/juju/docs/juju-cli/3.6/explanation/juju-architecture/)
+* [Configure an application](https://canonical.com/juju/docs/juju-cli/3.6/howto/manage-applications/#configure-an-application)
+* [Juju bundle reference](https://canonical.com/juju/docs/juju-cli/3.6/reference/bundle/)
 * [Charmed MySQL on Charmhub](https://charmhub.io/mysql)
 * [Self-Signed Certificates on Charmhub](https://charmhub.io/self-signed-certificates)
 * [Juju CLI reference](https://canonical.com/juju/docs/juju-cli/3.6/reference/juju-cli/)
