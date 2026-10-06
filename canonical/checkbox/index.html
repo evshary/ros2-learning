@@ -2485,6 +2485,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#graphics-test-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      加入 Graphics Test Plan
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2805,6 +2814,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#graphics-test-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      加入 Graphics Test Plan
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2881,7 +2899,9 @@
 </tr>
 </tbody>
 </table>
-<p>簡單來說，provider 收納 jobs 和 test plans；test plan 組織要執行的 jobs；launcher 則設定 Checkbox 如何執行這個 plan。</p>
+<p>簡單來說，provider 收納 jobs 和 test plans。
+Test plan 組織要執行的 jobs。
+Launcher 則設定 Checkbox 如何執行這個 plan。</p>
 <h2 id="_1">安裝</h2>
 <p>Checkbox 分成執行環境（runtime）和操作介面（frontend）。
 Runtime 提供測試內容，frontend 提供操作介面；請選擇與 Ubuntu 版本相符的 runtime 和 frontend 通道（channel）。
@@ -2901,7 +2921,8 @@ Runtime 提供測試內容，frontend 提供操作介面；請選擇與 Ubuntu �
 <li>按 <code>f</code> 開啟篩選，輸入 <code>Tutorial</code>。</li>
 <li>選取 <code>Checkbox Base Tutorial Test Plan</code>，按 <code>Space</code>，再按 <code>Enter</code>。</li>
 <li>檢視要執行的測試工作；可按 <code>Space</code> 調整選取，然後按 <code>t</code> 開始。</li>
-<li>遇到手動測試工作時，閱讀步驟並依實際狀況回報結果。所有工作結束後，在 <code>Select jobs to re-run</code> 畫面按 <code>f</code>（Finish）結束測試階段（session）。</li>
+<li>遇到手動測試工作時，閱讀步驟並依實際狀況回報結果。</li>
+<li>所有工作結束後，在 <code>Select jobs to re-run</code> 畫面按 <code>f</code>（Finish）結束測試階段（session）。</li>
 </ol>
 <p>這個教學計畫包含刻意失敗或異常終止（crash）的範例，也會詢問人工測試結果；這些項目是用來示範 Checkbox 的操作流程。</p>
 <h3 id="_3">查看報告</h3>
@@ -2947,17 +2968,22 @@ HTML 適合閱讀，JUnit XML 可供 CI 工具使用；除非你要提交結果�
 <p>各欄位的用途如下：</p>
 <ul>
 <li><code>id</code>：此 job 在 provider 內的唯一識別名稱。</li>
-<li><code>plugin</code>：指定 job 類型。<code>user-interact-verify</code> 會執行指令，再讓使用者檢查結果並回報通過或失敗。</li>
+<li><code>plugin</code>：指定 job 類型。
+  <code>user-interact-verify</code> 會執行指令，再讓使用者檢查結果並回報通過或失敗。</li>
 <li><code>category_id</code>：指定分類，讓 Checkbox 將此工作放在圖形測試類別中顯示。</li>
 <li><code>imports</code>：匯入 Checkbox 內建 <code>com.canonical.certification</code> provider 的 <code>executable</code> 資源；沒有這行時，Checkbox 會在目前 provider 中尋找該資源。</li>
-<li><code>requires</code>：執行前的條件。只有 <code>executable</code> 資源確認系統有 <code>glxgears</code> 執行檔時，job 才會執行。</li>
+<li><code>requires</code>：設定 job 的執行前提條件。
+  只有 <code>executable</code> 資源確認系統有 <code>glxgears</code> 執行檔時，job 才會執行。</li>
 <li><code>_summary</code>：在 Checkbox 介面和結果摘要中顯示的簡短名稱。</li>
 <li><code>_purpose</code>：說明這項測試的目的。</li>
 <li><code>_steps</code>：提供測試者操作步驟。</li>
 <li><code>_verification</code>：測試完成後提供判定結果的問題。</li>
-<li><code>command</code>：實際執行的 shell 指令。<code>&amp;&amp;</code> 表示只有 <code>glxinfo -B</code> 成功後才會啟動 <code>glxgears</code>；動畫視窗需由測試者關閉。</li>
+<li><code>command</code>：實際執行的 shell 指令。
+  <code>&amp;&amp;</code> 表示只有 <code>glxinfo -B</code> 成功後才會啟動 <code>glxgears</code>。
+  動畫視窗需由測試者關閉。</li>
 </ul>
-<p>測試者應檢查 <code>glxinfo</code> 顯示的 renderer 是否為預期的 GPU，而不是 <code>llvmpipe</code> 等軟體 renderer。不要設定固定 FPS 門檻，因為不同系統的效能差異很大。</p>
+<p>測試者應檢查 <code>glxinfo</code> 顯示的 renderer 是否為預期的 GPU，而不是 <code>llvmpipe</code> 等軟體 renderer。
+不要設定固定 FPS 門檻，因為不同系統的效能差異很大。</p>
 <h3 id="_7">驗證並執行</h3>
 <p>在 Checkbox 開發環境中，從 provider 根目錄執行以下指令：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 驗證 provider 定義與相依資源</span>
@@ -2968,14 +2994,39 @@ HTML 適合閱讀，JUnit XML 可供 CI 工具使用；除非你要提交結果�
 </span></code></pre></div>
 <p>執行時，確認 <code>glxinfo</code> 顯示預期的硬體 renderer，而不是 <code>llvmpipe</code> 等軟體 renderer。
 齒輪視窗會持續執行；按 Esc 關閉後，再依 Checkbox 提示確認測試結果。</p>
-<p>值得注意的是我們只要跑一次 <code>python3 manage.py develop</code> 就好，下次跑 Python 環境 activate <code>. checkbox_venv/bin/activate</code> 的時候就會自動仔入這個 test job。</p>
+<p>值得注意的是我們只要跑一次 <code>python3 manage.py develop</code> 就好，下次跑 Python 環境 activate <code>. checkbox_venv/bin/activate</code> 的時候就會自動載入這個 test job。</p>
+<h3 id="graphics-test-plan">加入 Graphics Test Plan</h3>
+<p>我們也可以新定義 task plan 來放這個 task job。
+為了讓兩者分開管理，請在同一個 provider 的 <code>units/test-plans.pxu</code> 建立以下 test plan：</p>
+<div class="language-ini highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="na">unit</span><span class="o">:</span><span class="w"> </span><span class="s">test plan</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="na">id</span><span class="o">:</span><span class="w"> </span><span class="s">graphics-acceleration</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="na">_name</span><span class="o">:</span><span class="w"> </span><span class="s">Graphics Acceleration Test Plan</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="na">include</span><span class="o">:</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="na">glxgears_acceleration</span>
+</span></code></pre></div>
+<p>各欄位的用途如下：</p>
+<ul>
+<li><code>unit</code>：宣告這筆定義是 test plan，而不是 job。</li>
+<li><code>id</code>：test plan 的唯一識別名稱；執行時會和 provider namespace 組成完整名稱。</li>
+<li><code>_name</code>：顯示在 Checkbox 互動選單中的計畫名稱。</li>
+<li><code>include</code>：列出此計畫要執行的 job；此處引用同一 provider 中的 <code>glxgears_acceleration</code>。</li>
+</ul>
+<p>若已對這個 provider 執行過 <code>python3 manage.py develop</code>，新增 test plan 後不必重跑；在 provider 根目錄驗證定義並預覽計畫內容：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python3<span class="w"> </span>manage.py<span class="w"> </span>validate
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>checkbox-cli<span class="w"> </span>list<span class="w"> </span><span class="s2">&quot;test plan&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>graphics-acceleration
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>checkbox-cli<span class="w"> </span>list-bootstrapped<span class="w"> </span><span class="m">2026</span>.example.org::graphics-acceleration
+</span></code></pre></div>
+<p><code>list-bootstrapped</code> 會列出計畫實際展開後的工作。確認清單包含 <code>glxgears_acceleration</code> 後，可直接執行計畫：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>checkbox-cli<span class="w"> </span>run<span class="w"> </span><span class="m">2026</span>.example.org::graphics-acceleration
+</span></code></pre></div>
+<p>若要透過互動選單選取此計畫，請在同一個 Checkbox source development environment 執行 <code>checkbox-cli</code>，再從 test plan 清單選取 <code>Graphics Acceleration Test Plan</code>。</p>
 <h2 id="agent">Agent 安全注意事項</h2>
 <p>Checkbox frontend 會啟動 Checkbox agent service。
 官方文件提醒，這個 service 可提供未經驗證的 root 層級遠端控制；只應在可信任的測試環境使用，完成後若暫時不需要，可停止並停用：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>stop<span class="w"> </span>--disable<span class="w"> </span>checkbox
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>stop<span class="w"> </span>--disable<span class="w"> </span>checkbox
 </span></code></pre></div>
 <p>需要再次使用 Checkbox agent 時，可手動啟動：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>start<span class="w"> </span>checkbox
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>start<span class="w"> </span>checkbox
 </span></code></pre></div>
 <h2 id="_8">參考資料</h2>
 <ul>
