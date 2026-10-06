@@ -104,4 +104,4 @@ source fprime-venv/bin/activate
 
 停止時，分別在 Ref 與 GDS 所在的 terminal 按下 `Ctrl+C`。
 
-更多資訊可參考 [TestDeploymentsProject/Ref README](https://github.com/nasa/fprime/tree/devel/TestDeploymentsProject/Ref)、[F´ Ref 官方文件](https://fprime.jpl.nasa.gov/latest/Ref/)與 [GDS 使用說明](https://fprime.jpl.nasa.gov/latest/docs/user-manual/overview/gds-introduction/)。
+更多資訊可參考 [TestDeploymentsProject/Ref README](https://github.com/nasa/fprime/tree/devel/TestDeploymentsProject/Ref)、[F´ Ref 官方文件](https://fprime.jpl.nasa.gov/latest/TestDeploymentsProject/Ref/)與 [GDS 使用說明](https://fprime.jpl.nasa.gov/latest/docs/user-manual/overview/gds-introduction/)。

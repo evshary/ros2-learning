@@ -65,7 +65,7 @@ export ROS_STATIC_PEERS='192.168.0.10;robot2.local'
 ```
 
 值得注意的是如果對方那邊設定為 `OFF`，就算使用 `ROS_STATIC_PEERS` 也無法通訊。
-我們可以參考 [ROS 官方網站的對應表](https://docs.ros.org/en/rolling/Tutorials/Advanced/Improved-Dynamic-Discovery.html)
+我們可以參考 [ROS 官方網站的對應表](https://docs.ros.org/en/rolling/Developer-Tools/Introspection-and-analysis/Improved-Dynamic-Discovery.html)
 
 ### `ROS_DISTRO`
 

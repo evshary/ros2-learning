@@ -41,7 +41,7 @@ Publisher 和 Subscriber 要能夠通訊，兩者的 QoS 必須要先 compatible
 由於定義上 Reliable > Best Effort，所以如果 Publisher 是 Best Effort，Subscriber 是 Reliable，兩者就會跳出 incompatible QoS 的警告，並且無法通訊。
 
 看到這邊一定會有個問題：要怎麼知道哪些設定是高，哪些設定是低？
-除了靠直覺外 (Reliable 比起 Best Effort 來說要求更高)，可以查詢 [ROS 2 的 QoS Design Compatibility](https://docs.ros.org/en/rolling/Concepts/Intermediate/About-Quality-of-Service-Settings.html#qos-compatibilities)，或是直接去查詢 DDS 的說明，[RTI DDS 的文件](https://community.rti.com/static/documentation/connext-dds/current/doc/manuals/connext_dds_professional/qos_reference/qos_reference/BasicQoS.htm)就有詳細敘述。
+除了靠直覺外 (Reliable 比起 Best Effort 來說要求更高)，可以查詢 [ROS 2 的 QoS Design Compatibility](https://docs.ros.org/en/rolling/ROS-Framework/interfaces/topics/About-Quality-of-Service-Settings.html#qos-compatibilities)，或是直接去查詢 DDS 的說明，[RTI DDS 的文件](https://community.rti.com/static/documentation/connext-dds/current/doc/manuals/connext_dds_professional/qos_reference/qos_reference/BasicQoS.htm)就有詳細敘述。
 
 ## 實際範例
 
@@ -131,6 +131,6 @@ Python 的 QoS API 可以參考 [rclpy Quality of Service](https://docs.ros2.org
 
 ## Reference
 
-* [ROS 2 wiki about QoS](https://docs.ros.org/en/rolling/Concepts/Intermediate/About-Quality-of-Service-Settings.html)
+* [ROS 2 QoS documentation](https://docs.ros.org/en/rolling/ROS-Framework/interfaces/topics/About-Quality-of-Service-Settings.html)
 * [ROS 2 對 QoS 的設計理念](https://design.ros2.org/articles/qos.html)
 * [ROS 2 對 deadline, liveliness, lifespan 的使用](https://design.ros2.org/articles/qos_deadline_liveliness_lifespan.html)

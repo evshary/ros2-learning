@@ -8,7 +8,7 @@ keywords:
 ## Topic Remapping
 
 有時候我們會希望把某些程式內的 node 或 topic 改個名稱，但又不希望還要重新編譯，這時候可以使用 remapping 的技巧。
-這邊是[官方相關的教學](https://docs.ros.org/en/rolling/How-To-Guides/Node-arguments.html#name-remapping)
+這邊是[官方相關的教學](https://docs.ros.org/en/rolling/Developer-Tools/Introspection-and-analysis/Node-arguments.html#name-remapping)
 
 ```bash
 # 更改 topic 的名稱

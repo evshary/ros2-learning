@@ -39,4 +39,4 @@ uProtocol 的目標是提供一致的 API 讓上層軟體呼叫，他們不用�
 * [uProtocol 官網](https://uprotocol.org/)：介紹為何需要有 uProtocol
 * [uProtocol GitHub](https://github.com/eclipse-uprotocol)：放置 uProtocol 程式碼的地方
 * [up-spec](https://github.com/eclipse-uprotocol/up-spec)：uProtocol 的規格
-* [slack channel](https://sdvworkinggroup.slack.com/archives/C0698TFGVBN)：在 Eclipse SDV slack 底下有個 uprotocol channel，有任何問題可以在這邊進行討論
+* [uProtocol 討論區](https://github.com/eclipse-uprotocol/up-spec/discussions)：可在 GitHub Discussions 提問與交流

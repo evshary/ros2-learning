@@ -165,7 +165,7 @@ ros2 topic list --no-daemon --spin-time 3
 
 目前只有 Authenication 和 Encryption 兩種功能，如果要有 Access Control 的話，首先要修改 permission。
 SROS 工具提供我們從好讀易懂的 policy 設定檔轉換成 permission 的能力。
-詳細可以參考[官方教學](https://docs.ros.org/en/rolling/Tutorials/Advanced/Security/Access-Controls.html)
+詳細可以參考[官方教學](https://docs.ros.org/en/rolling/Developer-Tools/Introspection-and-analysis/Security/Access-Controls.html)
 
 * 取得 policy 檔案
     * 這裡有 policy 的範例： https://github.com/ros2/sros2/tree/rolling/sros2/test/policies
@@ -235,13 +235,13 @@ cd -
 ## Limitations
 
 * 之前 Cyclone DDS 的 foxy package 並沒有包含 security 功能，只能從 source code build
-    * 參考 [Working with RMW CycloneDDS and SROS2](https://answers.ros.org/question/363020/working-with-rmw-cyclonedds-and-sros2/?answer=363765#post-id-363765)
+    * 參考 [Working with RMW CycloneDDS and SROS2 問答列印版](https://stackprinter.appspot.com/export?question=97262&service=robotics.stackexchange&language=en&hideAnswers=false&showAll=true&width=640)
     * [發給 ROS 2 官方的 issue](https://github.com/ros2/ros2/issues/1051)
 * 目前不同的 DDS 實作是無法互相用 SROS 通訊的
 
 ## 實際應用
 
-* 實際部署的最佳作法： https://docs.ros.org/en/rolling/Tutorials/Advanced/Security/Deployment-Guidelines.html
+* 實際部署的最佳作法： https://docs.ros.org/en/rolling/Developer-Tools/Build/Deployment-Guidelines/Deployment-Guidelines.html
 * Turtlebot 如何用 SROS： https://github.com/ros-swg/turtlebot3_demo
 
 ## 可探討問題
@@ -257,7 +257,7 @@ cd -
     * [ROS 2 Security Enclaves](https://design.ros2.org/articles/ros2_security_enclaves.html): security 檔案擺放位置的意義
     * [ROS 2 Robotic Systems Threat Model](https://design.ros2.org/articles/ros2_threat_model.html): 分析甚麼樣的資料需要被保護
 * [GitHub SROS](https://github.com/ros2/sros2): SROS 的 source code 和安裝教學
-* [Setting up security](https://docs.ros.org/en/rolling/Tutorials/Advanced/Security/Introducing-ros2-security.html): ROS 官方教學
+* [Setting up security](https://docs.ros.org/en/rolling/Developer-Tools/Introspection-and-analysis/Security/Introducing-ros2-security.html): ROS 官方教學
 * Ubuntu 介紹 SROS
     * [Robotics security: What is SROS 2?](https://ubuntu.com/blog/what-is-sros-2): Ubuntu 介紹 SROS
     * [ROS 2 Foxy Fitzroy and its Enhanced Security Monitoring](https://ubuntu.com/blog/ros-2-foxy-fitzroy-and-its-enhanced-security-monitoring): 如何使用 security log
