@@ -37,6 +37,18 @@
          <lastmod>2026-10-06</lastmod>
     </url>
     <url>
+         <loc>https://ros2.tw/canonical/checkbox/</loc>
+         <lastmod>2026-10-06</lastmod>
+    </url>
+    <url>
+         <loc>https://ros2.tw/canonical/juju/</loc>
+         <lastmod>2026-10-06</lastmod>
+    </url>
+    <url>
+         <loc>https://ros2.tw/canonical/snap/</loc>
+         <lastmod>2026-10-06</lastmod>
+    </url>
+    <url>
          <loc>https://ros2.tw/dds/concepts/</loc>
          <lastmod>2026-10-06</lastmod>
     </url>
@@ -101,15 +113,7 @@
          <lastmod>2026-10-06</lastmod>
     </url>
     <url>
-         <loc>https://ros2.tw/others/checkbox/</loc>
-         <lastmod>2026-10-06</lastmod>
-    </url>
-    <url>
          <loc>https://ros2.tw/others/fuzz/</loc>
-         <lastmod>2026-10-06</lastmod>
-    </url>
-    <url>
-         <loc>https://ros2.tw/others/juju/</loc>
          <lastmod>2026-10-06</lastmod>
     </url>
     <url>
@@ -118,10 +122,6 @@
     </url>
     <url>
          <loc>https://ros2.tw/others/qemu/</loc>
-         <lastmod>2026-10-06</lastmod>
-    </url>
-    <url>
-         <loc>https://ros2.tw/others/snap/</loc>
          <lastmod>2026-10-06</lastmod>
     </url>
     <url>

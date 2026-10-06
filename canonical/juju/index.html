@@ -6,19 +6,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="安裝 Checkbox、執行第一個測試計畫並查看測試報告">
+        <meta name="description" content="使用 Juju 在本機 LXD 建立 controller 並部署應用程式">
       
       
         <meta name="author" content="ChenYing Kuo">
       
       
-        <link rel="canonical" href="https://ros2.tw/others/checkbox/">
+        <link rel="canonical" href="https://ros2.tw/canonical/juju/">
       
       
-        <link rel="prev" href="../binary-analysis/">
+        <link rel="prev" href="../checkbox/">
       
       
-        <link rel="next" href="../juju/">
+        <link rel="next" href="../../others/binary-analysis/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Checkbox 入門 - ROS 2 筆記</title>
+        <title>Juju 入門 - ROS 2 筆記</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#providerjobtest-plan-launcher" class="md-skip">
+        <a href="#juju-controllermodelcharm-bundle" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Checkbox 入門
+              Juju 入門
             
           </span>
         </div>
@@ -2298,7 +2298,7 @@
   
   
   <span class="md-ellipsis">
-    Others
+    Canonical
     
   </span>
   
@@ -2309,7 +2309,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_14">
             <span class="md-nav__icon md-icon"></span>
-            Others
+            Canonical
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2320,12 +2320,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../binary-analysis/" class="md-nav__link">
+      <a href="../snap/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Binary 分析
+    Snap 機制
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checkbox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Checkbox 入門
     
   </span>
   
@@ -2355,7 +2378,7 @@
   
   
   <span class="md-ellipsis">
-    Checkbox 入門
+    Juju 入門
     
   </span>
   
@@ -2368,7 +2391,7 @@
   
   
   <span class="md-ellipsis">
-    Checkbox 入門
+    Juju 入門
     
   </span>
   
@@ -2389,9 +2412,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#providerjobtest-plan-launcher" class="md-nav__link">
+  <a href="#juju-controllermodelcharm-bundle" class="md-nav__link">
     <span class="md-ellipsis">
-      Provider、Job、Test Plan 與 Launcher
+      Juju 的架構：Controller、Model、Charm 與 Bundle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#charmhub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Charmhub 是什麼
     </span>
   </a>
   
@@ -2400,7 +2432,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      安裝
+      安裝與前置需求
     </span>
   </a>
   
@@ -2409,7 +2441,25 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      執行第一個測試計畫
+      建立環境並部署
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定 Nginx
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      用 Bundle 部署兩個應用程式
     </span>
   </a>
   
@@ -2418,7 +2468,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      查看報告
+      清除資源
     </span>
   </a>
   
@@ -2426,66 +2476,6 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      查看有哪些測試
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#opengl" class="md-nav__link">
-    <span class="md-ellipsis">
-      從零建立 OpenGL 測試
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="從零建立 OpenGL 測試">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      準備開發環境
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#job" class="md-nav__link">
-    <span class="md-ellipsis">
-      定義 job
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      驗證並執行
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#agent" class="md-nav__link">
-    <span class="md-ellipsis">
-      Agent 安全注意事項
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       參考資料
     </span>
@@ -2502,6 +2492,51 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -2509,12 +2544,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../juju/" class="md-nav__link">
+      <a href="../../others/binary-analysis/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Juju 入門
+    Binary 分析
     
   </span>
   
@@ -2532,7 +2567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qemu/" class="md-nav__link">
+      <a href="../../others/qemu/" class="md-nav__link">
         
   
   
@@ -2555,7 +2590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../fuzz/" class="md-nav__link">
+      <a href="../../others/fuzz/" class="md-nav__link">
         
   
   
@@ -2578,35 +2613,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../linux-communication/" class="md-nav__link">
+      <a href="../../others/linux-communication/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     Linux 通訊機制
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../snap/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Snap 機制
     
   </span>
   
@@ -2649,9 +2661,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#providerjobtest-plan-launcher" class="md-nav__link">
+  <a href="#juju-controllermodelcharm-bundle" class="md-nav__link">
     <span class="md-ellipsis">
-      Provider、Job、Test Plan 與 Launcher
+      Juju 的架構：Controller、Model、Charm 與 Bundle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#charmhub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Charmhub 是什麼
     </span>
   </a>
   
@@ -2660,7 +2681,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      安裝
+      安裝與前置需求
     </span>
   </a>
   
@@ -2669,7 +2690,25 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      執行第一個測試計畫
+      建立環境並部署
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定 Nginx
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      用 Bundle 部署兩個應用程式
     </span>
   </a>
   
@@ -2678,7 +2717,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      查看報告
+      清除資源
     </span>
   </a>
   
@@ -2686,66 +2725,6 @@
       
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      查看有哪些測試
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#opengl" class="md-nav__link">
-    <span class="md-ellipsis">
-      從零建立 OpenGL 測試
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="從零建立 OpenGL 測試">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      準備開發環境
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#job" class="md-nav__link">
-    <span class="md-ellipsis">
-      定義 job
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      驗證並執行
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#agent" class="md-nav__link">
-    <span class="md-ellipsis">
-      Agent 安全注意事項
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
       參考資料
     </span>
@@ -2769,144 +2748,118 @@
 
 
 
-  <h1>Checkbox 入門</h1>
+  <h1>Juju 入門</h1>
 
-<p>Checkbox 是 Ubuntu 的系統與硬體測試工具。
-它會依照測試計畫（test plan）執行一系列測試工作（job）：有些工作會自動完成，有些則需要使用者檢查並回報結果。
-測試計畫可能包含失敗、略過或需要手動確認的工作，結果不一定代表整台機器有問題。</p>
-<h2 id="providerjobtest-plan-launcher">Provider、Job、Test Plan 與 Launcher</h2>
-<table>
-<thead>
-<tr>
-<th>名稱</th>
-<th>用途</th>
-<th>本例中的對應內容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Provider（提供者）</td>
-<td>收納 Checkbox 可載入的定義，例如 jobs、test plans、資源及輔助程式。</td>
-<td><code>2026.example.org:graphics</code> provider 及 <code>units/graphics.pxu</code></td>
-</tr>
-<tr>
-<td>Job（測試工作）</td>
-<td>一項最小的測試步驟，描述要執行的指令、前置條件及如何判定結果。</td>
-<td><code>glxgears_acceleration</code> job 執行 OpenGL 繪圖並請使用者確認結果。</td>
-</tr>
-<tr>
-<td>Test plan（測試計畫）</td>
-<td>將相關 jobs 組成一個可選取、可執行的測試流程，也可指定順序及相依關係。</td>
-<td>互動介面中的 <code>Checkbox Base Tutorial Test Plan</code> 是一個 test plan。</td>
-</tr>
-<tr>
-<td>Launcher（啟動設定）</td>
-<td>以 INI 設定一次測試執行方式，例如選用哪個 test plan、篩選哪些 jobs、採用哪種介面及輸出報告方式；它不定義測試本身。</td>
-<td>可用 launcher 預先設定某個 plan 與報告格式。</td>
-</tr>
-</tbody>
-</table>
-<p>簡單來說，provider 收納 jobs 和 test plans；test plan 組織要執行的 jobs；launcher 則設定 Checkbox 如何執行這個 plan。</p>
-<h2 id="_1">安裝</h2>
-<p>Checkbox 分成執行環境（runtime）和操作介面（frontend）。
-Runtime 提供測試內容，frontend 提供操作介面；請選擇與 Ubuntu 版本相符的 runtime 和 frontend 通道（channel）。
-以下以 Ubuntu 24.04 為例：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>checkbox24
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>checkbox<span class="w"> </span>--channel<span class="o">=</span><span class="m">24</span>.04/stable<span class="w"> </span>--classic
+<p>Juju 是 Canonical 的服務編排工具，透過 charm 管理雲端或本機環境中的應用程式。它將部署、設定、擴縮及應用程式之間的整合描述成模型，並由 Juju 持續協調實際環境與模型狀態。這讓相同的操作方式可以用在不同的 cloud，而不必每次都手動登入機器設定服務。</p>
+<h2 id="juju-controllermodelcharm-bundle">Juju 的架構：Controller、Model、Charm 與 Bundle</h2>
+<p>Juju 的資源關係可以簡化成：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Cloud
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>└── Controller
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    └── Model
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        ├── Application（例如 nginx）
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        │   ├── Unit（nginx/0）
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        │   └── Unit（nginx/1）
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        └── 其他 applications 與它們的 units
 </span></code></pre></div>
-<p>Ubuntu 22.04 可改用 <code>checkbox22</code> runtime 及 <code>22.04/stable</code> frontend channel。
-其他版本請先查看 <a href="https://documentation.ubuntu.com/checkbox/stable/reference/snaps/">Checkbox Snap 版本說明</a>及 <code>snap info checkbox</code>。</p>
-<h2 id="_2">執行第一個測試計畫</h2>
-<p>啟動 Checkbox：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>checkbox.checkbox-cli
-</span></code></pre></div>
-<p>在互動介面中：</p>
-<ol>
-<li>按 <code>f</code> 開啟篩選，輸入 <code>Tutorial</code>。</li>
-<li>選取 <code>Checkbox Base Tutorial Test Plan</code>，按 <code>Space</code>，再按 <code>Enter</code>。</li>
-<li>檢視要執行的測試工作；可按 <code>Space</code> 調整選取，然後按 <code>t</code> 開始。</li>
-<li>遇到手動測試工作時，閱讀步驟並依實際狀況回報結果。所有工作結束後，在 <code>Select jobs to re-run</code> 畫面按 <code>f</code>（Finish）結束測試階段（session）。</li>
-</ol>
-<p>這個教學計畫包含刻意失敗或異常終止（crash）的範例，也會詢問人工測試結果；這些項目是用來示範 Checkbox 的操作流程。</p>
-<h2 id="_3">查看報告</h2>
-<p>透過互動介面完成 session 後，終端機會顯示文字摘要及提交檔案（submission files）的完整路徑。
-在出現這些路徑前，報告尚未完成匯出，請稍候。
-檔案預設儲存在 <code>~/.local/share/checkbox-ng/</code>，包含 HTML、JSON、JUnit XML 及 <code>.tar.xz</code> 封存檔。
-HTML 適合閱讀，JUnit XML 可供 CI 工具使用；除非你要提交結果，教學測試不需要上傳報告。</p>
-<h2 id="_4">查看有哪些測試</h2>
-<p>Checkbox 的文字介面（TUI）載入測試計畫可能較慢。若只想瀏覽可用的測試計畫，可在終端機執行：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>checkbox.checkbox-cli<span class="w"> </span>list<span class="w"> </span><span class="s2">&quot;test plan&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>less
-</span></code></pre></div>
-<h2 id="opengl">從零建立 OpenGL 測試</h2>
-<p>以下示範建立 Checkbox provider，並加入 <code>glxgears</code> 圖形測試。
-它會啟動 OpenGL 動畫，讓測試者確認繪圖器（renderer）使用 GPU 且畫面能正常繪製。
-這是需要人工確認的基本功能測試（smoke test），不是效能基準測試。</p>
-<h3 id="_5">準備開發環境</h3>
-<p>依照官方 <a href="https://documentation.ubuntu.com/checkbox/stable/tutorial/writing-tests/test-case/">Writing test jobs</a> 教學準備 Checkbox 原始碼開發環境。
-接著安裝測試所需的工具並建立 provider：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mesa-utils
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>checkbox-cli<span class="w"> </span>startprovider<span class="w"> </span><span class="m">2026</span>.example.org:graphics
-</span></code></pre></div>
-<p><code>startprovider</code> 會建立 provider 的目錄架構。
-進入產生的 provider 根目錄；<code>manage.py</code> 位於此目錄，job 定義則放在 <code>units/</code>。</p>
-<h3 id="job">定義 job</h3>
-<p>在 <code>units/graphics.pxu</code> 加入以下測試工作定義：</p>
-<div class="language-ini highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="na">id</span><span class="o">:</span><span class="w"> </span><span class="s">glxgears_acceleration</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="na">plugin</span><span class="o">:</span><span class="w"> </span><span class="s">user-interact-verify</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="na">category_id</span><span class="o">:</span><span class="w"> </span><span class="s">com.canonical.plainbox::graphics</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="na">imports</span><span class="o">:</span><span class="w"> </span><span class="s">from com.canonical.certification import executable</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="na">requires: executable.name =</span><span class="o">=</span><span class="w"> </span><span class="s">&#39;glxgears&#39;</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="na">_summary</span><span class="o">:</span><span class="w"> </span><span class="s">Verify an OpenGL rendering workload</span>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="na">_purpose</span><span class="o">:</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w"> </span><span class="na">Check that OpenGL renders using the system graphics hardware.</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="na">_steps</span><span class="o">:</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w"> </span><span class="na">1. Check the OpenGL renderer shown by glxinfo.</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w"> </span><span class="na">2. Confirm it identifies the system GPU, not a software renderer such as llvmpipe.</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w"> </span><span class="na">3. Watch the gears render, then close the window with Escape.</span>
-</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="na">_verification</span><span class="o">:</span>
-</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w"> </span><span class="na">1. Did glxinfo identify the expected GPU renderer?</span>
-</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w"> </span><span class="na">2. Did the gears appear and animate without rendering errors?</span>
-</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="na">command</span><span class="o">:</span><span class="w"> </span><span class="s">glxinfo -B &amp;&amp; glxgears</span>
-</span></code></pre></div>
-<p>各欄位的用途如下：</p>
 <ul>
-<li><code>id</code>：此 job 在 provider 內的唯一識別名稱。</li>
-<li><code>plugin</code>：指定 job 類型。<code>user-interact-verify</code> 會執行指令，再讓使用者檢查結果並回報通過或失敗。</li>
-<li><code>category_id</code>：指定分類，讓 Checkbox 將此工作放在圖形測試類別中顯示。</li>
-<li><code>imports</code>：匯入 Checkbox 內建 <code>com.canonical.certification</code> provider 的 <code>executable</code> 資源；沒有這行時，Checkbox 會在目前 provider 中尋找該資源。</li>
-<li><code>requires</code>：執行前的條件。只有 <code>executable</code> 資源確認系統有 <code>glxgears</code> 執行檔時，job 才會執行。</li>
-<li><code>_summary</code>：在 Checkbox 介面和結果摘要中顯示的簡短名稱。</li>
-<li><code>_purpose</code>：說明這項測試的目的。</li>
-<li><code>_steps</code>：提供測試者操作步驟。</li>
-<li><code>_verification</code>：測試完成後提供判定結果的問題。</li>
-<li><code>command</code>：實際執行的 shell 指令。<code>&amp;&amp;</code> 表示只有 <code>glxinfo -B</code> 成功後才會啟動 <code>glxgears</code>；動畫視窗需由測試者關閉。</li>
+<li><strong>Controller</strong>：Juju 的管理服務，接收 CLI 操作、保存部署狀態，並協調 cloud 上的資源。通常一個 controller 可以管理多個 models。</li>
+<li><strong>Model</strong>：一個獨立的操作與部署範圍，包含 applications、units、設定及彼此的關係。可用不同 model 隔離開發、測試與正式環境。</li>
+<li><strong>Application</strong>：model 中受管理的服務，例如部署後名為 <code>nginx</code> 的 Nginx 服務。它不是單一程序；應用程式可以有一個或多個 units。</li>
+<li><strong>Unit</strong>：application 的一個執行個體，例如 <code>nginx/0</code>。在 LXD 或一般 machine cloud 上通常對應一台機器或容器；在 Kubernetes cloud 上則通常對應一個 pod。</li>
+<li><strong>Charm</strong>：描述如何安裝、設定及維護某類 application 的操作程式。<code>juju deploy nginx</code> 會用 Nginx charm 建立名為 <code>nginx</code> 的 application；charm 負責「如何管理這個應用程式」。</li>
+<li><strong>Bundle</strong>：可重複使用的部署描述，列出一個或多個 applications 使用的 charms、設定及彼此的 relations。它描述「要一起部署什麼」，讓整個應用程式組合能以一次部署重建。Bundle 不是整個 cloud 或 model 的完整備份。</li>
 </ul>
-<p>測試者應檢查 <code>glxinfo</code> 顯示的 renderer 是否為預期的 GPU，而不是 <code>llvmpipe</code> 等軟體 renderer。不要設定固定 FPS 門檻，因為不同系統的效能差異很大。</p>
-<h3 id="_6">驗證並執行</h3>
-<p>在 Checkbox 開發環境中，從 provider 根目錄執行以下指令：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 驗證 provider 定義與相依資源</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>python3<span class="w"> </span>manage.py<span class="w"> </span>validate
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># 將 provider 註冊到目前的 Checkbox 開發環境</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>python3<span class="w"> </span>manage.py<span class="w"> </span>develop
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>checkbox-cli<span class="w"> </span>run<span class="w"> </span><span class="m">2026</span>.example.org::glxgears_acceleration
+<h2 id="charmhub">Charmhub 是什麼</h2>
+<p><a href="https://charmhub.io/">Charmhub</a> 是 charms 與 bundles 的線上目錄及發布平台。部署 <code>nginx</code> 時，Juju 會從 Charmhub 取得對應的 Nginx charm；Charmhub 頁面也提供 charm 支援的平台、版本及可設定選項。Charmhub 提供的是管理應用程式所需的 charm，不是實際執行 Nginx 的環境。</p>
+<h2 id="_1">安裝與前置需求</h2>
+<p>安裝 Juju CLI：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>juju<span class="w"> </span>--classic
 </span></code></pre></div>
-<p>執行時，確認 <code>glxinfo</code> 顯示預期的硬體 renderer，而不是 <code>llvmpipe</code> 等軟體 renderer。
-齒輪視窗會持續執行；按 Esc 關閉後，再依 Checkbox 提示確認測試結果。</p>
-<p>值得注意的是我們只要跑一次 <code>python3 manage.py develop</code> 就好，下次跑 Python 環境 activate <code>. checkbox_venv/bin/activate</code> 的時候就會自動仔入這個 test job。</p>
-<h2 id="agent">Agent 安全注意事項</h2>
-<p>Checkbox frontend 會啟動 Checkbox agent service。
-官方文件提醒，這個 service 可提供未經驗證的 root 層級遠端控制；只應在可信任的測試環境使用，完成後若暫時不需要，可停止並停用：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>stop<span class="w"> </span>--disable<span class="w"> </span>checkbox
+<p>本範例需要已安裝並初始化的 LXD。先確認 Juju 能看到本機 LXD cloud：</p>
+<p>如果 LXD container 無法連外，且主機的 <code>FORWARD</code> policy 是 <code>DROP</code>，可暫時允許封包轉送：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>iptables<span class="w"> </span>-P<span class="w"> </span>FORWARD<span class="w"> </span>ACCEPT
 </span></code></pre></div>
-<p>需要再次使用 Checkbox agent 時，可手動啟動：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>start<span class="w"> </span>checkbox
+<p>這會影響主機上的所有轉送流量，不只 LXD；只建議在個人開發機使用。單獨執行此指令不保證重開機後仍保留設定。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>juju<span class="w"> </span>version
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>juju<span class="w"> </span>clouds
 </span></code></pre></div>
-<h2 id="_7">參考資料</h2>
+<p>在 cloud 清單中確認有 <code>localhost</code>，且類型為 <code>lxd</code>。若沒有，請先安裝並設定 LXD，再重新檢查。</p>
+<h2 id="_2">建立環境並部署</h2>
+<p>建立 controller，再新增一個 model：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 新增 controllers</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>juju<span class="w"> </span>bootstrap<span class="w"> </span>localhost<span class="w"> </span>juju-tutorial-controller
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># 查看 controllers</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>juju<span class="w"> </span>controllers
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># 新增 model</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>juju<span class="w"> </span>add-model<span class="w"> </span>tutorial
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># 查看新的 model</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>juju<span class="w"> </span>status
+</span></code></pre></div>
+<p><code>juju switch</code> 只會改變 CLI 後續指令的目標，不會搬移或修改部署。<code>controller</code> 是 controller 名稱，不是特殊關鍵字；可以只選 controller，或用 <code>controller:model</code> 明確選擇 model：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>juju<span class="w"> </span>switch<span class="w"> </span>juju-tutorial-controller
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>juju<span class="w"> </span>switch<span class="w"> </span>juju-tutorial-controller:tutorial
+</span></code></pre></div>
+<p>部署 Charmhub 上的 Nginx charm，並查看部署狀態：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>juju<span class="w"> </span>deploy<span class="w"> </span>nginx<span class="w"> </span>--base<span class="w"> </span>ubuntu@22.04
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># 可能需要一點時間才會完成</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>juju<span class="w"> </span>status<span class="w"> </span>--watch<span class="w"> </span>2s
+</span></code></pre></div>
+<p><code>juju status</code> 會顯示 model、應用程式及 unit 狀態。部署完成所需時間依本機資源與網路而異；再次執行 <code>juju status</code> 可查看最新狀態。</p>
+<p>等 <code>juju status</code> 顯示 <code>nginx/0</code> 已就緒後，可以 SSH 進入該 unit 所在的 machine 或 container：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>juju<span class="w"> </span>ssh<span class="w"> </span>nginx/0
+</span></code></pre></div>
+<p>輸入 <code>exit</code> 可離開 SSH session。</p>
+<h2 id="nginx">設定 Nginx</h2>
+<p>每個 charm 只接受它所定義的設定選項。Nginx charm 提供 <code>port</code> 選項，可以在部署後變更服務的監聽 port：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>juju<span class="w"> </span>config<span class="w"> </span>nginx
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>juju<span class="w"> </span>config<span class="w"> </span>nginx<span class="w"> </span><span class="nv">port</span><span class="o">=</span><span class="m">5000</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>juju<span class="w"> </span>config<span class="w"> </span>nginx<span class="w"> </span>port
+</span></code></pre></div>
+<p>第一個指令列出目前設定，第二個把 Nginx 的監聽 port 改為 <code>5000</code>，最後一個查看該選項的值。也可以在部署時設定：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>juju<span class="w"> </span>deploy<span class="w"> </span>nginx<span class="w"> </span>--base<span class="w"> </span>ubuntu@22.04<span class="w"> </span>--config<span class="w"> </span><span class="nv">port</span><span class="o">=</span><span class="m">5000</span>
+</span></code></pre></div>
+<p>這些是 charm 公開的設定，不代表可以直接傳入任意 <code>nginx.conf</code> 指令。完整選項與預設值請查看 <a href="https://charmhub.io/nginx/configurations">Nginx charm 的設定頁面</a>。</p>
+<h2 id="bundle">用 Bundle 部署兩個應用程式</h2>
+<p>以下 bundle 會一起部署 Charmed MySQL 和 Self-Signed Certificates，並建立兩者的 TLS certificates relation。Juju 會按照 relation 協調兩個 charms，讓 MySQL 取得憑證；若分別部署，還要另外建立這個 relation。</p>
+<p>將以下內容存成 <code>mysql-tls-bundle.yaml</code>：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">default-base</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu@22.04</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">applications</span><span class="p">:</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">mysql</span><span class="p">:</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">charm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.0/stable</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="nt">num_units</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span><span class="nt">certificates</span><span class="p">:</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="nt">charm</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">self-signed-certificates</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="nt">channel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1/stable</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">    </span><span class="nt">num_units</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="nt">relations</span><span class="p">:</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql:certificates</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">certificates:certificates</span>
+</span></code></pre></div>
+<p>建立 model，再用一個指令部署 bundle 裡的兩個 applications 和它們的 relation：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>juju<span class="w"> </span>add-model<span class="w"> </span>tutorial-tls
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>juju<span class="w"> </span>deploy<span class="w"> </span>./mysql-tls-bundle.yaml<span class="w"> </span>--model<span class="w"> </span>tutorial-tls
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>juju<span class="w"> </span>status<span class="w"> </span>--model<span class="w"> </span>tutorial-tls<span class="w"> </span>--relations
+</span></code></pre></div>
+<p><code>juju status --relations</code> 可查看 relation 是否建立。MySQL 比 Nginx 範例耗用更多資源；不需要時可移除整個 model。</p>
+<h2 id="_3">清除資源</h2>
+<p>不再需要範例時，移除 model 及其中的應用程式：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>juju<span class="w"> </span>destroy-model<span class="w"> </span>tutorial-tls<span class="w"> </span>--destroy-storage
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>juju<span class="w"> </span>destroy-model<span class="w"> </span>tutorial
+</span></code></pre></div>
+<p>這個指令會要求確認。Controller 會保留，可供其他 model 使用；若要移除 controller，請先確認其中沒有要保留的 model，再執行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>juju<span class="w"> </span>destroy-controller<span class="w"> </span>juju-tutorial-controller<span class="w"> </span>--destroy-all-models<span class="w"> </span>--force
+</span></code></pre></div>
+<h2 id="_4">參考資料</h2>
 <ul>
-<li><a href="https://documentation.ubuntu.com/checkbox/stable/tutorial/">Checkbox Tutorial</a></li>
-<li><a href="https://documentation.ubuntu.com/checkbox/stable/tutorial/using-checkbox/installing-checkbox/">Installing Checkbox</a></li>
-<li><a href="https://documentation.ubuntu.com/checkbox/stable/tutorial/using-checkbox/running-checkbox/">Running your first test plan</a></li>
-<li><a href="https://documentation.ubuntu.com/checkbox/stable/tutorial/using-checkbox/test-report/">Review test report</a></li>
+<li><a href="https://canonical.com/juju/docs/juju-cli/3.6/tutorial/">Juju 3.6 Tutorial</a></li>
+<li><a href="https://canonical-juju-1.readthedocs-hosted.com/3.6/explanation/juju-architecture/">Juju architecture</a></li>
+<li><a href="https://canonical-juju-1.readthedocs-hosted.com/3.6/howto/manage-applications/#configure-an-application">Configure an application</a></li>
+<li><a href="https://canonical-juju-1.readthedocs-hosted.com/3.6/reference/bundle/">Juju bundle reference</a></li>
+<li><a href="https://charmhub.io/mysql">Charmed MySQL on Charmhub</a></li>
+<li><a href="https://charmhub.io/self-signed-certificates">Self-Signed Certificates on Charmhub</a></li>
+<li><a href="https://canonical.com/juju/docs/juju-cli/3.6/reference/juju-cli/">Juju CLI reference</a></li>
 </ul>
 
 
