@@ -130,6 +130,7 @@ nav:
     - 'Snap 機制': 'canonical/snap.md'
     - 'Checkbox 入門': 'canonical/checkbox.md'
     - 'Juju 入門': 'canonical/juju.md'
+    - 'GPG 金鑰管理入門': 'canonical/gpg.md'
   - 'Others':
     - 'Binary 分析': 'others/binary-analysis.md'
     - 'QEMU': 'others/qemu.md'
