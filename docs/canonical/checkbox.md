@@ -152,6 +152,42 @@ checkbox-cli run 2026.example.org::glxgears_acceleration
 
 值得注意的是我們只要跑一次 `python3 manage.py develop` 就好，下次跑 Python 環境 activate `. checkbox_venv/bin/activate` 的時候就會自動載入這個 test job。
 
+### 加入 Graphics Test Plan
+
+我們也可以新定義 task plan 來放這個 task job。
+為了讓兩者分開管理，請在同一個 provider 的 `units/test-plans.pxu` 建立以下 test plan：
+
+```ini
+unit: test plan
+id: graphics-acceleration
+_name: Graphics Acceleration Test Plan
+include:
+  glxgears_acceleration
+```
+
+各欄位的用途如下：
+
+* `unit`：宣告這筆定義是 test plan，而不是 job。
+* `id`：test plan 的唯一識別名稱；執行時會和 provider namespace 組成完整名稱。
+* `_name`：顯示在 Checkbox 互動選單中的計畫名稱。
+* `include`：列出此計畫要執行的 job；此處引用同一 provider 中的 `glxgears_acceleration`。
+
+若已對這個 provider 執行過 `python3 manage.py develop`，新增 test plan 後不必重跑；在 provider 根目錄驗證定義並預覽計畫內容：
+
+```bash
+python3 manage.py validate
+checkbox-cli list "test plan" | grep graphics-acceleration
+checkbox-cli list-bootstrapped 2026.example.org::graphics-acceleration
+```
+
+`list-bootstrapped` 會列出計畫實際展開後的工作。確認清單包含 `glxgears_acceleration` 後，可直接執行計畫：
+
+```bash
+checkbox-cli run 2026.example.org::graphics-acceleration
+```
+
+若要透過互動選單選取此計畫，請在同一個 Checkbox source development environment 執行 `checkbox-cli`，再從 test plan 清單選取 `Graphics Acceleration Test Plan`。
+
 ## Agent 安全注意事項
 
 Checkbox frontend 會啟動 Checkbox agent service。
