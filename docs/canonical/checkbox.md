@@ -36,7 +36,9 @@ sudo snap install checkbox --channel=24.04/stable --classic
 Ubuntu 22.04 可改用 `checkbox22` runtime 及 `22.04/stable` frontend channel。
 其他版本請先查看 [Checkbox Snap 版本說明](https://documentation.ubuntu.com/checkbox/stable/reference/snaps/)及 `snap info checkbox`。
 
-## 執行第一個測試計畫
+## 基本的執行操作
+
+### 跑範例 Tutorial Test Plan
 
 啟動 Checkbox：
 
@@ -53,14 +55,14 @@ checkbox.checkbox-cli
 
 這個教學計畫包含刻意失敗或異常終止（crash）的範例，也會詢問人工測試結果；這些項目是用來示範 Checkbox 的操作流程。
 
-## 查看報告
+### 查看報告
 
 透過互動介面完成 session 後，終端機會顯示文字摘要及提交檔案（submission files）的完整路徑。
 在出現這些路徑前，報告尚未完成匯出，請稍候。
 檔案預設儲存在 `~/.local/share/checkbox-ng/`，包含 HTML、JSON、JUnit XML 及 `.tar.xz` 封存檔。
 HTML 適合閱讀，JUnit XML 可供 CI 工具使用；除非你要提交結果，教學測試不需要上傳報告。
 
-## 查看有哪些測試
+### 查看有哪些測試
 
 Checkbox 的文字介面（TUI）載入測試計畫可能較慢。若只想瀏覽可用的測試計畫，可在終端機執行：
 
@@ -68,7 +70,7 @@ Checkbox 的文字介面（TUI）載入測試計畫可能較慢。若只想瀏�
 checkbox.checkbox-cli list "test plan" | less
 ```
 
-## 從零建立 OpenGL 測試
+## 建立自己的測試
 
 以下示範建立 Checkbox provider，並加入 `glxgears` 圖形測試。
 它會啟動 OpenGL 動畫，讓測試者確認繪圖器（renderer）使用 GPU 且畫面能正常繪製。
