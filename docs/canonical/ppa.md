@@ -146,18 +146,22 @@ GNU hello 的文件建置與測試會用到 `makeinfo`，此程式由 `texinfo` 
 dch -b --newversion 2.12.1-0ubuntu1~noble1 --distribution noble
 ```
 
+`-b` 允許新版號低於 `dh_make` 產生的初始版本。PPA 不允許以相同版本號覆蓋既有套件，因此每次重新上傳都要增加版本號。
+
 在編輯器中寫下這次修改內容並儲存，第一行應類似：
 
 ```text
 hello (2.12.1-0ubuntu1~noble1) noble; urgency=medium
 ```
 
-* `2.12.1`：上游版本。
-* `0ubuntu1`：Ubuntu 打包修訂版；這是範例命名，不是所有 PPA 都必須使用的固定格式。
-* `~noble1`：表示 Noble 的第一個 PPA 修訂版；後續上傳可改成 `~noble2`。
-* `noble`：目標 Ubuntu 發行版代號，不要保留成 `UNRELEASED`。
+Debian 版號格式為 `[epoch:]upstream_version-debian_revision`：
 
-`-b` 允許版本低於 `dh_make` 產生的初始版本。PPA 不允許以相同版本號覆蓋既有套件，因此每次重新上傳都要增加版本號。
+* `epoch`：可選欄位。上游改版導致新版號排序反而較舊時，用它調整排序，例如 `10.0-1` 改成 `1:2.0-1`。
+* `upstream_version`：上游版本，例如 `2.12.1`。
+* `debian_revision`：套件維護者的修訂版。Ubuntu 直接打包時常用 `0ubuntu1`；若從 Debian 修訂版 `1` 延伸，常見形式是 `1ubuntu1`。
+* `~noble1`：可選的 PPA 後綴，用來標示 Noble 的 PPA 修訂序號；同一 suite 後續上傳可遞增為 `~noble2`。目標 suite 本身由 changelog 的 `noble` distribution 欄位指定。
+
+版號後綴會影響 APT 的版本排序：`~` 排在沒有後綴的版號之前，`+` 則排在它之後。因此不要直接把 `~resolute1` 加到已存在的 `0.7.0-1ubuntu2` 後面，因為 `0.7.0-1ubuntu2~resolute1` 會比官方版舊。若 Resolute 官方版是 `0.7.0-1ubuntu2`，PPA 測試版可用 `0.7.0-1ubuntu2+resolute1`；或提高 Ubuntu 修訂號後使用 `0.7.0-1ubuntu3~resolute1`。PPA 後續更新要遞增自己的序號，不能重用已上傳的同版號。
 
 #### `debian/copyright`
 
