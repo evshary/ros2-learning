@@ -3313,16 +3313,18 @@ GNU hello 的文件建置與測試會用到 <code>makeinfo</code>，此程式由
 <p>在原始碼目錄建立目標 Ubuntu 版本的項目：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>dch<span class="w"> </span>-b<span class="w"> </span>--newversion<span class="w"> </span><span class="m">2</span>.12.1-0ubuntu1~noble1<span class="w"> </span>--distribution<span class="w"> </span>noble
 </span></code></pre></div>
+<p><code>-b</code> 允許新版號低於 <code>dh_make</code> 產生的初始版本。PPA 不允許以相同版本號覆蓋既有套件，因此每次重新上傳都要增加版本號。</p>
 <p>在編輯器中寫下這次修改內容並儲存，第一行應類似：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>hello (2.12.1-0ubuntu1~noble1) noble; urgency=medium
 </span></code></pre></div>
+<p>Debian 版號格式為 <code>[epoch:]upstream_version-debian_revision</code>：</p>
 <ul>
-<li><code>2.12.1</code>：上游版本。</li>
-<li><code>0ubuntu1</code>：Ubuntu 打包修訂版；這是範例命名，不是所有 PPA 都必須使用的固定格式。</li>
-<li><code>~noble1</code>：表示 Noble 的第一個 PPA 修訂版；後續上傳可改成 <code>~noble2</code>。</li>
-<li><code>noble</code>：目標 Ubuntu 發行版代號，不要保留成 <code>UNRELEASED</code>。</li>
+<li><code>epoch</code>：可選欄位。上游改版導致新版號排序反而較舊時，用它調整排序，例如 <code>10.0-1</code> 改成 <code>1:2.0-1</code>。</li>
+<li><code>upstream_version</code>：上游版本，例如 <code>2.12.1</code>。</li>
+<li><code>debian_revision</code>：套件維護者的修訂版。Ubuntu 直接打包時常用 <code>0ubuntu1</code>；若從 Debian 修訂版 <code>1</code> 延伸，常見形式是 <code>1ubuntu1</code>。</li>
+<li><code>~noble1</code>：可選的 PPA 後綴，用來標示 Noble 的 PPA 修訂序號；同一 suite 後續上傳可遞增為 <code>~noble2</code>。目標 suite 本身由 changelog 的 <code>noble</code> distribution 欄位指定。</li>
 </ul>
-<p><code>-b</code> 允許版本低於 <code>dh_make</code> 產生的初始版本。PPA 不允許以相同版本號覆蓋既有套件，因此每次重新上傳都要增加版本號。</p>
+<p>版號後綴會影響 APT 的版本排序：<code>~</code> 排在沒有後綴的版號之前，<code>+</code> 則排在它之後。因此不要直接把 <code>~resolute1</code> 加到已存在的 <code>0.7.0-1ubuntu2</code> 後面，因為 <code>0.7.0-1ubuntu2~resolute1</code> 會比官方版舊。若 Resolute 官方版是 <code>0.7.0-1ubuntu2</code>，PPA 測試版可用 <code>0.7.0-1ubuntu2+resolute1</code>；或提高 Ubuntu 修訂號後使用 <code>0.7.0-1ubuntu3~resolute1</code>。PPA 後續更新要遞增自己的序號，不能重用已上傳的同版號。</p>
 <h4 id="debiancopyright"><code>debian/copyright</code></h4>
 <p>這個檔案使用 DEP-5 格式，逐組記錄檔案的著作權人與授權。</p>
 <p>先從 <code>AUTHORS</code>、<code>COPYING</code> 和各檔案的授權標頭確認資訊，再移除其他檔案內原始的 comment，否則 lintian 會報錯。</p>
