@@ -379,6 +379,43 @@ sbuild --chroot-mode=schroot -d resolute hello_2.12.1-0ubuntu1~resolute1.dsc
 
 確認 sbuild 成功後，照前面的方式對新產生的 `_source.changes` 執行 Lintian、簽署並上傳；Noble 和 Resolute 是兩次不同的 source upload。
 
+### 產生的檔案說明
+
+在執行過程中，你會發現程式碼資料夾外有多種產物，下面解釋各個檔案的意義：
+
+| 檔案 | 產生指令 | 用途 |
+| --- | --- | --- |
+| `hello-2.12.1.tar.gz` | `wget` | 下載的上游原始碼。 |
+| `hello_2.12.1.orig.tar.gz` | `dh_make --file` | dpkg source package 使用的上游原始碼封存檔。 |
+| `hello_<version>.debian.tar.xz` | `dpkg-buildpackage -S` | Debian 打包設定與補丁。 |
+| `hello_<version>.dsc` | `dpkg-buildpackage -S` | Source package 描述檔，列出檔案及校驗資訊；sbuild 以此為輸入。 |
+| `hello_<version>_source.changes` | `dpkg-buildpackage -S` | Source package 上傳清單；`dput` 使用此檔上傳。 |
+| `hello_<version>_source.buildinfo` | `dpkg-buildpackage -S` | Source package 的建置環境資訊。 |
+| `hello_<version>_amd64.deb` | `sbuild` | 本機建出的可安裝套件。 |
+| `hello-dbgsym_<version>_amd64.ddeb` | `sbuild` | 除錯符號套件，通常只有除錯時才需要。 |
+| `hello_<version>_amd64.changes` | `sbuild` | 本機 binary build 產物清單；不要用它上傳 PPA。 |
+| `hello_<version>_amd64.buildinfo` | `sbuild` | Binary build 的建置環境資訊。 |
+| `hello_<version>_amd64.build` | `sbuild` | 建置記錄；同名連結通常指向最近一次的 log。 |
+| `hello_<version>_source.ppa.upload` | `dput` | Source upload 結果記錄。 |
+
+PPA 上傳 source package；binary 套件由 Launchpad 建置。
+
+#### 清理產物
+
+在原始碼目錄執行以下指令，可清除建置中間檔，但保留 `debian/` 設定：
+
+```bash
+fakeroot debian/rules clean
+```
+
+若要清除 `ppa-work/` 中某個版本的打包產物，先進入該目錄，再使用精確的版本字串；以下只刪 Noble 這個版本，會保留上游 tarball 和 `hello-2.12.1/` 原始碼目錄：
+
+```bash
+cd ~/ppa-work
+rm -f hello_2.12.1-0ubuntu1~noble1* \
+  hello-dbgsym_2.12.1-0ubuntu1~noble1*
+```
+
 ## 參考資料
 
 * [Launchpad：上傳套件到 PPA](https://help.launchpad.net/Packaging/PPA/Uploading)
