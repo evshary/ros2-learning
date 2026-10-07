@@ -8,8 +8,9 @@ keywords:
 ---
 
 PPA（Personal Package Archive）是 Launchpad 提供的個人套件庫。
-你上傳簽署過的 **Debian 原始碼套件**，Launchpad 會在指定的 Ubuntu 環境中建置 `.deb`，讓使用者透過 APT 安裝。
-不能直接把本機編好的 `.deb` 上傳到 PPA。
+我們把簽署過的 **Debian 原始碼套件**上傳，Launchpad 會在指定的 Ubuntu 環境中建置 `.deb`，讓使用者可以透過 APT 安裝。
+因此，不能直接把本機編好的 `.deb` 上傳到 PPA。
+值得一提的是 PPA 可以同時包含不同版本 Ubuntu 的套件，例如 Noble 和 Resolute。
 
 這篇以 GNU hello 2.12.1 為例，一步步教導使用者如何上傳：
 
@@ -322,17 +323,10 @@ PPA 只接受原始碼上傳，請選 `_source.changes`，不要選本地測試�
 Launchpad 處理後會寄送接受或拒絕通知，可以在 PPA 頁面查看套件與建置狀態。
 若建置失敗，打開 build log，檢查相依套件、編譯錯誤與目標 Ubuntu 版本，再提高版本號重新上傳。
 
-### 多發行版與多架構
-
-* **多發行版**：每次上傳的目標由 `debian/changelog` 決定。若也支援 Jammy，需設定 `jammy` 與不同版本號（例如 `2.12.1-0ubuntu1~jammy1`），在相應環境測試後另外上傳；不是在 PPA 設定中勾選多個發行版。
-* **多架構**：在 PPA 頁面的架構設定確認可用的 architectures。`Architecture: any` 的套件會依 PPA 啟用且支援的架構安排建置；部分架構可能需要額外申請，不保證所有 PPA 都能使用。
-
-先確認 Noble 的 `amd64` 成功，再逐步增加其他目標。
-
 ## 安裝與測試
 
-接著就要等套件建置成功且發布，可以到自己的 PPA 頁面點選 "View package details
-"。
+接著就要等套件建置成功且發布，可以到自己的 PPA 頁面點選 "View package details"。
+值得注意的是，第一次發佈可能要等久一點（可能一個多小時），在發佈之前 `apt update` 都會是 403 錯誤，而且 PPA 的金鑰也無法正常匯入。
 
 發佈以後，在對應 Ubuntu 版本的測試機上執行：
 
@@ -356,6 +350,34 @@ sudo apt purge hello
 sudo add-apt-repository --remove ppa:YOUR_LAUNCHPAD_ID/myppa
 sudo apt update
 ```
+
+### 多發行版與多架構
+
+* **`debian/changelog`（每個 suite 都要改）**：上傳目標由最新項目的 codename 決定。Noble 和 Resolute 要分別用 `noble`、`resolute`，並使用不同版本號，例如 `2.12.1-0ubuntu1~noble1`、`2.12.1-0ubuntu1~resolute1`；各自產生 source package、測試並上傳。
+* **`debian/control`（有需要才改）**：若套件相依套件在不同 Ubuntu 版本名稱不同、版本需求不同，或某個 suite 沒有相依套件，才調整 `Build-Depends`／`Depends`。
+* **`debian/rules`（有需要才改）**：只有不同 suite 需要不同的設定或建置步驟時才加條件；否則共用同一份即可。
+* **`debian/patches/`（有需要才改）**：只有程式在不同 suite 需要不同修補時才調整；一般應先維持相同補丁組合。
+* **多架構**：在 PPA 頁面的架構設定確認可用的 architectures。`Architecture: any` 的套件會依 PPA 啟用且支援的架構安排建置；部分架構可能需要額外申請，不保證所有 PPA 都能使用。
+
+例如要從 Noble 範例新增 Resolute，先在 PPA 設定啟用 Resolute，並建立一次對應的 chroot：
+
+```bash
+sudo sbuild-createchroot --arch=amd64 --components=main,universe \
+  --keyring=/usr/share/keyrings/ubuntu-archive-keyring.gpg \
+  --make-sbuild-tarball=/srv/chroot/resolute-amd64-sbuild.tar.gz \
+  resolute /srv/chroot/resolute-amd64-sbuild http://archive.ubuntu.com/ubuntu
+```
+
+若套件設定和相依套件不需更動，在原始碼目錄新增 Resolute changelog 項目，重新產生 source package，再用 Resolute chroot 測試：
+
+```bash
+dch --newversion 2.12.1-0ubuntu1~resolute1 --distribution resolute
+dpkg-buildpackage -S -sa -us -uc -d
+cd ..
+sbuild --chroot-mode=schroot -d resolute hello_2.12.1-0ubuntu1~resolute1.dsc
+```
+
+確認 sbuild 成功後，照前面的方式對新產生的 `_source.changes` 執行 Lintian、簽署並上傳；Noble 和 Resolute 是兩次不同的 source upload。
 
 ## 參考資料
 
