@@ -1,0 +1,3487 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="介紹 Ubuntu Core 的 Snap 架構與儲存配置，並建置及使用 QEMU 執行 x86-64 映像">
+      
+      
+        <meta name="author" content="ChenYing Kuo">
+      
+      
+        <link rel="canonical" href="https://ros2.tw/canonical/ubuntu-core/">
+      
+      
+        <link rel="prev" href="../snap/">
+      
+      
+        <link rel="next" href="../checkbox/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+    
+    
+      
+        <title>Ubuntu Core 入門 - ROS 2 筆記</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-J7VWGLN65L"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-J7VWGLN65L",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-J7VWGLN65L",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#snap" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ROS 2 筆記" class="md-header__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ROS 2 筆記
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ubuntu Core 入門
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切換到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切換到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="切換到淺色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切換到淺色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ROS 2 筆記" class="md-nav__button md-logo" aria-label="ROS 2 筆記" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ROS 2 筆記
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    簡介
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 入門
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            ROS 2 入門
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 安裝
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 實戰
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            ROS 2 實戰
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/command/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 指令
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/communication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 通訊方式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/building/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 編譯
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/qos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 QoS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/env/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 環境變數
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/record/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 錄製與重放
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 好用工具
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/tips/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 小技巧
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 導航
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/sros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SROS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    ROS 2 通訊層
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            ROS 2 通訊層
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/rmw_cyclonedds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    rmw_cyclonedds 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/rmw_zenoh/basic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    rmw_zenoh 基本介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/rmw_zenoh/advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    rmw_zenoh 進階介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ros2/rmw_zenoh/hands_on/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    rmw_zenoh 實戰
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DDS 入門
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            DDS 入門
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dds/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DDS 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dds/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DDS 核心概念
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dds/qos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DDS QoS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dds/discovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DDS Discovery
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dds/rtps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DDS RTPS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dds/cyclonedds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CycloneDDS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dds/fastdds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FastDDS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Zenoh 入門
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Zenoh 入門
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zenoh/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zenoh 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zenoh/mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zenoh 模式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zenoh/keyexpr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zenoh key
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zenoh/shared_memory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zenoh 共享記憶體
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zenoh/debug/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zenoh debug 方法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zenoh/protocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zenoh 協定
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zenoh/format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zenoh 封包格式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zenoh/zenoh_bridge_ros2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    zenoh-bridge-ros2dds
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zenoh/cpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zenoh C++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zenoh/pico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Zenoh Pico
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Autoware 入門
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Autoware 入門
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoware/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoware 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoware/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoware 安裝與運行
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoware/modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoware 模組
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoware/map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoware 地圖
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoware/simulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoware 模擬
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../autoware/api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Autoware API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    PX4
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            PX4
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../px4/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PX4 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    AGL 入門
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            AGL 入門
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agl/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AGL 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../agl/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AGL 安裝
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Eclipse SDV
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Eclipse SDV
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../eclipse-sdv/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Eclipse SDV 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../eclipse-sdv/uprotocol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Eclipse uProtocol 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Embodied AI
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Embodied AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../embodied-ai/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Embodied AI 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../embodied-ai/gpu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    NVIDIA GPU 安裝
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    F´（F Prime）
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            F´（F Prime）
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fprime/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    F´ 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fprime/hello-world/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    執行 HelloWorld
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fprime/fpp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FPP 基本介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fprime/run-ref/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    執行 Ref Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Rust
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            Rust
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust 介紹
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/why_rust/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    為什麼選擇 Rust
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/ownership/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Ownership
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/module/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Module
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/iterator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Iterator
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Error
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/attribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Attribute
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/async/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust async
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/unsafe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust unsafe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/trait/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust trait
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/fuzz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust fuzz test
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/benchmark/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust benchmark
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/ffi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust FFI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rust/miri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rust Miri
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Canonical
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Canonical
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    常用網站
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../snap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Snap 機制
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Ubuntu Core 入門
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ubuntu Core 入門
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#snap" class="md-nav__link">
+    <span class="md-ellipsis">
+      組成系統的 Snap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      儲存配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      開機流程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="開機流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      首次開機：install mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      日常開機：run mode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      主機前置設定
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      建置 x86-64 映像
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qemu" class="md-nav__link">
+    <span class="md-ellipsis">
+      在 QEMU 上執行
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="在 QEMU 上執行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uefi-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      準備 UEFI firmware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      啟動 VM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      首次啟動與 SSH
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gadget-snap" class="md-nav__link">
+    <span class="md-ellipsis">
+      延伸：自訂 gadget Snap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="延伸：自訂 gadget Snap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#developer-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      查詢 developer ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    <span class="md-ellipsis">
+      建立金鑰與自訂 model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pc-customsnap" class="md-nav__link">
+    <span class="md-ellipsis">
+      產生 pc-custom.snap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gadget" class="md-nav__link">
+    <span class="md-ellipsis">
+      放入本機 gadget 並建置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      運行自訂映像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      驗證結果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      參考資料
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../checkbox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Checkbox 入門
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../juju/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Juju 入門
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gpg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GPG 金鑰管理入門
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ppa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    上傳套件到自己的 PPA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Others
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            Others
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/binary-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Binary 分析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/qemu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QEMU
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/fuzz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    模糊測試
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../others/linux-communication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linux 通訊機制
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#snap" class="md-nav__link">
+    <span class="md-ellipsis">
+      組成系統的 Snap
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      儲存配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      開機流程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="開機流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      首次開機：install mode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      日常開機：run mode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      主機前置設定
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#x86-64" class="md-nav__link">
+    <span class="md-ellipsis">
+      建置 x86-64 映像
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qemu" class="md-nav__link">
+    <span class="md-ellipsis">
+      在 QEMU 上執行
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="在 QEMU 上執行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uefi-firmware" class="md-nav__link">
+    <span class="md-ellipsis">
+      準備 UEFI firmware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vm" class="md-nav__link">
+    <span class="md-ellipsis">
+      啟動 VM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      首次啟動與 SSH
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gadget-snap" class="md-nav__link">
+    <span class="md-ellipsis">
+      延伸：自訂 gadget Snap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="延伸：自訂 gadget Snap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#developer-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      查詢 developer ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    <span class="md-ellipsis">
+      建立金鑰與自訂 model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pc-customsnap" class="md-nav__link">
+    <span class="md-ellipsis">
+      產生 pc-custom.snap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gadget" class="md-nav__link">
+    <span class="md-ellipsis">
+      放入本機 gadget 並建置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      運行自訂映像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      驗證結果
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      參考資料
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Ubuntu Core 入門</h1>
+
+<p>Ubuntu Core 是 Canonical 針對 IoT 與嵌入式設備設計的 Ubuntu 發行版。
+系統與應用程式以 Snap 管理，支援更新與版本回復，不使用一般 Ubuntu Server 的 APT 安裝流程。
+系統與 Snap 本體主要唯讀，設定及應用程式資料則放在可寫入的儲存區。
+Snap 的封裝與 sandbox 機制可先參考 <a href="../snap/">Snap 機制</a>。</p>
+<p>本文以 <strong>Ubuntu Core 24、x86-64（<code>amd64</code>）</strong> 為例，主機使用 Ubuntu 24.04 amd64，VM 使用 QEMU/KVM。</p>
+<h2 id="snap">組成系統的 Snap</h2>
+<table>
+<thead>
+<tr>
+<th>元件</th>
+<th>amd64 Core 24 範例</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base</td>
+<td><code>core24</code></td>
+<td>提供系統使用的基本 userspace 與函式庫</td>
+</tr>
+<tr>
+<td>Kernel</td>
+<td><code>pc-kernel</code>，<code>24/stable</code></td>
+<td>Linux kernel 與相關模組</td>
+</tr>
+<tr>
+<td>Gadget</td>
+<td><code>pc</code>，<code>24/stable</code></td>
+<td>定義磁碟配置、bootloader、開機資產及設備設定</td>
+</tr>
+<tr>
+<td>snapd</td>
+<td><code>snapd</code></td>
+<td>安裝、更新、驗證 Snap 與管理設備狀態</td>
+</tr>
+<tr>
+<td>Application</td>
+<td><code>console-conf</code> 等</td>
+<td>設備服務及應用程式</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Model assertion</strong> 是經過簽署的設備規格，指定架構與要安裝的 Snap，<code>ubuntu-image</code> 根據它組合磁碟映像
+model 檔內會指定實際要用到的 gadget，裡面會紀錄真正的分割區配置。</p>
+<h2 id="_1">儲存配置</h2>
+<p>以下是安裝完成後的四個主要分割區：</p>
+<table>
+<thead>
+<tr>
+<th>分割區</th>
+<th>實際內容</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ubuntu-seed</code></td>
+<td>第一階段／recovery bootloader 資產、<code>snaps/</code> 中的初始 <code>.snap</code> 檔案，以及 <code>systems/&lt;label&gt;/</code> 中的 model、assertions 與 recovery 開機資訊</td>
+<td>啟動安裝與 recovery 環境，提供重建系統所需的 Snap 與驗證資料</td>
+</tr>
+<tr>
+<td><code>ubuntu-boot</code></td>
+<td>Run mode bootloader、開機設定，以及從 kernel snap 解出的 kernel 與 initramfs 等資產</td>
+<td>載入正常運行的 kernel，啟動已安裝的系統</td>
+</tr>
+<tr>
+<td><code>ubuntu-save</code></td>
+<td>設備身分備份，以及 Snap 透過 <code>$SNAP_SAVE_DATA</code> 明確保存的少量設備資料，例如憑證與設備設定</td>
+<td>在 factory reset 或重新安裝時保留指定的設備資料，不是一般使用者資料備份區</td>
+</tr>
+<tr>
+<td><code>ubuntu-data</code></td>
+<td>已安裝的 <code>.snap</code> 檔案、snapd 狀態、系統可寫設定、應用程式資料與使用者家目錄</td>
+<td>保存日常運行的系統狀態與資料，提供唯讀 root filesystem 所需的可寫目錄</td>
+</tr>
+</tbody>
+</table>
+<p><code>ubuntu-seed</code> 在 UEFI 系統上是 FAT 格式的 EFI System Partition（ESP）。
+<code>ubuntu-data</code> 和 <code>ubuntu-save</code> 是可寫資料區；<code>ubuntu-save</code> 在未加密設備上可省略，但加密設備必須有它。
+實際大小與順序依 gadget 而定，尚未安裝的映像不一定已包含全部分割區。</p>
+<h2 id="_2">開機流程</h2>
+<h3 id="install-mode">首次開機：install mode</h3>
+<ol>
+<li>UEFI 從 <code>ubuntu-seed</code> 啟動 bootloader，載入 seed 內 recovery system 的 kernel 與 initramfs。</li>
+<li>系統在記憶體中的暫時環境（tmpfs）進入 install mode。</li>
+<li>snapd 依 gadget 建立缺少的分割區，在 <code>ubuntu-boot</code> 準備正常開機資產，在 <code>ubuntu-data</code> 準備系統資料，並初始化需要的 <code>ubuntu-save</code>。</li>
+<li>重新啟動進入 run mode，完成 Snap seeding 與首次使用者設定。</li>
+</ol>
+<h3 id="run-mode">日常開機：run mode</h3>
+<pre class="mermaid"><code>flowchart TD
+  firmware[UEFI] --&gt; seed["ubuntu-seed：第一階段 bootloader"]
+  seed --&gt; boot["ubuntu-boot：run mode bootloader、kernel、initramfs"]
+  boot --&gt; bootstrap["initramfs：snap-bootstrap"]
+  data["ubuntu-data：已安裝 Snap 與可寫資料"] --&gt; bootstrap
+  save["ubuntu-save：設備身分備份與持久資料（若有）"] -.-&gt; bootstrap
+  bootstrap --&gt; root["掛載 base snap 作為唯讀 root，接上可寫目錄"]
+  root --&gt; services["啟動 systemd、snapd 與應用程式"]</code></pre>
+<p><code>snap-bootstrap</code> 負責掛載所需分割區、選擇 base 與 kernel Snap；加密配置還需要先解鎖資料區。
+<code>ubuntu-save</code> 不是另一個 bootloader 階段，而是掛載的輔助資料區。
+Root filesystem 來自 base snap，不是直接把 <code>ubuntu-data</code> 當成整個 <code>/</code>。
+若進入 recovery，則改用 <code>ubuntu-seed</code> 的 recovery system 與暫時可寫環境，不走一般 run mode 的系統啟動路徑。</p>
+<h2 id="_3">主機前置設定</h2>
+<p>以下指令在 <strong>Ubuntu 主機</strong> 執行。本例分配 2 GiB RAM 與 8 GiB 虛擬磁碟，並需要網際網路連線。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 更新套件索引，安裝 QEMU、UEFI firmware 與 KVM 檢查工具</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>qemu-system-x86<span class="w"> </span>ovmf<span class="w"> </span>cpu-checker<span class="w"> </span>curl
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 安裝映像製作工具；--classic 允許存取主機檔案與資源</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>sudo<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>ubuntu-image<span class="w"> </span>--classic
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># 檢查主機是否可使用 KVM 硬體虛擬化加速</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>kvm-ok
+</span></code></pre></div>
+<p>QEMU 提供虛擬機與虛擬裝置，KVM 則透過 Linux kernel 加速 guest CPU 執行。</p>
+<p>確認 <code>kvm-ok</code> 可使用 KVM，且使用者有 <code>/dev/kvm</code> 存取權限。
+若缺少 <code>kvm</code> 群組權限，可執行 <code>sudo usermod -aG kvm "$USER"</code>，再登出並重新登入。
+其中 <code>-aG</code> 將目前使用者加入額外群組，不移除原有群組；<code>$USER</code> 是目前使用者名稱。</p>
+<p>另外我們需要先建立 <a href="https://login.ubuntu.com/">Ubuntu One 帳號</a>，並在 <a href="https://login.ubuntu.com/ssh-keys">SSH keys</a> 登錄 SSH <strong>公鑰</strong>，供首次設定與 SSH 登入使用。
+這個和 Desktop / Server 的邏輯不一樣，因為 Ubuntu Core 通常是大量部屬，利用 Ubuntu One 就可以避免每次安裝都要設定帳號密碼的資訊。</p>
+<h2 id="x86-64">建置 x86-64 映像</h2>
+<p>使用 Canonical 已簽署的參考 model，不需要自己的簽署金鑰：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/ubuntu-core-vm
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>~/ubuntu-core-vm
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 下載已簽署的 model，也就是前面提過的 model assertion</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># -f 檢查 HTTP 錯誤，-L 跟隨重新導向，-o 指定檔名</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>curl<span class="w"> </span>-fL<span class="w"> </span>-o<span class="w"> </span>ubuntu-core-24-amd64.model<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span>https://raw.githubusercontent.com/canonical/models/master/ubuntu-core-24-amd64.model
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>build
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># 依 model 組合 8 GiB 映像到 build/，並加入首次設定用的 console-conf</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>ubuntu-image<span class="w"> </span>snap<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span>--image-size<span class="w"> </span>8G<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span>--output-dir<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span>--snap<span class="w"> </span>console-conf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span>ubuntu-core-24-amd64.model
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="c1"># 複製成 VM 工作磁碟；--sparse=always 減少連續零值區域的實際占用</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>cp<span class="w"> </span>--sparse<span class="o">=</span>always<span class="w"> </span>build/pc.img<span class="w"> </span>ubuntu-core.img
+</span></code></pre></div>
+<p>輸出為 <code>build/pc.img</code>，這裡複製成 <code>ubuntu-core.img</code> 供 VM 使用。
+Core 24 的參考 model 將 <code>console-conf</code> 標為 optional，因此需要明確加入。</p>
+<h2 id="qemu">在 QEMU 上執行</h2>
+<h3 id="uefi-firmware">準備 UEFI firmware</h3>
+<p>在同一個工作目錄執行，<strong>每個新 VM 各做一次</strong>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 複製唯讀 UEFI code 到目前目錄 (UEFI 程式碼的部份，用來初始化)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>cp<span class="w"> </span>/usr/share/OVMF/OVMF_CODE_4M.secboot.fd<span class="w"> </span>.
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 建立這台 VM 專用的可寫 UEFI variables (UEFI 的設定部份，如開機順序)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>cp<span class="w"> </span>/usr/share/OVMF/OVMF_VARS_4M.ms.fd<span class="w"> </span>.
+</span></code></pre></div>
+<p>同一個 VM 重啟時沿用原來的 VARS，不要每次重新覆蓋。</p>
+<h3 id="vm">啟動 VM</h3>
+<p>以下使用沒有 TPM 的配置，不測試磁碟加密；透過 QEMU 圖形視窗操作首次設定：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 使用 KVM、Q35 與主機 CPU 功能，分配 2 個 vCPU、2048 MiB RAM，停用 S3 睡眠</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># virtio 網卡使用 NAT，將主機 127.0.0.1:8022 轉送到 VM 的 SSH port 22</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># pflash 掛載唯讀 UEFI code 與可寫 variables；virtio 磁碟使用 raw 映像</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># serial console 與 QEMU monitor 共用目前終端</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>qemu-system-x86_64<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span>-enable-kvm<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span>-machine<span class="w"> </span>q35<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span>-cpu<span class="w"> </span>host<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span>-smp<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span>-m<span class="w"> </span><span class="m">2048</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span>-global<span class="w"> </span>ICH9-LPC.disable_s3<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span>-netdev<span class="w"> </span>user,id<span class="o">=</span>net0,hostfwd<span class="o">=</span>tcp:127.0.0.1:8022-:22<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span>-device<span class="w"> </span>virtio-net-pci,netdev<span class="o">=</span>net0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">  </span>-drive<span class="w"> </span><span class="nv">file</span><span class="o">=</span>OVMF_CODE_4M.secboot.fd,if<span class="o">=</span>pflash,format<span class="o">=</span>raw,unit<span class="o">=</span><span class="m">0</span>,readonly<span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">  </span>-drive<span class="w"> </span><span class="nv">file</span><span class="o">=</span>OVMF_VARS_4M.ms.fd,if<span class="o">=</span>pflash,format<span class="o">=</span>raw,unit<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">  </span>-drive<span class="w"> </span><span class="nv">file</span><span class="o">=</span>ubuntu-core.img,if<span class="o">=</span>none,format<span class="o">=</span>raw,id<span class="o">=</span>disk1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">  </span>-device<span class="w"> </span>virtio-blk-pci,drive<span class="o">=</span>disk1,bootindex<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">  </span>-serial<span class="w"> </span>mon:stdio
+</span></code></pre></div>
+<p>這是 raw 磁碟映像，不是 ISO。同一個映像不能同時交給兩個 VM 使用。</p>
+<h3 id="ssh">首次啟動與 SSH</h3>
+<ol>
+<li>等待首次安裝與重新啟動完成。</li>
+<li>在 QEMU 視窗的 <code>console-conf</code> 設定網路，輸入已登錄 SSH 公鑰的 Ubuntu One 帳號 Email。</li>
+<li>記下畫面顯示的本機使用者名稱，從主機登入：</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># -i 指定 SSH 私鑰，-p 使用主機轉送到 VM 的 port</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_ed25519<span class="w"> </span>-p<span class="w"> </span><span class="m">8022</span><span class="w"> </span>YOUR_USERNAME@127.0.0.1
+</span></code></pre></div>
+<p><code>YOUR_USERNAME</code> 是本機使用者名稱，不是 Email；私鑰路徑請依自己的設定調整。</p>
+<p>登入後可在 <strong>VM 內</strong>確認版本與配置：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 列出已安裝的 Snap 與 revisions</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>snap<span class="w"> </span>list
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># 顯示設備使用的完整 model assertion</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>snap<span class="w"> </span>model<span class="w"> </span>--assertion
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># 列出磁碟與分割區；-o 指定名稱、大小、檔案系統、標籤與掛載位置</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>lsblk<span class="w"> </span>-o<span class="w"> </span>NAME,SIZE,FSTYPE,LABEL,MOUNTPOINTS
+</span></code></pre></div>
+<p>完成後用 <code>sudo poweroff</code> 關機；下次執行相同 QEMU 指令即可。</p>
+<h2 id="gadget-snap">延伸：自訂 gadget Snap</h2>
+<p>若要調整分割區大小或開機資產，需要修改 <strong><code>pc</code> gadget Snap</strong> 的 <code>meta/gadget.yaml</code>，重新打包後放入映像。
+本節會建立並簽署自己的 model，以允許使用本機 gadget，再建置映像並在 VM 驗證。
+範例會將官方 gadget 的 <code>ubuntu-save</code> 調整為 64 MiB，重新打包成 <code>pc-custom.snap</code>，再使用 <code>--snap</code> 取代 Store 的 <code>pc</code> 套件。</p>
+<p>Ubuntu Core 要求 model 的來源可被驗證，因此透過 Snapcraft 取得帳號 ID，並建立、註冊簽署公鑰。
+實際簽署由本機的 <code>snap sign</code> 完成；model 不需要上傳，私鑰也留在主機。</p>
+<p>model 只要有被修改就需要重新簽署，但是有些情況不需要重新簽署，例如：</p>
+<ol>
+<li>model 內已經有宣告 optional snap，我們只需要用 --snap 加入就可以</li>
+<li>model 有用 dangerous，可以用本機同名 snap 替換原套件或是額外加入本機的 application snap</li>
+</ol>
+<h3 id="developer-id">查詢 developer ID</h3>
+<p>先在 <a href="https://snapcraft.io/account">Snapcraft</a> 登入 Ubuntu One 並接受服務條款，再於主機執行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 安裝簽署工具與 JSON 編輯工具</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sudo<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>snapcraft<span class="w"> </span>--classic
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>jq
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># 登入並保存憑證在主機的私人設定目錄，不放在專案內</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.config/snapcraft
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nv">previous_umask</span><span class="o">=</span><span class="k">$(</span><span class="nb">umask</span><span class="k">)</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nb">umask</span><span class="w"> </span><span class="m">077</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>snapcraft<span class="w"> </span>export-login<span class="w"> </span>~/.config/snapcraft/core-model.credentials
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nb">umask</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$previous_umask</span><span class="s2">&quot;</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="nb">export</span><span class="w"> </span><span class="nv">SNAPCRAFT_STORE_CREDENTIALS</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>cat<span class="w"> </span>~/.config/snapcraft/core-model.credentials<span class="k">)</span><span class="s2">&quot;</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="c1"># 輸出的 id 欄位就是 developer ID，不是 username 或 Email</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>snapcraft<span class="w"> </span>whoami
+</span></code></pre></div>
+<p>憑證檔與 <code>SNAPCRAFT_STORE_CREDENTIALS</code> 都是秘密，不要上傳、提交到 Git 或貼出內容。
+後續的登入與金鑰 passphrase 提示，直接在本機終端輸入。</p>
+<h3 id="model">建立金鑰與自訂 model</h3>
+<p>以下將 <code>YOUR_DEVELOPER_ID</code> 換成 <code>whoami</code> 顯示的 <code>id</code>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>~/ubuntu-core-vm
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">DEVELOPER_ID</span><span class="o">=</span><span class="s2">&quot;YOUR_DEVELOPER_ID&quot;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># 建立簽署金鑰，再將公鑰註冊到自己的帳號；已有金鑰時可沿用</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>snapcraft<span class="w"> </span>create-key<span class="w"> </span>my-model-key
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>snapcraft<span class="w"> </span>register-key<span class="w"> </span>my-model-key
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>snapcraft<span class="w"> </span>keys
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># 下載未簽署的 JSON 原稿，不修改 Canonical 已簽署的 .model</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>curl<span class="w"> </span>-fL<span class="w"> </span>-o<span class="w"> </span>reference-model.json<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">  </span>https://raw.githubusercontent.com/canonical/models/master/ubuntu-core-24-amd64.json
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="c1"># 改成自己的品牌、model 名稱與開發等級，timestamp 設在金鑰註冊之後</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>jq<span class="w"> </span>--arg<span class="w"> </span>id<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DEVELOPER_ID</span><span class="s2">&quot;</span><span class="w"> </span>--arg<span class="w"> </span>timestamp<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>date<span class="w"> </span>-Iseconds<span class="w"> </span>--utc<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">  </span><span class="s1">&#39;.&quot;authority-id&quot; = $id | .&quot;brand-id&quot; = $id |</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="s1">   .model = &quot;my-core24-amd64&quot; | .grade = &quot;dangerous&quot; |</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="s1">   .timestamp = $timestamp&#39;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">  </span>reference-model.json<span class="w"> </span>&gt;<span class="w"> </span>my-model.json
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="c1"># 用自己的金鑰簽署，產生 ubuntu-image 使用的 model assertion</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GPG_TTY</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>tty<span class="k">)</span><span class="s2">&quot;</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>snap<span class="w"> </span>sign<span class="w"> </span>-k<span class="w"> </span>my-model-key<span class="w"> </span>my-model.json<span class="w"> </span>&gt;<span class="w"> </span>my-model.model
+</span></code></pre></div>
+<p><code>grade: dangerous</code> 允許未經 Store assertions 驗證的本機 Snap，但 <strong>model 本身仍須簽署</strong>。
+這組簽署金鑰不是前面登入 VM 用的 SSH 金鑰；私鑰留在主機，註冊的是公鑰。</p>
+<h3 id="pc-customsnap">產生 pc-custom.snap</h3>
+<p>在 Ubuntu amd64 主機下載官方 Core 24 gadget，保留開機檔案，只修改分割區配置，不需要重新編譯 GRUB：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 安裝解包工具與文字編輯器</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>squashfs-tools
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nb">cd</span><span class="w"> </span>~/ubuntu-core-vm
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># 下載官方 gadget，輸出為 pc-original.snap 與 pc-original.assert</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>snap<span class="w"> </span>download<span class="w"> </span>pc<span class="w"> </span>--channel<span class="o">=</span><span class="m">24</span>/stable<span class="w"> </span>--basename<span class="o">=</span>pc-original
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># 解開到新目錄；pc-unpacked 不應是先前測試留下的目錄</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>unsquashfs<span class="w"> </span>-d<span class="w"> </span>pc-unpacked<span class="w"> </span>pc-original.snap
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="c1"># 編輯 gadget 的磁碟配置</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>vim<span class="w"> </span>pc-unpacked/meta/gadget.yaml
+</span></code></pre></div>
+<p>找到 <code>name: ubuntu-save</code> 的項目，將其中的 <code>size: 32M</code> 改成 <code>size: 64M</code>，保留其他欄位與 YAML 縮排。
+不要修改套件名稱 <code>pc</code> 或開機檔案，儲存後重新打包：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 確保 Snap 內容可讀、目錄可進入，保留原有可執行檔的執行權限</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>chmod<span class="w"> </span>-R<span class="w"> </span>a+rX<span class="w"> </span>pc-unpacked
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># 從解開的內容產生自訂 gadget Snap</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>snap<span class="w"> </span>pack<span class="w"> </span>pc-unpacked<span class="w"> </span>--filename<span class="o">=</span>pc-custom.snap
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># 確認後續建置使用的檔案已產生</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>ls<span class="w"> </span>-lh<span class="w"> </span>pc-custom.snap
+</span></code></pre></div>
+<p>修改後的套件不能沿用 <code>pc-original.assert</code>，因此搭配前面的 <code>dangerous</code> model 使用。
+這是全新 VM 的分割區測試，不是調整既有設備分割區的更新流程。</p>
+<h3 id="gadget">放入本機 gadget 並建置</h3>
+<p>使用剛產生的 <code>pc-custom.snap</code> 建置映像：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># 使用本機 gadget 取代 Store 的 pc，並保留首次設定介面</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>custom-build
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>ubuntu-image<span class="w"> </span>snap<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span>--image-size<span class="w"> </span>8G<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span>--output-dir<span class="w"> </span>custom-build<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">  </span>--snap<span class="w"> </span>console-conf<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">  </span>--snap<span class="w"> </span>./pc-custom.snap<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">  </span>my-model.model
+</span></code></pre></div>
+<p><code>dangerous</code> 用於開發測試，不應視為正式安全部署。</p>
+<h3 id="_4">運行自訂映像</h3>
+<p>在主機的 <code>~/ubuntu-core-vm</code> 執行，磁碟副本與 UEFI VARS <strong>只在建立新 VM 時準備一次</strong>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># 保留建置結果，另外準備測試磁碟與這台 VM 專用的 UEFI 設定</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>custom-vm
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>cp<span class="w"> </span>--sparse<span class="o">=</span>always<span class="w"> </span>custom-build/pc.img<span class="w"> </span>custom-vm/ubuntu-core.img
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>cp<span class="w"> </span>/usr/share/OVMF/OVMF_VARS_4M.ms.fd<span class="w"> </span>custom-vm/OVMF_VARS.fd
+</span></code></pre></div>
+<p>沿用前面的 TPM-free 配置，改用獨立磁碟與 SSH port <code>8023</code>：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># 啟動自訂 VM；UEFI code 唯讀共用，VARS 與磁碟使用獨立副本</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>qemu-system-x86_64<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span>-enable-kvm<span class="w"> </span>-machine<span class="w"> </span>q35<span class="w"> </span>-cpu<span class="w"> </span>host<span class="w"> </span>-smp<span class="w"> </span><span class="m">2</span><span class="w"> </span>-m<span class="w"> </span><span class="m">2048</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span>-global<span class="w"> </span>ICH9-LPC.disable_s3<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">  </span>-netdev<span class="w"> </span>user,id<span class="o">=</span>net0,hostfwd<span class="o">=</span>tcp:127.0.0.1:8023-:22<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span>-device<span class="w"> </span>virtio-net-pci,netdev<span class="o">=</span>net0<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">  </span>-drive<span class="w"> </span><span class="nv">file</span><span class="o">=</span>/usr/share/OVMF/OVMF_CODE_4M.secboot.fd,if<span class="o">=</span>pflash,format<span class="o">=</span>raw,unit<span class="o">=</span><span class="m">0</span>,readonly<span class="o">=</span>on<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">  </span>-drive<span class="w"> </span><span class="nv">file</span><span class="o">=</span>custom-vm/OVMF_VARS.fd,if<span class="o">=</span>pflash,format<span class="o">=</span>raw,unit<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">  </span>-drive<span class="w"> </span><span class="nv">file</span><span class="o">=</span>custom-vm/ubuntu-core.img,if<span class="o">=</span>none,format<span class="o">=</span>raw,id<span class="o">=</span>disk1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">  </span>-device<span class="w"> </span>virtio-blk-pci,drive<span class="o">=</span>disk1,bootindex<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">  </span>-serial<span class="w"> </span>mon:stdio
+</span></code></pre></div>
+<p>完成 <code>console-conf</code> 的網路與 Ubuntu One 設定後，在主機另一個終端登入：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># 登入自訂 VM，使用新 VM 畫面顯示的使用者名稱</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>ssh<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_ed25519<span class="w"> </span>-p<span class="w"> </span><span class="m">8023</span><span class="w"> </span>YOUR_USERNAME@127.0.0.1
+</span></code></pre></div>
+<h3 id="_5">驗證結果</h3>
+<p>以下在 <strong>自訂 VM 內</strong>執行：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># 確認 pc 為本機套件，revision 通常顯示 x1 等值</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>snap<span class="w"> </span>list<span class="w"> </span>pc
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="c1"># 確認 model 為 my-core24-amd64、brand-id 為自己的 ID、grade 為 dangerous</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>snap<span class="w"> </span>model<span class="w"> </span>--assertion
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="c1"># 確認已安裝的 gadget 包含自己修改的分割區大小與開機資產設定</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>cat<span class="w"> </span>/snap/pc/current/meta/gadget.yaml
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="c1"># 比較實際分割區的標籤、大小、檔案系統與掛載位置</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>lsblk<span class="w"> </span>-o<span class="w"> </span>NAME,SIZE,FSTYPE,LABEL,MOUNTPOINTS
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="c1"># 完成驗證後正常關機</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>sudo<span class="w"> </span>poweroff
+</span></code></pre></div>
+<p><code>x1</code> 只能確認使用了本機 revision，仍需檢查 gadget 內容與分割區結果。
+本例的 <code>ubuntu-save</code> 應約為 64 MiB，gadget YAML 中的對應設定應為 <code>size: 64M</code>。
+<code>ubuntu-data</code> 可能利用剩餘磁碟空間擴展，不一定等於 YAML 的初始大小。
+下次只需重跑 QEMU 指令，不要覆蓋測試磁碟或 UEFI VARS。</p>
+<h2 id="_6">參考資料</h2>
+<ul>
+<li><a href="https://documentation.ubuntu.com/core/explanation/core-elements/storage-layout/">Storage layout</a></li>
+<li><a href="https://documentation.ubuntu.com/core/explanation/core-elements/inside-ubuntu-core/">Inside Ubuntu Core</a></li>
+<li><a href="https://documentation.ubuntu.com/core/explanation/how-installation-works/">How installation works</a></li>
+<li><a href="https://documentation.ubuntu.com/core/how-to-guides/image-creation/use-ubuntu-image/">Use ubuntu-image</a></li>
+<li><a href="https://documentation.ubuntu.com/core/how-to-guides/image-creation/add-custom-snaps/">Add custom snaps</a></li>
+<li><a href="https://documentation.ubuntu.com/core/tutorials/build-your-first-image/access-ubuntu-one/">Access Ubuntu One</a></li>
+<li><a href="https://documentation.ubuntu.com/core/tutorials/build-your-first-image/sign-the-model/">Sign the model</a></li>
+<li><a href="https://documentation.ubuntu.com/core/how-to-guides/manage-ubuntu-core/test-on-qemu/">Test on QEMU</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
