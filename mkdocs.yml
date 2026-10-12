@@ -129,6 +129,7 @@ nav:
   - 'Canonical':
     - '常用網站': 'canonical/resources.md'
     - 'Snap 機制': 'canonical/snap.md'
+    - 'Ubuntu Core 入門': 'canonical/ubuntu-core.md'
     - 'Checkbox 入門': 'canonical/checkbox.md'
     - 'Juju 入門': 'canonical/juju.md'
     - 'GPG 金鑰管理入門': 'canonical/gpg.md'
