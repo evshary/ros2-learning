@@ -204,6 +204,11 @@ lsblk -o NAME,SIZE,FSTYPE,LABEL,MOUNTPOINTS
 Ubuntu Core 要求 model 的來源可被驗證，因此透過 Snapcraft 取得帳號 ID，並建立、註冊簽署公鑰。
 實際簽署由本機的 `snap sign` 完成；model 不需要上傳，私鑰也留在主機。
 
+model 只要有被修改就需要重新簽署，但是有些情況不需要重新簽署，例如：
+
+1. model 內已經有宣告 optional snap，我們只需要用 --snap 加入就可以
+2. model 有用 dangerous，可以用本機同名 snap 替換原套件或是額外加入本機的 application snap
+
 ### 查詢 developer ID
 
 先在 [Snapcraft](https://snapcraft.io/account) 登入 Ubuntu One 並接受服務條款，再於主機執行：
@@ -230,7 +235,7 @@ snapcraft whoami
 
 ### 建立金鑰與自訂 model
 
-以下在前面的 `~/ubuntu-core-vm` 工作目錄執行，將 `YOUR_DEVELOPER_ID` 換成 `whoami` 顯示的 `id`：
+以下將 `YOUR_DEVELOPER_ID` 換成 `whoami` 顯示的 `id`：
 
 ```bash
 cd ~/ubuntu-core-vm
