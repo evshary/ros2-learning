@@ -2546,6 +2546,30 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#desktopserver-iot" class="md-nav__link">
+    <span class="md-ellipsis">
+      執行 Desktop、Server 與 IoT 測試
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="執行 Desktop、Server 與 IoT 測試">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#agent" class="md-nav__link">
     <span class="md-ellipsis">
       Agent 安全注意事項
@@ -2921,6 +2945,30 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#desktopserver-iot" class="md-nav__link">
+    <span class="md-ellipsis">
+      執行 Desktop、Server 與 IoT 測試
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="執行 Desktop、Server 與 IoT 測試">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Server
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#agent" class="md-nav__link">
     <span class="md-ellipsis">
       Agent 安全注意事項
@@ -3112,13 +3160,30 @@ HTML 適合閱讀，JUnit XML 可供 CI 工具使用；除非你要提交結果�
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>checkbox-cli<span class="w"> </span>run<span class="w"> </span><span class="m">2026</span>.example.org::graphics-acceleration
 </span></code></pre></div>
 <p>若要透過互動選單選取此計畫，請在同一個 Checkbox source development environment 執行 <code>checkbox-cli</code>，再從 test plan 清單選取 <code>Graphics Acceleration Test Plan</code>。</p>
+<h2 id="desktopserver-iot">執行 Desktop、Server 與 IoT 測試</h2>
+<p>Canonical 針對 OEM、ODM 提供 Ubuntu 的認證，包含 Desktop、Server、IoT 各個種類。
+這些硬體測試是可以直接在自己電腦執行的，最底層也是會呼叫到 Checkbox。
+詳細可以參考 <a href="https://certification.canonical.com/docs/programmes/">Hardware Certification documentation</a>。</p>
+<h3 id="server">Server</h3>
+<p>如果要跑 server 的認證，要先安裝測試腳本：canonical-certification-server</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:checkbox-dev/stable
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:firmware-testing-team/ppa-fwts-stable
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>canonical-certification-server
+</span></code></pre></div>
+<p>可以先確認測試環境：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>canonical-certification-precheck
+</span></code></pre></div>
+<p>開始測試：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>certify-ubuntu-server
+</span></code></pre></div>
+<p>可以在 <code>~/.local/share/checkbox-ng/submission_&lt;DATECODE&gt;.html</code> 看到最終 report。</p>
 <h2 id="agent">Agent 安全注意事項</h2>
 <p>Checkbox frontend 會啟動 Checkbox agent service。
 官方文件提醒，這個 service 可提供未經驗證的 root 層級遠端控制；只應在可信任的測試環境使用，完成後若暫時不需要，可停止並停用：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>stop<span class="w"> </span>--disable<span class="w"> </span>checkbox
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>stop<span class="w"> </span>--disable<span class="w"> </span>checkbox
 </span></code></pre></div>
 <p>需要再次使用 Checkbox agent 時，可手動啟動：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>start<span class="w"> </span>checkbox
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>snap<span class="w"> </span>start<span class="w"> </span>checkbox
 </span></code></pre></div>
 <h2 id="_8">參考資料</h2>
 <ul>
