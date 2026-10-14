@@ -188,6 +188,36 @@ checkbox-cli run 2026.example.org::graphics-acceleration
 
 若要透過互動選單選取此計畫，請在同一個 Checkbox source development environment 執行 `checkbox-cli`，再從 test plan 清單選取 `Graphics Acceleration Test Plan`。
 
+## 執行 Desktop、Server 與 IoT 測試
+
+Canonical 針對 OEM、ODM 提供 Ubuntu 的認證，包含 Desktop、Server、IoT 各個種類。
+這些硬體測試是可以直接在自己電腦執行的，最底層也是會呼叫到 Checkbox。
+詳細可以參考 [Hardware Certification documentation](https://certification.canonical.com/docs/programmes/)。
+
+### Server
+
+如果要跑 server 的認證，要先安裝測試腳本：canonical-certification-server
+
+```bash
+sudo add-apt-repository ppa:checkbox-dev/stable
+sudo add-apt-repository ppa:firmware-testing-team/ppa-fwts-stable
+sudo apt install canonical-certification-server
+```
+
+可以先確認測試環境：
+
+```bash
+canonical-certification-precheck
+```
+
+開始測試：
+
+```bash
+certify-ubuntu-server
+```
+
+可以在 `~/.local/share/checkbox-ng/submission_<DATECODE>.html` 看到最終 report。
+
 ## Agent 安全注意事項
 
 Checkbox frontend 會啟動 Checkbox agent service。
