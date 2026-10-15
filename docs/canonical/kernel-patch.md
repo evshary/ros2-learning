@@ -93,9 +93,32 @@ fakeroot debian/rules binary
 
 成功後，產生的 `.deb` 套件會在原始碼目錄的上一層。一般需要安裝該次建置的 headers、image 和 modules 套件。
 
+### 建構的 `.deb` 套件
+
+套件名稱會包含 kernel 版本、flavour 和架構；下表以 `generic` 為例。不同 Ubuntu 版本或設定產生的套件可能不同：
+
+| 套件名稱範例 | 內容與用途 | 安裝時機 |
+| --- | --- | --- |
+| `linux-image-unsigned-<version>-generic_<version>_<arch>.deb` | Kernel image，也就是開機載入的核心。`unsigned` 表示映像未簽署。 | 必裝；Secure Boot 啟用時，未簽署的 image 通常無法開機。 |
+| `linux-modules-<version>-generic_<version>_<arch>.deb` | 此 kernel flavour 的主要可載入模組，包含許多常用驅動程式。 | 必裝，且版本要與 image 相同。 |
+| `linux-headers-<version>_<version>_all.deb` | 各架構共用的 kernel headers 和建置檔案。 | 建議安裝，尤其需要建置 DKMS 或其他外部 kernel module 時。 |
+| `linux-headers-<version>-generic_<version>_<arch>.deb` | 對應架構及 flavour 的 headers。 | 通常與共用 headers 一起安裝；DKMS 需要它來建置外部模組。 |
+| `linux-modules-extra-<version>-generic_<version>_<arch>.deb` | 額外的 kernel modules，可能包含特定硬體需要的驅動程式。 | 依硬體需求安裝。 |
+| `linux-modules-iwlwifi-<version>-generic_<version>_<arch>.deb` | Intel Wi-Fi（`iwlwifi`）相關的 kernel modules。 | 有使用 Intel Wi-Fi，且該驅動由此套件提供時才需要。 |
+| `linux-tools-<version>-generic_<version>_<arch>.deb` | 與 kernel 版本搭配的工具，例如效能分析工具。 | 一般開機不需要；需要使用套件提供的工具時才安裝。 |
+
+通常先安裝 image、主要 modules 和 headers；額外的 modules 套件則依測試機硬體決定。`lsmod` 沒看到某個驅動不代表一定不需要，因為裝置可能尚未使用或驅動尚未載入。若不確定套件內容或相依性，可檢查：
+
+```bash
+dpkg-deb -f <package.deb> Package Depends
+dpkg-deb -c <package.deb>
+```
+
+只選擇目標架構、flavour 和版本相符的套件；若 `Depends` 列出其他同版本套件，也要一併安裝。
+
 ## 安裝與開機驗證
 
-從原始碼目錄上一層，以 `dpkg -i` 安裝剛產生、版本相同的 headers、image 和 modules 套件，再重新開機：
+從原始碼目錄上一層，以 `dpkg -i` 安裝剛產生、版本相同的 headers、image 和 modules 套件（以及硬體需要的額外 modules），再重新開機：
 
 ```bash
 sudo dpkg -i <headers-all.deb> <headers-flavour.deb> <image-unsigned-flavour.deb> <modules-flavour.deb>
