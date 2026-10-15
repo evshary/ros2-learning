@@ -2497,6 +2497,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="準備並建置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deb" class="md-nav__link">
+    <span class="md-ellipsis">
+      建構的 .deb 套件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2803,6 +2818,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="準備並建置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deb" class="md-nav__link">
+    <span class="md-ellipsis">
+      建構的 .deb 套件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2893,13 +2923,66 @@ Generic kernel 修改 <code>debian.master/changelog</code> 第一行的 ABI 欄�
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1">#DEB_BUILD_OPTIONS=&quot;parallel=$(nproc)&quot; fakeroot debian/rules binary</span>
 </span></code></pre></div>
 <p>成功後，產生的 <code>.deb</code> 套件會在原始碼目錄的上一層。一般需要安裝該次建置的 headers、image 和 modules 套件。</p>
+<h3 id="deb">建構的 <code>.deb</code> 套件</h3>
+<p>套件名稱會包含 kernel 版本、flavour 和架構；下表以 <code>generic</code> 為例。不同 Ubuntu 版本或設定產生的套件可能不同：</p>
+<table>
+<thead>
+<tr>
+<th>套件名稱範例</th>
+<th>內容與用途</th>
+<th>安裝時機</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>linux-image-unsigned-&lt;version&gt;-generic_&lt;version&gt;_&lt;arch&gt;.deb</code></td>
+<td>Kernel image，也就是開機載入的核心。<code>unsigned</code> 表示映像未簽署。</td>
+<td>必裝；Secure Boot 啟用時，未簽署的 image 通常無法開機。</td>
+</tr>
+<tr>
+<td><code>linux-modules-&lt;version&gt;-generic_&lt;version&gt;_&lt;arch&gt;.deb</code></td>
+<td>此 kernel flavour 的主要可載入模組，包含許多常用驅動程式。</td>
+<td>必裝，且版本要與 image 相同。</td>
+</tr>
+<tr>
+<td><code>linux-headers-&lt;version&gt;_&lt;version&gt;_all.deb</code></td>
+<td>各架構共用的 kernel headers 和建置檔案。</td>
+<td>建議安裝，尤其需要建置 DKMS 或其他外部 kernel module 時。</td>
+</tr>
+<tr>
+<td><code>linux-headers-&lt;version&gt;-generic_&lt;version&gt;_&lt;arch&gt;.deb</code></td>
+<td>對應架構及 flavour 的 headers。</td>
+<td>通常與共用 headers 一起安裝；DKMS 需要它來建置外部模組。</td>
+</tr>
+<tr>
+<td><code>linux-modules-extra-&lt;version&gt;-generic_&lt;version&gt;_&lt;arch&gt;.deb</code></td>
+<td>額外的 kernel modules，可能包含特定硬體需要的驅動程式。</td>
+<td>依硬體需求安裝。</td>
+</tr>
+<tr>
+<td><code>linux-modules-iwlwifi-&lt;version&gt;-generic_&lt;version&gt;_&lt;arch&gt;.deb</code></td>
+<td>Intel Wi-Fi（<code>iwlwifi</code>）相關的 kernel modules。</td>
+<td>有使用 Intel Wi-Fi，且該驅動由此套件提供時才需要。</td>
+</tr>
+<tr>
+<td><code>linux-tools-&lt;version&gt;-generic_&lt;version&gt;_&lt;arch&gt;.deb</code></td>
+<td>與 kernel 版本搭配的工具，例如效能分析工具。</td>
+<td>一般開機不需要；需要使用套件提供的工具時才安裝。</td>
+</tr>
+</tbody>
+</table>
+<p>通常先安裝 image、主要 modules 和 headers；額外的 modules 套件則依測試機硬體決定。<code>lsmod</code> 沒看到某個驅動不代表一定不需要，因為裝置可能尚未使用或驅動尚未載入。若不確定套件內容或相依性，可檢查：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>dpkg-deb<span class="w"> </span>-f<span class="w"> </span>&lt;package.deb&gt;<span class="w"> </span>Package<span class="w"> </span>Depends
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>dpkg-deb<span class="w"> </span>-c<span class="w"> </span>&lt;package.deb&gt;
+</span></code></pre></div>
+<p>只選擇目標架構、flavour 和版本相符的套件；若 <code>Depends</code> 列出其他同版本套件，也要一併安裝。</p>
 <h2 id="_3">安裝與開機驗證</h2>
-<p>從原始碼目錄上一層，以 <code>dpkg -i</code> 安裝剛產生、版本相同的 headers、image 和 modules 套件，再重新開機：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>&lt;headers-all.deb&gt;<span class="w"> </span>&lt;headers-flavour.deb&gt;<span class="w"> </span>&lt;image-unsigned-flavour.deb&gt;<span class="w"> </span>&lt;modules-flavour.deb&gt;
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>reboot
+<p>從原始碼目錄上一層，以 <code>dpkg -i</code> 安裝剛產生、版本相同的 headers、image 和 modules 套件（以及硬體需要的額外 modules），再重新開機：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>&lt;headers-all.deb&gt;<span class="w"> </span>&lt;headers-flavour.deb&gt;<span class="w"> </span>&lt;image-unsigned-flavour.deb&gt;<span class="w"> </span>&lt;modules-flavour.deb&gt;
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>sudo<span class="w"> </span>reboot
 </span></code></pre></div>
 <p>重新開機後確認正在執行新版本，並測試 patch 預期影響的功能：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>uname<span class="w"> </span>-r
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>uname<span class="w"> </span>-r
 </span></code></pre></div>
 <p><code>uname -r</code> 應與 <code>debian.master/changelog</code> 中設定的 kernel 版本相符。保留原本可用的 kernel，若新 kernel 無法正常啟動，可從開機選單選回舊 kernel。</p>
 <blockquote>
