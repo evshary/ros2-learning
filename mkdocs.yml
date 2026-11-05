@@ -130,6 +130,11 @@ nav:
     - '常用網站': 'canonical/resources.md'
     - 'Snap 機制': 'canonical/snap.md'
     - 'Ubuntu Core 入門': 'canonical/ubuntu-core.md'
+    - 'ubuntu-image':
+      - 'ubuntu-image 概念': 'canonical/ubuntu-image/concepts.md'
+      - '建置 Core 映像': 'canonical/ubuntu-image/core.md'
+      - '建置自訂 gadget 的 Core 映像': 'canonical/ubuntu-image/core-custom-gadget.md'
+      - '建置 Server 與 Desktop 映像': 'canonical/ubuntu-image/classic.md'
     - 'Checkbox 入門': 'canonical/checkbox.md'
     - 'Ubuntu Kernel 加上 patch': 'canonical/kernel-patch.md'
     - 'Juju 入門': 'canonical/juju.md'
