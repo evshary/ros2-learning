@@ -128,7 +128,10 @@ nav:
     - 'Rust Miri': 'rust/miri.md'
   - 'Canonical':
     - '常用網站': 'canonical/resources.md'
-    - 'Snap 機制': 'canonical/snap.md'
+    - 'Snap':
+      - 'Snap 概念': 'canonical/snap/concepts.md'
+      - 'Snap 基本操作': 'canonical/snap/usage.md'
+      - 'Snapcraft 打包': 'canonical/snap/snapcraft.md'
     - 'Ubuntu Core 入門': 'canonical/ubuntu-core.md'
     - 'ubuntu-image':
       - 'ubuntu-image 概念': 'canonical/ubuntu-image/concepts.md'

@@ -11,7 +11,7 @@ keywords:
 Ubuntu Core 是 Canonical 針對 IoT 與嵌入式設備設計的 Ubuntu 發行版。
 系統與應用程式以 Snap 管理，支援更新與版本回復，不使用一般 Ubuntu Server 的 APT 安裝流程。
 系統與 Snap 本體主要唯讀，設定及應用程式資料則放在可寫入的儲存區。
-Snap 的封裝與 sandbox 機制可先參考 [Snap 機制](snap.md)。
+Snap 的封裝與 sandbox 機制可先參考 [Snap 概念](snap/concepts.md)。
 
 本文以 **Ubuntu Core 24** 為例。
 
