@@ -34,20 +34,14 @@ model 只要有被修改就需要重新簽署，但是有些情況不需要重�
 sudo snap install snapcraft --classic
 sudo apt install jq
 
-# 登入並保存憑證在主機的私人設定目錄，不放在專案內
-mkdir -p ~/.config/snapcraft
-previous_umask=$(umask)
-umask 077
-snapcraft export-login ~/.config/snapcraft/core-model.credentials
-umask "$previous_umask"
-export SNAPCRAFT_STORE_CREDENTIALS="$(cat ~/.config/snapcraft/core-model.credentials)"
+# 登入 Ubuntu One 帳號，snapcraft 會自行保存憑證
+snapcraft login
 
 # 輸出的 id 欄位就是 developer ID，不是 username 或 Email
 snapcraft whoami
 ```
 
-憑證檔與 `SNAPCRAFT_STORE_CREDENTIALS` 都是秘密，不要上傳、提交到 Git 或貼出內容。
-後續的登入與金鑰 passphrase 提示，直接在本機終端輸入。
+登入與金鑰 passphrase 提示，直接在本機終端輸入。
 
 ## 建立金鑰與自訂 model
 
