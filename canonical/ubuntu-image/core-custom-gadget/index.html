@@ -2443,6 +2443,29 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../snap/store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    上架 Snap Store
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3097,19 +3120,13 @@
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>snap<span class="w"> </span>install<span class="w"> </span>snapcraft<span class="w"> </span>--classic
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>jq
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 登入並保存憑證在主機的私人設定目錄，不放在專案內</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.config/snapcraft
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nv">previous_umask</span><span class="o">=</span><span class="k">$(</span><span class="nb">umask</span><span class="k">)</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nb">umask</span><span class="w"> </span><span class="m">077</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>snapcraft<span class="w"> </span>export-login<span class="w"> </span>~/.config/snapcraft/core-model.credentials
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nb">umask</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$previous_umask</span><span class="s2">&quot;</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nb">export</span><span class="w"> </span><span class="nv">SNAPCRAFT_STORE_CREDENTIALS</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>cat<span class="w"> </span>~/.config/snapcraft/core-model.credentials<span class="k">)</span><span class="s2">&quot;</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># 輸出的 id 欄位就是 developer ID，不是 username 或 Email</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>snapcraft<span class="w"> </span>whoami
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 登入 Ubuntu One 帳號，snapcraft 會自行保存憑證</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>snapcraft<span class="w"> </span>login
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># 輸出的 id 欄位就是 developer ID，不是 username 或 Email</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>snapcraft<span class="w"> </span>whoami
 </span></code></pre></div>
-<p>憑證檔與 <code>SNAPCRAFT_STORE_CREDENTIALS</code> 都是秘密，不要上傳、提交到 Git 或貼出內容。
-後續的登入與金鑰 passphrase 提示，直接在本機終端輸入。</p>
+<p>登入與金鑰 passphrase 提示，直接在本機終端輸入。</p>
 <h2 id="model">建立金鑰與自訂 model</h2>
 <p>以下將 <code>YOUR_DEVELOPER_ID</code> 換成 <code>whoami</code> 顯示的 <code>id</code>：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>~/ubuntu-core-vm
