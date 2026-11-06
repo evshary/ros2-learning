@@ -186,6 +186,26 @@ parts:
       - libssl3t64
 ```
 
+## 參考其他 snap 的 snapcraft.yaml
+
+snap 檔案裡通常會附上建置時的 `snapcraft.yaml`，可以下載別人的 snap 來學習寫法。
+
+```bash
+# 下載 snap，不安裝
+snap download hello
+
+# 讀取 snap 內的 snapcraft.yaml，需要 squashfs-tools
+unsquashfs -cat hello_*.snap snap/snapcraft.yaml
+```
+
+已安裝的 snap 可以直接讀取：
+
+```bash
+cat /snap/hello/current/snap/snapcraft.yaml
+```
+
+`meta/snap.yaml` 是 snapcraft 展開後、snapd 實際讀取的版本，與原始的 `snapcraft.yaml` 不同。
+
 ## 除錯
 
 ```bash
