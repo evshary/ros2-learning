@@ -143,7 +143,9 @@ nav:
     - 'Ubuntu Kernel 加上 patch': 'canonical/kernel-patch.md'
     - 'Juju 入門': 'canonical/juju.md'
     - 'GPG 金鑰管理入門': 'canonical/gpg.md'
-    - '上傳套件到自己的 PPA': 'canonical/ppa.md'
+    - 'Debian 打包與 PPA':
+      - 'Debian package 打包入門': 'canonical/deb-packaging/packaging.md'
+      - '上傳套件到自己的 PPA': 'canonical/deb-packaging/ppa.md'
   - 'Others':
     - 'Binary 分析': 'others/binary-analysis.md'
     - 'QEMU': 'others/qemu.md'
