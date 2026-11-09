@@ -10,7 +10,7 @@ keywords:
 PPA（Personal Package Archive）是 Launchpad 提供的個人套件庫。
 我們把簽署過的 **Debian 原始碼套件**上傳，Launchpad 會在指定的 Ubuntu 環境中建置 `.deb`，讓使用者可以透過 APT 安裝。
 因此，不能直接把本機編好的 `.deb` 上傳到 PPA。
-值得一提的是 PPA 可以同時包含不同版本 Ubuntu 的套件，例如 Noble 和 Resolute。
+值得一提的是 PPA 可以同時包含不同版本 Ubuntu 的套件，例如 Resolute 和之後釋出的新版本。
 
 這篇以 GNU hello 2.12.1 為例，一步步教導使用者如何上傳：
 
@@ -21,7 +21,7 @@ PPA（Personal Package Archive）是 Launchpad 提供的個人套件庫。
 5. 簽署並上傳到 PPA
 6. 安裝與測試
 
-以下假設開發機是 Ubuntu 24.04（`noble`）、架構為 `amd64`，先完成單一發行版的流程。
+以下鎖定 Ubuntu 26.04（`resolute`）與 `amd64` 架構，先完成單一發行版的流程；最後再說明如何加入最新的 Ubuntu release。
 
 ## 建立自己的 PPA
 
@@ -63,7 +63,7 @@ DEBSIGN_KEYID="YOUR_FINGERPRINT"
 例如在後續簽署步驟中，可以省略 `-k`：
 
 ```bash
-debsign hello_2.12.1-0ubuntu1~noble1_source.changes
+debsign hello_2.12.1-0ubuntu1~resolute1_source.changes
 ```
 
 明確指定 `debsign -kYOUR_FINGERPRINT` 則會覆蓋預設金鑰。
@@ -105,7 +105,7 @@ dh_make --single --copyright gpl3 --file ../hello-2.12.1.tar.gz
 | 檔案 | 用途 | 這個範例要做的事 |
 | --- | --- | --- |
 | `debian/control` | 原始碼套件、二進位套件及相依套件的描述 | 填入套件資訊，列出建置所需的 `Build-Depends`。 |
-| `debian/changelog` | 套件版本、目標 Ubuntu 發行版與修改紀錄 | 建立 `noble` 版本項目；每次上傳都要使用新版本號。 |
+| `debian/changelog` | 套件版本、目標 Ubuntu 發行版與修改紀錄 | 建立 `resolute` 版本項目；每次上傳都要使用新版本號。 |
 | `debian/rules` | 定義 debhelper 如何清理、設定、建置與測試 | 使用 `dh $@`，並略過沒有 `Makefile` 時不適用的清理。 |
 | `debian/source/format` | 原始碼套件格式 | 保留 `3.0 (quilt)`，讓 dpkg-source 套用 Debian 補丁。 |
 | `debian/copyright` | 上游檔案的版權與授權資訊 | 依 GNU hello 的 `COPYING` 填妥，不要保留未完成的樣板。 |
@@ -122,7 +122,7 @@ Section: devel
 Priority: optional
 Maintainer: Your Name <you@example.com>
 Build-Depends: debhelper-compat (= 13), texinfo, help2man
-Standards-Version: 4.6.2
+Standards-Version: 4.7.3
 Homepage: https://www.gnu.org/software/hello/
 Rules-Requires-Root: no
 
@@ -136,22 +136,22 @@ Description: GNU Hello demonstration program
 `Build-Depends` 是編譯需要的套件，由 `sbuild` 安裝到建置環境；`Depends` 是使用者安裝時需要的執行相依套件。
 `${shlibs:Depends}` 與 `${misc:Depends}` 由打包工具計算，不需手動換成套件名稱。
 GNU hello 的文件建置與測試會用到 `makeinfo`，此程式由 `texinfo` 套件提供；請將它列在 `Build-Depends`，而不是只安裝在主機上。
-`help2man` 用來產生 man page；`autotools-dev` 提供 debhelper 更新 Autotools 設定檔時使用的工具。
+`help2man` 用來產生 man page。
 
 #### `debian/changelog`
 
 在原始碼目錄建立目標 Ubuntu 版本的項目：
 
 ```bash
-dch -b --newversion 2.12.1-0ubuntu1~noble1 --distribution noble
+dch -b --newversion 2.12.1-0ubuntu1~resolute1 --distribution resolute
 ```
 
 `-b` 允許新版號低於 `dh_make` 產生的初始版本。PPA 不允許以相同版本號覆蓋既有套件，因此每次重新上傳都要增加版本號。
 
-在編輯器中寫下這次修改內容並儲存，第一行應類似：
+`dch` 會開啟編輯器，並直接改寫 `dh_make` 產生的第一個項目。請把樣板中的 `Initial release. (Closes: #nnnn)  <nnnn is the bug number of your ITP>` 改成實際說明，例如 `Initial release.`，否則 Lintian 會回報 `changelog-is-dh_make-template`。儲存後，第一行應類似：
 
 ```text
-hello (2.12.1-0ubuntu1~noble1) noble; urgency=medium
+hello (2.12.1-0ubuntu1~resolute1) resolute; urgency=medium
 ```
 
 Debian 版號格式為 `[epoch:]upstream_version-debian_revision`：
@@ -159,7 +159,7 @@ Debian 版號格式為 `[epoch:]upstream_version-debian_revision`：
 * `epoch`：可選欄位。上游改版導致新版號排序反而較舊時，用它調整排序，例如 `10.0-1` 改成 `1:2.0-1`。
 * `upstream_version`：上游版本，例如 `2.12.1`。
 * `debian_revision`：套件維護者的修訂版。Ubuntu 直接打包時常用 `0ubuntu1`；若從 Debian 修訂版 `1` 延伸，常見形式是 `1ubuntu1`。
-* `~noble1`：可選的 PPA 後綴，用來標示 Noble 的 PPA 修訂序號；同一 suite 後續上傳可遞增為 `~noble2`。目標 suite 本身由 changelog 的 `noble` distribution 欄位指定。
+* `~resolute1`：可選的 PPA 後綴，用來標示 Resolute 的 PPA 修訂序號；同一 suite 後續上傳可遞增為 `~resolute2`。目標 suite 本身由 changelog 的 `resolute` distribution 欄位指定。
 
 版號後綴會影響 APT 的版本排序：`~` 排在沒有後綴的版號之前，`+` 則排在它之後。因此不要直接把 `~resolute1` 加到已存在的 `0.7.0-1ubuntu2` 後面，因為 `0.7.0-1ubuntu2~resolute1` 會比官方版舊。若 Resolute 官方版是 `0.7.0-1ubuntu2`，PPA 測試版可用 `0.7.0-1ubuntu2+resolute1`；或提高 Ubuntu 修訂號後使用 `0.7.0-1ubuntu3~resolute1`。PPA 後續更新要遞增自己的序號，不能重用已上傳的同版號。
 
@@ -182,6 +182,15 @@ License: GPL-3.0+
 Files: debian/*
 Copyright: 2026 Your Name <you@example.com>
 License: GPL-3.0+
+
+License: GPL-3.0+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License version 3 can be found in "/usr/share/common-licenses/GPL-3".
 ```
 
 #### `debian/rules`
@@ -196,7 +205,7 @@ GNU hello 使用標準的 configure 與 make 流程。
 #!/usr/bin/make -f
 
 override_dh_auto_clean:
-  if [ -f Makefile ]; then dh_auto_clean; fi
+	if [ -f Makefile ]; then dh_auto_clean; fi
 
 %:
 	dh $@
@@ -204,7 +213,7 @@ override_dh_auto_clean:
 
 <!-- markdownlint-enable MD010 -->
 
-recipe 前面必須是 Tab，不是空白。
+recipe（`override_dh_auto_clean:` 與 `%:` 下面的指令）前面必須是 Tab，不是空白；用空白會出現 `missing separator` 錯誤。
 另外可以把既有的 comments 都刪除，不然後續的 lintian 會有 Error 錯誤出現。
 
 最後確認 `debian/rules` 有執行權限：
@@ -239,10 +248,10 @@ quilt refresh
 
 #### 其他檔案
 
-`debian/` 內還有很多其他範例，例如 `*.ex` 或是 `README.*`，如果沒有用到可以先刪除。
+`debian/` 內還有很多其他範例，例如 `*.ex`（其中 `upstream.ex` 是目錄）或是 `README.*`，如果沒有用到可以先刪除。請在原始碼目錄執行：
 
 ```bash
-rm *.ex README.*
+rm -rf debian/*.ex debian/*.EX debian/README.*
 ```
 
 ## 驗證修改
@@ -255,20 +264,20 @@ rm *.ex README.*
 sudo sbuild-adduser "$USER"
 ```
 
-登出再登入，讓群組設定生效。接著建立 Noble 的建置環境，這個步驟只需做一次，會下載套件並使用磁碟空間：
+登出再登入，讓群組設定生效。接著建立 Resolute 的建置環境，這個步驟只需做一次，會下載套件並使用磁碟空間：
 
 ```bash
 sudo mkdir -p /srv/chroot
-# 建立 Noble amd64 的 sbuild chroot tarball。
+# 建立 Resolute amd64 的 sbuild chroot tarball。
 sudo sbuild-createchroot --arch=amd64 --components=main,universe \
   --keyring=/usr/share/keyrings/ubuntu-archive-keyring.gpg \
-  --make-sbuild-tarball=/srv/chroot/noble-amd64-sbuild.tar.gz \
-  noble /srv/chroot/noble-amd64-sbuild http://archive.ubuntu.com/ubuntu
-# 列出 schroot 已設定的環境，確認 Noble chroot 已建立。
+  --make-sbuild-tarball=/srv/chroot/resolute-amd64-sbuild.tar.gz \
+  resolute /srv/chroot/resolute-amd64-sbuild http://archive.ubuntu.com/ubuntu
+# 列出 schroot 已設定的環境，確認 Resolute chroot 已建立。
 schroot --list
 ```
 
-確認清單中有 `noble-amd64-sbuild` 對應的 chroot。打包與建置操作使用一般使用者，不要執行 `sudo sbuild`。
+確認清單中有 `resolute-amd64-sbuild` 對應的 chroot。打包與建置操作使用一般使用者，不要執行 `sudo sbuild`。
 此範例不涵蓋跨架構本地建置；ARM 主機需使用適當的架構與 Ubuntu ports mirror，不能只照抄 `amd64` 設定。
 
 ### 產生原始碼套件並使用 sbuild 測試
@@ -281,8 +290,8 @@ cd ppa-work/hello-2.12.1
 dpkg-buildpackage -S -sa -us -uc -d
 # 要在原始碼的資料夾外執行 sbuild
 cd ..
-# 在 Noble chroot 中安裝建置相依套件並編譯來源套件。
-sbuild --chroot-mode=schroot -d noble hello_2.12.1-0ubuntu1~noble1.dsc
+# 在 Resolute chroot 中安裝建置相依套件並編譯來源套件。
+sbuild --chroot-mode=schroot -d resolute hello_2.12.1-0ubuntu1~resolute1.dsc
 ```
 
 * `-S -sa`：產生原始碼套件，並包含第一次上傳需要的上游封存檔。
@@ -299,9 +308,9 @@ sbuild --chroot-mode=schroot -d noble hello_2.12.1-0ubuntu1~noble1.dsc
 
 ```bash
 # 檢查 sbuild 產生的二進位套件與套件資訊。
-lintian -I -i --pedantic hello_2.12.1-0ubuntu1~noble1_amd64.changes
+lintian -I -i --pedantic hello_2.12.1-0ubuntu1~resolute1_amd64.changes
 # 檢查 source package、debian/ 設定及原始碼檔案。
-lintian -I -i --pedantic hello_2.12.1-0ubuntu1~noble1_source.changes
+lintian -I -i --pedantic hello_2.12.1-0ubuntu1~resolute1_source.changes
 ```
 
 優先修正 `E:`（錯誤）；逐項檢查 `W:`（警告），修正問題或確認並記錄合理原因。
@@ -313,10 +322,10 @@ lintian -I -i --pedantic hello_2.12.1-0ubuntu1~noble1_source.changes
 將 `YOUR_FINGERPRINT` 換成自己已在 Launchpad 驗證的 GPG 完整指紋：
 
 ```bash
-debsign hello_2.12.1-0ubuntu1~noble1_source.changes
+debsign hello_2.12.1-0ubuntu1~resolute1_source.changes
 # 如果沒有放 GPG key 在 .devscripts 的話
-# debsign -kYOUR_FINGERPRINT hello_2.12.1-0ubuntu1~noble1_source.changes
-dput ppa:YOUR_LAUNCHPAD_ID/myppa hello_2.12.1-0ubuntu1~noble1_source.changes
+# debsign -kYOUR_FINGERPRINT hello_2.12.1-0ubuntu1~resolute1_source.changes
+dput ppa:YOUR_LAUNCHPAD_ID/myppa hello_2.12.1-0ubuntu1~resolute1_source.changes
 ```
 
 `debsign` 會簽署 `.changes` 及相關的 `.dsc` 等檔案，可能要求輸入私鑰密碼。
@@ -338,7 +347,7 @@ Launchpad 處理後會寄送接受或拒絕通知，可以在 PPA 頁面查看�
 sudo add-apt-repository ppa:YOUR_LAUNCHPAD_ID/myppa
 sudo apt update
 apt policy hello
-sudo apt install hello=2.12.1-0ubuntu1~noble1
+sudo apt install hello=2.12.1-0ubuntu1~resolute1
 hello
 ```
 
@@ -355,33 +364,51 @@ sudo add-apt-repository --remove ppa:YOUR_LAUNCHPAD_ID/myppa
 sudo apt update
 ```
 
-### 多發行版與多架構
+### 新增最新的 Ubuntu release
 
-* **`debian/changelog`（每個 suite 都要改）**：上傳目標由最新項目的 codename 決定。Noble 和 Resolute 要分別用 `noble`、`resolute`，並使用不同版本號，例如 `2.12.1-0ubuntu1~noble1`、`2.12.1-0ubuntu1~resolute1`；各自產生 source package、測試並上傳。
-* **`debian/control`（有需要才改）**：若套件相依套件在不同 Ubuntu 版本名稱不同、版本需求不同，或某個 suite 沒有相依套件，才調整 `Build-Depends`／`Depends`。
-* **`debian/rules`（有需要才改）**：只有不同 suite 需要不同的設定或建置步驟時才加條件；否則共用同一份即可。
-* **`debian/patches/`（有需要才改）**：只有程式在不同 suite 需要不同修補時才調整；一般應先維持相同補丁組合。
-* **多架構**：在 PPA 頁面的架構設定確認可用的 architectures。`Architecture: any` 的套件會依 PPA 啟用且支援的架構安排建置；部分架構可能需要額外申請，不保證所有 PPA 都能使用。
-
-例如要從 Noble 範例新增 Resolute，先在 PPA 設定啟用 Resolute，並建立一次對應的 chroot：
+Ubuntu 每半年釋出新版，PPA 不會自動跟進，必須主動為新的 series 再上傳一次。
+先確認要鎖定的 codename：
 
 ```bash
+# 最新已釋出的版本，以及目前開發中的版本（需要 distro-info 套件）。
+ubuntu-distro-info --latest
+ubuntu-distro-info --devel
+```
+
+以 2026 年 11 月為例，最新釋出的是 `stonking`（26.10），開發中的是 `tenacious`（27.04）。
+Launchpad 允許上傳到開發中的 series，但上傳前請先確認 codename 已出現在 [Ubuntu 的 Launchpad 頁面](https://launchpad.net/ubuntu)。
+
+新 series 的流程與 Resolute 相同，只有以下三處不同：
+
+* **`debian/changelog`（必改）**：新增項目，`distribution` 填新的 codename，版號後綴改成新 codename 並從 `1` 開始，例如 `2.12.1-0ubuntu1~stonking1`。Ubuntu 的 codename 依字母順序遞增，因此 `~resolute1` < `~stonking1` < `~tenacious1`，使用者升級 Ubuntu 後 APT 會自然選到較新的版本。
+* **sbuild chroot（必建一次）**：為新 series 建立另一個 chroot，把 `resolute` 換成新 codename。
+* **`debian/control`、`debian/rules`、`debian/patches/`（有需要才改）**：只有新 release 的相依套件名稱或版本、工具鏈（例如 GCC、Python）造成建置失敗時才調整，一般先沿用原本內容。
+
+```bash
+# 建立新 series 的 sbuild chroot；把 stonking 換成要上傳的 codename。
 sudo sbuild-createchroot --arch=amd64 --components=main,universe \
   --keyring=/usr/share/keyrings/ubuntu-archive-keyring.gpg \
-  --make-sbuild-tarball=/srv/chroot/resolute-amd64-sbuild.tar.gz \
-  resolute /srv/chroot/resolute-amd64-sbuild http://archive.ubuntu.com/ubuntu
+  --make-sbuild-tarball=/srv/chroot/stonking-amd64-sbuild.tar.gz \
+  stonking /srv/chroot/stonking-amd64-sbuild http://archive.ubuntu.com/ubuntu
 ```
-
-若套件設定和相依套件不需更動，在原始碼目錄新增 Resolute changelog 項目，重新產生 source package，再用 Resolute chroot 測試：
 
 ```bash
-dch --newversion 2.12.1-0ubuntu1~resolute1 --distribution resolute
+# 在原始碼目錄新增新 series 的 changelog 項目。
+dch --newversion 2.12.1-0ubuntu1~stonking1 --distribution stonking
 dpkg-buildpackage -S -sa -us -uc -d
 cd ..
-sbuild --chroot-mode=schroot -d resolute hello_2.12.1-0ubuntu1~resolute1.dsc
+sbuild --chroot-mode=schroot -d stonking hello_2.12.1-0ubuntu1~stonking1.dsc
 ```
 
-確認 sbuild 成功後，照前面的方式對新產生的 `_source.changes` 執行 Lintian、簽署並上傳；Noble 和 Resolute 是兩次不同的 source upload。
+sbuild 成功後，照前面的方式對新的 `_source.changes` 執行 Lintian、簽署並上傳。
+每個 series 都是獨立的 source upload；上游封存檔 `.orig.tar.gz` 已存在於 PPA，後續上傳可以改用 `-sd`，只送出 `debian/` 的差異。
+若不需要改任何打包設定，也可以在 PPA 頁面使用 **Copy packages**，把既有的 source package 複製到新 series 並重新建置，不必重新簽署上傳。
+
+### 多架構
+
+在 PPA 頁面的架構設定確認可用的 architectures。
+`Architecture: any` 的套件會依 PPA 啟用且支援的架構安排建置；部分架構可能需要額外申請，不保證所有 PPA 都能使用。
+本機以 sbuild 驗證時，也要為對應架構建立 chroot；ARM 主機需使用適當的 Ubuntu ports mirror，不能只照抄 `amd64` 設定。
 
 ### 產生的檔案說明
 
@@ -412,17 +439,17 @@ PPA 上傳 source package；binary 套件由 Launchpad 建置。
 fakeroot debian/rules clean
 ```
 
-若要清除 `ppa-work/` 中某個版本的打包產物，先進入該目錄，再使用精確的版本字串；以下只刪 Noble 這個版本，會保留上游 tarball 和 `hello-2.12.1/` 原始碼目錄：
+若要清除 `ppa-work/` 中某個版本的打包產物，先進入該目錄，再使用精確的版本字串；以下只刪 Resolute 這個版本，會保留上游 tarball 和 `hello-2.12.1/` 原始碼目錄：
 
 ```bash
 cd ~/ppa-work
-rm -f hello_2.12.1-0ubuntu1~noble1* \
-  hello-dbgsym_2.12.1-0ubuntu1~noble1*
+rm -f hello_2.12.1-0ubuntu1~resolute1* \
+  hello-dbgsym_2.12.1-0ubuntu1~resolute1*
 ```
 
 ## 參考資料
 
 * [Launchpad：上傳套件到 PPA](https://help.launchpad.net/Packaging/PPA/Uploading)
 * [GNU hello](https://www.gnu.org/software/hello/)
-* [sbuild 使用手冊](https://manpages.ubuntu.com/manpages/noble/man1/sbuild.1.html)
-* [sbuild-createchroot 使用手冊](https://manpages.ubuntu.com/manpages/noble/man8/sbuild-createchroot.8.html)
+* [sbuild 使用手冊](https://manpages.ubuntu.com/manpages/resolute/man1/sbuild.1.html)
+* [sbuild-createchroot 使用手冊](https://manpages.ubuntu.com/manpages/resolute/man8/sbuild-createchroot.8.html)
