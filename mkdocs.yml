@@ -146,6 +146,7 @@ nav:
     - 'Debian 打包與 PPA':
       - 'Debian package 打包入門': 'canonical/deb-packaging/packaging.md'
       - '上傳套件到自己的 PPA': 'canonical/deb-packaging/ppa.md'
+      - '把套件送進 Ubuntu': 'canonical/deb-packaging/ubuntu-upload.md'
   - 'Others':
     - 'Binary 分析': 'others/binary-analysis.md'
     - 'QEMU': 'others/qemu.md'
