@@ -58,6 +58,10 @@ flowchart TD
 | `multiverse` | 授權或散佈受限的軟體 | 少見 |
 | `restricted` | Canonical 維護的專有軟體，多為驅動程式 | 少見 |
 
+**Seed** 是 Ubuntu 用來宣告「某個產品或映像要包含哪些套件」的清單，例如 `server`、`desktop`，存放在 Launchpad 的 `ubuntu-seeds` 倉庫，不在你的 source package 裡。
+被 seed 納入的套件及其相依套件屬於 `main`，不在 seed 裡的套件留在 `universe`。
+所以新套件進 `universe` 不需要處理 seed；要進 `main` 或被預設安裝在映像中，才需要透過 MIR 把它加入 seed。
+
 ## 先決觀念
 
 - **只進開發中的 series**：新套件只能進入開發中的版本（例如 `tenacious`，27.04）。已釋出的版本（例如 `resolute`，26.04）只接受 bug 修正的更新（SRU），不接受新軟體。已釋出版本的使用者要等下一個 release，或改用 PPA 或 snap。
