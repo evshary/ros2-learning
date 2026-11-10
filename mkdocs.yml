@@ -142,6 +142,7 @@ nav:
     - 'Checkbox 入門': 'canonical/checkbox.md'
     - 'Ubuntu Kernel 加上 patch': 'canonical/kernel-patch.md'
     - 'Juju 入門': 'canonical/juju.md'
+    - 'LXD 入門': 'canonical/lxd.md'
     - 'GPG 金鑰管理入門': 'canonical/gpg.md'
     - 'Debian 打包與 PPA':
       - 'Debian package 打包入門': 'canonical/deb-packaging/packaging.md'
