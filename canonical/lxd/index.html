@@ -3338,9 +3338,10 @@
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>lxc<span class="w"> </span>snapshot<span class="w"> </span>c1<span class="w"> </span>before-change
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>lxc<span class="w"> </span>restore<span class="w"> </span>c1<span class="w"> </span>before-change
 </span></code></pre></div>
-<p>停止與刪除：</p>
+<p>停止、重新啟動與刪除：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>lxc<span class="w"> </span>stop<span class="w"> </span>c1
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>lxc<span class="w"> </span>delete<span class="w"> </span>c1
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>lxc<span class="w"> </span>start<span class="w"> </span>c1
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>lxc<span class="w"> </span>delete<span class="w"> </span>c1
 </span></code></pre></div>
 <h2 id="_3">建立虛擬機器</h2>
 <p>加上 <code>--vm</code> 就會建立擁有獨立 kernel 的虛擬機器，其餘指令（<code>list</code>、<code>exec</code>、<code>snapshot</code>、<code>delete</code>）用法相同：</p>
