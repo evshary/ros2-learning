@@ -75,10 +75,11 @@ lxc snapshot c1 before-change
 lxc restore c1 before-change
 ```
 
-停止與刪除：
+停止、重新啟動與刪除：
 
 ```bash
 lxc stop c1
+lxc start c1
 lxc delete c1
 ```
 
