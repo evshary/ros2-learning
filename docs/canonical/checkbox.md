@@ -28,25 +28,61 @@ Launcher 則設定 Checkbox 如何執行這個 plan。
 
 Checkbox 分成執行環境（runtime）和操作介面（frontend）。
 Runtime 提供測試內容，frontend 提供操作介面；請選擇與 Ubuntu 版本相符的 runtime 和 frontend 通道（channel）。
-以下以 Ubuntu 24.04 為例：
+以下以 Ubuntu 26.04 為例：
 
 ```bash
-sudo snap install checkbox24
-sudo snap install checkbox --channel=24.04/stable --classic
+sudo snap install checkbox26
+sudo snap install checkbox --channel=26.04/stable --classic
 ```
 
-Ubuntu 22.04 可改用 `checkbox22` runtime 及 `22.04/stable` frontend channel。
+Ubuntu 24.04 可改用 `checkbox24` runtime 及 `24.04/stable` frontend channel。
 其他版本請先查看 [Checkbox Snap 版本說明](https://documentation.ubuntu.com/checkbox/stable/reference/snaps/)及 `snap info checkbox`。
 
 ## 基本的執行操作
 
 ### 跑範例 Tutorial Test Plan
 
-啟動 Checkbox：
+Checkbox 分成 agent 與 controller 兩個角色：
+agent 是以 root 在背景執行的服務，安裝在受測機器上，負責實際執行測試；controller 是你操作的互動介面，連到 agent 後選擇並執行測試計畫。
+兩者可以在同一台機器（本機測試），也可以在不同機器（跨機器測試）。
+
+先在受測機器上確認 agent 已啟動。
+Frontend snap 安裝後會附帶 `checkbox.agent` 服務：
 
 ```bash
-checkbox.checkbox-cli
+snap services checkbox
 ```
+
+如果 `checkbox.agent` 不是 `active`，請啟動並設為開機自動啟動：
+
+```bash
+sudo snap start --enable checkbox
+```
+
+接著用 controller 連到 agent：
+
+```bash
+# 本機測試：連到本機 agent，預設使用 18871 port
+checkbox.checkbox-cli control localhost
+
+# 跨機器測試：在操作用的電腦上連到受測機器的 agent
+checkbox.checkbox-cli control <受測機器的 IP 或主機名稱>
+```
+
+跨機器測試時需注意：
+
+* 兩台機器的 Checkbox 版本需相容，否則 controller 會回報 API 版本不符。
+* Agent 預設監聽 `18871` port，防火牆需允許 controller 連入；可用 `--port` 指定其他 port。
+* Agent 沒有身分驗證，請只在可信任的網路使用。
+  若需要較安全的連線，可先建立 SSH 通道，再用 `control localhost` 連線：
+
+```bash
+# 將本機 18871 轉送到受測機器的 agent
+ssh -N -L 18871:localhost:18871 <使用者>@<受測機器>
+```
+
+直接執行 `checkbox.checkbox-cli`（不加 `control`）也能在本機跑測試，但這種方式由該程式自己取得 sudo 權限。
+若系統的 sudo 使用互動式驗證（例如 authd 網域帳號），Checkbox 會一直要求輸入 sudo 密碼而無法繼續；此時請改用 `control`。
 
 在互動介面中：
 
