@@ -224,6 +224,53 @@ checkbox-cli run 2026.example.org::graphics-acceleration
 
 若要透過互動選單選取此計畫，請在同一個 Checkbox source development environment 執行 `checkbox-cli`，再從 test plan 清單選取 `Graphics Acceleration Test Plan`。
 
+### 建立 Launcher
+
+Test plan 決定「測什麼」，launcher 決定「怎麼跑」：選哪個 test plan、要不要略過互動選單、結果輸出到哪裡。
+Launcher 是 INI 格式的檔案，不屬於 provider。
+在任意位置建立 `graphics.conf`：
+
+```ini
+[launcher]
+launcher_version = 1
+# 此 launcher 的識別名稱，用來區分測試 session
+app_id = org.example:graphics
+
+[test plan]
+# 指定要執行的 test plan
+unit = 2026.example.org::graphics-acceleration
+# 不顯示 test plan 選單，直接使用上面指定的 plan
+forced = yes
+
+[test selection]
+# 不顯示 job 選單，直接執行 plan 內所有 job
+forced = yes
+
+[transport:local_file]
+# 將結果檔案複製到指定路徑
+type = file
+path = /tmp/graphics-submission.tar.xz
+
+[exporter:tar]
+# 輸出格式：包含所有結果的 .tar.xz 封存檔
+unit = com.canonical.plainbox::tar
+
+[report:file]
+# 將 tar 匯出結果送到上面的 local_file
+transport = local_file
+exporter = tar
+forced = yes
+```
+
+在 Checkbox 開發環境中，用 launcher 執行：
+
+```bash
+checkbox-cli launcher graphics.conf
+```
+
+執行時不會再出現 test plan 與 job 選單，結束後會把結果存到 `/tmp/graphics-submission.tar.xz`，另外也會產生預設的 HTML、JSON 等報告。
+`certify-ubuntu-server` 這類認證指令，也是這種 launcher：固定 test plan 並設定報告輸出方式。
+
 ## 執行 Desktop、Server 與 IoT 測試
 
 Canonical 針對 OEM、ODM 提供 Ubuntu 的認證，包含 Desktop、Server、IoT 各個種類。
