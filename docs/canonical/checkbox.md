@@ -230,14 +230,59 @@ Canonical 針對 OEM、ODM 提供 Ubuntu 的認證，包含 Desktop、Server、I
 這些硬體測試是可以直接在自己電腦執行的，最底層也是會呼叫到 Checkbox。
 詳細可以參考 [Hardware Certification documentation](https://certification.canonical.com/docs/programmes/)。
 
+### 為什麼要另外安裝認證套件
+
+認證用的 test plan 也包含在 Checkbox snap 裡，`checkbox-cli run` 同樣能執行。
+`canonical-certification-client` 與 `canonical-certification-server` 本身是空的元套件，只相依 Checkbox 與對應的 provider。
+它們真正多裝的，是測試時會呼叫的外部工具。
+這些工具是系統層級的 deb 套件，用 snap 無法完整提供；缺少時，相關的 job 會失敗或被略過。
+
+| | Desktop：`canonical-certification-client` | Server：`canonical-certification-server` |
+| --- | --- | --- |
+| Checkbox 元件 | `checkbox-provider-certification-client`、`checkbox-provider-tpm2` | `checkbox-provider-certification-server`、`checkbox-provider-gpgpu`、`canonical-certification-submit` |
+| 圖形與顯示 | `glmark2`、`mesa-utils`、`wmctrl`、`render-bench`；`qmlscene` 等 QML 套件（圖形啟動器） | 無 |
+| 週邊裝置 | `fswebcam`（相機）、`obexftp`（藍牙）、`iw`（無線網路） | `ipmitool`、`freeipmi-tools`、`msr-tools`（伺服器管理與 CPU） |
+| 網路 | `ethtool` | `iperf`、`nmap`、`ipcalc` |
+| 儲存與加密 | `hdparm`、`clevis`、`clevis-tpm2`、`cryptsetup-bin` | 無 |
+| 虛擬化 | 無 | `qemu-system`、`qemu-utils`、`ovmf`、`cpu-checker` |
+| 壓力與效能 | `stress` | `stress`、`stress-ng`、`bonnie++`、`numactl` |
+| 韌體 | `fwts` | `fwts` |
+| 其他 | `imagemagick` | `ssh`、`screen`、`git`、`gcc`、`make`、`cmake` |
+
+Server 套件另外提供 `certify-ubuntu-server`、`test-cpu` 等 launcher 與 `canonical-certification-precheck`；Desktop 則是直接執行 test plan。
+Ubuntu Core 不支援 deb，因此 Core 只需安裝 Checkbox 的 strict snap，不需要另外的認證套件。
+
+下面每種安裝後，都附上一個只跑單一 job 的快速試跑指令，不需要執行完整認證測試。
+
 ### Server
 
-如果要跑 server 的認證，要先安裝測試腳本：canonical-certification-server
+Server 套件的 `certify-*`、`test-*` 其實是 Checkbox 的 launcher 設定檔，內容是固定的 test plan 與報告設定：
+
+| 指令 | 執行的 test plan |
+| --- | --- |
+| `certify-ubuntu-server` | `server-full-26.04`（完整認證） |
+| `test-cpu` | `cpu-only`（含 `stress-ng` 壓力測試） |
+| `test-memory` | `memory-only`（含記憶體壓力測試） |
+| `test-usb` | `usb-only`（需要接上 USB 裝置） |
+
+`test-*` 用於認證後針對單一項目重測，不適合當作快速試跑；快速試跑請用下方的單一 job 或資訊收集 plan。
+
+安裝 Server 測試套件 `canonical-certification-server`：
 
 ```bash
 sudo add-apt-repository ppa:checkbox-dev/stable
 sudo add-apt-repository ppa:firmware-testing-team/ppa-fwts-stable
 sudo apt install canonical-certification-server
+```
+
+快速試跑：
+
+```bash
+# 只執行一個 job，收集 /proc/cpuinfo；不會進行完整認證
+checkbox-cli run com.canonical.certification::cpuinfo_attachment
+
+# 執行資訊收集 test plan；全自動，不含壓力測試
+checkbox-cli run com.canonical.certification::server-info-attachment-automated
 ```
 
 可以先確認測試環境：
@@ -246,13 +291,78 @@ sudo apt install canonical-certification-server
 canonical-certification-precheck
 ```
 
-開始測試：
+開始完整認證測試：
 
 ```bash
+# 對應最新 Ubuntu 版本的 launcher，執行時間可能長達數小時
 certify-ubuntu-server
 ```
 
 可以在 `~/.local/share/checkbox-ng/submission_<DATECODE>.html` 看到最終 report。
+
+### Desktop
+
+Desktop 沒有 `certify-*` 腳本，而是直接執行對應 Ubuntu 版本的 test plan。
+Test plan 已包含在前面安裝的 Checkbox snap 中，指令改用 `checkbox.checkbox-cli` 即可。
+如果想用 deb 安裝，並一併裝上上表的工具，則安裝 `canonical-certification-client`，指令為 `checkbox-cli`：
+
+```bash
+sudo add-apt-repository ppa:checkbox-dev/stable
+sudo apt install canonical-certification-client
+```
+
+先列出可用的 test plan：
+
+```bash
+# deb 安裝使用 checkbox-cli；snap 安裝使用 checkbox.checkbox-cli
+checkbox-cli list "test plan" | grep client-cert-desktop-26-04
+```
+
+快速試跑：
+
+```bash
+# 只執行一個 job，收集 /proc/cpuinfo；不會進行完整認證
+checkbox-cli run com.canonical.certification::cpuinfo_attachment
+```
+
+開始完整認證測試：
+
+```bash
+# 全部測試，包含需要人工確認的項目與壓力測試
+checkbox-cli run com.canonical.certification::client-cert-desktop-26-04
+
+# 也可以只跑不需要人工操作的部分
+checkbox-cli run com.canonical.certification::client-cert-desktop-26-04-automated
+```
+
+### Core
+
+Ubuntu Core 無法安裝 deb 或 classic 的 frontend，需要安裝 runtime 與 strict 的 frontend：
+
+```bash
+# runtime，提供測試內容
+sudo snap install checkbox26
+# uc26 是對應 Ubuntu Core 26 的 strict frontend channel
+# --devmode 解除 snap 的權限限制，否則 Checkbox 無法在 /var/tmp 建立工作階段目錄
+sudo snap install checkbox --channel=uc26/stable --devmode
+```
+
+快速試跑：
+
+```bash
+# 只執行一個 job，收集 /proc/cpuinfo；不會進行完整認證
+checkbox.checkbox-cli run com.canonical.certification::cpuinfo_attachment
+```
+
+開始完整認證測試：
+
+```bash
+# Snap 內建的 Core 認證 launcher（主要供 Canonical 實驗室使用）
+checkbox.client-cert-iot-ubuntucore
+
+# 或指定 test plan
+checkbox.checkbox-cli run com.canonical.certification::client-cert-iot-ubuntucore-26
+```
 
 ## Agent 安全注意事項
 
